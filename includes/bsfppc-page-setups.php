@@ -33,7 +33,7 @@ function bsf_ppc_add_custom_meta_box()
         foreach ($screens as $screen) {
             add_meta_box(
                 'wporg_box_id',           // Unique ID
-                'Pre-publish checklist',  // Box title
+                'Pre-Publish Checklist',  // Box title
                 'bsf_ppc_custom_box_html',  // Content callback, must be of type callable
                 $screen,
                 'side'                  // Post type
@@ -54,7 +54,7 @@ function bsf_ppc_custom_box_html($post)
                 }
             }
         else{
-            echo "create a list to display here";
+            echo "Please create a list to display here";
         }
     }
 /**

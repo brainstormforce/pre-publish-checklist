@@ -5,15 +5,12 @@ $bsf_ppc_checklist_item_data = get_option('bsf_ppc_checklist_data');?>
 
 <!DOCTYPE html>
 <html>
-<head>
-	<title></title>
-</head>
 <body>
 	<h2>Please create a custom checklist </h2>
     <form method="POST">
-		Checklist item <input type="text" name="bsf_ppc_checklist_item[]" required> 
+		Checklist item <input type="text" name="bsf_ppc_checklist_item[]" required > 
 		<input type="submit" name="submit" class="button button-primary"  Value="add item"/>
-   
+
 	<form method="POST">
 		<h2>Your List</h2>
 		<?php
@@ -21,11 +18,11 @@ $bsf_ppc_checklist_item_data = get_option('bsf_ppc_checklist_data');?>
 			foreach( $bsf_ppc_checklist_item_data as $key ){
 			$arrIndex = array_search($key,$bsf_ppc_checklist_item_data);
 			?>	 	
-			<input type="text" readonly value="<?php echo esc_attr($key); ?>" name="bsf_ppc_checklist_item[]" >
+			<input type="text" readonly value="<?php echo esc_attr($key); ?>" name="bsf_ppc_checklist_item[]" ></br>
 			<?php
-			echo'<input type="submit" name="delete" class="button button-secondary"  Value="delete"></br>
-			';
 			}
+			echo'</br> <input type="submit" name="delete" class="button button-secondary"  Value="Delete a item " formnovalidate>
+			';
 		}
 		else{
 			echo "You have do not have any list please add items in the list";
