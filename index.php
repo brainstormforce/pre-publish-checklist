@@ -10,6 +10,7 @@
  */
 
 
+
 define( 'BSF_PPC_ABSPATH', plugin_dir_path( __FILE__ ) );
 require_once('classes/class-bsfppc-loader.php');
-require_once('includes/bsf-ppc-page-setup.php');
+require_once('includes/bsfppc-page-setups.php');

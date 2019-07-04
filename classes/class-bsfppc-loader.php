@@ -44,7 +44,7 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 		 */
 		public function __construct() {
 
-			require_once BSF_PPC_ABSPATH . 'includes/bsfppc-page.php';
+			require_once BSF_PPC_ABSPATH . 'includes/bsfppc-page-setups.php';
 		}
 	}
 
