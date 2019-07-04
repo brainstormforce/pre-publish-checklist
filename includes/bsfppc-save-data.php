@@ -16,7 +16,7 @@ if( isset( $_POST['delete'] ) ) {
 			$bsf_ppc_checklist_item_data = get_option( 'bsf_ppc_checklist_data' );
 			$bsf_ppc_checklist_item = array();
 			$bsf_ppc_checklist_item = $bsf_ppc_checklist_item_data;
-			unset( $bsf_ppc_checklist_item[] );
+			unset( $bsf_ppc_checklist_item );
 			update_option( 'bsf_ppc_checklist_data', $bsf_ppc_checklist_item);
 		
 		}
