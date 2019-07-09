@@ -55,25 +55,13 @@ function bsfppc_custom_box_html($post) {
                     echo "<br/>";    
                      
                 } 
-                var_dump($_COOKIE['checked']);
-                // var_dump($_POST['variable']);
+                
+               
             }
         else{
             echo "Please create a list to display here";
         }
     }
-
-function dont_publish( $data , $postarr ) {  
-          if( $data['post_type'] == get_post_type($post_ID) ) {
-                $data['post_status'] = 'draft';
-            }
-        return $data;  
-    }
-if( $bsfppc_radio_button_data == 1 ){
-    add_action( 'publish_post', 'dont_publish' );
-    add_filter( 'wp_insert_post_data' , 'dont_publish' , '99', 2 );
-}
-
 /**
  * Main Frontpage.
  *

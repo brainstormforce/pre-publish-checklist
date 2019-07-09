@@ -1,30 +1,38 @@
 
 $(document).ready(function(){
 
+if($('.editor-post-publish-panel__toggle').length == 1) {
+       setTimeout(function() {
+          $('.editor-post-publish-panel__toggle').prop('disabled', true);
+    }, 100); 
+    } else if($('.editor-post-publish-button').length == 1) {
+            setTimeout(function() {
+              $('.editor-post-publish-button').prop('disabled', true);
+        }, 100); 
+    }
     var $checkboxes = $('#checkbox[type="checkbox"]');
     var countCheckedCheckboxes = $checkboxes.filter(':checked').length;
     $checkboxes.change(function(){
         var countCheckedCheckboxes = $checkboxes.filter(':checked').length;
-          var javascriptVariable = false;
- 		  
-        // $('#count-checked-checkboxes').text(countCheckedCheckboxes);
-        // $('#edit-count-checked-checkboxes').val(countCheckedCheckboxes);
         if($checkboxes.length == countCheckedCheckboxes ){
-        	// To send if this all checkboxes are check
-        	document.cookie ='checked=true';
-        	console.log('all checked');
+        	// all checkboxes are check
+            if($('.editor-post-publish-panel__toggle').length == 1) {
+                $('.editor-post-publish-panel__toggle').prop('disabled', false);
+            } else if($('.editor-post-publish-button').length == 1) {
+                $('.editor-post-publish-button').prop('disabled', false);
+            }
         }
         else{
-        	// To send if this all checkboxes are not yet checked 
-        	document.cookie ='checked=false';
-        	console.log('some remaining');
+        	// all checkboxes are not yet checked 
+            if($('.editor-post-publish-panel__toggle').length == 1) {
+                    $('.editor-post-publish-panel__toggle').prop('disabled', true);
+            }
+            else if($('.editor-post-publish-button').length == 1) {
+                $('.editor-post-publish-button').prop('disabled', true);
+            }
+    
         }
     });
 
-});
-
-
-
-    // alert('please check all the checkboxes');  
-
+}); 
     
