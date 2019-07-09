@@ -8,12 +8,15 @@
  */
 
 /**
- * Add submenu of Global settings Page to admin menu.
+ * 
  *
  * @since  1.0.0
  * @return void
  */
 
+$bsfppc_radio_button_data = get_option( 'bsfppc_radio_button_option_data' );
+$bsfppc_checked = $_COOKIE['checked'];
+$myval = $_POST['variable'];
 function bsf_ppc_settings_page() {
 	add_submenu_page(
 		'options-general.php',
@@ -26,37 +29,51 @@ function bsf_ppc_settings_page() {
 }
 add_action( 'admin_menu', 'bsf_ppc_settings_page' );
 
-
-function bsf_ppc_add_custom_meta_box()
+function bsfppc_add_custom_meta_box()
     {
         $screens = ['post', 'page'];
         foreach ($screens as $screen) {
             add_meta_box(
-                'wporg_box_id',           // Unique ID
+                'bsfppc_custom_meta_box',           // Unique ID
                 'Pre-Publish Checklist',  // Box title
-                'bsf_ppc_custom_box_html',  // Content callback, must be of type callable
+                'bsfppc_custom_box_html',  // Content callback, must be of type callable
                 $screen,
                 'side'                  // Post type
             );
         }
     }
-add_action('add_meta_boxes', 'bsf_ppc_add_custom_meta_box');
+add_action('add_meta_boxes', 'bsfppc_add_custom_meta_box');
 
 
-function bsf_ppc_custom_box_html($post)
-    {
-        $bsf_ppc_checklist_item_data = get_option('bsf_ppc_checklist_data');
-            if(!empty($bsf_ppc_checklist_item_data)){
-                    foreach( $bsf_ppc_checklist_item_data as $key) {
-                    echo '<input type="checkbox" value="'.$key.'" >';
+function bsfppc_custom_box_html($post) {
+        wp_enqueue_script('bsfppc_backend');
+        $bsfppc_checklist_item_data = get_option('bsfppc_checklist_data');
+            if(!empty($bsfppc_checklist_item_data)){
+                    foreach( $bsfppc_checklist_item_data as $key) {
+                    echo '<input type="checkbox" id="checkbox" value="'.$key.'" >';
                     echo $key;
-                    echo "<br/>";
-                }
+                    echo "<br/>";    
+                     
+                } 
+                var_dump($_COOKIE['checked']);
+                // var_dump($_POST['variable']);
             }
         else{
             echo "Please create a list to display here";
         }
     }
+
+function dont_publish( $data , $postarr ) {  
+          if( $data['post_type'] == get_post_type($post_ID) ) {
+                $data['post_status'] = 'draft';
+            }
+        return $data;  
+    }
+if( $bsfppc_radio_button_data == 1 ){
+    add_action( 'publish_post', 'dont_publish' );
+    add_filter( 'wp_insert_post_data' , 'dont_publish' , '99', 2 );
+}
+
 /**
  * Main Frontpage.
  *
