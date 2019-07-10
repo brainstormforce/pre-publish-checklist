@@ -1,0 +1,19 @@
+.popup-overlay {
+
+visibility:hidden;
+
+}
+
+.popup-content {
+
+	color: red;
+visibility:hidden;
+}	
+
+/*.popup-overlay.active{
+visibility: block;
+}
+
+.popup-content.active {
+visibility: block;
+}*/

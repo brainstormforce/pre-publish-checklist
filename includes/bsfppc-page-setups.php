@@ -15,8 +15,7 @@
  */
 
 $bsfppc_radio_button_data = get_option( 'bsfppc_radio_button_option_data' );
-$bsfppc_checked = $_COOKIE['checked'];
-$myval = $_POST['variable'];
+
 function bsf_ppc_settings_page() {
 	add_submenu_page(
 		'options-general.php',
@@ -46,22 +45,43 @@ add_action('add_meta_boxes', 'bsfppc_add_custom_meta_box');
 
 
 function bsfppc_custom_box_html($post) {
-        wp_enqueue_script('bsfppc_backend');
+        wp_enqueue_script('bsfppc_backend_js');
+        wp_enqueue_style('bsfppc_backend_css');
+
         $bsfppc_checklist_item_data = get_option('bsfppc_checklist_data');
             if(!empty($bsfppc_checklist_item_data)){
                     foreach( $bsfppc_checklist_item_data as $key) {
                     echo '<input type="checkbox" id="checkbox" value="'.$key.'" >';
                     echo $key;
-                    echo "<br/>";    
-                     
-                } 
-                
-               
+                    echo "<br/>";                     
+                }   
+                ?>
+                <div class="popup-overlay">
+                    <!--Creates the popup content-->
+                    <div class="popup-content">
+                        <p> please check all the check boxes </p>
+                        <!--popup's close button-->
+                        <button class="close">okay</button>    
+                    </div>
+                </div><?
             }
         else{
             echo "Please create a list to display here";
         }
     }
+
+//  function dont_publish( $data , $postarr ) {  
+//   if( $data['post_type'] == get_post_type($post_ID) ) {
+//     $data['post_status'] = 'draft'; 
+//   }
+//   return $data;   
+// }
+
+// if( $bsfppc_radio_button_data == 1 ){
+
+//     add_action( 'publish_post', 'dont_publish' );
+   
+// }
 /**
  * Main Frontpage.
  *

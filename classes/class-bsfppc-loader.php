@@ -45,9 +45,7 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 		public function __construct() {
 
 			require_once BSF_PPC_ABSPATH . 'includes/bsfppc-page-setups.php';
-			add_action( 'admin_enqueue_scripts', array( $this, 'bsfppc_plugin_backend_js' ) );
-			add_action( 'wp_enqueue_scripts', array( $this, 'bsfppc_plugin_frontend_js' ) );
-		
+			add_action( 'admin_enqueue_scripts', array( $this, 'bsfppc_plugin_backend_js' ) );	
 		}
 		/**
 		 * Plugin Styles for admin dashboard.
@@ -57,12 +55,12 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 		 */
 
 		public function bsfppc_plugin_backend_js() {
-			wp_register_script( 'bsfppc_backend', BSF_PPC_PLUGIN_URL . '/assets/js/bsfppc-checkbox.js', null,'1.0', false );
-
+			$bsfppc_radio_button = get_option('bsfppc_radio_button_option_data');
+			wp_register_script( 'bsfppc_backend_js', BSF_PPC_PLUGIN_URL . '/assets/js/bsfppc-checkbox.js', null,'1.0', false );
+			 wp_register_style( 'bsfppc_backend_css', BSF_PPC_PLUGIN_URL . '/assets/css/bsfppc-css.css', null,'1.0', false );
+			wp_localize_script( 'bsfppc_backend_js', 'bsfppc_radio_obj', array( 'option' => $bsfppc_radio_button ) );
 		}
-		public function bsfppc_plugin_frontend_js(){
-			wp_register_script( 'bsfppc_backend', BSF_PPC_PLUGIN_URL . '/assets/js/bsfppc-checkbox.js', null,'1.0', false );
-		}
+		
 
 	}
 
