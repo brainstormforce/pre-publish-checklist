@@ -4,7 +4,8 @@ $( document ).ready( function(){
     var $checkboxes = $( '#checkbox[type="checkbox"]' );
     var countCheckedCheckboxes = $checkboxes.filter(':checked').length;
 
-    if(bsfppc_radio_obj.option!=3){
+
+    if( bsfppc_radio_obj.option!=3 && bsfppc_radio_obj.data.length!=0 ){
         setTimeout(function() {
               $( '.editor-post-publish-panel__toggle' ).prop( 'disabled', true );
         }, 10); 
