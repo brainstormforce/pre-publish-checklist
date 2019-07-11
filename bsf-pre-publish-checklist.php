@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Pre-Publish Checklist
  * Plugin URI: 
- * Description: With Pre-Publish Post Checklist, you’ll never have to worry about accidentally publishing a post.
+ * Description: With Pre-Publish Checklist, you’ll never have to be worried about accidentally publishing a post.
  * Version: 1.0
  * Author: Brainstormforce.
  * Author URI: 

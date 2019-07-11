@@ -13,7 +13,6 @@
  * @since  1.0.0
  * @return void
  */
-
 $bsfppc_radio_button_data = get_option( 'bsfppc_radio_button_option_data' );
 
 function bsf_ppc_settings_page() {
@@ -43,7 +42,6 @@ function bsfppc_add_custom_meta_box()
     }
 add_action('add_meta_boxes', 'bsfppc_add_custom_meta_box');
 
-
 function bsfppc_custom_box_html($post) {
         wp_enqueue_script('bsfppc_backend_js');
         wp_enqueue_style('bsfppc_backend_css');
@@ -59,9 +57,9 @@ function bsfppc_custom_box_html($post) {
                 <div class="popup-overlay">
                     <!--Creates the popup content-->
                     <div class="popup-content">
-                        <p> please check all the check boxes </p>
+                        <p> Please check all the checkboxes or you can publish anyway </p>
                         <!--popup's close button-->
-                        <button class="close">okay</button>    
+                        <button id="close" class="components-button is-button is-default">Publish anyway !</button>    
                     </div>
                 </div><?
             }
@@ -69,19 +67,6 @@ function bsfppc_custom_box_html($post) {
             echo "Please create a list to display here";
         }
     }
-
-//  function dont_publish( $data , $postarr ) {  
-//   if( $data['post_type'] == get_post_type($post_ID) ) {
-//     $data['post_status'] = 'draft'; 
-//   }
-//   return $data;   
-// }
-
-// if( $bsfppc_radio_button_data == 1 ){
-
-//     add_action( 'publish_post', 'dont_publish' );
-   
-// }
 /**
  * Main Frontpage.
  *
