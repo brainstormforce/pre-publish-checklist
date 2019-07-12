@@ -45,34 +45,36 @@ function bsfppc_add_custom_meta_box()
                 $screen,
                 'side',
                 'high'
-                 
             );
         }
     }
 add_action('add_meta_boxes', 'bsfppc_add_custom_meta_box');
 
 function bsfppc_custom_box_html($post) {
-        wp_enqueue_script('bsfppc_backend_js');
-        wp_enqueue_style('bsfppc_backend_css');
-        $bsfppc_checklist_item_data = get_option('bsfppc_checklist_data');
-            if(!empty($bsfppc_checklist_item_data)){
+        wp_enqueue_script( 'bsfppc_backend_js' );
+        wp_enqueue_style( 'bsfppc_backend_css' );
+        $bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
+            if( !empty( $bsfppc_checklist_item_data ) ) {
                     foreach( $bsfppc_checklist_item_data as $key) {
                     echo '<input type="checkbox" id="checkbox" value="'.$key.'" >';
                     echo $key;
                     echo "<br/>";                     
                 }   
                 ?>
-                <div class="popup-overlay">
-                    <!--Creates the popup content-->
-                    <div class="popup-content">
-                        <p> Please check all the checkboxes before publishing or you can publish anyway </p>
-                        <!--popup's close button-->
-                        <button id="close" class="components-button is-button is-default">Publish anyway !</button>    
+                <?php add_thickbox(); ?>
+                <div class="thickbox">
+                    <div class="popup-overlay">
+                        <!--Creates the popup content-->
+                        <div class="popup-content">
+                            <p> Please check all the checkboxes before publishing or you can publish anyway </p>
+                            <!--popup's close button-->
+                            <button id="close" class="components-button is-button is-default">Publish anyway !</button>    
+                        </div>
                     </div>
                 </div><?php
             }
         else{
-            echo "Please create a list to display here";
+            echo "Please create a list to display here from Settings->Pre-Publish-Checklist";
         }
     }
 function bsf_ppc_page_html() {
