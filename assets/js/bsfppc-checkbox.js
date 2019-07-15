@@ -1,15 +1,29 @@
 
 $( document ).ready( function(){
 
-    var $checkboxes = $( '#checkbox[type="checkbox"]' );
-    var countCheckedCheckboxes = $checkboxes.filter(':checked').length;
+    $(document).ready(function () {
+        var $checkboxes = $( '#checkbox[type="checkbox"]' );
+        $checkboxes.on('change', function () {    
+            $.post( bsfppc_meta_box_obj.url,                   
+                   {
+                       action: 'bsfppc_ajax_change',               
+                       bsfppc_field_value: $('checkbox').val() 
+                   }, function (data) {                    
+                        if (data === 'success') {            
+                        } else if (data === 'failure') {              
+                        } else {
+                        console.log('bsf');                      
+                        }
+                    }
+            );
+        });
+    });
 
 
     if( bsfppc_radio_obj.option!=3 && bsfppc_radio_obj.data.length!=0 ){
         setTimeout(function() {
               $( '.editor-post-publish-panel__toggle' ).prop( 'disabled', true );
-              $('.editor-post-publish-panel__toggle').prop('title', 'Pre-Publish-Checklist please check all the items to publish or update' );
-             
+              $('.editor-post-publish-panel__toggle').prop('title', 'Pre-Publish-Checklist please check all the items to publish or update' );             
         }, 10); 
         setTimeout(function() {
               $( '.editor-post-publish-button' ).prop( 'disabled', true );
@@ -106,7 +120,7 @@ $( document ).ready( function(){
             else{
                 // all checkboxes are not yet checked 
                 if( $('.editor-post-publish-panel__toggle' ).length == 1 ) {
-                    $('.editor-post-publish-panel__toggle').prop('title', 'Pre-Publish-Checklist some items still remaining !' );
+                    $('.editor-post-publish-panel__toggle').prop('title', 'Pre-Publish-Checklist some items still remaining ' );
                 }
                 else if( $( '.editor-post-publish-button' ).length == 1 ) {
                     $('.editor-post-publish-button').prop('title', 'Pre-Publish-Checklist some items still remaining !' );

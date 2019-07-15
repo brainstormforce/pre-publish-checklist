@@ -9,3 +9,17 @@ visibility:hidden;
 color: #191e23;
 visibility:hidden;
 }	
+
+
+.flyout {
+    position: absolute;
+    width: 1000px;
+    height: 450px;
+    background: red;
+    overflow: hidden;
+    z-index: 10000;
+    display: none;
+}
+#menu:hover + .flyout {
+    display: block;
+}

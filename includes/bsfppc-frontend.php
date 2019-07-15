@@ -1,16 +1,21 @@
 <?php
 require_once( BSF_PPC_ABSPATH . 'includes/bsfppc-save-data.php');
 $bsfppc_radio_button = get_option('bsfppc_radio_button_option_data');
-$bsfppc_checklist_item_data = get_option('bsfppc_checklist_data');?>
-
+$bsfppc_checklist_item_data = get_option('bsfppc_checklist_data');
+wp_enqueue_script('bsfppc_backend_itemlist_js');?>
 <!DOCTYPE html>
 <html>
 <body>
 
 	<h2>Please create a custom checklist </h2>
     <form method="POST">
-		Checklist item <input type="text" name="bsfppc_checklist_item[]" required > 
-		<input type="submit" id="form1" name="submit" class="button button-primary ppc_data"  Value="add item"/>
+		<!-- Checklist item <input type="text" name="bsfppc_checklist_item[]" required >  -->
+		<!-- <input type="submit" id="form1" name="submit" class="button button-primary ppc_data"  Value="add item"/> -->
+		<div class="input_fields_wrap">
+			<div><input type="text" name="bsfppc_checklist_item[]" required></div>
+		</div>
+		<a class="add_field_button button-secondary">Add item</a>
+		<input type="submit" id="form1" name="submit" class="button button-primary ppc_data"  Value="Save List"/>
 
 	<form method="POST">
 		<h2>Your List</h2>

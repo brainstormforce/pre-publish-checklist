@@ -50,33 +50,61 @@ function bsfppc_add_custom_meta_box()
     }
 add_action('add_meta_boxes', 'bsfppc_add_custom_meta_box');
 
-function bsfppc_custom_box_html($post) {
-        wp_enqueue_script( 'bsfppc_backend_js' );
+function bsfppc_custom_box_html($post) { 
+
+        wp_enqueue_script( 'bsfppc_backend_checkbox_js' );
         wp_enqueue_style( 'bsfppc_backend_css' );
+        global $post;        
         $bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
             if( !empty( $bsfppc_checklist_item_data ) ) {
-                    foreach( $bsfppc_checklist_item_data as $key) {
-                    echo '<input type="checkbox" id="checkbox" value="'.$key.'" >';
+                  $value = get_post_meta($post->ID, '_bsfppc_meta_key', true);
+
+                    foreach( $bsfppc_checklist_item_data as $key) { ?>
+                    <input type="checkbox" name="checkbox[]" id="checkbox" value= "<?php echo $key; ?>" <?php
+                    foreach( $value as $keyy) {
+                    checked($keyy, $key);
+                } ?> >
+                    <?php
                     echo $key;
                     echo "<br/>";                     
                 }   
-                ?>
-                <?php add_thickbox(); ?>
+        
+              ?>
                 <div class="thickbox">
                     <div class="popup-overlay">
-                        <!--Creates the popup content-->
+                        Creates the popup content
                         <div class="popup-content">
                             <p> Please check all the checkboxes before publishing or you can publish anyway </p>
-                            <!--popup's close button-->
                             <button id="close" class="components-button is-button is-default">Publish anyway !</button>    
                         </div>
                     </div>
                 </div><?php
-            }
-        else{
+             }
+         else{
             echo "Please create a list to display here from Settings->Pre-Publish-Checklist";
-        }
+         }
     }
+
+
+function bsfppc_save_postdata($post_id)
+{  
+   
+        if (array_key_exists('checkbox', $_POST)) {
+
+            update_post_meta(
+                $post_id,
+                '_bsfppc_meta_key',
+                $_POST['checkbox']
+            );
+        }    
+}
+add_action('save_post', 'bsfppc_save_postdata');
+
+
+
+
 function bsf_ppc_page_html() {
     require_once BSF_PPC_ABSPATH.'includes/bsfppc-frontend.php';
 }
+
+
