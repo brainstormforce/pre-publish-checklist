@@ -53,6 +53,7 @@ add_action('add_meta_boxes', 'bsfppc_add_custom_meta_box');
 function bsfppc_custom_box_html($post) { 
 
         wp_enqueue_script( 'bsfppc_backend_checkbox_js' );
+        wp_enqueue_script( 'bsfppc_backend_tooltip_js' );
         wp_enqueue_style( 'bsfppc_backend_css' );
         global $post;        
         $bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
@@ -60,7 +61,7 @@ function bsfppc_custom_box_html($post) {
                   $value = get_post_meta($post->ID, '_bsfppc_meta_key', true);
 
                     foreach( $bsfppc_checklist_item_data as $key) { ?>
-                    <input type="checkbox" name="checkbox[]" id="checkbox" value= "<?php echo $key; ?>" <?php
+                    <input type="checkbox" name="checkbox[]" id="checkbox" class="checkbox" value= "<?php echo $key; ?>" <?php
                     foreach( $value as $keyy) {
                     checked($keyy, $key);
                 } ?> >
@@ -70,6 +71,7 @@ function bsfppc_custom_box_html($post) {
                 }   
         
               ?>
+              <p title="This is the tooltip text" class="tooltip">Hover me to view tooltip</p>
                 <div class="thickbox">
                     <div class="popup-overlay">
                         Creates the popup content
@@ -83,25 +85,19 @@ function bsfppc_custom_box_html($post) {
          else{
             echo "Please create a list to display here from Settings->Pre-Publish-Checklist";
          }
-    }
-
-
+    }                         
 function bsfppc_save_postdata($post_id)
 {  
-   
         if (array_key_exists('checkbox', $_POST)) {
-
             update_post_meta(
                 $post_id,
                 '_bsfppc_meta_key',
                 $_POST['checkbox']
             );
-        }    
+        } 
+
 }
 add_action('save_post', 'bsfppc_save_postdata');
-
-
-
 
 function bsf_ppc_page_html() {
     require_once BSF_PPC_ABSPATH.'includes/bsfppc-frontend.php';
