@@ -3,7 +3,10 @@ require_once( BSF_PPC_ABSPATH . 'includes/bsfppc-save-data.php');
 $bsfppc_radio_button = get_option('bsfppc_radio_button_option_data');
 $bsfppc_checklist_item_data = get_option('bsfppc_checklist_data');
 wp_enqueue_script('bsfppc_backend_itemlist_js');
-wp_enqueue_style('bsfppc_backend_css');?>
+wp_enqueue_style('bsfppc_backend_css');
+wp_enqueue_script('bsfppc_backend_settings_delete_js');
+wp_enqueue_script('bsfppc_backend_settings_add_js');?>
+
 <!DOCTYPE html>
 <html>
 <body>
@@ -16,7 +19,7 @@ wp_enqueue_style('bsfppc_backend_css');?>
 		</div></td></tr>
 	</table>
 		<a class="add_field_button button-secondary">Add item</a>
-		<input type="submit" id="form1" name="submit" class="button button-primary ppc_data" required   Value="Save List" />
+		<input type="submit" id="Savelist" name="submit" class="button button-primary ppc_data" required   Value="Save List" />
 	<form method="POST">
 		<h2>Your List</h2>
 		<?php
@@ -24,7 +27,7 @@ wp_enqueue_style('bsfppc_backend_css');?>
 			foreach( $bsfppc_checklist_item_data as $key ){
 			?>	 	
 			<input type="text" readonly value="<?php echo esc_attr($key); ?>" name="bsfppc_checklist_item[]" >
-			<button name="Delete" type="submit" class="button button-secondary" value="<?php echo esc_attr($key); ?>" formnovalidate >Delete</button>
+			<button id = "Delete" name="Delete" type="submit" class="button button-secondary" value="<?php echo esc_attr($key); ?>" formnovalidate >Delete</button>
 			<?php
 			}
 		}

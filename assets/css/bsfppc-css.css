@@ -42,7 +42,7 @@ tr:nth-child(even) {
 .wy-hide { display: none; }
 
 input[type=text], select {
-  width: 97% ;
+  width: 90% ;
   padding: 12px 12px;
   margin: 1px 0;
   display: inline-block;

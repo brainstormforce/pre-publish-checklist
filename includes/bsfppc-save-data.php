@@ -11,6 +11,7 @@
 				$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );	
 		}
 //for deleting the list item
+		
 if( isset( $_POST['Delete'] ) ) {
 			$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
 			if (($key = array_search($_POST['Delete'], $bsfppc_checklist_item_data)) !== false) {
