@@ -45,14 +45,14 @@ class BSFPPC_Loader {
 	 * Constructor
 	 */
 	public function __construct() {
-
+	
 		require_once BSF_PPC_ABSPATH . 'includes/bsfppc-page-setups.php';
 		add_action( 'admin_enqueue_scripts', array( $this, 'bsfppc_plugin_backend_js' ) );	
 		add_action('admin_enqueue_scripts',array( $this, 'bsfppc_metabox_scripts' ) );
-		// add_action('wp_ajax_bsfppc_checklistitem_add', array( $this,'bsfppc_add_item') , 1 );
-  //       add_action('wp_ajax_nopriv_bsfppc_checklistitem_add',array( $this,'bsfppc_add_item'), 1 );
-  //       add_action('wp_ajax_bsfppc_checklistitem_delete', array( $this,'bsfppc_delete_item') , 1 );
-  //       add_action('wp_ajax_nopriv_bsfppc_checklistitem_delete',array( $this,'bsfppc_delete_item'), 1 );
+		add_action('wp_ajax_bsfppc_checklistitem_add', array( $this,'bsfppc_add_item') , 1 );
+        add_action('wp_ajax_nopriv_bsfppc_checklistitem_add',array( $this,'bsfppc_add_item'), 1 );
+        add_action('wp_ajax_bsfppc_checklistitem_delete', array( $this,'bsfppc_delete_item') , 1 );
+        add_action('wp_ajax_nopriv_bsfppc_checklistitem_delete',array( $this,'bsfppc_delete_item'), 1 );
 	}
 	/**
 	 * Plugin Styles for admin dashboard.
@@ -67,13 +67,12 @@ class BSFPPC_Loader {
 		wp_register_script( 'bsfppc_backend_checkbox_js', BSF_PPC_PLUGIN_URL . '/assets/js/bsfppc-checkbox.js', null,'1.0', false );
 		wp_register_script( 'bsfppc_backend_itemlist_js', BSF_PPC_PLUGIN_URL . '/assets/js/bsfppc-itemlist.js', null,'1.0', false );
 		wp_register_script( 'bsfppc_backend_tooltip_js', BSF_PPC_PLUGIN_URL . '/assets/js/bsfppc-hover-tooltip.js', null,'1.0', false );
-		// wp_register_script( 'bsfppc_backend_settings_page_js', BSF_PPC_PLUGIN_URL . '/assets/js/bsfppc-hover-tooltip.js', null,'1.0', false );
-		wp_register_script( 'bsfppc_backend_add_delete_page_js', BSF_PPC_PLUGIN_URL . '/assets/js/bsfppc-add-delete-item.js', null,'1.0', false );
+		wp_register_script( 'bsfppc_backend_settings_page_js', BSF_PPC_PLUGIN_URL . '/assets/js/bsfppc-hover-tooltip.js', null,'1.0', false );
 		wp_register_style( 'bsfppc_backend_css', BSF_PPC_PLUGIN_URL . '/assets/css/bsfppc-css.css', null,'1.0', false );
 		wp_localize_script( 'bsfppc_backend_checkbox_js', 'bsfppc_radio_obj', array( 'option' => $bsfppc_radio_button , 'data' => $bsfppc_checklist_item_data  ) );
 		
-	    // wp_localize_script('bsfppc_backend_settings_add_js','bsfppc_add_obj', ['url' => admin_url('admin-ajax.php'),]);
-        // wp_localize_script('bsfppc_backend_settings_delete_js','bsfppc_delete_obj', ['url' => admin_url('admin-ajax.php'),]);
+	    wp_localize_script('bsfppc_backend_itemlist_js','bsfppc_add_delete_obj', ['url' => admin_url('admin-ajax.php'),]);
+        
 	}
 
 	public function bsfppc_metabox_scripts(){
@@ -93,37 +92,43 @@ class BSFPPC_Loader {
 
 
 // function for adding via ajax
-	// public function bsfppc_add_item() { 
+	public function bsfppc_add_item() { 
+		if( isset( $_POST['item_content'] ) ){
+			// var_dump($_POST['item_content']);
+				$newitems = $_POST['item_content'];
+				
+				$item_contents= get_option('bsfppc_checklist_data');
+				if(false === $item_contents) {
+					$item_contents = array();
 
-	// 	if( isset( $_POST['submit'] ) ){
-	// 		$_POST['submit'] = filter_var( $_POST['submit'], FILTER_SANITIZE_STRING );
-	// 			$bsfppc_checklist_item = array();
-	// 			foreach( $_POST['bsfppc_checklist_item'] as $checklist_items ) {
-	// 			    array_push( $bsfppc_checklist_item,$checklist_items );
-	// 		}
-	// 			update_option( 'bsfppc_checklist_data', $bsfppc_checklist_item );
-	// 			$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );	
-	// 	}
- //        echo"sucess";
- //            die();
+				}
+				
+				foreach( $newitems as $items ) {
+					array_push( $item_contents , $items  );
+			}
+
+				update_option( 'bsfppc_checklist_data', $item_contents );
+				// $bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
+				echo"sucess";
+		}
+            die();
         
- //    }             
+    }             
 
-//function for deleting via ajax
-  //   public function bsfppc_delete_item() {  
-
-
-		// if( isset( $_POST['Delete'] ) ) {
-		// 			$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
-		// 			if (($key = array_search($_POST['Delete'], $bsfppc_checklist_item_data)) !== false) {
-		// 				    unset($bsfppc_checklist_item_data[$key]);
-		// 			}
-		// 			update_option( 'bsfppc_checklist_data', $bsfppc_checklist_item_data );
-		// 		}
-  //       echo"sucess";
-  //           die();
-        
-  //   }             
+// function for deleting via ajax
+    public function bsfppc_delete_item() { 
+	    if( isset( $_POST['delete'] ) ){
+	     	var_dump($_POST['delete']);
+						$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
+						if (($key = array_search($_POST['delete'], $bsfppc_checklist_item_data)) !== false) {
+							    unset($bsfppc_checklist_item_data[$key]);
+						}
+						update_option( 'bsfppc_checklist_data', $bsfppc_checklist_item_data );
+					
+	        echo"sucess";
+	    }
+            die();    
+    }             
 	
 }
 

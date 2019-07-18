@@ -116,6 +116,8 @@ class BSFPPC_Pagesetups_ {
                     echo "Please create a list to display here from Settings->Pre-Publish-Checklist";
                  }
             }  
+
+            
             public function bsfppc_meta_box_ajax_handler() {  
         if (isset($_POST['bsfppc_field_value'])) {
             $bsfppcpost =$_POST['bsfppc_post_id'];

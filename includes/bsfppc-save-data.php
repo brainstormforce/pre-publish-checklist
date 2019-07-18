@@ -10,8 +10,8 @@
 				update_option( 'bsfppc_checklist_data', $bsfppc_checklist_item );
 				$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );	
 		}
-//for deleting the list item
-		
+
+//for deleting the list item	
 if( isset( $_POST['Delete'] ) ) {
 			$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
 			if (($key = array_search($_POST['Delete'], $bsfppc_checklist_item_data)) !== false) {
@@ -19,6 +19,7 @@ if( isset( $_POST['Delete'] ) ) {
 			}
 			update_option( 'bsfppc_checklist_data', $bsfppc_checklist_item_data );
 		}
+		
 //for saving radio button
 $bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
 	if( isset( $_POST['submit_radio'] ) ){ 

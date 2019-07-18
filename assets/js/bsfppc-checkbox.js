@@ -3,9 +3,9 @@ $( document ).ready( function(){
 
         var $checkboxes = $( '#checkbox[type="checkbox"]' ); 
         var selected = [];
-        if () {}
+      
         $('#checkbox[type="checkbox"]').on('click',(function() {
-            if(this.checked){
+            if(this.checked){ 
             selected.push($(this).attr('value'));
         }else if(!(this.checked)){
             var index = selected.indexOf(this);
@@ -14,7 +14,7 @@ $( document ).ready( function(){
 
         }));
         $checkboxes.on('change', function () {
-         var bsfppc_post_id = $("#post_ID").val() 
+         var bsfppc_post_id == $("#post_ID").val() 
             $.post( bsfppc_meta_box_obj.url,                   
                    {
                     action: 'bsfppc_ajax_change',               
@@ -41,7 +41,7 @@ $( document ).ready( function(){
             $('.editor-post-publish-button').prop('title', 'Pre-Publish-Checklist please check all the items to publish or update' );
         }, 10);
     }
-    console.log(bsfppc_radio_obj.option);
+
     //prevent user from publishing 
     if( bsfppc_radio_obj.option == 1 ){
         var $checkboxes = $( '#checkbox[type="checkbox"]' );

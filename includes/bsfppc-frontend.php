@@ -1,5 +1,4 @@
 <?php
-require_once( BSF_PPC_ABSPATH . 'includes/bsfppc-save-data.php');
 $bsfppc_radio_button = get_option('bsfppc_radio_button_option_data');
 $bsfppc_checklist_item_data = get_option('bsfppc_checklist_data');
 wp_enqueue_script('bsfppc_backend_itemlist_js');
@@ -12,29 +11,31 @@ wp_enqueue_script('bsfppc_backend_settings_add_js');?>
 <body>
 
 	<h1>Please create a custom checklist </h1>
-    <form method="POST">
-    	<table><tr><td>
+   
+    	<table id ="list_table"><tr><td>
 		<div class="input_fields_wrap">
-			<div><input type="text" name="bsfppc_checklist_item[]" required></div>
+			<div><input type="text" id="add_item_text_feild" class="item_input" name="bsfppc_checklist_item[]" required></div>
 		</div></td></tr>
 	</table>
 		<a class="add_field_button button-secondary">Add item</a>
-		<input type="submit" id="Savelist" name="submit" class="button button-primary ppc_data" required   Value="Save List" />
-	<form method="POST">
+		<button type="button" id="Savelist" name="submit" class="button button-primary ppc_data" required   Value="Save List" />Save list </button>
+	
 		<h2>Your List</h2>
 		<?php
 		if( !empty( $bsfppc_checklist_item_data)){
 			foreach( $bsfppc_checklist_item_data as $key ){
-			?>	 	
-			<input type="text" readonly value="<?php echo esc_attr($key); ?>" name="bsfppc_checklist_item[]" >
-			<button id = "Delete" name="Delete" type="submit" class="button button-secondary" value="<?php echo esc_attr($key); ?>" formnovalidate >Delete</button>
+			?><div>
+							<input type="text" readonly value="<?php echo esc_attr($key); ?>" name="bsfppc_checklist_item[]" >
+				<button type="button" id = "Delete" name="Delete" class="button button-secondary bsfppcdelete" value="<?php echo esc_attr($key); ?>" formnovalidate >Delete</button>
+			</div>
 			<?php
 			}
 		}
 		else{
 			echo "You have do not have any list please add items in the list";
 		}?>
-	</form>
+	
+	
 	<h2>Settings</h2> 
 	<p>On publish attempt </p>
 		<form method ="POST">
