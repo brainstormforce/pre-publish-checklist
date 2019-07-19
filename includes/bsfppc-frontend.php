@@ -1,10 +1,11 @@
 <?php
+require_once BSF_PPC_ABSPATH . 'includes/bsfppc-save-data.php';
 $bsfppc_radio_button = get_option('bsfppc_radio_button_option_data');
 $bsfppc_checklist_item_data = get_option('bsfppc_checklist_data');
 wp_enqueue_script('bsfppc_backend_itemlist_js');
 wp_enqueue_style('bsfppc_backend_css');
-wp_enqueue_script('bsfppc_backend_settings_delete_js');
-wp_enqueue_script('bsfppc_backend_settings_add_js');?>
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -49,7 +50,10 @@ wp_enqueue_script('bsfppc_backend_settings_add_js');?>
 			<input type="submit" class="button button-primary"  name="submit_radio" Value="Save Setting"/>
 		</form>
 </body>
-</html>
+</html><?php
+$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
+	
+
 
 
 

@@ -1,6 +1,6 @@
 
 $( document ).ready( function(){  
-
+console.log('helllo');
         var $checkboxes = $( '#checkbox[type="checkbox"]' ); 
         var selected = [];
       
@@ -14,7 +14,7 @@ $( document ).ready( function(){
 
         }));
         $checkboxes.on('change', function () {
-         var bsfppc_post_id == $("#post_ID").val() 
+         var bsfppc_post_id = $("#post_ID").val() 
             $.post( bsfppc_meta_box_obj.url,                   
                    {
                     action: 'bsfppc_ajax_change',               

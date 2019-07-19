@@ -18,11 +18,16 @@ jQuery(add_button).click(function(e){
         jQuery(wrapper).append('<div><input type="text" class="item_input" id="add_item_text_feild" name="bsfppc_checklist_item[]" required/> <td><p class="remove_field"><span class="dashicons dashicons-dismiss"></span></p></div></td>'); //add input box
     }
 });
-     
+    
+jQuery(wrapper).on("click",".remove_field", function(e){ 
+    jQuery(this).parent('div').remove(); x--;
+    // console.log('hi');
+});
+ 
 //Ajax trigger for adding an element in the array 
 
     jQuery("#Savelist").on('click', function () { 
-    	var item_content_var      = jQuery('.item_input');  
+    	var item_content_var = jQuery('.item_input');  
 			 item_content_var.each(function(){
 			 	 item_content.push(jQuery(this).attr('value'));			  
 			  });
@@ -42,7 +47,6 @@ jQuery(add_button).click(function(e){
                         }
                 );
             });
-
 
 //Ajax trigger for deleting an element in the array
 

@@ -45,7 +45,7 @@ class BSFPPC_Loader {
 	 * Constructor
 	 */
 	public function __construct() {
-	
+
 		require_once BSF_PPC_ABSPATH . 'includes/bsfppc-page-setups.php';
 		add_action( 'admin_enqueue_scripts', array( $this, 'bsfppc_plugin_backend_js' ) );	
 		add_action('admin_enqueue_scripts',array( $this, 'bsfppc_metabox_scripts' ) );
@@ -96,13 +96,11 @@ class BSFPPC_Loader {
 		if( isset( $_POST['item_content'] ) ){
 			// var_dump($_POST['item_content']);
 				$newitems = $_POST['item_content'];
-				
 				$item_contents= get_option('bsfppc_checklist_data');
 				if(false === $item_contents) {
 					$item_contents = array();
 
-				}
-				
+				}	
 				foreach( $newitems as $items ) {
 					array_push( $item_contents , $items  );
 			}
