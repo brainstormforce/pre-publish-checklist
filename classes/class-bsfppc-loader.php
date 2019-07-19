@@ -53,6 +53,8 @@ class BSFPPC_Loader {
         add_action('wp_ajax_nopriv_bsfppc_checklistitem_add',array( $this,'bsfppc_add_item'), 1 );
         add_action('wp_ajax_bsfppc_checklistitem_delete', array( $this,'bsfppc_delete_item') , 1 );
         add_action('wp_ajax_nopriv_bsfppc_checklistitem_delete',array( $this,'bsfppc_delete_item'), 1 );
+        add_action('wp_ajax_bsfppc_checklistitem_drag', array( $this,'bsfppc_drag_item') , 1 );
+        add_action('wp_ajax_nopriv_bsfppc_checklistitem_drag',array( $this,'bsfppc_drag_item'), 1 );
 	}
 	/**
 	 * Plugin Styles for admin dashboard.
@@ -88,19 +90,40 @@ class BSFPPC_Loader {
 	    }
 	}
 	
+// Drag and drop
+public function bsfppc_drag_item() { 
+		if( isset( $_POST['item_drag_var'] ) ){
+			var_dump($_POST['item_drag_var']);
+				$new_drag_items = $_POST['item_drag_var'];
+				if(empty($item_drag_contents) || false === $item_drag_contents) {
+					$item_drag_contents = array();
 
+				}	
+				foreach( $new_drag_items as $dragitems ) {
+					array_push( $item_drag_contents , $dragitems  );
+			}
+
+				update_option( 'bsfppc_checklist_data', $item_drag_contents );
+				// $bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
+				echo"sucess";
+		}
+            die();
+        
+    }    
 
 
 // function for adding via ajax
 	public function bsfppc_add_item() { 
 		if( isset( $_POST['item_content'] ) ){
-			// var_dump($_POST['item_content']);
+			 // var_dump($_POST['item_content']);
+			 $newitems = array();
 				$newitems = $_POST['item_content'];
 				$item_contents= get_option('bsfppc_checklist_data');
-				if(false === $item_contents) {
+				if(empty($item_contents) || false === $item_contents) {
 					$item_contents = array();
 
 				}	
+				// var_dump($item_contents);
 				foreach( $newitems as $items ) {
 					array_push( $item_contents , $items  );
 			}
@@ -111,7 +134,10 @@ class BSFPPC_Loader {
 		}
             die();
         
-    }             
+    }     
+
+
+
 
 // function for deleting via ajax
     public function bsfppc_delete_item() { 
@@ -120,6 +146,7 @@ class BSFPPC_Loader {
 						$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
 						if (($key = array_search($_POST['delete'], $bsfppc_checklist_item_data)) !== false) {
 							    unset($bsfppc_checklist_item_data[$key]);
+
 						}
 						update_option( 'bsfppc_checklist_data', $bsfppc_checklist_item_data );
 					

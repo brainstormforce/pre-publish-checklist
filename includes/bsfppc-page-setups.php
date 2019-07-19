@@ -90,17 +90,19 @@ class BSFPPC_Pagesetups_ {
                 $bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
                     if( !empty( $bsfppc_checklist_item_data ) ) {
                           $value = get_post_meta($post->ID, '_bsfppc_meta_key', true);
+                          
 
-                            foreach( $bsfppc_checklist_item_data as $key) { ?>
+                             foreach( $bsfppc_checklist_item_data as $key) { ?>
                             <input type="checkbox" name="checkbox[]" id="checkbox" class="checkbox" value= "<?php echo $key; ?>" <?php
-                            foreach( $value as $keychecked) {
-                            checked($keychecked, $key);
-                        } ?> >
+                            if(!empty($value)) {
+                                foreach( $value as $keychecked) {
+                                    checked($keychecked, $key);
+                                }
+                            } ?> >
                             <?php
                             echo $key;
                             echo "<br/>";                     
-                        }   
-                
+                        }       
                       ?>
                         <div class="thickbox">
                             <div class="popup-overlay">

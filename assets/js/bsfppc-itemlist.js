@@ -5,8 +5,8 @@ jQuery( document ).ready( function(){
 var max_fields      = 10; 
 var wrapper         = jQuery( '.input_fields_wrap' ); 
 var add_button      = jQuery( '.add_field_button '); 
-var item_content_var      = jQuery('.item_input');   
-var item_content 	=[];
+var item_content 	= [];
+var drag_content = [];
 var input_feilds = jQuery( '#add_item_text_feild[type="text"]' ); 
 
 
@@ -25,6 +25,9 @@ jQuery(wrapper).on("click",".remove_field", function(e){
 });
  
 //Ajax trigger for adding an element in the array 
+
+
+
 
     jQuery("#Savelist").on('click', function () { 
     	var item_content_var = jQuery('.item_input');  
@@ -48,14 +51,67 @@ jQuery(wrapper).on("click",".remove_field", function(e){
                 );
             });
 
+
+
+// jQuery('.drag-feild').on('focus', function () { 
+// 	console.log('hi');
+
+// });
+
+// var item_drag_var      = jQuery('.drag-feilds');  
+// item_drag_var.each(function(){
+// 	 console.log(jQuery(this).attr('value'));			  
+// });
+
+//dragg ****************************************************************************************************************
+
+
+jQuery('.drag-feild').on('mouseup', function () { 
+	// jQuery('.dragevent').mouseover(function () { 
+		console.log('Inside drag');
+		var item_drag_var  =[];
+    	var item_drag_var   = jQuery('.drag-feilds'); 
+			 item_drag_var.each(function(){
+			 	 drag_content=(jQuery(this).attr('value'));	
+			 	 console.log(drag_content);
+			 	 		  
+			  });
+
+                jQuery.post( bsfppc_add_delete_obj.url,                   
+                       {
+                        action: 'bsfppc_checklistitem_drag',
+                        item_drag_var : drag_content
+                       }, function ( data ) {                    
+                            if (data === 'sucess') { 
+                                console.log('done');
+                            } else if (data === 'failure') {  
+                              console.log('failure');           
+                            } else {
+                                console.log('bsf');                      
+                            }
+                        }
+                );
+    });
+
+
+
+
+
+
+
+
 //Ajax trigger for deleting an element in the array
 
     jQuery(".bsfppcdelete").on('click', function () { 
     	jQuery(this).parent('div').remove();
+    	 // var bsfppc_post_id = $("#post_ID").val() 
                 jQuery.post( bsfppc_add_delete_obj.url,                   
                        {
+
                         action: 'bsfppc_checklistitem_delete',
-                        delete : jQuery(this).attr('value')          
+                        delete : jQuery(this).attr('value') ,
+                        // bsfppc_post_id : bsfppc_post_id  
+
                        }, function ( data ) {                    
                             if (data === 'sucess') { 
                                 console.log('done');
@@ -70,3 +126,78 @@ jQuery(wrapper).on("click",".remove_field", function(e){
 });
 
 
+var dragSrcEl = null;
+
+function handleDragStart(e) {
+  // Target (this) element is the source node.
+  dragSrcEl = this;
+
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/html', this.outerHTML);
+
+  this.classList.add('dragElem');
+}
+function handleDragOver(e) {
+  if (e.preventDefault) {
+    e.preventDefault(); // Necessary. Allows us to drop.
+  }
+  this.classList.add('over');
+
+  e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
+
+  return false;
+}
+
+function handleDragEnter(e) {
+  // this / e.target is the current hover target.
+}
+
+function handleDragLeave(e) {
+  this.classList.remove('over');  // this / e.target is previous target element.
+}
+
+function handleDrop(e) {
+  // this/e.target is current target element.
+
+  if (e.stopPropagation) {
+    e.stopPropagation(); // Stops some browsers from redirecting.
+  }
+
+  // Don't do anything if dropping the same column we're dragging.
+  if (dragSrcEl != this) {
+    // Set the source column's HTML to the HTML of the column we dropped on.
+    //alert(this.outerHTML);
+    //dragSrcEl.innerHTML = this.innerHTML;
+    //this.innerHTML = e.dataTransfer.getData('text/html');
+    this.parentNode.removeChild(dragSrcEl);
+    var dropHTML = e.dataTransfer.getData('text/html');
+    this.insertAdjacentHTML('beforebegin',dropHTML);
+    var dropElem = this.previousSibling;
+    addDnDHandlers(dropElem);
+    
+  }
+  this.classList.remove('over');
+  return false;
+}
+
+function handleDragEnd(e) {
+  // this/e.target is the source node.
+  this.classList.remove('over');
+
+  /*[].forEach.call(cols, function (col) {
+    col.classList.remove('over');
+  });*/
+}
+
+function addDnDHandlers(elem) {
+  elem.addEventListener('dragstart', handleDragStart, false);
+  elem.addEventListener('dragenter', handleDragEnter, false)
+  elem.addEventListener('dragover', handleDragOver, false);
+  elem.addEventListener('dragleave', handleDragLeave, false);
+  elem.addEventListener('drop', handleDrop, false);
+  elem.addEventListener('dragend', handleDragEnd, false);
+
+}
+
+var cols = document.querySelectorAll('#columns .column');
+[].forEach.call(cols, addDnDHandlers);

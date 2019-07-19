@@ -22,20 +22,21 @@ wp_enqueue_style('bsfppc_backend_css');
 		<button type="button" id="Savelist" name="submit" class="button button-primary ppc_data" required   Value="Save List" />Save list </button>
 	
 		<h2>Your List</h2>
+		<ul id="columns" class="dragevent">
 		<?php
 		if( !empty( $bsfppc_checklist_item_data)){
+
 			foreach( $bsfppc_checklist_item_data as $key ){
-			?><div>
-							<input type="text" readonly value="<?php echo esc_attr($key); ?>" name="bsfppc_checklist_item[]" >
-				<button type="button" id = "Delete" name="Delete" class="button button-secondary bsfppcdelete" value="<?php echo esc_attr($key); ?>" formnovalidate >Delete</button>
-			</div>
+			?>
+			<li class="column" draggable="true"><div class="drag-feild" > <input type="text" class="drag-feilds" readonly value="<?php echo esc_attr($key); ?>" name="bsfppc_checklist_item[]" >
+				<button type="button" id = "Delete" name="Delete" class="button button-secondary bsfppcdelete" value="<?php echo esc_attr($key); ?>" formnovalidate >Delete</button> </div></li>
 			<?php
 			}
 		}
 		else{
 			echo "You have do not have any list please add items in the list";
-		}?>
-	
+		} ?></ul>
+
 	
 	<h2>Settings</h2> 
 	<p>On publish attempt </p>
