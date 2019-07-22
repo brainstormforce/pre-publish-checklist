@@ -1,5 +1,5 @@
 
-jQuery( document ).ready( function(){  
+jQuery( document ).ready( function(){   
 
 
 var max_fields      = 10; 
@@ -26,10 +26,8 @@ jQuery(wrapper).on("click",".remove_field", function(e){
  
 //Ajax trigger for adding an element in the array 
 
-
-
-
     jQuery("#Savelist").on('click', function () { 
+    	// jQuery( '.dragevent' ).load(location.href + document ); 
     	var item_content_var = jQuery('.item_input');  
 			 item_content_var.each(function(){
 			 	 item_content.push(jQuery(this).attr('value'));			  
@@ -41,14 +39,18 @@ jQuery(wrapper).on("click",".remove_field", function(e){
                         item_content : item_content
                        }, function ( data ) {                    
                             if (data === 'sucess') { 
+                            	 jQuery('.dragevent').load(location.href + " #columns");
                                 console.log('done');
                             } else if (data === 'failure') {  
+                            	 jQuery('.dragevent').load(location.href + " #columns");
                               console.log('failure');           
                             } else {
-                                console.log('bsf');                      
+                                console.log('bsf');
+                                 jQuery('.dragevent').load(location.href + " #columns");                  
                             }
                         }
                 );
+
             });
 
 
@@ -62,11 +64,9 @@ jQuery(wrapper).on("click",".remove_field", function(e){
 // item_drag_var.each(function(){
 // 	 console.log(jQuery(this).attr('value'));			  
 // });
-
-//dragg ****************************************************************************************************************
-
-
-jQuery('.drag-feild').on('mouseup', function () { 
+jQuery('.drag-feilds').on('mouseover', function () { 
+	console.log('hi');
+jQuery('.drag-feilds').on('mouseup', function () { 
 	// jQuery('.dragevent').mouseover(function () { 
 		console.log('Inside drag');
 		var item_drag_var  =[];
@@ -76,29 +76,38 @@ jQuery('.drag-feild').on('mouseup', function () {
 			 	 console.log(drag_content);
 			 	 		  
 			  });
-
-                jQuery.post( bsfppc_add_delete_obj.url,                   
-                       {
-                        action: 'bsfppc_checklistitem_drag',
-                        item_drag_var : drag_content
-                       }, function ( data ) {                    
-                            if (data === 'sucess') { 
-                                console.log('done');
-                            } else if (data === 'failure') {  
-                              console.log('failure');           
-                            } else {
-                                console.log('bsf');                      
-                            }
-                        }
-                );
-    });
+			  });
+});
 
 
 
+//dragg ****************************************************************************************************************
+// jQuery('.drag-feilds').on('mouseup', function () { 
+// 	// jQuery('.dragevent').mouseover(function () { 
+// 		console.log('Inside drag');
+// 		var item_drag_var  =[];
+//     	var item_drag_var   = jQuery('.drag-feilds'); 
+// 			 item_drag_var.each(function(){
+// 			 	 drag_content=(jQuery(this).attr('value'));	
+// 			 	 console.log(drag_content);
+			 	 		  
+// 			  });
 
-
-
-
+//                 jQuery.post( bsfppc_add_delete_obj.url,                   
+//                        {
+//                         action: 'bsfppc_checklistitem_drag',
+//                         item_drag_var : drag_content
+//                        }, function ( data ) {                    
+//                             if (data === 'sucess') { 
+//                                 console.log('done');
+//                             } else if (data === 'failure') {  
+//                               console.log('failure');           
+//                             } else {
+//                                 console.log('bsf');                      
+//                             }
+//                         }
+//                 );
+//     });
 
 //Ajax trigger for deleting an element in the array
 
@@ -107,7 +116,6 @@ jQuery('.drag-feild').on('mouseup', function () {
     	 // var bsfppc_post_id = $("#post_ID").val() 
                 jQuery.post( bsfppc_add_delete_obj.url,                   
                        {
-
                         action: 'bsfppc_checklistitem_delete',
                         delete : jQuery(this).attr('value') ,
                         // bsfppc_post_id : bsfppc_post_id  
@@ -123,7 +131,6 @@ jQuery('.drag-feild').on('mouseup', function () {
                         }
                 );
             });
-});
 
 
 var dragSrcEl = null;
@@ -131,10 +138,8 @@ var dragSrcEl = null;
 function handleDragStart(e) {
   // Target (this) element is the source node.
   dragSrcEl = this;
-
   e.dataTransfer.effectAllowed = 'move';
   e.dataTransfer.setData('text/html', this.outerHTML);
-
   this.classList.add('dragElem');
 }
 function handleDragOver(e) {
@@ -142,9 +147,7 @@ function handleDragOver(e) {
     e.preventDefault(); // Necessary. Allows us to drop.
   }
   this.classList.add('over');
-
   e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
-
   return false;
 }
 
@@ -160,7 +163,7 @@ function handleDrop(e) {
   // this/e.target is current target element.
 
   if (e.stopPropagation) {
-    e.stopPropagation(); // Stops some browsers from redirecting.
+    // e.stopPropagation(); // Stops some browsers from redirecting.
   }
 
   // Don't do anything if dropping the same column we're dragging.
@@ -191,13 +194,15 @@ function handleDragEnd(e) {
 
 function addDnDHandlers(elem) {
   elem.addEventListener('dragstart', handleDragStart, false);
-  elem.addEventListener('dragenter', handleDragEnter, false)
+  elem.addEventListener('dragenter', handleDragEnter, false);
   elem.addEventListener('dragover', handleDragOver, false);
   elem.addEventListener('dragleave', handleDragLeave, false);
   elem.addEventListener('drop', handleDrop, false);
   elem.addEventListener('dragend', handleDragEnd, false);
-
 }
 
 var cols = document.querySelectorAll('#columns .column');
 [].forEach.call(cols, addDnDHandlers);
+
+
+});

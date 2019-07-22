@@ -41,10 +41,10 @@ class BSFPPC_Pagesetups_ {
 
         add_action('add_meta_boxes', array($this,'bsfppc_add_custom_meta_box'));
         add_action( 'admin_menu', array($this,'bsf_ppc_settings_page') );
-        add_action('wp_ajax_bsfppc_ajax_change', array( $this,'bsfppc_meta_box_ajax_handler') , 1 );
-        add_action('wp_ajax_nopriv_bsfppc_ajax_change',array( $this,'bsfppc_meta_box_ajax_handler'), 1 );
-        
-
+        add_action('wp_ajax_bsfppc_ajax_add_change', array( $this,'bsfppc_meta_box_ajax_add_handler') , 1 );
+        add_action('wp_ajax_nopriv_bsfppc_ajax_add_change',array( $this,'bsfppc_meta_box_ajax_add_handler'), 1 );
+        add_action('wp_ajax_bsfppc_ajax_delete_change', array( $this,'bsfppc_meta_box_ajax_delete_handler') , 1 );
+        add_action('wp_ajax_nopriv_bsfppc_ajax_delete_change',array( $this,'bsfppc_meta_box_ajax_delete_handler'), 1 );
     }
    
 
@@ -60,7 +60,8 @@ class BSFPPC_Pagesetups_ {
         }
        
         public function bsf_ppc_page_html() {
-            require_once BSF_PPC_ABSPATH.'includes/bsfppc-frontend.php';
+           
+            require_once BSF_PPC_ABSPATH.'includes/bsfppc-tabs.php';
         }
 
         public function bsfppc_add_custom_meta_box()
@@ -90,9 +91,7 @@ class BSFPPC_Pagesetups_ {
                 $bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
                     if( !empty( $bsfppc_checklist_item_data ) ) {
                           $value = get_post_meta($post->ID, '_bsfppc_meta_key', true);
-                          
-
-                             foreach( $bsfppc_checklist_item_data as $key) { ?>
+                            foreach( $bsfppc_checklist_item_data as $key) { ?>
                             <input type="checkbox" name="checkbox[]" id="checkbox" class="checkbox" value= "<?php echo $key; ?>" <?php
                             if(!empty($value)) {
                                 foreach( $value as $keychecked) {
@@ -119,22 +118,54 @@ class BSFPPC_Pagesetups_ {
                  }
             }  
 
+//add value from metabox chechbox to the wp_post_meta()
             
-            public function bsfppc_meta_box_ajax_handler() {  
+        public function bsfppc_meta_box_ajax_add_handler() {  
         if (isset($_POST['bsfppc_field_value'])) {
             $bsfppcpost =$_POST['bsfppc_post_id'];
-            var_dump($bsfppcpost);
+            $bsfppc_check_data = array($_POST['bsfppc_field_value']);
+            $pre_data = get_post_meta( $bsfppcpost, '_bsfppc_meta_key' , true );
+            if( ! empty($pre_data)){
+               $bsfppc_checklist_add_data = array_merge($pre_data, $bsfppc_check_data);
+            }
+            else{
+                $bsfppc_checklist_add_data = $bsfppc_check_data;
+            }
+  
                     update_post_meta(
                         $post_id =  $bsfppcpost ,
                         '_bsfppc_meta_key',
-                        $_POST['bsfppc_field_value']
-                    );
-                    
+                       $bsfppc_checklist_add_data 
+                       
+                    ); 
+                    echo "sucess";      
                 } 
-                echo "sucess";   
-            die;
-        
-    }                       
+              else{
+                echo "failure";
+              }   
+            die;   
+        }  
+//delete value from post meta using chechbox uncheck from wp_post_meta()
+        public function bsfppc_meta_box_ajax_delete_handler() {  
+        if (isset($_POST['bsfppc_field_value'])) {
+            $bsfppcpost =$_POST['bsfppc_post_id'];
+                $bsfppc_delete =$_POST['bsfppc_field_value'];
+                $pre_data = get_post_meta( $bsfppcpost, '_bsfppc_meta_key' , true );
+                var_dump($pre_data);  
+                if ( ( $key = array_search( $bsfppc_delete , $pre_data ) ) !== false ) {
+                                unset($pre_data[$key]);      
+                }
+                update_post_meta(
+                    $post_id =  $bsfppcpost ,
+                    '_bsfppc_meta_key',
+                    $pre_data        
+                );            
+        }
+        else{
+                echo "failure";
+            }                    
+            die;   
+        }                      
 
 }
 BSFPPC_Pagesetups_::get_instance();

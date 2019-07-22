@@ -91,25 +91,26 @@ class BSFPPC_Loader {
 	}
 	
 // Drag and drop
-public function bsfppc_drag_item() { 
-		if( isset( $_POST['item_drag_var'] ) ){
-			var_dump($_POST['item_drag_var']);
-				$new_drag_items = $_POST['item_drag_var'];
-				if(empty($item_drag_contents) || false === $item_drag_contents) {
-					$item_drag_contents = array();
+	public function bsfppc_drag_item() { 
+			if( isset( $_POST['item_drag_var'] ) ){
+				var_dump($_POST['item_drag_var']);
+					$new_drag_items = array();
+					$new_drag_items = $_POST['item_drag_var'];
+					if(empty($item_drag_contents) || false === $item_drag_contents) {
+						$item_drag_contents = array();
+					}	
+					foreach( $new_drag_items as $dragitems ) {
+						array_push( $item_drag_contents , $dragitems  );
+				}
+				var_dump($new_drag_items);
+				wp_die();
 
-				}	
-				foreach( $new_drag_items as $dragitems ) {
-					array_push( $item_drag_contents , $dragitems  );
+					update_option( 'bsfppc_checklist_data', $item_drag_contents );
+					// $bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
+					echo"sucess";
 			}
-
-				update_option( 'bsfppc_checklist_data', $item_drag_contents );
-				// $bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
-				echo"sucess";
-		}
-            die();
-        
-    }    
+	            die();     
+	    }    
 
 
 // function for adding via ajax
@@ -118,7 +119,7 @@ public function bsfppc_drag_item() {
 			 // var_dump($_POST['item_content']);
 			 $newitems = array();
 				$newitems = $_POST['item_content'];
-				$item_contents= get_option('bsfppc_checklist_data');
+				$item_contents= get_option( 'bsfppc_checklist_data' );
 				if(empty($item_contents) || false === $item_contents) {
 					$item_contents = array();
 
@@ -132,29 +133,22 @@ public function bsfppc_drag_item() {
 				// $bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
 				echo"sucess";
 		}
-            die();
-        
+            die(); 
     }     
-
-
-
 
 // function for deleting via ajax
     public function bsfppc_delete_item() { 
 	    if( isset( $_POST['delete'] ) ){
-	     	var_dump($_POST['delete']);
+	     	var_dump( $_POST['delete'] );
 						$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
-						if (($key = array_search($_POST['delete'], $bsfppc_checklist_item_data)) !== false) {
+						if ( ( $key = array_search($_POST['delete'], $bsfppc_checklist_item_data ) ) !== false ) {
 							    unset($bsfppc_checklist_item_data[$key]);
-
 						}
-						update_option( 'bsfppc_checklist_data', $bsfppc_checklist_item_data );
-					
+						update_option( 'bsfppc_checklist_data', $bsfppc_checklist_item_data );					
 	        echo"sucess";
 	    }
             die();    
     }             
-	
 }
 
 		BSFPPC_Loader::get_instance();

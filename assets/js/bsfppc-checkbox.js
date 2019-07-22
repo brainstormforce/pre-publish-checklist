@@ -4,33 +4,58 @@ console.log('helllo');
         var $checkboxes = $( '#checkbox[type="checkbox"]' ); 
         var selected = [];
       
-        $('#checkbox[type="checkbox"]').on('click',(function() {
-            if(this.checked){ 
-            selected.push($(this).attr('value'));
-        }else if(!(this.checked)){
-            var index = selected.indexOf(this);
-            selected.splice(index, 1);  
-        }
+        // $('#checkbox[type="checkbox"]').on('click',(function() {
+        //     if(this.checked){ 
+        //     selected.push( $(this).attr( 'value' ) );
+        //     }else if( !( this.checked ) ) {
+        //         var index = selected.indexOf( this );
+        //         selected.splice( index, 1 );  
+        //     }
 
-        }));
+        // }));
+
         $checkboxes.on('change', function () {
-         var bsfppc_post_id = $("#post_ID").val() 
-            $.post( bsfppc_meta_box_obj.url,                   
-                   {
-                    action: 'bsfppc_ajax_change',               
-                    bsfppc_field_value: selected ,
-                    bsfppc_post_id : bsfppc_post_id           
-                   }, function ( data ) {                    
-                        if (data === 'sucess') { 
-                            console.log('done');
-                        } else if (data === 'failure') {  
-                          console.log('failure');           
-                        } else {
-                            console.log('bsf');                      
+
+            if($(this).prop("checked") == true) {
+             var bsfppc_post_id = $("#post_ID").val() 
+                $.post( bsfppc_meta_box_obj.url,                   
+                       {
+                        action: 'bsfppc_ajax_add_change',               
+                        bsfppc_field_value: $(this).attr( 'value' ) ,
+                        bsfppc_post_id : bsfppc_post_id           
+                       }, function ( data ) {                    
+                            if (data === 'sucess') { 
+                                console.log('done');
+                            } else if (data === 'failure') {  
+                                console.log('failure');           
+                            } else {
+                                console.log('bsf');                      
+                            }
                         }
-                    }
-            );
+                );
+            }
+
+            else if($(this).prop("checked") == false ){    
+                var bsfppc_post_id = $("#post_ID").val()
+                $.post( bsfppc_meta_box_obj.url,                   
+                       {
+                        action: 'bsfppc_ajax_delete_change',               
+                        bsfppc_field_value: $(this).attr( 'value' ) ,
+                        bsfppc_post_id : bsfppc_post_id           
+                       }, function ( data ) {                    
+                            if (data === 'sucess') { 
+                                console.log('done');
+                            } else if (data === 'failure') {  
+                                console.log('failure');           
+                            } else {
+                                console.log('bsf');                      
+                            }
+                        }
+                );
+            }
         });
+
+
     if( bsfppc_radio_obj.option!=3 && bsfppc_radio_obj.data.length!=0 ){
         setTimeout(function() {
             $( '.editor-post-publish-panel__toggle' ).prop( 'disabled', true );
@@ -140,5 +165,4 @@ console.log('helllo');
         });
     }
 
-}); 
-    
+});     
