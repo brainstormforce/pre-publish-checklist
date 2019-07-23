@@ -4,6 +4,15 @@ $bsfppc_radio_button = get_option('bsfppc_radio_button_option_data');
 $bsfppc_checklist_item_data = get_option('bsfppc_checklist_data');
 wp_enqueue_script('bsfppc_backend_itemlist_js');
 wp_enqueue_style('bsfppc_backend_css');
+$bsfppc_post_types = get_option('bsfppc_post_types_to_display');
+// get_option('bsfppc_post_types_to_display');
+
+$args = array(
+	'public' => true,
+
+);
+
+$exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 
 ?>
 
@@ -12,41 +21,7 @@ wp_enqueue_style('bsfppc_backend_css');
 <body>
 <table class="form-table">
 	<tbody>
-		<tr>
-		<th scope="row"> <p>Create a custom checklist</p> </th>
-	   			<td>
-		    	<table id ="list_table">
-		    	<tr>
-					<div class="input_fields_wrap">
-						<input type="text" id="add_item_text_feild" class="item_input" name="bsfppc_checklist_item[]" required>
-					</div>
-				</tr>
-			</table>
-				<a class="add_field_button button-secondary">Add item</a>
-				<button type="button" id="Savelist" name="submit" class="button button-primary ppc_data" required   Value="Save List" />Save list </button>
-			</td>
-		</tr>
-		<tr>
-			<th scope="row"><p>Your List</p> </th>
-			<td>
-				<ul id="columns" class="dragevent">
-				<?php
-				if( !empty( $bsfppc_checklist_item_data)){
-
-					foreach( $bsfppc_checklist_item_data as $key ){
-					?>
-					<li class="column" draggable="true"><div class="drag-feild" > <input type="text" class="drag-feilds" readonly value="<?php echo esc_attr($key); ?>" name="bsfppc_checklist_item[]" >
-						<button type="button" id = "Delete" name="Delete" class="button button-secondary bsfppcdelete" value="<?php echo esc_attr($key); ?>" formnovalidate >Delete</button> </div></li>
-					<?php
-					}
-				}
-				else{
-					echo "You have do not have any list please add items in the list";
-				} ?></ul>
-			</td>
-		</tr>
 		
-		<tr><h3>Settings</h3></tr> 
 		<tr><th scope="row"><p>On publish attempt </p></th>
 			<td>
 			<form method ="POST">
@@ -57,16 +32,59 @@ wp_enqueue_style('bsfppc_backend_css');
 				<input type="radio" name="bsfppc_radio_button_option" value="3" <?php checked($bsfppc_radio_button,3 ); ?> > <div class="bsfppc_radio_options">Do Nothing </div>
 				<p>The user will be allowed to publish without any warning </p>
 				<br/>
-				<input type="submit" class="button button-primary"  name="submit_radio" Value="Save Setting"/>
-			</form>
+				<!-- <input type="submit" class="button button-primary"  name="submit_radio" Value="Save Setting"/> -->
+			
 		</td>
 		</tr>
+		<tr>
+			<th scope="row"><p>Post Types </p></th>
+			<td><?php
+				foreach ( get_post_types( $args, 'objects' ) as $bsfppc_post_type ) {
+
+										if ( in_array( $bsfppc_post_type->labels->name, $exclude ) ) {
+
+											continue;
+										}
+										if ( 'post' !== $bsfppc_post_types ) {
+											if ( isset( $bsfppc_post_types ) ) {
+												if ( in_array( $bsfppc_post_type->name, $bsfppc_post_types ) ) {
+													echo '<label for="ForPostType">
+				                             <input type="checkbox" checked name="posts[]" value="' . esc_attr( $bsfppc_post_type->name ) . '" >
+				                             ' . esc_attr( $bsfppc_post_type->labels->name ) . '</label><br> ';
+												} else {
+													echo '<label for="ForPostType">
+				                             <input type="checkbox"  name="posts[]" value="' . esc_attr( $bsfppc_post_type->name ) . '">
+				                             ' . esc_attr( $bsfppc_post_type->labels->name ) . '</label><br> ';
+												}
+											} else {
+												echo '<label for="ForPostType">
+				                             <input type="checkbox"  name="posts[]" value="' . esc_attr( $bsfppc_post_type->name ) . '">
+				                             ' . esc_attr( $bsfppc_post_type->labels->name ) . '</label><br> ';
+											}
+										} else {
+											if ( 'post' == $bsfppc_post_type->name ) {
+												echo '<label for="ForPostType">
+				                         <input type="checkbox" checked name="posts[]" value="' . esc_attr( $bsfppc_post_type->name ) . '">
+				                         ' . esc_attr( $bsfppc_post_type->labels->name ) . '</label><br> ';
+											}
+											echo '<label for="ForPostType">
+				                         <input type="checkbox"  name="posts[]" value="' . esc_attr( $bsfppc_post_type->name ) . '">
+				                         ' . esc_attr( $bsfppc_post_type->labels->name ) . '</label><br> ';
+										}
+									}
+									
+				$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
+				?><br>
+				<br>
+				<br>
+			<input type="submit" class="button button-primary"  name="submit_radio" Value="Save Setting"/>
+			</form>
+			</td>
+		</tr>		
 		</tbody>
 	</table>
 </body>
 </html><?php
-$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
-	
 
 
 

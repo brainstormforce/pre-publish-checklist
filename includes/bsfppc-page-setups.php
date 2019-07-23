@@ -45,9 +45,16 @@ class BSFPPC_Pagesetups_ {
         add_action('wp_ajax_nopriv_bsfppc_ajax_add_change',array( $this,'bsfppc_meta_box_ajax_add_handler'), 1 );
         add_action('wp_ajax_bsfppc_ajax_delete_change', array( $this,'bsfppc_meta_box_ajax_delete_handler') , 1 );
         add_action('wp_ajax_nopriv_bsfppc_ajax_delete_change',array( $this,'bsfppc_meta_box_ajax_delete_handler'), 1 );
+        // add_action('admin_notices' , array( $this,'bsfppc_markup'));
     }
    
+        // public function bsfppc_markup() { 
+           
+        //          <div class="notice notice-success is-dismissible bsfppc-markup">
+        //          <p>hello</p> </div>
+            
 
+        // <?php }
         public function bsf_ppc_settings_page() {
             add_submenu_page(
                 'options-general.php',
@@ -66,9 +73,8 @@ class BSFPPC_Pagesetups_ {
 
         public function bsfppc_add_custom_meta_box()
             {   
- 
-
-                $screens = ['post', 'page'];
+                $bsfppc_post_types_to_display= get_option('bsfppc_post_types_to_display');
+                $screens = $bsfppc_post_types_to_display;
                 foreach ($screens as $screen) {
                     add_meta_box(
                         'bsfppc_custom_meta_box',           // Unique ID
@@ -107,6 +113,7 @@ class BSFPPC_Pagesetups_ {
                             <div class="popup-overlay">
                                 Creates the popup content
                                 <div class="popup-content">
+                                    <div class="tooltip">Tootlip contents</div>
                                     <p> Please check all the checkboxes before publishing or you can publish anyway </p>
                                     <button id="close" class="components-button is-button is-default">Publish anyway !</button>    
                                 </div>
@@ -131,8 +138,8 @@ class BSFPPC_Pagesetups_ {
             else{
                 $bsfppc_checklist_add_data = $bsfppc_check_data;
             }
-  
-                    update_post_meta(
+
+                   update_post_meta(
                         $post_id =  $bsfppcpost ,
                         '_bsfppc_meta_key',
                        $bsfppc_checklist_add_data 

@@ -103,3 +103,38 @@ input[type=text], select {
   border: 2px dashed #000;
   border-top: 2px solid;
 }
+
+.tooltip { 
+    display: none; 
+    background-color: 'red';
+    border: 1px solid black;
+    width: 100px;
+    padding: 10px;
+}
+
+.editor-post-publish-panel__toggle[title]:hover:after {
+  content: attr(title);
+  position: absolute;
+  top: -100%;
+  left: 0;
+}
+
+
+.editor-post-publish-button[title]:hover:after {
+  content: attr(title);
+  position: absolute;
+  top: -100%;
+  left: 0;
+}
+.bsfppc-markup{
+
+  background: red;
+  min-height: 50px;
+  z-index: 999999;
+  min-width: 500px;
+/*  position: relative;
+  top:200px;
+  left:200px;*/
+}
+
+

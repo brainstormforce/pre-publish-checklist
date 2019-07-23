@@ -18,13 +18,18 @@ if ( isset( $_GET['tab'] ) ) {
 
         $active_tab = 'bsfppc_general_settings';
 
-    } elseif ( 'bsfppc_general_settings' === $_GET['tab'] ) {
+    } elseif ( 'bsfppc-checklist' === $_GET['tab'] ) {
 
-        $active_tab = 'bsfppc_general_settings';
+        $active_tab = 'bsfppc-checklist';
+
+    }
+     elseif ( 'bsfppc-user-manual' === $_GET['tab'] ) {
+
+        $active_tab = 'bsfppc-user-manual';
 
     }
 }
-
+    
 ?>
 
 <h2 class="nav-tab-wrapper">
@@ -36,6 +41,14 @@ if ( isset( $_GET['tab'] ) ) {
     ?>
     "><?php esc_attr_e( 'General Settings', 'Pre-publish-checklist' ); ?></a>
 
+
+        <a href="?page=bsf_ppc&tab=bsfppc-checklist" class="nav-tab tb 
+        <?php
+        if ( 'bsfppc-checklist' === $active_tab ) {
+                        echo 'nav-tab-active';
+        }
+        ?>
+        "><?php esc_attr_e( 'Checklist', 'Pre-publish-checklist' ); ?></a>
 
         <a href="?page=bsf_ppc&tab=bsfppc-user-manual" class="nav-tab tb 
         <?php
@@ -54,6 +67,9 @@ if ( isset( $_GET['tab'] ) ) {
       
         require_once 'bsfppc-frontend.php';
 
+    }
+    elseif ('bsfppc-checklist' === $_GET['tab']) {
+        require_once 'bsfppc-checklist.php';   
     }
     elseif ('bsfppc-user-manual' === $_GET['tab']) {
         require_once 'bsfppc-user-manual.php';   

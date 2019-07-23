@@ -3,16 +3,6 @@ $( document ).ready( function(){
 console.log('helllo');
         var $checkboxes = $( '#checkbox[type="checkbox"]' ); 
         var selected = [];
-      
-        // $('#checkbox[type="checkbox"]').on('click',(function() {
-        //     if(this.checked){ 
-        //     selected.push( $(this).attr( 'value' ) );
-        //     }else if( !( this.checked ) ) {
-        //         var index = selected.indexOf( this );
-        //         selected.splice( index, 1 );  
-        //     }
-
-        // }));
 
         $checkboxes.on('change', function () {
 
