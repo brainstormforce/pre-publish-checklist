@@ -26,10 +26,11 @@ wp_enqueue_style('bsfppc_backend_css');
 		<tr>
 			<th scope="row"><p>Your List</p> </th>
 			<td>
-				<ul id="columns" class="dragevent">
+				
 				<?php
-				if( !empty( $bsfppc_checklist_item_data)){
-
+				if( !empty( $bsfppc_checklist_item_data)){?>
+					<ul id="columns" class="dragevent">
+					<?php
 					foreach( $bsfppc_checklist_item_data as $key ){
 					?>
 					<li class="column" draggable="true"><div class="drag-feild" > <input type="text" class="drag-feilds" readonly value="<?php echo esc_attr($key); ?>" name="bsfppc_checklist_item[]" >
@@ -40,6 +41,12 @@ wp_enqueue_style('bsfppc_backend_css');
 				else{
 					echo "You have do not have any list please add items in the list";
 				} ?></ul>
+
+				<div id="confirm">
+					<div class="message">Are you sure..!!</div>
+					<button class="yes">yes</button>
+					<button class="no">no</button>
+				</div>
 			</td>
 		</tr>
 	</tbody>

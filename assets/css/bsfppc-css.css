@@ -10,37 +10,6 @@ color: #191e23;
 visibility:hidden;
 }	
 
-
-/*table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 80%;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}*/
-
-.wy-tooltip {
-	border: 1px solid #F1D031;
-	color: #444;
-	background: #FFFFA3;
-	box-shadow: 0 2px 3px #999;
-	position: absolute;
-	padding: 5px;
-	text-align: left;
-	border-radius: 5px;
-	 -moz-border-radius: 5px;
-	 -webkit-border-radius: 5px;
-}
-.wy-hide { display: none; }
-
 input[type=text], select {
   width: 90% ;
   padding: 12px 12px;
@@ -100,8 +69,8 @@ input[type=text], select {
   border: 2px solid;
 }
 .column.over {
-  border: 2px dashed #000;
-  border-top: 2px solid;
+  /*border: 2px dashed #000;
+  border-top: 2px solid;*/
 }
 
 .tooltip { 
@@ -112,29 +81,57 @@ input[type=text], select {
     padding: 10px;
 }
 
-.editor-post-publish-panel__toggle[title]:hover:after {
-  content: attr(title);
-  position: absolute;
-  top: -100%;
-  left: 0;
+span[title]:hover:after {
+     content: attr(title);
+     padding: 4px 8px;
+     position: absolute;
+     left: 0;
+     top: 100%;
+     white-space: nowrap;
+     z-index: 20;
+     background:red;
+}
+
+.info
+{
+  width:200px;
+  height:100px;
+  text-align:center;
+  border:1px solid #ddd;
+  padding:10px;
+  position:absolute;
+  /*initial info element not shown*/
+  left:-999999px;
 }
 
 
-.editor-post-publish-button[title]:hover:after {
-  content: attr(title);
-  position: absolute;
-  top: -100%;
-  left: 0;
-}
-.bsfppc-markup{
-
-  background: red;
-  min-height: 50px;
-  z-index: 999999;
-  min-width: 500px;
-/*  position: relative;
-  top:200px;
-  left:200px;*/
-}
 
 
+/***********************************************************************************************/
+
+#confirm {
+            display: none;
+            background-color: #F3F5F6;
+            color: #000000;
+            border: 1px solid #aaa;
+            position: fixed;
+            width: 300px;
+            height: 100px;
+            left: 40%;
+            top: 40%;
+            box-sizing: border-box;
+            text-align: center;
+         }
+         #confirm button {
+            background-color: #FFFFFF;
+            display: inline-block;
+            border-radius: 12px;
+            border: 4px solid #aaa;
+            padding: 5px;
+            text-align: center;
+            width: 60px;
+            cursor: pointer;
+         }
+         #confirm .message {
+            text-align: left;
+         }

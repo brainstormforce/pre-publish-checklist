@@ -27,7 +27,7 @@ jQuery(wrapper).on("click",".remove_field", function(e){
 //Ajax trigger for adding an element in the array 
 
     jQuery("#Savelist").on('click', function () { 
-    	// jQuery( '.dragevent' ).load(location.href + document ); 
+    	jQuery( '.dragevent' ).load(location.href + document ); 
     	var item_content_var = jQuery('.item_input');  
 			 item_content_var.each(function(){
 			 	 item_content.push(jQuery(this).attr('value'));			  
@@ -39,87 +39,56 @@ jQuery(wrapper).on("click",".remove_field", function(e){
                         item_content : item_content
                        }, function ( data ) {                    
                             if (data === 'sucess') { 
-                            	 jQuery('.dragevent').load(location.href + " #columns");
+                            	
                                 console.log('done');
                             } else if (data === 'failure') {  
-                            	 jQuery('.dragevent').load(location.href + " #columns");
+                            	
                               console.log('failure');           
                             } else {
                                 console.log('bsf');
-                                 jQuery('.dragevent').load(location.href + " #columns");                  
+                                             
                             }
                         }
                 );
 
             });
 
-
-
-// jQuery('.drag-feild').on('focus', function () { 
-// 	console.log('hi');
-
-// });
-
-// var item_drag_var      = jQuery('.drag-feilds');  
-// item_drag_var.each(function(){
-// 	 console.log(jQuery(this).attr('value'));			  
-// });
-jQuery('.drag-feilds').on('mouseover', function () { 
-	console.log('hi');
-jQuery('.drag-feilds').on('mouseup', function () { 
-	// jQuery('.dragevent').mouseover(function () { 
+// dragg ****************************************************************************************************************
+jQuery(document).on('drop','.drag-feilds' , function () { 
 		console.log('Inside drag');
 		var item_drag_var  =[];
-    	var item_drag_var   = jQuery('.drag-feilds'); 
-			 item_drag_var.each(function(){
-			 	 drag_content=(jQuery(this).attr('value'));	
-			 	 console.log(drag_content);
-			 	 		  
-			  });
-			  });
-});
+      var item_drag_var   = jQuery('.drag-feilds'); 
+       item_drag_var.each(function(){
+         drag_content.push(jQuery(this).attr('value'));
+        });          
+        console.log(drag_content);
+                jQuery.post( bsfppc_add_delete_obj.url,                   
+                       {
+                        action: 'bsfppc_checklistitem_drag',
+                        item_drag_var : drag_content
+                       }, function ( data ) {                    
+                            if (data === 'sucess') { 
+                                console.log('done');
+                                 drag_content=[];
+                            } else if (data === 'failure') {  
+                              console.log('failure');   
+                               drag_content=[];        
+                            } else {
+                                console.log('bsf'); 
+                                 drag_content=[];                     
+                            }
+                        }
+                );
+    });
 
-
-
-//dragg ****************************************************************************************************************
-// jQuery('.drag-feilds').on('mouseup', function () { 
-// 	// jQuery('.dragevent').mouseover(function () { 
-// 		console.log('Inside drag');
-// 		var item_drag_var  =[];
-//     	var item_drag_var   = jQuery('.drag-feilds'); 
-// 			 item_drag_var.each(function(){
-// 			 	 drag_content=(jQuery(this).attr('value'));	
-// 			 	 console.log(drag_content);
-			 	 		  
-// 			  });
-
-//                 jQuery.post( bsfppc_add_delete_obj.url,                   
-//                        {
-//                         action: 'bsfppc_checklistitem_drag',
-//                         item_drag_var : drag_content
-//                        }, function ( data ) {                    
-//                             if (data === 'sucess') { 
-//                                 console.log('done');
-//                             } else if (data === 'failure') {  
-//                               console.log('failure');           
-//                             } else {
-//                                 console.log('bsf');                      
-//                             }
-//                         }
-//                 );
-//     });
 
 //Ajax trigger for deleting an element in the array
-
-    jQuery(".bsfppcdelete").on('click', function () { 
+      jQuery(document).on( 'click' , '.bsfppcdelete', function(){ 
     	jQuery(this).parent('div').remove();
-    	 // var bsfppc_post_id = $("#post_ID").val() 
                 jQuery.post( bsfppc_add_delete_obj.url,                   
                        {
                         action: 'bsfppc_checklistitem_delete',
-                        delete : jQuery(this).attr('value') ,
-                        // bsfppc_post_id : bsfppc_post_id  
-
+                        delete : jQuery(this).attr('value')  
                        }, function ( data ) {                    
                             if (data === 'sucess') { 
                                 console.log('done');
@@ -131,6 +100,7 @@ jQuery('.drag-feilds').on('mouseup', function () {
                         }
                 );
             });
+
 
 
 var dragSrcEl = null;
