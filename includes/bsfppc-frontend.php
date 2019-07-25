@@ -6,7 +6,7 @@ wp_enqueue_script('bsfppc_backend_itemlist_js');
 wp_enqueue_style('bsfppc_backend_css');
 $bsfppc_post_types = get_option('bsfppc_post_types_to_display');
 // get_option('bsfppc_post_types_to_display');
-
+ 
 $args = array(
 	'public' => true,
 
@@ -31,9 +31,7 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 				<p>The user will be warned before publishing </p>
 				<input type="radio" name="bsfppc_radio_button_option" value="3" <?php checked($bsfppc_radio_button,3 ); ?> > <div class="bsfppc_radio_options">Do Nothing </div>
 				<p>The user will be allowed to publish without any warning </p>
-				<br/>
-				<!-- <input type="submit" class="button button-primary"  name="submit_radio" Value="Save Setting"/> -->
-			
+				<br/>	
 		</td>
 		</tr>
 		<tr>

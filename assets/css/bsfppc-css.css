@@ -11,13 +11,21 @@ visibility:hidden;
 }	
 
 input[type=text], select {
-  width: 90% ;
-  padding: 12px 12px;
-  margin: 1px 0;
+  width: 91% ;
+  padding: 5px 10px;
+  
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
+  margin-left: 0px;
   box-sizing: border-box;
+  background-color: #ffffff;
+}
+
+.bsfppc-dynamicfeild{
+  margin-top: 1px;
+  margin-bottom: -20px;
+  padding: 0px;
 }
 
 .form-table td p {
@@ -69,8 +77,8 @@ input[type=text], select {
   border: 2px solid;
 }
 .column.over {
-  /*border: 2px dashed #000;
-  border-top: 2px solid;*/
+  
+   box-shadow: 10px 10px 5px #aaaaaa;
 }
 
 .tooltip { 
@@ -81,25 +89,18 @@ input[type=text], select {
     padding: 10px;
 }
 
-span[title]:hover:after {
-     content: attr(title);
-     padding: 4px 8px;
-     position: absolute;
-     left: 0;
-     top: 100%;
-     white-space: nowrap;
-     z-index: 20;
-     background:red;
-}
 
 .info
 {
-  width:200px;
+  width:250px;
+  border-radius: 5px;
   height:100px;
   text-align:center;
   border:1px solid #ddd;
-  padding:10px;
+  background-color: #ffffff;
   position:absolute;
+  margin-top: -5px;
+  z-index: 9999;
   /*initial info element not shown*/
   left:-999999px;
 }
@@ -108,30 +109,35 @@ span[title]:hover:after {
 
 
 /***********************************************************************************************/
+.bsfppc-tooltip{
+  font-weight: 600;
+}
 
-#confirm {
-            display: none;
-            background-color: #F3F5F6;
-            color: #000000;
-            border: 1px solid #aaa;
-            position: fixed;
-            width: 300px;
-            height: 100px;
-            left: 40%;
-            top: 40%;
-            box-sizing: border-box;
-            text-align: center;
-         }
-         #confirm button {
-            background-color: #FFFFFF;
-            display: inline-block;
-            border-radius: 12px;
-            border: 4px solid #aaa;
-            padding: 5px;
-            text-align: center;
-            width: 60px;
-            cursor: pointer;
-         }
-         #confirm .message {
-            text-align: left;
-         }
+
+#notifications:before {
+    content: '';
+    border-color: black;
+    display: block;
+    width: 0;
+    height: 0;
+    border:1px solid #ddd;
+    color: transparent;
+    border: 10px solid #CCC;
+    border-color: transparent transparent #FFF;
+    margin-top: -20px;
+    margin-left: 200px;
+}
+.drag-feilds.over{
+
+box-shadow: 10px 10px 5px #aaaaaa;
+}
+
+form{
+
+  margin-top: 20px;
+}
+
+.warning{
+
+  color: red;
+}

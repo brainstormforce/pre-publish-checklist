@@ -70,20 +70,18 @@ class BSFPPC_Loader {
 		$bsfppc_checklist_item_data = get_option('bsfppc_checklist_data');
 		wp_register_script( 'bsfppc_backend_checkbox_js', BSF_PPC_PLUGIN_URL . '/assets/js/bsfppc-checkbox.js', null,'1.0', false );
 		wp_register_script( 'bsfppc_backend_itemlist_js', BSF_PPC_PLUGIN_URL . '/assets/js/bsfppc-itemlist.js', null,'1.0', false );
-		wp_register_script( 'bsfppc_backend_tooltip_js', BSF_PPC_PLUGIN_URL . '/assets/js/bsfppc-hover-tooltip.js', null,'1.0', false );
-		wp_register_script( 'bsfppc_backend_settings_page_js', BSF_PPC_PLUGIN_URL . '/assets/js/bsfppc-hover-tooltip.js', null,'1.0', false );
 		wp_register_style( 'bsfppc_backend_css', BSF_PPC_PLUGIN_URL . '/assets/css/bsfppc-css.css', null,'1.0', false );
 		wp_localize_script( 'bsfppc_backend_checkbox_js', 'bsfppc_radio_obj', array( 'option' => $bsfppc_radio_button , 'data' => $bsfppc_checklist_item_data  ) );
-		
 	    wp_localize_script('bsfppc_backend_itemlist_js','bsfppc_add_delete_obj', ['url' => admin_url('admin-ajax.php'),]);
         
 	}
+
 	public function bsfppc_metabox_scripts(){
 	    $screen = get_current_screen();
 	    $bsfppc_post_types_to_display= get_option('bsfppc_post_types_to_display');
 	    if (is_object($screen)) {	
 	        if (in_array($screen->post_type, $bsfppc_post_types_to_display)) {
-	            wp_enqueue_script('bsfppc_backend_checkbox_js', BSF_PPC_PLUGIN_URL . '/assets/js/bsfppc-checkbox.js', ['jquery']);
+	            // wp_enqueue_script('bsfppc_backend_checkbox_js', BSF_PPC_PLUGIN_URL . '/assets/js/bsfppc-checkbox.js', ['jquery']);
 	            wp_localize_script(
 	                'bsfppc_backend_checkbox_js',
 	                'bsfppc_meta_box_obj', ['url' => admin_url('admin-ajax.php'),]
@@ -122,7 +120,6 @@ class BSFPPC_Loader {
 					foreach( $newitems as $items ) {
 					array_push( $item_contents , $items  );
 			}
-
 				update_option( 'bsfppc_checklist_data', $item_contents );
 				echo"sucess";
 		}

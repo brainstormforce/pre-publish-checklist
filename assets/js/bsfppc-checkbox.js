@@ -1,4 +1,5 @@
 $( document ).ready( function(){  
+    $('.edit-post-header__settings').children(':eq(1)').after('<div class="dashicons dashicons-warning"></div>');
 console.log('helllo');
         var $checkboxes = $( '#checkbox[type="checkbox"]' ); 
         var selected = [];
@@ -45,15 +46,20 @@ console.log('helllo');
         });
         var $checkboxes = $( '#checkbox[type="checkbox"]' );
         var countCheckedCheckboxes = $checkboxes.filter(':checked').length;
-
+ 
     if( bsfppc_radio_obj.option!=3 && bsfppc_radio_obj.data.length!=0 && ( $checkboxes.length !== countCheckedCheckboxes) ){
         setTimeout(function() {
             $( '.editor-post-publish-panel__toggle' ).prop( 'disabled', true );
-            $('.editor-post-publish-panel__toggle').append('<span class="dashicons dashicons-warning"></span>');          
+            // $('.edit-post-header__settings').children(':eq(1)').after('<div class="dashicons dashicons-warning"></div>');
+                   
         }, 10); 
         setTimeout(function() {
-            $( '.editor-post-publish-button' ).prop( 'disabled', true );
-            $('.editor-post-publish-button').append('<span class="dashicons dashicons-warning"></span>');
+            $( '.editor-post-publish-button' ).prop( 'disabled', true );  
+            $('.edit-post-header__settings').children(':eq(1)').after('<div class="dashicons dashicons-warning"></div>');
+            //  $('.edit-post-header__settings > div:nth-child(2)').append('<span class="dashicons dashicons-warning"></span>');
+            // $('.edit-post-header__settings').append('<span class="dashicons dashicons-warning"></span>');
+            // $('.edit-post-header__settings').children(':eq(1)').append('<span class="dashicons dashicons-warning"></span>');​​​​
+
         }, 10);
     }
 
@@ -65,28 +71,30 @@ console.log('helllo');
             var countCheckedCheckboxes = $checkboxes.filter(':checked').length;
                 if( $checkboxes.length == countCheckedCheckboxes ){
                     // all checkboxes are check
+                    $('.dashicons-warning').hide();
                     if( $( '.editor-post-publish-panel__toggle' ).length == 1 ) {
                         $( '.editor-post-publish-panel__toggle' ).prop( 'disabled', false );
-                        // $( '.editor-post-publish-panel__toggle' ).prop( 'title', 'All items checked ! You are good to publish' );
-                        $('.editor-post-publish-panel__toggle').append('<span class="dashicons dashicons-warning"></span>');
+                         $( '.editor-post-publish-panel__toggle' ).prop( 'title', 'All items checked ! You are good to publish' );
+
                          
                     } else if( $( '.editor-post-publish-button' ).length == 1 ) {
                         $( '.editor-post-publish-button').prop( 'disabled', false );
-                          // $('.editor-post-publish-button').prop( 'title', 'All items checked ! You are good to publish' );
-                          $('.editor-post-publish-panel__toggle').append('<span class="dashicons dashicons-warning"></span>');
+                           $('.editor-post-publish-button').prop( 'title', 'All items checked ! You are good to publish' );
+    
                     } 
                 }
                 else{
                     // all checkboxes are not yet checked 
+                    $('.dashicons-warning').show();
                     if( $('.editor-post-publish-panel__toggle' ).length == 1 ) {
                         $( '.editor-post-publish-panel__toggle' ).prop( 'disabled', true );
                         $('.editor-post-publish-panel__toggle').prop('title', 'Pre-Publish-Checklist please check all the items to publish or update' );
-                        $('.editor-post-publish-panel__toggle').append('<span class="dashicons dashicons-warning"></span>');
+
                     }
                     else if( $( '.editor-post-publish-button' ).length == 1 ) {
                         $( '.editor-post-publish-button' ).prop( 'disabled', true );
                         $('.editor-post-publish-button').prop('title', 'Pre-Publish-Checklist please check all the items to publish or update' );
-                        $('.editor-post-publish-panel__toggle').append('<span class="dashicons dashicons-warning"></span>');
+
                     }
                 }
         });
@@ -101,24 +109,23 @@ console.log('helllo');
             var countCheckedCheckboxes = $checkboxes.filter(':checked').length;
             if( $checkboxes.length == countCheckedCheckboxes ){
                 // all checkboxes are check
+                $('.dashicons-warning').hide();
                 if( $( '.editor-post-publish-panel__toggle' ).length == 1 ) {
                     $( '.editor-post-publish-panel__toggle' ).prop( 'disabled', false );
-                    // $( '.editor-post-publish-panel__toggle' ).prop( 'title', 'All items checked ! You are good to publish' );
-                    $('.editor-post-publish-panel__toggle').append('<span class="dashicons dashicons-warning"></span>');
+                     $( '.editor-post-publish-panel__toggle' ).prop( 'title', 'All items checked ! You are good to publish' );
                     $(".popup, .popup-content").css("visibility", "hidden");
                 } else if( $( '.editor-post-publish-button' ).length == 1 ) {
                     $( '.editor-post-publish-button' ).prop( 'disabled', false );
-                     // $( '.editor-post-publish-button' ).prop( 'title', 'All items checked ! You are good to publish' );
-                     $('.editor-post-publish-panel__toggle').append('<span class="dashicons dashicons-warning"></span>');
+                     $( '.editor-post-publish-button' ).prop( 'title', 'All items checked ! You are good to publish' );
                      $( ".popup, .popup-content" ).css( "visibility", "hidden" );
                 } 
             }
             else{
                 // all checkboxes are not yet checked 
+                $('.dashicons-warning').show();
                 if( $( '.editor-post-publish-panel__toggle' ).length == 1 ) {
                     $( '.editor-post-publish-panel__toggle' ).prop( 'disabled', true );
                     $( '.editor-post-publish-panel__toggle' ).prop('title', 'Pre-Publish-Checklist please check all the items to publish or update or you can publish anyway' );
-                    $('.editor-post-publish-panel__toggle').append('<span class="dashicons dashicons-warning"></span>');
                     $( ".popup, .popup-content" ).css("visibility", "visible");
                     $( "#close" ).on( "click", function(){
                             $( '.editor-post-publish-panel__toggle' ).prop( 'disabled', false );
@@ -126,8 +133,7 @@ console.log('helllo');
                 }
                 else if( $( '.editor-post-publish-button' ).length == 1 ) {
                     $( '.editor-post-publish-button' ).prop( 'disabled', true );
-                    // $( '.editor-post-publish-button' ).prop( 'title', 'Pre-Publish-Checklist please check all the items to publish or update or you can publish anyway' );
-                    $('.editor-post-publish-panel__toggle').append('<span class="dashicons dashicons-warning"></span>');
+                     $( '.editor-post-publish-button' ).prop( 'title', 'Pre-Publish-Checklist please check all the items to publish or update or you can publish anyway' );
                     $( ".popup, .popup-content" ).css( "visibility", "visible" );
                     $( "#close" ).on( "click", function(){
                             $( '.editor-post-publish-button' ).prop( 'disabled', false );
@@ -144,24 +150,23 @@ console.log('helllo');
             var countCheckedCheckboxes = $checkboxes.filter(':checked').length;
             if( $checkboxes.length == countCheckedCheckboxes ){
                 // all checkboxes are check
+                $('.dashicons-warning').hide();
                 if( $( '.editor-post-publish-panel__toggle' ).length == 1 ) {
-                    // $( '.editor-post-publish-panel__toggle' ).prop( 'title', 'All items checked ! You are good to publish' );
-                    $('.editor-post-publish-panel__toggle').append('<span class="dashicons dashicons-warning"></span>');
+                     $( '.editor-post-publish-panel__toggle' ).prop( 'title', 'All items checked ! You are good to publish' );
                      
                 } else if( $( '.editor-post-publish-button' ).length == 1 ) {
-                      // $('.editor-post-publish-button').prop( 'title', 'All items checked ! You are good to publish' );
-                      $('.editor-post-publish-panel__toggle').append('<span class="dashicons dashicons-warning"></span>');
+                      $('.editor-post-publish-button').prop( 'title', 'All items checked ! You are good to publish' );
+
                 } 
             }
             else{
                 // all checkboxes are not yet checked 
+                $('.dashicons-warning').show();
                 if( $('.editor-post-publish-panel__toggle' ).length == 1 ) {
                     $('.editor-post-publish-panel__toggle').prop('title', 'Pre-Publish-Checklist some items still remaining ' );
-                    $('.editor-post-publish-panel__toggle').append('<span class="dashicons dashicons-warning"></span>');
                 }
                 else if( $( '.editor-post-publish-button' ).length == 1 ) {
                     $('.editor-post-publish-button').prop('title', 'Pre-Publish-Checklist some items still remaining !' );
-                    $('.editor-post-publish-panel__toggle').append('<span class="dashicons dashicons-warning"></span>');
                 }
             }
         });
@@ -170,7 +175,7 @@ console.log('helllo');
 
     $(function(){
 /*the function showInfo is executed on mouseover and mouseout*/
-$('.editor-post-publish-button').live('mouseover mouseout', function(event) {
+$('.dashicons-warning').live('mouseover mouseout', function(event) {
     showInfo(event,this);
 });
 });
@@ -187,7 +192,7 @@ var topOffset = $(button).offset().top- $(window).scrollTop();
      $(".info").css({
         position: "fixed",
         top: (topOffset + 35)+ "px",
-        left: (offset.left) + "px",   
+        left: (offset.left - 150) + "px",   
     });
 }
   else

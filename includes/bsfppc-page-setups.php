@@ -45,17 +45,24 @@ class BSFPPC_Pagesetups_ {
         add_action('wp_ajax_nopriv_bsfppc_ajax_add_change',array( $this,'bsfppc_meta_box_ajax_add_handler'), 1 );
         add_action('wp_ajax_bsfppc_ajax_delete_change', array( $this,'bsfppc_meta_box_ajax_delete_handler') , 1 );
         add_action('wp_ajax_nopriv_bsfppc_ajax_delete_change',array( $this,'bsfppc_meta_box_ajax_delete_handler'), 1 );
+         if(!empty($_GET['action']) && 'edit' == $_GET['action']) {
         add_action('admin_footer' , array( $this,'bsfppc_markup'));
     }
+    }
    
-         public function bsfppc_markup() { 
+         public function bsfppc_markup() {
+            // var_dump($_GET['action']);
+                if(!empty($_GET['action']) && 'edit' == $_GET['action']) {
 
                 wp_enqueue_script( 'bsfppc_backend_checkbox_js' );
-                wp_enqueue_script( 'bsfppc_backend_tooltip_js' );
-                wp_enqueue_style( 'bsfppc_backend_css' );
+
+                wp_enqueue_style( 'bsfppc_backend_css' );                    
+                } 
+
            ?>
-                  <div class="info">
-                       <p> Please check all the checkboxes before publishing or you can publish anyway </p>
+                  <div id="notifications" class="info">
+                       <p class="bsfppc-tooltip">Pre Publish Checklist: </p>
+                       <p> Please ensure that you have checked the list before publishing or updating</p>
                    </div>
             
 
@@ -114,15 +121,12 @@ class BSFPPC_Pagesetups_ {
                             echo "<br/>";                     
                         }       
                       ?>
-                       <div class="info">
-                       <p> Please check all the checkboxes before publishing or you can publish anyway </p>
-                        </div>
                         <div class="thickbox">
                             <div class="popup-overlay">
                                 Creates the popup content
                                 <div class="popup-content">
                                     <div class="tooltip">Tootlip contents</div>
-                                    <p> Please check all the checkboxes before publishing or you can publish anyway </p>
+                                    <p class="warning"> Please check all the checkboxes before publishing or you can publish anyway </p>
                                     <button id="close" class="components-button is-button is-default">Publish anyway !</button>    
                                 </div>
                             </div>

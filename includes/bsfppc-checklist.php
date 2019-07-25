@@ -24,29 +24,31 @@ wp_enqueue_style('bsfppc_backend_css');
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"><p>Your List</p> </th>
+			<th scope="row"><p class="bsfppc_post"> Your List</p> </th>
 			<td>
+
+				<p> You can drag and drop the items to set the order</p>
+				
 				
 				<?php
 				if( !empty( $bsfppc_checklist_item_data)){?>
 					<ul id="columns" class="dragevent">
 					<?php
 					foreach( $bsfppc_checklist_item_data as $key ){
-					?>
-					<li class="column" draggable="true"><div class="drag-feild" > <input type="text" class="drag-feilds" readonly value="<?php echo esc_attr($key); ?>" name="bsfppc_checklist_item[]" >
-						<button type="button" id = "Delete" name="Delete" class="button button-secondary bsfppcdelete" value="<?php echo esc_attr($key); ?>" formnovalidate >Delete</button> </div></li>
-					<?php
+						?>
+						<li class="column" draggable="true"><div class="drag-feild" > <input type="text" class="drag-feilds" readonly value="<?php echo esc_attr($key); ?>" name="bsfppc_checklist_item[]" >
+							<button type="button" id = "Delete" name="Delete" class="button button-secondary bsfppcdelete" value="<?php echo esc_attr($key); ?>" formnovalidate >Delete</button> </div></li>
+						<?php
 					}
 				}
 				else{
 					echo "You have do not have any list please add items in the list";
-				} ?></ul>
+				} ?>
 
-				<div id="confirm">
-					<div class="message">Are you sure..!!</div>
-					<button class="yes">yes</button>
-					<button class="no">no</button>
-				</div>
+			</ul>
+
+
+				
 			</td>
 		</tr>
 	</tbody>

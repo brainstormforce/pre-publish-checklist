@@ -15,7 +15,7 @@ jQuery(add_button).click(function(e){
     e.preventDefault();
     if(x < max_fields){ 
         x++; 
-        jQuery(wrapper).append('<div><input type="text" class="item_input" id="add_item_text_feild" name="bsfppc_checklist_item[]" required/> <td><p class="remove_field"><span class="dashicons dashicons-dismiss"></span></p></div></td>'); //add input box
+        jQuery(wrapper).append('<div class="bsfppc-dynamicfeild"><input type="text" class="item_input" id="add_item_text_feild" name="bsfppc_checklist_item[]" required/> <td><p class="remove_field"><span class="dashicons dashicons-dismiss"></span></p></div></td>'); //add input box
     }
 });
     
@@ -84,21 +84,27 @@ jQuery(document).on('drop','.drag-feilds' , function () {
 
 //Ajax trigger for deleting an element in the array
       jQuery(document).on( 'click' , '.bsfppcdelete', function(){ 
-    	jQuery(this).parent('div').remove();
-                jQuery.post( bsfppc_add_delete_obj.url,                   
-                       {
-                        action: 'bsfppc_checklistitem_delete',
-                        delete : jQuery(this).attr('value')  
-                       }, function ( data ) {                    
-                            if (data === 'sucess') { 
-                                console.log('done');
-                            } else if (data === 'failure') {  
-                              console.log('failure');           
-                            } else {
-                                console.log('bsf');                      
-                            }
-                        }
-                );
+                var txt;
+                var r = confirm("Are you sure you want to delete ");
+                if (r == true) {
+                    jQuery(this).parent('div').remove();
+                              jQuery.post( bsfppc_add_delete_obj.url,                   
+                                     {
+                                      action: 'bsfppc_checklistitem_delete',
+                                      delete : jQuery(this).attr('value')  
+                                     }, function ( data ) {                    
+                                          if (data === 'sucess') { 
+                                              console.log('done');
+                                          } else if (data === 'failure') {  
+                                            console.log('failure');           
+                                          } else {
+                                              console.log('bsf');                      
+                                          }
+                                      }
+                              );
+                } else {
+                  txt = "You pressed Cancel!";
+                }
             });
 
 
@@ -123,6 +129,7 @@ function handleDragOver(e) {
 
 function handleDragEnter(e) {
   // this / e.target is the current hover target.
+
 }
 
 function handleDragLeave(e) {
