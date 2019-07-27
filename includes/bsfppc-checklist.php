@@ -25,19 +25,16 @@ wp_enqueue_style('bsfppc_backend_css');
 		</tr>
 		<tr>
 			<th scope="row"><p class="bsfppc_post"> Your List</p> </th>
-			<td>
-
-				<p> You can drag and drop the items to set the order</p>
-				
+			<td class="bsfppclistclass">	
 				
 				<?php
 				if( !empty( $bsfppc_checklist_item_data)){?>
-					<ul id="columns" class="dragevent">
+					<ul id="columns">
 					<?php
 					foreach( $bsfppc_checklist_item_data as $key ){
 						?>
-						<li class="column" draggable="true"><div class="drag-feild" > <input type="text" class="drag-feilds" readonly value="<?php echo esc_attr($key); ?>" name="bsfppc_checklist_item[]" >
-							<button type="button" id = "Delete" name="Delete" class="button button-secondary bsfppcdelete" value="<?php echo esc_attr($key); ?>" formnovalidate >Delete</button> </div></li>
+						<li class="column" draggable="true"><div class="drag-feild" ><div class="dashicons dashicons-menu-alt3"></div> <input type="text" readonly="true" class="drag-feilds" value="<?php echo esc_attr($key); ?>" name="bsfppc_checklist_item[]" >					
+							<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcdelete" value="<?php echo esc_attr($key); ?>" formnovalidate >Delete</button> </div></li>
 						<?php
 					}
 				}
@@ -48,6 +45,9 @@ wp_enqueue_style('bsfppc_backend_css');
 			</ul>
 
 
+				<p> You can drag and drop the items to set the order</p>
+				<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcedit" value="<?php echo esc_attr($key); ?>" formnovalidate >Edit Items</button>
+				<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcsave" value="<?php echo esc_attr($key); ?>" formnovalidate >Save Changes </button>
 				
 			</td>
 		</tr>

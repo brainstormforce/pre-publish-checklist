@@ -10,16 +10,16 @@ color: #191e23;
 visibility:hidden;
 }	
 
-input[type=text], select {
-  width: 91% ;
-  padding: 5px 10px;
+input[type=text], select .drag-feilds{
+  width: 70% ;
   
+  padding: 5px;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-left: 0px;
   box-sizing: border-box;
-  background-color: #ffffff;
+
 }
 
 .bsfppc-dynamicfeild{
@@ -61,17 +61,15 @@ input[type=text], select {
 
 .column {
   width: 80%;
-  padding-bottom: 5px;
-  padding-top: 5px;
-  text-align: center;
+ /*  border: 1px solid #aaa;*/
   cursor: move;
 }
 .column header {
   height: 20px;
   width: 150px;
   color: black;
-  /*background-color: #ccc;*/
-  padding: 5px;
+  background-color: #ccc;
+  /*padding: 5px;*/
   border-bottom: 1px solid #ddd;
   border-radius: 10px;
   border: 2px solid;
@@ -140,4 +138,8 @@ form{
 .warning{
 
   color: red;
+}
+
+.dashicons-menu-alt3{
+  padding-top:5px; 
 }

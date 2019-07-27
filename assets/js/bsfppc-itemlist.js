@@ -39,12 +39,13 @@ jQuery(wrapper).on("click",".remove_field", function(e){
                         item_content : item_content
                        }, function ( data ) {                    
                             if (data === 'sucess') { 
-                            	
+                            	jQuery( "#columns" ).load(window.location.href + " #columns" );
                                 console.log('done');
                             } else if (data === 'failure') {  
-                            	
+                            	jQuery( "#columns" ).load(window.location.href + " #columns" );
                               console.log('failure');           
                             } else {
+                              jQuery( "#columns" ).load(window.location.href + " #columns" );
                                 console.log('bsf');
                                              
                             }
@@ -81,13 +82,54 @@ jQuery(document).on('drop','.drag-feilds' , function () {
                 );
     });
 
+//*******************************************************************************************************
+
+  jQuery(document).on( 'click' , '.bsfppcsave', function(){ 
+     
+      jQuery('.drag-feilds').prop("readonly", true);
+      var item_drag_var  =[];
+        var item_drag_var   = jQuery('.drag-feilds'); 
+         item_drag_var.each(function(){
+           drag_content.push(jQuery(this).attr('value'));
+          });          
+          console.log(drag_content);
+                  jQuery.post( bsfppc_add_delete_obj.url,                   
+                         {
+                          action: 'bsfppc_checklistitem_drag',
+                          item_drag_var : drag_content
+                         }, function ( data ) {                    
+                              if (data === 'sucess') { 
+                                  console.log('done');
+                                   drag_content=[];
+                              } else if (data === 'failure') {  
+                                console.log('failure');   
+                                 drag_content=[];        
+                              } else {
+                                  console.log('bsf'); 
+                                   drag_content=[];                     
+                              }
+                          }
+                  );
+                 
+              });
+
+
+  jQuery('.bsfppcedit').click(function(){
+      
+      jQuery('.drag-feilds').removeAttr('readonly');
+      });
+      
+
+      
+      
+
 
 //Ajax trigger for deleting an element in the array
       jQuery(document).on( 'click' , '.bsfppcdelete', function(){ 
                 var txt;
                 var r = confirm("Are you sure you want to delete ");
                 if (r == true) {
-                    jQuery(this).parent('div').remove();
+                    jQuery(this).parents('li:first').remove();
                               jQuery.post( bsfppc_add_delete_obj.url,                   
                                      {
                                       action: 'bsfppc_checklistitem_delete',
@@ -147,8 +189,8 @@ function handleDrop(e) {
   if (dragSrcEl != this) {
     // Set the source column's HTML to the HTML of the column we dropped on.
     //alert(this.outerHTML);
-    //dragSrcEl.innerHTML = this.innerHTML;
-    //this.innerHTML = e.dataTransfer.getData('text/html');
+    // dragSrcEl.innerHTML = this.innerHTML;
+    // this.innerHTML = e.dataTransfer.getData('text/html');
     this.parentNode.removeChild(dragSrcEl);
     var dropHTML = e.dataTransfer.getData('text/html');
     this.insertAdjacentHTML('beforebegin',dropHTML);
@@ -164,9 +206,9 @@ function handleDragEnd(e) {
   // this/e.target is the source node.
   this.classList.remove('over');
 
-  /*[].forEach.call(cols, function (col) {
+  [].forEach.call(cols, function (col) {
     col.classList.remove('over');
-  });*/
+  });
 }
 
 function addDnDHandlers(elem) {
@@ -178,8 +220,14 @@ function addDnDHandlers(elem) {
   elem.addEventListener('dragend', handleDragEnd, false);
 }
 
+jQuery(document).on( 'dragstart' , '#columns .column', function(){ });
 var cols = document.querySelectorAll('#columns .column');
 [].forEach.call(cols, addDnDHandlers);
 
 
+
+
+
 });
+
+
