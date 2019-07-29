@@ -27,27 +27,35 @@ wp_enqueue_style('bsfppc_backend_css');
 			<th scope="row"><p class="bsfppc_post"> Your List</p> </th>
 			<td class="bsfppclistclass">	
 				
-				<?php
-				if( !empty( $bsfppc_checklist_item_data)){?>
-					<ul id="columns">
-					<?php
-					foreach( $bsfppc_checklist_item_data as $key ){
-						?>
-						<li class="column" draggable="true"><div class="drag-feild" ><div class="dashicons dashicons-menu-alt3"></div> <input type="text" readonly="true" class="drag-feilds" value="<?php echo esc_attr($key); ?>" name="bsfppc_checklist_item[]" >					
-							<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcdelete" value="<?php echo esc_attr($key); ?>" formnovalidate >Delete</button> </div></li>
-						<?php
-					}
-				}
-				else{
-					echo "You have do not have any list please add items in the list";
-				} ?>
-
-			</ul>
+				<div id="columns" class="ui-droppable ui-sortable bsfppcdragdrop">
+								<?php
+								if( !empty( $bsfppc_checklist_item_data)){?>
+									<ul class="test">
+											<?php
+											foreach( $bsfppc_checklist_item_data as $key ){
+												?>
+												<li class="testy">
+													<span class = "ui-sortable-handle "></span><span class = "down"></span> 
+													<span class="dashicons dashicons-menu-alt3"></span> <input type="text" readonly="true" class="drag-feilds" value="<?php echo esc_attr($key); ?>" name="bsfppc_checklist_item[]" >			
+													<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcdelete" value="<?php echo esc_attr($key); ?>" formnovalidate >Delete</button> 
+													<?php
+											}
+										}
+										else{
+										echo "You have do not have any list please add items in the list";
+										} ?>
+												</li> 
+								</ul>
+						</div>
 
 
 				<p> You can drag and drop the items to set the order</p>
 				<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcedit" value="<?php echo esc_attr($key); ?>" formnovalidate >Edit Items</button>
-				<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcsave" value="<?php echo esc_attr($key); ?>" formnovalidate >Save Changes </button>
+				<button type="button" id = "saveitemlist" name="savelist" class="button button-primary bsfppcsave" value="<?php echo esc_attr($key); ?>" formnovalidate >Save Changes </button>
+
+
+						
+						
 				
 			</td>
 		</tr>

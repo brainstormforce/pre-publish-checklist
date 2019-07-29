@@ -68,6 +68,11 @@ class BSFPPC_Loader {
 	public function bsfppc_plugin_backend_js() {
 		$bsfppc_radio_button = get_option('bsfppc_radio_button_option_data');
 		$bsfppc_checklist_item_data = get_option('bsfppc_checklist_data');
+		wp_enqueue_script('jquery');
+    	wp_enqueue_script('jquery-ui-core');
+    	wp_enqueue_script('jquery-ui-sortable');
+    	wp_enqueue_script('jQuery-ui-droppable');
+    	
 		wp_register_script( 'bsfppc_backend_checkbox_js', BSF_PPC_PLUGIN_URL . '/assets/js/bsfppc-checkbox.js', null,'1.0', false );
 		wp_register_script( 'bsfppc_backend_itemlist_js', BSF_PPC_PLUGIN_URL . '/assets/js/bsfppc-itemlist.js', null,'1.0', false );
 		wp_register_style( 'bsfppc_backend_css', BSF_PPC_PLUGIN_URL . '/assets/css/bsfppc-css.css', null,'1.0', false );

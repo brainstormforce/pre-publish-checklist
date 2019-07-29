@@ -1,23 +1,22 @@
 .popup-overlay {
-
-visibility:hidden;
+display: none;
 
 }
 
 .popup-content {
 
 color: #191e23;
-visibility:hidden;
+display: block;
 }	
 
 input[type=text], select .drag-feilds{
-  width: 70% ;
-  
+  width: 89% ;
   padding: 5px;
   display: inline-block;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 2px;
   margin-left: 0px;
+
   box-sizing: border-box;
 
 }
@@ -45,49 +44,6 @@ input[type=text], select .drag-feilds{
 	font-weight: 600;
 }
 
-[draggable] {
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-  /* Required to make elements draggable in old WebKit */
-  -khtml-user-drag: element;
-  -webkit-user-drag: element;
-}
-
-#columns {
-  list-style-type: none;
-}
-
-.column {
-  width: 80%;
- /*  border: 1px solid #aaa;*/
-  cursor: move;
-}
-.column header {
-  height: 20px;
-  width: 150px;
-  color: black;
-  background-color: #ccc;
-  /*padding: 5px;*/
-  border-bottom: 1px solid #ddd;
-  border-radius: 10px;
-  border: 2px solid;
-}
-.column.over {
-  
-   box-shadow: 10px 10px 5px #aaaaaa;
-}
-
-.tooltip { 
-    display: none; 
-    background-color: 'red';
-    border: 1px solid black;
-    width: 100px;
-    padding: 10px;
-}
-
-
 .info
 {
   width:250px;
@@ -99,21 +55,16 @@ input[type=text], select .drag-feilds{
   position:absolute;
   margin-top: -5px;
   z-index: 9999;
-  /*initial info element not shown*/
+ 
   left:-999999px;
 }
 
-
-
-
-/***********************************************************************************************/
 .bsfppc-tooltip{
   font-weight: 600;
 }
 
-
 #notifications:before {
-    content: '';
+    /*content: " ";*/
     border-color: black;
     display: block;
     width: 0;
@@ -121,9 +72,9 @@ input[type=text], select .drag-feilds{
     border:1px solid #ddd;
     color: transparent;
     border: 10px solid #CCC;
-    border-color: transparent transparent #FFF;
+    border-color: transparent transparent grey;
     margin-top: -20px;
-    margin-left: 200px;
+    margin-left: 100px;
 }
 .drag-feilds.over{
 
@@ -141,5 +92,45 @@ form{
 }
 
 .dashicons-menu-alt3{
-  padding-top:5px; 
+  padding-top:10px; 
 }
+
+.button-primary.bsfppcsave{
+  display: none;
+}
+
+  h1 { font-size: 2em; }
+  ul.test { 
+    padding: 10; 
+    width: 80%;
+    list-style-type: none; 
+  }
+
+  ul.test li.testy { 
+    cursor: move;
+    margin: 0px 0px 0px 0px;    
+    font-size: 1.25em;   
+    /*border: 1px solid #d3d3d3;*/
+    background: #f1f1f1;
+  }
+
+  ul.test div  { 
+
+    font-size: 0.5em;
+    letter-spacing: 10px;
+    width: 10px;
+  }
+
+  ul.test.up, ul.test.down { float: left; }
+  ul.test.up:before { content: "\f077"; } 
+  ul.test.down:before { content: "\f078"; }
+
+  .bsfppcdragdrop{
+    align-content: left;
+  }
+
+  .ui-sortable-placeholder{
+    border: 1px solid #e5e5e5 !important;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+
+  }

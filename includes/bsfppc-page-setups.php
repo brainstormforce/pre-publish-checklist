@@ -45,28 +45,28 @@ class BSFPPC_Pagesetups_ {
         add_action('wp_ajax_nopriv_bsfppc_ajax_add_change',array( $this,'bsfppc_meta_box_ajax_add_handler'), 1 );
         add_action('wp_ajax_bsfppc_ajax_delete_change', array( $this,'bsfppc_meta_box_ajax_delete_handler') , 1 );
         add_action('wp_ajax_nopriv_bsfppc_ajax_delete_change',array( $this,'bsfppc_meta_box_ajax_delete_handler'), 1 );
-         if(!empty($_GET['action']) && 'edit' == $_GET['action']) {
-        add_action('admin_footer' , array( $this,'bsfppc_markup'));
-    }
+        add_action('admin_footer' , array( $this,'bsfppc_markup'));    
+       
+        
+    
     }
    
          public function bsfppc_markup() {
-            // var_dump($_GET['action']);
-                if(!empty($_GET['action']) && 'edit' == $_GET['action']) {
+             $bsfppc_screen = get_current_screen();
 
-                wp_enqueue_script( 'bsfppc_backend_checkbox_js' );
-
-                wp_enqueue_style( 'bsfppc_backend_css' );                    
-                } 
-
+        if ('edit' == $_GET['action'] || 'edit.php' == $bsfppc_screen->parent_file || 'post-new.php' == $bsfppc_screen->parent_file){     wp_enqueue_script( 'bsfppc_backend_checkbox_js' );
+            wp_enqueue_style( 'bsfppc_backend_css' );       
+        }
            ?>
                   <div id="notifications" class="info">
-                       <p class="bsfppc-tooltip">Pre Publish Checklist: </p>
+                       <p class="bsfppc-tooltip">:Pre Publish Checklist: </p>
                        <p> Please ensure that you have checked the list before publishing or updating</p>
                    </div>
             
 
          <?php }
+
+
         public function bsf_ppc_settings_page() {
             add_submenu_page(
                 'options-general.php',
@@ -121,16 +121,15 @@ class BSFPPC_Pagesetups_ {
                             echo "<br/>";                     
                         }       
                       ?>
-                        <div class="thickbox">
+                   
                             <div class="popup-overlay">
-                                Creates the popup content
                                 <div class="popup-content">
-                                    <div class="tooltip">Tootlip contents</div>
+                                    <br>
                                     <p class="warning"> Please check all the checkboxes before publishing or you can publish anyway </p>
                                     <button id="close" class="components-button is-button is-default">Publish anyway !</button>    
                                 </div>
                             </div>
-                        </div><?php
+                        <?php
                      }
                  else{
                     echo "Please create a list to display here from Settings->Pre-Publish-Checklist";
