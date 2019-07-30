@@ -10,7 +10,7 @@ display: block;
 }	
 
 input[type=text], select .drag-feilds{
-  width: 89% ;
+  width: 80% ;
   padding: 5px;
   display: inline-block;
   border: 1px solid #ccc;
@@ -54,6 +54,7 @@ input[type=text], select .drag-feilds{
   background-color: #ffffff;
   position:absolute;
   margin-top: -5px;
+  /*display: none;*/
   z-index: 9999;
  
   left:-999999px;
@@ -108,10 +109,12 @@ form{
 
   ul.test li.testy { 
     cursor: move;
-    margin: 0px 0px 0px 0px;    
-    font-size: 1.25em;   
-    /*border: 1px solid #d3d3d3;*/
-    background: #f1f1f1;
+    margin: 0px 0px 0px 4px;
+    font-size: 1.25em;
+    padding: 10px 10px 0px 9px;
+    border-left: 1px solid #d3d3d3;
+    border-right: 1px solid #d3d3d3;
+    background: #fff;
   }
 
   ul.test div  { 
@@ -134,3 +137,7 @@ form{
     box-shadow: 0 1px 1px rgba(0,0,0,.04);
 
   }
+.bsfppc-description{
+
+  font-style: italic;
+}

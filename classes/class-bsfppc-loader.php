@@ -30,6 +30,7 @@ class BSFPPC_Loader {
 	 * @var instance
 	 */
 	private static $instance;
+
 	
 	
 	/**
@@ -72,7 +73,6 @@ class BSFPPC_Loader {
     	wp_enqueue_script('jquery-ui-core');
     	wp_enqueue_script('jquery-ui-sortable');
     	wp_enqueue_script('jQuery-ui-droppable');
-    	
 		wp_register_script( 'bsfppc_backend_checkbox_js', BSF_PPC_PLUGIN_URL . '/assets/js/bsfppc-checkbox.js', null,'1.0', false );
 		wp_register_script( 'bsfppc_backend_itemlist_js', BSF_PPC_PLUGIN_URL . '/assets/js/bsfppc-itemlist.js', null,'1.0', false );
 		wp_register_style( 'bsfppc_backend_css', BSF_PPC_PLUGIN_URL . '/assets/css/bsfppc-css.css', null,'1.0', false );
@@ -84,15 +84,19 @@ class BSFPPC_Loader {
 	public function bsfppc_metabox_scripts(){
 	    $screen = get_current_screen();
 	    $bsfppc_post_types_to_display= get_option('bsfppc_post_types_to_display');
-	    if (is_object($screen)) {	
-	        if (in_array($screen->post_type, $bsfppc_post_types_to_display)) {
-	            // wp_enqueue_script('bsfppc_backend_checkbox_js', BSF_PPC_PLUGIN_URL . '/assets/js/bsfppc-checkbox.js', ['jquery']);
-	            wp_localize_script(
-	                'bsfppc_backend_checkbox_js',
-	                'bsfppc_meta_box_obj', ['url' => admin_url('admin-ajax.php'),]
-	            );	
-	        }
-	    }
+	    if(!empty($bsfppc_post_types_to_display)){
+		    if (is_object($screen)) {	
+		        if (in_array($screen->post_type, $bsfppc_post_types_to_display)) {
+		            // wp_enqueue_script('bsfppc_backend_checkbox_js', BSF_PPC_PLUGIN_URL . '/assets/js/bsfppc-checkbox.js', ['jquery']);
+		            wp_localize_script(
+		                'bsfppc_backend_checkbox_js',
+		                'bsfppc_meta_box_obj', ['url' => admin_url('admin-ajax.php'),]
+		            );	
+		        }
+		    }
+		}
+
+
 	}	
 // Drag and drop
 	public function bsfppc_drag_item() { 
@@ -114,6 +118,7 @@ class BSFPPC_Loader {
 	    }    
 // function for adding via ajax
 	public function bsfppc_add_item() { 
+		$bsfppc_checklist_item_data = get_option('bsfppc_checklist_data');
 		if( isset( $_POST['item_content'] ) ){
 			 $newitems = array();
 				$newitems = $_POST['item_content'];
@@ -126,7 +131,29 @@ class BSFPPC_Loader {
 					array_push( $item_contents , $items  );
 			}
 				update_option( 'bsfppc_checklist_data', $item_contents );
-				echo"sucess";
+			?>
+				
+								<?php
+								$bsfppc_checklist_item_data = get_option('bsfppc_checklist_data');
+								if( !empty( $bsfppc_checklist_item_data)){ ?>
+									<ul class="test">
+											<?php
+											foreach( $bsfppc_checklist_item_data as $key ){
+												?>
+												<li class="testy">
+													<!-- <span class = "ui-sortable-handle "></span> --><span class = "down"></span> 
+													<span class="dashicons dashicons-menu-alt3"></span> <input type="text" readonly="true" class="drag-feilds" value="<?php echo esc_attr($key); ?>" name="bsfppc_checklist_item[]" >			
+													<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcdelete" value="<?php echo esc_attr($key); ?>" formnovalidate >Delete</button> 
+													<?php
+											}
+										}
+										else{
+										echo "You have do not have any list please add items in the list";
+										} ?>
+												</li> 
+								</ul>
+						
+				<?php	
 		}
             die(); 
     }     

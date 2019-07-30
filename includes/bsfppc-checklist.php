@@ -10,18 +10,18 @@ wp_enqueue_style('bsfppc_backend_css');
 <table class="form-table">
 	<tbody>
 		<tr>
-		<th scope="row"> <p>Create a custom checklist</p> </th>
-	   			<td>
-		    	<table id ="list_table">
-		    	<tr>
-					<div class="input_fields_wrap">
-						<input type="text" id="add_item_text_feild" class="item_input" name="bsfppc_checklist_item[]" required>
-					</div>
-				</tr>
-			</table>
-				<a class="add_field_button button-secondary">Add item</a>
-				<button type="button" id="Savelist" name="submit" class="button button-primary ppc_data" required   Value="Save List" />Save list </button>
-			</td>
+			<th scope="row"> <p>Create a custom checklist</p> </th>
+		   		<td>
+			    	<table id ="list_table">
+			    	<tr>
+						<div class="input_fields_wrap">
+							<input type="text" id="add_item_text_feild" class="item_input" name="bsfppc_checklist_item[]" required>
+						</div>
+					</tr>
+				</table>
+					<a class="add_field_button button-secondary">Add item</a>
+					<button type="button" id="Savelist" name="submit" class="button button-primary ppc_data" required   Value="Save List" />Save list </button>
+				</td>
 		</tr>
 		<tr>
 			<th scope="row"><p class="bsfppc_post"> Your List</p> </th>
@@ -30,12 +30,12 @@ wp_enqueue_style('bsfppc_backend_css');
 				<div id="columns" class="ui-droppable ui-sortable bsfppcdragdrop">
 								<?php
 								if( !empty( $bsfppc_checklist_item_data)){?>
-									<ul class="test">
+									<ul id="test" class="test">
 											<?php
 											foreach( $bsfppc_checklist_item_data as $key ){
 												?>
 												<li class="testy">
-													<span class = "ui-sortable-handle "></span><span class = "down"></span> 
+													<!-- <span class = "ui-sortable-handle "></span> --><span class = "down"></span> 
 													<span class="dashicons dashicons-menu-alt3"></span> <input type="text" readonly="true" class="drag-feilds" value="<?php echo esc_attr($key); ?>" name="bsfppc_checklist_item[]" >			
 													<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcdelete" value="<?php echo esc_attr($key); ?>" formnovalidate >Delete</button> 
 													<?php
@@ -47,16 +47,12 @@ wp_enqueue_style('bsfppc_backend_css');
 												</li> 
 								</ul>
 						</div>
-
-
-				<p> You can drag and drop the items to set the order</p>
-				<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcedit" value="<?php echo esc_attr($key); ?>" formnovalidate >Edit Items</button>
-				<button type="button" id = "saveitemlist" name="savelist" class="button button-primary bsfppcsave" value="<?php echo esc_attr($key); ?>" formnovalidate >Save Changes </button>
-
-
-						
-						
 				
+
+
+				<p class="bsfppc-description"> You can drag and drop the items to set the order</p>
+				<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcedit" value="bsfppc_edit_items" formnovalidate >Edit Items</button>
+				<button type="button" id = "saveitemlist" name="savelist" class="button button-primary bsfppcsave" value="bsfppc_save_items" formnovalidate >Save Changes </button>
 			</td>
 		</tr>
 	</tbody>

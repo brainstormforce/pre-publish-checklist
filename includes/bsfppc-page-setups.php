@@ -45,18 +45,15 @@ class BSFPPC_Pagesetups_ {
         add_action('wp_ajax_nopriv_bsfppc_ajax_add_change',array( $this,'bsfppc_meta_box_ajax_add_handler'), 1 );
         add_action('wp_ajax_bsfppc_ajax_delete_change', array( $this,'bsfppc_meta_box_ajax_delete_handler') , 1 );
         add_action('wp_ajax_nopriv_bsfppc_ajax_delete_change',array( $this,'bsfppc_meta_box_ajax_delete_handler'), 1 );
-        add_action('admin_footer' , array( $this,'bsfppc_markup'));    
-       
-        
-    
+        add_action('admin_footer' , array( $this,'bsfppc_markup'));       
     }
    
          public function bsfppc_markup() {
              $bsfppc_screen = get_current_screen();
-
-        if ('edit' == $_GET['action'] || 'edit.php' == $bsfppc_screen->parent_file || 'post-new.php' == $bsfppc_screen->parent_file){     wp_enqueue_script( 'bsfppc_backend_checkbox_js' );
+        if ((!empty($_GET['action']) && 'edit' == $_GET['action']) || 'edit.php' == $bsfppc_screen->parent_file || 'post-new.php' == $bsfppc_screen->parent_file){ 
+            wp_enqueue_script( 'bsfppc_backend_checkbox_js' ); 
             wp_enqueue_style( 'bsfppc_backend_css' );       
-        }
+        
            ?>
                   <div id="notifications" class="info">
                        <p class="bsfppc-tooltip">:Pre Publish Checklist: </p>
@@ -64,7 +61,8 @@ class BSFPPC_Pagesetups_ {
                    </div>
             
 
-         <?php }
+         <?php } }
+
 
 
         public function bsf_ppc_settings_page() {
