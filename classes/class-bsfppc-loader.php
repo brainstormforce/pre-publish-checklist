@@ -120,23 +120,23 @@ class BSFPPC_Loader {
 	public function bsfppc_add_item() { 
 		$bsfppc_checklist_item_data = get_option('bsfppc_checklist_data');
 		if( isset( $_POST['item_content'] ) ){
-			 $newitems = array();
+			 // $newitems = array();
 				$newitems = $_POST['item_content'];
 				$item_contents= get_option( 'bsfppc_checklist_data' );
 				if(empty($item_contents) || false === $item_contents) {
 					$item_contents = array();
 
 				}	
-					foreach( $newitems as $items ) {
-					array_push( $item_contents , $items  );
-			}
-				update_option( 'bsfppc_checklist_data', $item_contents );
+					// foreach( $newitems as $items ) {
+					array_push( $bsfppc_checklist_item_data , $newitems  );
+			// }
+				update_option( 'bsfppc_checklist_data', $bsfppc_checklist_item_data );
 			?>
 				
 								<?php
 								$bsfppc_checklist_item_data = get_option('bsfppc_checklist_data');
 								if( !empty( $bsfppc_checklist_item_data)){ ?>
-									<ul class="test">
+									<!-- <ul class="test"> -->
 											<?php
 											foreach( $bsfppc_checklist_item_data as $key ){
 												?>
@@ -151,8 +151,8 @@ class BSFPPC_Loader {
 										echo "You have do not have any list please add items in the list";
 										} ?>
 												</li> 
-								</ul>
-						
+								<!-- </ul>
+ -->						
 				<?php	
 		}
             die(); 
@@ -170,8 +170,12 @@ class BSFPPC_Loader {
 							    unset($bsfppc_checklist_item_data[$key]);
 						
 						var_dump($bsfppc_checklist_item_data);
-						update_option( 'bsfppc_checklist_data', $bsfppc_checklist_item_data );					
+						update_option( 'bsfppc_checklist_data', $bsfppc_checklist_item_data );
+
+
 	        echo"sucess";
+
+	         
 	    }
             die();    
     }             

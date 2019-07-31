@@ -1,143 +1,165 @@
 .popup-overlay {
-display: none;
-
+  display: none;
 }
 
 .popup-content {
+  color: #191e23;
+  display: block;
+}
 
-color: #191e23;
-display: block;
-}	
-
-input[type=text], select .drag-feilds{
-  width: 80% ;
+input[readonly].drag-feilds {
+  width: 87%;
   padding: 5px;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 2px;
   margin-left: 0px;
-
   box-sizing: border-box;
-
+}
+.add-button{
+  display: none;
 }
 
-.bsfppc-dynamicfeild{
+input[type=text].drag-feilds {
+  width: 87%;
+  padding: 5px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  margin-left: 0px;
+  box-sizing: border-box;
+}
+
+.bsfppc-dynamicfeild {
   margin-top: 1px;
   margin-bottom: -20px;
   padding: 0px;
 }
 
 .form-table td p {
-    margin-top: 4px;
-    margin-bottom: 26px;
+  margin-top: 4px;
+  margin-bottom: 26px;
 }
 
-
-.remove_field{
-
-	display: inline-block;
-
+.remove_field {
+  display: inline-block;
 }
 
-.bsfppc_radio_options{
-	display: inline-block;
-	font-weight: 600;
+.bsfppc_radio_options {
+  display: inline-block;
+  font-weight: 600;
 }
 
-.info
-{
-  width:250px;
+.info {
+  width: 250px;
   border-radius: 5px;
-  height:100px;
-  text-align:center;
-  border:1px solid #ddd;
+  height: 100px;
+  text-align: center;
+  border: 1px solid #ddd;
   background-color: #ffffff;
-  position:absolute;
+  position: absolute;
   margin-top: -5px;
   /*display: none;*/
   z-index: 9999;
- 
-  left:-999999px;
+  left: -999999px;
 }
 
-.bsfppc-tooltip{
+.bsfppc-tooltip {
   font-weight: 600;
 }
 
 #notifications:before {
-    /*content: " ";*/
-    border-color: black;
-    display: block;
-    width: 0;
-    height: 0;
-    border:1px solid #ddd;
-    color: transparent;
-    border: 10px solid #CCC;
-    border-color: transparent transparent grey;
-    margin-top: -20px;
-    margin-left: 100px;
-}
-.drag-feilds.over{
-
-box-shadow: 10px 10px 5px #aaaaaa;
+  /*content: " ";*/
+  border-color: black;
+  display: block;
+  width: 0;
+  height: 0;
+  border: 1px solid #ddd;
+  color: transparent;
+  border: 10px solid #CCC;
+  border-color: transparent transparent grey;
+  margin-top: -20px;
+  margin-left: 100px;
 }
 
-form{
+.drag-feilds.over {
+  box-shadow: 10px 10px 5px #aaaaaa;
+}
 
+form {
   margin-top: 20px;
 }
 
-.warning{
-
+.warning {
   color: red;
 }
 
-.dashicons-menu-alt3{
-  padding-top:10px; 
+.dashicons-menu-alt3 {
+  padding-top: 10px;
 }
 
-.button-primary.bsfppcsave{
+.button-primary.bsfppcsave {
   display: none;
 }
 
-  h1 { font-size: 2em; }
-  ul.test { 
-    padding: 10; 
-    width: 80%;
-    list-style-type: none; 
-  }
+h1 {
+  font-size: 2em;
+}
 
-  ul.test li.testy { 
-    cursor: move;
-    margin: 0px 0px 0px 4px;
-    font-size: 1.25em;
-    padding: 10px 10px 0px 9px;
-    border-left: 1px solid #d3d3d3;
-    border-right: 1px solid #d3d3d3;
-    background: #fff;
-  }
+ul.test {
+  padding: 10;
+  width: 80%;
+  list-style-type: none;
+}
 
-  ul.test div  { 
+ul.test li.testy {
+  cursor: move;
+  margin: 0px 0px 0px 4px;
+  font-size: 1.25em;
+  padding: 5px 0px 5px 5px;
+  border-left: 1px solid #d3d3d3;
+  border-right: 1px solid #d3d3d3;
+  background: #fff;
+}
 
-    font-size: 0.5em;
-    letter-spacing: 10px;
-    width: 10px;
-  }
+ul.test div {
+  font-size: 0.5em;
+  letter-spacing: 10px;
+  width: 10px;
+}
 
-  ul.test.up, ul.test.down { float: left; }
-  ul.test.up:before { content: "\f077"; } 
-  ul.test.down:before { content: "\f078"; }
+ul.test.up,
+ul.test.down {
+  float: left;
+}
 
-  .bsfppcdragdrop{
-    align-content: left;
-  }
+ul.test.up:before {
+  content: "\f077";
+}
 
-  .ui-sortable-placeholder{
-    border: 1px solid #e5e5e5 !important;
-    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+ul.test.down:before {
+  content: "\f078";
+}
 
-  }
-.bsfppc-description{
+.bsfppcdragdrop {
+  align-content: left;
+}
 
+.ui-sortable-placeholder {
+  border: 1px solid #e5e5e5 !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+}
+
+.bsfppc-description {
   font-style: italic;
+}
+
+.item_input {
+  width: 80%;
+  padding: 5px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  margin-left: 0px;
+  box-sizing: border-box;
 }

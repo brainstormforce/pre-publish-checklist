@@ -39,11 +39,10 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 			<td><?php
 				foreach ( get_post_types( $args, 'objects' ) as $bsfppc_post_type ) {
 					if ( in_array( $bsfppc_post_type->labels->name, $exclude ) ) {
-
 						continue;
 					}
 					if ( 'post' !== $bsfppc_post_types ) {
-						if ( isset( $bsfppc_post_types) ) {
+						if ( false !== $bsfppc_post_types ) {
 							if ( in_array( $bsfppc_post_type->name, $bsfppc_post_types ) ) {
 								echo '<label for="ForPostType">
 	                     <input type="checkbox" checked name="posts[]" value="' . esc_attr( $bsfppc_post_type->name ) . '" >
@@ -68,8 +67,7 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 	                 <input type="checkbox"  name="posts[]" value="' . esc_attr( $bsfppc_post_type->name ) . '">
 	                 ' . esc_attr( $bsfppc_post_type->labels->name ) . '</label><br> ';
 					}
-				}
-									
+				}									
 				$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
 				?><br>
 				<br>

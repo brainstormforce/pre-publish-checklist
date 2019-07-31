@@ -9,37 +9,44 @@ jQuery(document).ready(function () {
   var input_feilds = jQuery('#add_item_text_feild[type="text"]');
 
 
-  var x = 1;
-  jQuery(add_button).click(function (e) {
-    e.preventDefault();
-    if (x < max_fields) {
-      x++;
-      jQuery(wrapper).append('<div class="bsfppc-dynamicfeild"><input type="text" class="item_input" id="add_item_text_feild" name="bsfppc_checklist_item[]" required/> <td><p class="remove_field"><span class="dashicons dashicons-dismiss"></span></p></div></td>'); //add input box
-    }
-  });
+  // var x = 1;
+  // jQuery(add_button).click(function (e) {
+  //   e.preventDefault();
 
-  jQuery(wrapper).on("click", ".remove_field", function (e) {
-    jQuery(this).parent('div').remove();
-    x--;
-    // console.log('hi');
-  });
+  //   if (x < max_fields) {
+  //     x++;
+  //     jQuery(wrapper).append('<div class="bsfppc-dynamicfeild"><input type="text" class="item_input" id="add_item_text_feild" name="bsfppc_checklist_item[]" required/> <td><p class="remove_field"><span class="dashicons dashicons-dismiss"></span></p></div></td>'); //add input box
+  //   }
+  // });
+
+  // jQuery(wrapper).on("click", ".remove_field", function (e) {
+  //   jQuery(this).parent('div').remove();
+  //   x--;
+  //   // console.log('hi');
+  // });
 
   //Ajax trigger for adding an element in the array 
      jQuery(document).on('click', "#Savelist", function () {
+     if(jQuery('.item_input').val().length !== 0){   
+     jQuery('#test').sortable();
     jQuery( "#test" ).sortable( "destroy" );
-
-      var item_content_var = jQuery('.item_input');
-      item_content_var.each(function () {
-        item_content.push(jQuery(this).attr('value'));
-      });
+      // var item_content_var = jQuery('.item_input');
+      // item_content_var.each(function () {
+      //   item_content.push(jQuery(this).attr('value'));
+      // });
       jQuery.post(bsfppc_add_delete_obj.url, {
           action: 'bsfppc_checklistitem_add',
-          item_content: item_content
+          item_content: jQuery('.item_input').attr('value')
         },
         function (data) { 
-          // jQuery(".test").replaceWith(data);
-
-          jQuery(".test").load(location.href + " .test");
+          if (jQuery('.test')[0]){
+              jQuery(".test").html(data);
+          } else {
+            data = '<ul id="test" class="test">'+data+'</ul>';
+           jQuery(".bsfppcdragdrop").html(data);
+          }
+          
+          // jQuery(".test").load(location.href + " .test");
           console.log('bsf');       
       });
       jQuery('#test').sortable({
@@ -68,7 +75,16 @@ jQuery(document).ready(function () {
         });
           }
 
-      });  
+      });jQuery('.item_input').val(""); 
+
+    }else{
+console.log('isjuzsvxhcv');
+       jQuery(".popup-overlay").css("display", "inline-block");  
+       setTimeout(function() {
+ jQuery(".popup-overlay").css("display", "none");
+}, 2000);
+
+    }
   });
 
 
