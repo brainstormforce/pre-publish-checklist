@@ -134,11 +134,9 @@ class BSFPPC_Loader {
 			// }
 				update_option( 'bsfppc_checklist_data', $bsfppc_checklist_item_data );
 			?>
-				
 								<?php
 								$bsfppc_checklist_item_data = get_option('bsfppc_checklist_data');
 								if( !empty( $bsfppc_checklist_item_data)){ ?>
-									<!-- <ul class="test"> -->
 											<?php
 											foreach( $bsfppc_checklist_item_data as $key ){
 												?>
@@ -152,9 +150,7 @@ class BSFPPC_Loader {
 										else{
 										echo "You have do not have any list please add items in the list";
 										} ?>
-												</li> 
-								<!-- </ul>
- -->						
+												</li> 					
 				<?php	
 		}
             die(); 

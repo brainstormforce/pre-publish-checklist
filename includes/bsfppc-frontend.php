@@ -29,7 +29,7 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 <table class="form-table">
 	<tbody>
 		
-		<tr><th scope="row"><p>On publish attempt </p></th>
+		<tr><th scope="row"><p class="bsfppc-setting-name">On publish attempt </p></th>
 			<td>
 			<form method ="POST">
 				<input type="radio" name="bsfppc_radio_button_option" value="1" <?php checked($bsfppc_radio_button,1 ); ?> > <div class="bsfppc_radio_options">Prevent user from publishing.</div> 
@@ -42,7 +42,7 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 		</td>
 		</tr>
 		<tr>
-			<th scope="row"><p>Post Types </p></th>
+			<th scope="row"><p class="bsfppc-setting-name">Post Types </p></th>
 			<td><?php
 				foreach ( get_post_types( $args, 'objects' ) as $bsfppc_post_type ) {
 					if ( in_array( $bsfppc_post_type->labels->name, $exclude ) ) {
@@ -81,7 +81,10 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 				<br>
 				<p class="bsfppc-description">Select the post types to have your check list on</p>			
 				
-			<input type="submit" class="button button-primary"  name="submit_radio" Value="Save Setting"/>
+			<input type="submit" class="button button-primary bsfppc-savesetting"  name="submit_radio" Value="Save Setting"/>
+			<div class="edit-warning">
+					<p class="warning bsfppc-description">    List item cannot be blank</p>
+			</div>
 			</form>
 			</td>
 		</tr>		

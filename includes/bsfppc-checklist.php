@@ -21,7 +21,7 @@ wp_enqueue_style('bsfppc_backend_css');
 					</table>
 					<!-- <a class="add_field_button button-secondary ">Add item</a> -->
 					<button type="button" id="Savelist" name="submit" class="button button-primary ppc_data" required   Value="Save List" />Add to list</button> <div class="popup-overlay">
-					<p class="warning bsfppc-description">    List item cannot be blank</p></div>
+					<p class="warning bsfppc-edit-waring-description">    List item cannot be blank</p></div>
 				</td>
 		</tr>
 		<tr>
@@ -52,7 +52,7 @@ wp_enqueue_style('bsfppc_backend_css');
 				<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcedit" value="bsfppc_edit_items" formnovalidate >Edit Items</button>
 				<button type="button" id = "saveitemlist" name="savelist" class="button button-primary bsfppcsave" value="bsfppc_save_items" formnovalidate >Save Changes </button>
 				<div class="edit-warning">
-					<p class="warning bsfppc-description">    List item cannot be blank</p></div>
+					<p class="warning bsfppc-edit-waring-description">List item cannot be blank</p></div>
 			</td>
 		</tr>
 	</tbody>
