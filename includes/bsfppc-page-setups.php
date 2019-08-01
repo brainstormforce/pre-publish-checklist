@@ -50,15 +50,14 @@ class BSFPPC_Pagesetups_ {
    
          public function bsfppc_markup() {
              $bsfppc_screen = get_current_screen();
-        if ((!empty($_GET['action']) && 'edit' == $_GET['action']) || 'edit.php' == $bsfppc_screen->parent_file || 'post-new.php' == $bsfppc_screen->parent_file){ 
+        if ((!empty($_GET['action']) && 'edit' == $_GET['action']) || 'edit.php' == $bsfppc_screen->parent_file || 'post-new.php' == $bsfppc_screen->parent_file ||'page'== $bsfppc_screen->post_type ){ 
             wp_enqueue_script( 'bsfppc_backend_checkbox_js' ); 
-            wp_enqueue_style( 'bsfppc_backend_css' );       
-        
+            wp_enqueue_style( 'bsfppc_backend_css' );
            ?>
-                  <div id="notifications" class="info">
-                       <p class="bsfppc-tooltip">:Pre Publish Checklist: </p>
-                       <p> Please ensure that you have checked the list before publishing or updating</p>
-                   </div>
+                <div id="notifications" class="info">
+                   <p class="bsfppc-tooltip">:Pre Publish Checklist: </p>
+                   <p> Please ensure that you have checked the list before publishing or updating</p>
+                </div>
             
 
          <?php } }
@@ -82,18 +81,21 @@ class BSFPPC_Pagesetups_ {
         }
 
         public function bsfppc_add_custom_meta_box()
-            {   
-                $bsfppc_post_types_to_display= get_option('bsfppc_post_types_to_display');
-                $screens = $bsfppc_post_types_to_display;
-                foreach ($screens as $screen) {
-                    add_meta_box(
-                        'bsfppc_custom_meta_box',           // Unique ID
-                        'Pre-Publish Checklist',  // Box title
-                        array($this , 'bsfppc_custom_box_html'),  // Content callback, must be of type callable
-                        $screen,
-                        'side',
-                        'high'
-                    );
+            {  
+                if(!empty(get_option('bsfppc_post_types_to_display'))){
+                    $bsfppc_post_types_to_display= get_option('bsfppc_post_types_to_display');
+                    if(!empty($bsfppc_post_types_to_display)){
+                        foreach ($bsfppc_post_types_to_display as $screen) {
+                            add_meta_box(
+                                'bsfppc_custom_meta_box',           // Unique ID
+                                'Pre-Publish Checklist',  // Box title
+                                array($this , 'bsfppc_custom_box_html'),  // Content callback, must be of type callable
+                                $screen,
+                                'side',
+                                'high'
+                            );
+                        }
+                    }
                 }
             }
         

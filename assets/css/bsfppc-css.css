@@ -2,6 +2,11 @@
   display: none;
 }
 
+.edit-warning{
+  display: none;
+}
+
+
 .popup-content {
   color: #191e23;
   display: block;
@@ -16,7 +21,7 @@ input[readonly].drag-feilds {
   margin-left: 0px;
   box-sizing: border-box;
 }
-.add-button{
+  .add-button{
   display: none;
 }
 

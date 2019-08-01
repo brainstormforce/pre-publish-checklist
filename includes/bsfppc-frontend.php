@@ -1,10 +1,15 @@
 <?php
+
 require_once BSF_PPC_ABSPATH . 'includes/bsfppc-save-data.php';
 $bsfppc_radio_button = get_option('bsfppc_radio_button_option_data');
+
+$bsfppc_radio_button = (!empty($bsfppc_radio_button) ? $bsfppc_radio_button : 3); 
+
 $bsfppc_checklist_item_data = get_option('bsfppc_checklist_data');
 wp_enqueue_script('bsfppc_backend_itemlist_js');
 wp_enqueue_style('bsfppc_backend_css');
 $bsfppc_post_types = get_option('bsfppc_post_types_to_display');
+// $bsfppc_post_types = (!empty($bsfppc_post_types) ? $bsfppc_post_types : array('post')); 
 // get_option('bsfppc_post_types_to_display');
  
 $args = array(
@@ -13,6 +18,8 @@ $args = array(
 );
 
 $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
+
+
 
 ?>
 
@@ -42,7 +49,8 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 						continue;
 					}
 					if ( 'post' !== $bsfppc_post_types ) {
-						if ( false !== $bsfppc_post_types ) {
+						if(!empty($bsfppc_post_types)) {
+						if(false !== $bsfppc_post_types) {
 							if ( in_array( $bsfppc_post_type->name, $bsfppc_post_types ) ) {
 								echo '<label for="ForPostType">
 	                     <input type="checkbox" checked name="posts[]" value="' . esc_attr( $bsfppc_post_type->name ) . '" >
@@ -52,7 +60,7 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 	                     <input type="checkbox"  name="posts[]" value="' . esc_attr( $bsfppc_post_type->name ) . '">
 	                     ' . esc_attr( $bsfppc_post_type->labels->name ) . '</label><br> ';
 							}
-						} else {
+						} } else {
 							echo '<label for="ForPostType">
 	                     <input type="checkbox"  name="posts[]" value="' . esc_attr( $bsfppc_post_type->name ) . '">
 	                     ' . esc_attr( $bsfppc_post_type->labels->name ) . '</label><br> ';
@@ -69,9 +77,10 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 					}
 				}									
 				$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
-				?><br>
+				?>
 				<br>
-				<br>
+				<p class="bsfppc-description">Select the post types to have your check list on</p>			
+				
 			<input type="submit" class="button button-primary"  name="submit_radio" Value="Save Setting"/>
 			</form>
 			</td>

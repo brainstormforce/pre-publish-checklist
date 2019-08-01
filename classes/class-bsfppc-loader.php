@@ -118,13 +118,15 @@ class BSFPPC_Loader {
 	    }    
 // function for adding via ajax
 	public function bsfppc_add_item() { 
+		$bsfppc_checklist_item_data = array();
 		$bsfppc_checklist_item_data = get_option('bsfppc_checklist_data');
+
 		if( isset( $_POST['item_content'] ) ){
 			 // $newitems = array();
 				$newitems = $_POST['item_content'];
 				$item_contents= get_option( 'bsfppc_checklist_data' );
 				if(empty($item_contents) || false === $item_contents) {
-					$item_contents = array();
+					$bsfppc_checklist_item_data = array();
 
 				}	
 					// foreach( $newitems as $items ) {

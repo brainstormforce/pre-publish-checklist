@@ -90,6 +90,14 @@ console.log('isjuzsvxhcv');
 
 
   jQuery(document).on('click', '.bsfppcsave', function () {
+    var empty = true;
+    jQuery('.drag-feilds').each(function(){
+       if(jQuery(this).val().length == 0){
+          empty =false;
+          return false;
+        }
+     });
+    if(empty == true) {   
     jQuery('.bsfppcsave').css("display", "none");
     jQuery('.drag-feilds').prop("readonly", true);
     var item_drag_var = [];
@@ -113,6 +121,14 @@ console.log('isjuzsvxhcv');
         drag_content = [];
       }
     });
+  }else{
+
+       jQuery(".edit-warning").css("display", "inline-block");  
+       setTimeout(function() {
+ jQuery(".edit-warning").css("display", "none");
+}, 2000);
+
+    }
 
   });
 
@@ -142,6 +158,7 @@ console.log('isjuzsvxhcv');
     } else {
       txt = "You pressed Cancel!";
     }
+
   });
 
   jQuery(function () {
