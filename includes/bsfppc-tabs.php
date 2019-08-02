@@ -1,6 +1,6 @@
 <?php
 /**
- * The Read meter Main frontend.
+ * Settings page of Pre Publish CHecklist  
  *
  * @since      1.0.0
  * @package    BSF
@@ -10,6 +10,9 @@
 <h1>Pre-publish-checklist</h1>
 
 <?php
+// Navigation.
+
+// To get the tab value from URL and store in $active_tab variable.
 $active_tab = 'bsfppc_general_settings';
 
 if ( isset( $_GET['tab'] ) ) {
@@ -31,7 +34,9 @@ if ( isset( $_GET['tab'] ) ) {
 }
     
 ?>
+<!-- WordPress provides the styling for tabs. -->
 
+<!-- when tab buttons are clicked we jump back to the same page but with a new parameter that represents the clicked tab. accordingly we make it active -->
 <h2 class="nav-tab-wrapper">
 <a href="?page=bsf_ppc&tab=bsfppc_general_settings" class="nav-tab tb 
     <?php
@@ -60,7 +65,7 @@ if ( isset( $_GET['tab'] ) ) {
 </h2>
 
 <?php
-
+// here we display the sections and options in the settings page based on the active tab. 
 if ( isset( $_GET['tab'] ) ) {
 
     if ( 'bsfppc_general_settings' === $_GET['tab'] ) {

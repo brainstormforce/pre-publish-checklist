@@ -1,4 +1,4 @@
-.popup-overlay {
+.bsfppc-hide-cover {
   display: none;
 }
 
@@ -6,28 +6,15 @@
   display: none;
 }
 
-/*
-.bsfppc-edit-warning-description{
-    border: 1px solid rgba(0, 123, 0, 0.2);
-    border-radius: 15px;
-    color: green;
-    font-size: 13px;
-    font-weight: normal;
-    margin-left: 6px;
-    padding: 0 6px;
-    opacity: 0;
-    -webkit-transition: opacity 0.3s ease;
-    transition: opacity 0.3s ease;
-}
-*/
-
-
 .popup-content {
   color: #191e23;
   display: block;
 }
+.bsfppc-overlay{
+  display: none;
+}
 
-input[readonly].drag-feilds {
+input[readonly].bsfppc-drag-feilds {
   width: 87%;
   padding: 5px;
   display: inline-block;
@@ -40,7 +27,9 @@ input[readonly].drag-feilds {
   display: none;
 }
 
-input[type=text].drag-feilds {
+popup-overlay
+
+input[type=text].bsfppc-drag-feilds {
   width: 87%;
   padding: 5px;
   display: inline-block;
@@ -61,9 +50,9 @@ input[type=text].drag-feilds {
   margin-bottom: 26px;
 }
 
-.remove_field {
+/*.remove_field {
   display: inline-block;
-}
+}*/
 
 .bsfppc_radio_options {
   display: inline-block;
@@ -71,10 +60,13 @@ input[type=text].drag-feilds {
 }
 
 .info {
-  width: 250px;
-  border-radius: 5px;
+  width: 230px;
+  padding: 5px 10px 5px 10px; 
+  border-radius: 15px;
   height: 100px;
+  font-family: "Gill Sans MT", "Gill Sans", "My Gill Sans", sans-serif;
   text-align: center;
+  box-shadow: 0px 0px 33px -6px rgba(0,0,0,0.75);
   border: 1px solid #ddd;
   background-color: #ffffff;
   position: absolute;
@@ -88,21 +80,8 @@ input[type=text].drag-feilds {
   font-weight: 600;
 }
 
-#notifications:before {
-  /*content: " ";*/
-  border-color: black;
-  display: block;
-  width: 0;
-  height: 0;
-  border: 1px solid #ddd;
-  color: transparent;
-  border: 10px solid #CCC;
-  border-color: transparent transparent grey;
-  margin-top: -20px;
-  margin-left: 100px;
-}
 
-.drag-feilds.over {
+.bsfppc-drag-feilds.over {
   box-shadow: 10px 10px 5px #aaaaaa;
 }
 
@@ -110,8 +89,9 @@ input[type=text].drag-feilds {
   margin-top: 0px;
 }
 
-.warning {
+.bsfppc-warning {
   color: red;
+  font-weight: 600 ;
 }
 
 .dashicons-menu-alt3 {
@@ -126,13 +106,13 @@ h1 {
   font-size: 2em;
 }
 
-ul.test {
+ul.bsfppc-ul {
   padding: 10;
   width: 80%;
   list-style-type: none;
 }
 
-ul.test li.testy {
+ul.bsfppc-ul li.bsfppc-li {
   cursor: move;
   margin: 0px 0px 0px 4px;
   font-size: 1.25em;
@@ -142,22 +122,22 @@ ul.test li.testy {
   background: #fff;
 }
 
-ul.test div {
+ul.bsfppc-ul div {
   font-size: 0.5em;
   letter-spacing: 10px;
   width: 10px;
 }
 
-ul.test.up,
-ul.test.down {
+ul.bsfppc-ul.up,
+ul.bsfppc-ul.down {
   float: left;
 }
 
-ul.test.up:before {
+ul.bsfppc-ul.up:before {
   content: "\f077";
 }
 
-ul.test.down:before {
+ul.bsfppc-ul.down:before {
   content: "\f078";
 }
 
@@ -178,21 +158,34 @@ ul.test.down:before {
  .form-table td p {
   margin-bottom: 0px;
  }
+
 .bsfppc-edit-waring-description{
-  font-style: italic;
-  display: inline-block;
-  border: 1px solid red;
+    font-style: italic;
+    border: 1px solid red;
     border-radius: 15px;
     color: red;
     font-size: 13px;
     font-weight: normal;
-    /*margin-left: 6px;*/
     padding: 0 6px;
     opacity: 0.9;
     transition: opacity 0.5s ease; 
 
 }
-.item_input {
+
+.bsfppc-epmptylist-waring-description{
+    font-style: italic;
+    border: 1px solid red;
+    border-radius: 15px;
+    color: red;
+    font-size: 13px;
+    font-weight: normal;
+    padding: 0 6px;
+    opacity: 0.9;
+    transition: opacity 0.5s ease; 
+
+}
+
+.bsfppc-item-input {
   width: 80%;
   padding: 5px;
   display: inline-block;

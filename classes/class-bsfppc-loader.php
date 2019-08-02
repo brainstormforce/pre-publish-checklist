@@ -63,9 +63,6 @@ class BSFPPC_Loader {
 	 * @since  1.0.0
 	 * @return void
 	 */
-
-	
-
 	public function bsfppc_plugin_backend_js() {
 		$bsfppc_radio_button = get_option('bsfppc_radio_button_option_data');
 		$bsfppc_checklist_item_data = get_option('bsfppc_checklist_data');
@@ -80,14 +77,20 @@ class BSFPPC_Loader {
 	    wp_localize_script('bsfppc_backend_itemlist_js','bsfppc_add_delete_obj', ['url' => admin_url('admin-ajax.php'),]);
         
 	}
-
+	/**
+     * localize script for ajax in the meta box
+     *
+     * 
+     * @since 1.0.0
+     *
+     * @return Nothing.
+     */
 	public function bsfppc_metabox_scripts(){
 	    $screen = get_current_screen();
 	    $bsfppc_post_types_to_display= get_option('bsfppc_post_types_to_display');
 	    if(!empty($bsfppc_post_types_to_display)){
 		    if (is_object($screen)) {	
 		        if (in_array($screen->post_type, $bsfppc_post_types_to_display)) {
-		            // wp_enqueue_script('bsfppc_backend_checkbox_js', BSF_PPC_PLUGIN_URL . '/assets/js/bsfppc-checkbox.js', ['jquery']);
 		            wp_localize_script(
 		                'bsfppc_backend_checkbox_js',
 		                'bsfppc_meta_box_obj', ['url' => admin_url('admin-ajax.php'),]
@@ -95,44 +98,55 @@ class BSFPPC_Loader {
 		        }
 		    }
 		}
-
-
 	}	
+	/**
+     * Save order of the list
+     *
+     *
+     * Saves the order of the drag and drop list and updates it in the post meta
+     * 
+     * @since 1.0.0
+     *
+     * @return Nothing.
+     */
 // Drag and drop
 	public function bsfppc_drag_item() { 
 			if( isset( $_POST['item_drag_var'] ) ){
-				var_dump($_POST['item_drag_var']);
-					$new_drag_items = array();
-					$new_drag_items = $_POST['item_drag_var'];
-					if(empty($item_drag_contents) || false === $item_drag_contents) {
-						$item_drag_contents = array();
+				$bsfppc_new_drag_items = ( ! empty( $_POST['item_drag_var'] ) ? ( $_POST['item_drag_var'] ) : array() );
+            $bsfppc_new_drag_items = array_map( 'esc_attr', $bsfppc_new_drag_items );
+					if(empty($bsfppc_item_drag_contents) || false === $bsfppc_item_drag_contents) {
+						$bsfppc_item_drag_contents = array();
 					}	
-					foreach( $new_drag_items as $dragitems ) {
-						array_push( $item_drag_contents , $dragitems  );
+					foreach( $bsfppc_new_drag_items as $bsfppc_dragitems ) {
+						array_push( $bsfppc_item_drag_contents , $bsfppc_dragitems  );
 				}
-				var_dump($new_drag_items);
-					update_option( 'bsfppc_checklist_data', $item_drag_contents );
+				var_dump($bsfppc_new_drag_items);
+					update_option( 'bsfppc_checklist_data', $bsfppc_item_drag_contents );
 					echo"sucess";
 			}
 	            die();     
-	    }    
-// function for adding via ajax
+	    }  
+
+	 /**
+     * Function for Checking via ajax.
+     *
+     * Saves the checkbox status as checked in the post meta
+     * 
+     * @since 1.0.0
+     *
+     * @return The html content as a response data to the calling javascript function.
+     */
 	public function bsfppc_add_item() { 
 		$bsfppc_checklist_item_data = array();
 		$bsfppc_checklist_item_data = get_option('bsfppc_checklist_data');
-
 		if( isset( $_POST['item_content'] ) ){
-			 // $newitems = array();
-				$newitems = $_POST['item_content'];
+				$bsfppc_newitems = $_POST['item_content'];
 				$item_contents= get_option( 'bsfppc_checklist_data' );
 				if(empty($item_contents) || false === $item_contents) {
 					$bsfppc_checklist_item_data = array();
-
 				}	
-					// foreach( $newitems as $items ) {
-					array_push( $bsfppc_checklist_item_data , $newitems  );
-			// }
-				update_option( 'bsfppc_checklist_data', $bsfppc_checklist_item_data );
+					array_push( $bsfppc_checklist_item_data , $bsfppc_newitems  );
+					update_option( 'bsfppc_checklist_data', $bsfppc_checklist_item_data );
 			?>
 								<?php
 								$bsfppc_checklist_item_data = get_option('bsfppc_checklist_data');
@@ -140,9 +154,9 @@ class BSFPPC_Loader {
 											<?php
 											foreach( $bsfppc_checklist_item_data as $key ){
 												?>
-												<li class="testy">
+												<li class="bsfppc-li">
 													<!-- <span class = "ui-sortable-handle "></span> --><span class = "down"></span> 
-													<span class="dashicons dashicons-menu-alt3"></span> <input type="text" readonly="true" class="drag-feilds" value="<?php echo esc_attr($key); ?>" name="bsfppc_checklist_item[]" >			
+													<span class="dashicons dashicons-menu-alt3"></span> <input type="text" readonly="true" class="bsfppc-drag-feilds" value="<?php echo esc_attr($key); ?>" name="bsfppc_checklist_item[]" >			
 													<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcdelete" value="<?php echo esc_attr($key); ?>" formnovalidate >Delete</button> 
 													<?php
 											}
@@ -156,28 +170,27 @@ class BSFPPC_Loader {
             die(); 
     }     
 
-// function for deleting via ajax
+	/**
+     * Function for un-checking via ajax.
+     *
+     * Saves the checkbox status as unchecked in the post meta
+     * 
+     * @since 1.0.0
+     *
+     * @return Nothing.
+     */
+
     public function bsfppc_delete_item() { 
 	    if( isset( $_POST['delete'] ) ){
-	     	var_dump( $_POST['delete'] );
 						$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
-					var_dump($bsfppc_checklist_item_data);
 						 $key = array_search($_POST['delete'], $bsfppc_checklist_item_data );
-						 var_dump($key);
-						
 							    unset($bsfppc_checklist_item_data[$key]);
 						
-						var_dump($bsfppc_checklist_item_data);
 						update_option( 'bsfppc_checklist_data', $bsfppc_checklist_item_data );
-
-
 	        echo"sucess";
-
-	         
 	    }
             die();    
     }             
 }
-
 		BSFPPC_Loader::get_instance();
 endif;

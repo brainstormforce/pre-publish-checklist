@@ -9,8 +9,8 @@
 
 
 ?>
-<div class="bsf_rt_user_manual">
-	<br><label class="bsf_rt_page_title" for="howtouse">
+<div class="bsfppc_user_manual">
+	<br><label class="bsfppc_page_title" for="howtouse">
 		<?php
 		echo 'About how to use the plugin';
 		?>

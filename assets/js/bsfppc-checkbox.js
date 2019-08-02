@@ -1,7 +1,6 @@
 $(document).ready(function () {
     $('.edit-post-header__settings').children(':eq(1)').after('<div class="dashicons dashicons-warning"></div>');
-    console.log('helllo');
-    var $checkboxes = $('#checkbox[type="checkbox"]');
+    var $bsfppc_checkboxes = $('#checkbox[type="checkbox"]');
     var selected = [];
     $(function () {
         /*the function showInfo is executed on mouseover and mouseout*/
@@ -16,7 +15,7 @@ $(document).ready(function () {
             var offset = $(button).offset();
             var topOffset = $(button).offset().top - $(window).scrollTop();
 
-            $(".info").css({
+         $(".info").css({
 
                 position: "fixed",
                 top: (topOffset + 35) + "px",
@@ -27,15 +26,15 @@ $(document).ready(function () {
                 'left': -9999
             });
     }
-    $checkboxes.on('change', function () {
+    $bsfppc_checkboxes.on('change', function () {
 
-        if ($(this).prop("checked") == true) {
+        if ( $( this ).prop( "checked" ) == true) {
             var bsfppc_post_id = $("#post_ID").val()
-            $.post(bsfppc_meta_box_obj.url, {
+            $.post( bsfppc_meta_box_obj.url, {
                 action: 'bsfppc_ajax_add_change',
-                bsfppc_field_value: $(this).attr('value'),
+                bsfppc_field_value: $( this ).attr('value'),
                 bsfppc_post_id: bsfppc_post_id
-            }, function (data) {
+            }, function ( data ) {
                 if (data === 'sucess') {
                     console.log('done');
                 } else if (data === 'failure') {
@@ -43,12 +42,12 @@ $(document).ready(function () {
                 } else {
                     console.log('bsf');
                 }
-            });
-        } else if ($(this).prop("checked") == false) {
-            var bsfppc_post_id = $("#post_ID").val()
+            } );
+        } else if ( $( this ).prop( "checked" ) == false ) {
+            var bsfppc_post_id = $( "#post_ID" ).val()
             $.post(bsfppc_meta_box_obj.url, {
                 action: 'bsfppc_ajax_delete_change',
-                bsfppc_field_value: $(this).attr('value'),
+                bsfppc_field_value: $( this ).attr( 'value' ),
                 bsfppc_post_id: bsfppc_post_id
             }, function (data) {
                 if (data === 'sucess') {
@@ -61,14 +60,14 @@ $(document).ready(function () {
             });
         }
     });
-    var $checkboxes = $('#checkbox[type="checkbox"]');
-    var countCheckedCheckboxes = $checkboxes.filter(':checked').length;
+    var $bsfppc_checkboxes = $('#checkbox[type="checkbox"]');
+    var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
 
-    if (bsfppc_radio_obj.option == 2 && ($checkboxes.length !== countCheckedCheckboxes)) {
-        $(".popup-overlay").css("display", "block");
+    if (bsfppc_radio_obj.option == 2 && ($bsfppc_checkboxes.length !== countCheckedbsfppc_checkboxes)) {
+        $(".bsf-overlay").css("display", "block");
     }
 
-    if (bsfppc_radio_obj.option != 3 && bsfppc_radio_obj.data.length != 0 && ($checkboxes.length !== countCheckedCheckboxes)) {
+    if (bsfppc_radio_obj.option != 3 && bsfppc_radio_obj.data.length != 0 && ($bsfppc_checkboxes.length !== countCheckedbsfppc_checkboxes)) {
         setTimeout(function () {
             $('.editor-post-publish-panel__toggle').prop('disabled', true);
             // $('.edit-post-header__settings').children(':eq(1)').after('<div class="dashicons dashicons-warning"></div>');
@@ -82,12 +81,12 @@ $(document).ready(function () {
 
     //prevent user from publishing 
     if (bsfppc_radio_obj.option == 1) {
-        var $checkboxes = $('#checkbox[type="checkbox"]');
-        var countCheckedCheckboxes = $checkboxes.filter(':checked').length;
-        $checkboxes.change(function () {
-            var countCheckedCheckboxes = $checkboxes.filter(':checked').length;
-            if ($checkboxes.length == countCheckedCheckboxes) {
-                // all checkboxes are check
+        var $bsfppc_checkboxes = $('#checkbox[type="checkbox"]');
+        var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
+        $bsfppc_checkboxes.change(function () {
+            var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
+            if ($bsfppc_checkboxes.length == countCheckedbsfppc_checkboxes) {
+                // all bsfppc_checkboxes are check
                 $('.dashicons-warning').hide();
                 if ($('.editor-post-publish-panel__toggle').length == 1) {
                     $('.editor-post-publish-panel__toggle').prop('disabled', false);
@@ -98,7 +97,7 @@ $(document).ready(function () {
 
                 }
             } else {
-                // all checkboxes are not yet checked 
+                // all bsfppc_checkboxes are not yet checked 
                 $('.dashicons-warning').show();
                 if ($('.editor-post-publish-panel__toggle').length == 1) {
                     $('.editor-post-publish-panel__toggle').prop('disabled', true);
@@ -114,41 +113,41 @@ $(document).ready(function () {
 
     //warn user before publising-------------
     else if (bsfppc_radio_obj.option == 2) {
-        var $checkboxes = $('#checkbox[type="checkbox"]');
-        var countCheckedCheckboxes = $checkboxes.filter(':checked').length;
-        var $checkboxes = $('#checkbox[type="checkbox"]');
-        var countCheckedCheckboxes = $checkboxes.filter(':checked').length;
-        $checkboxes.change(function () {
-            var countCheckedCheckboxes = $checkboxes.filter(':checked').length;
-            if ($checkboxes.length == countCheckedCheckboxes) {
-                // all checkboxes are check
+        var $bsfppc_checkboxes = $('#checkbox[type="checkbox"]');
+        var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
+        var $bsfppc_checkboxes = $('#checkbox[type="checkbox"]');
+        var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
+        $bsfppc_checkboxes.change(function () {
+            var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
+            if ($bsfppc_checkboxes.length == countCheckedbsfppc_checkboxes) {
+                // all bsfppc_checkboxes are check
                 $('.dashicons-warning').hide();
                 if ($('.editor-post-publish-panel__toggle').length == 1) {
                     $('.editor-post-publish-panel__toggle').prop('disabled', false);
                     $('.editor-post-publish-panel__toggle').prop('title', 'All items checked ! You are good to publish');
-                    $(".popup-overlay").css("display", "none");
+                    $(".bsf-overlay").css("display", "none");
                 } else if ($('.editor-post-publish-button').length == 1) {
                     $('.editor-post-publish-button').prop('disabled', false);
                     $('.editor-post-publish-button').prop('title', 'All items checked ! You are good to publish');
-                    $(".popup-overlay").css("display", "none");
+                    $(".bsf-overlay").css("display", "none");
                 }
-            } else if ($checkboxes.length !== countCheckedCheckboxes) {
-                // all checkboxes are not yet checked 
+            } else if ($bsfppc_checkboxes.length !== countCheckedbsfppc_checkboxes) {
+                // all bsfppc_checkboxes are not yet checked 
                 $('.dashicons-warning').show();
                 if ($('.editor-post-publish-panel__toggle').length == 1) {
                     $('.editor-post-publish-panel__toggle').prop('disabled', true);
                     $('.editor-post-publish-panel__toggle').prop('title', 'Pre-Publish-Checklist please check all the items to publish or update or you can publish anyway');
-                    $(".popup-overlay").css("display", "block");
+                    $(".bsf-overlay").css("display", "block");
                     $("#close").on("click", function () {
-                        $(".popup-overlay").css("display", "none");
+                        $(".bsf-overlay").css("display", "none");
                         $('.editor-post-publish-panel__toggle').prop('disabled', false);
                     });
                 } else if ($('.editor-post-publish-button').length == 1) {
                     $('.editor-post-publish-button').prop('disabled', true);
                     $('.editor-post-publish-button').prop('title', 'Pre-Publish-Checklist please check all the items to publish or update or you can publish anyway');
-                    $(".popup-overlay").css("display", "block");
+                    $(".bsf-overlay").css("display", "block");
                     $("#close").on("click", function () {
-                        $(".popup-overlay").css("display", "none");
+                        $(".bsf-overlay").css("display", "none");
                         $('.editor-post-publish-button').prop('disabled', false);
                     });
                 }
@@ -157,12 +156,12 @@ $(document).ready(function () {
     }
     //Do nothing--------------
     else if (bsfppc_radio_obj.option == 3) {
-        var $checkboxes = $('#checkbox[type="checkbox"]');
-        var countCheckedCheckboxes = $checkboxes.filter(':checked').length;
-        $checkboxes.change(function () {
-            var countCheckedCheckboxes = $checkboxes.filter(':checked').length;
-            if ($checkboxes.length == countCheckedCheckboxes) {
-                // all checkboxes are check
+        var $bsfppc_checkboxes = $('#checkbox[type="checkbox"]');
+        var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
+        $bsfppc_checkboxes.change(function () {
+            var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
+            if ($bsfppc_checkboxes.length == countCheckedbsfppc_checkboxes) {
+                // all bsfppc_checkboxes are check
                 $('.dashicons-warning').hide();
                 if ($('.editor-post-publish-panel__toggle').length == 1) {
                     $('.editor-post-publish-panel__toggle').prop('title', 'All items checked ! You are good to publish');
@@ -172,7 +171,7 @@ $(document).ready(function () {
 
                 }
             } else {
-                // all checkboxes are not yet checked 
+                // all bsfppc_checkboxes are not yet checked 
                 $('.dashicons-warning').show();
                 if ($('.editor-post-publish-panel__toggle').length == 1) {
                     $('.editor-post-publish-panel__toggle').prop('title', 'Pre-Publish-Checklist some items still remaining ');

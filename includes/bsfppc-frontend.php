@@ -1,28 +1,17 @@
 <?php
-
 require_once BSF_PPC_ABSPATH . 'includes/bsfppc-save-data.php';
 $bsfppc_radio_button = get_option('bsfppc_radio_button_option_data');
-
 $bsfppc_radio_button = (!empty($bsfppc_radio_button) ? $bsfppc_radio_button : 3); 
-
 $bsfppc_checklist_item_data = get_option('bsfppc_checklist_data');
 wp_enqueue_script('bsfppc_backend_itemlist_js');
 wp_enqueue_style('bsfppc_backend_css');
 $bsfppc_post_types = get_option('bsfppc_post_types_to_display');
-// $bsfppc_post_types = (!empty($bsfppc_post_types) ? $bsfppc_post_types : array('post')); 
-// get_option('bsfppc_post_types_to_display');
- 
 $args = array(
 	'public' => true,
 
 );
-
 $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
-
-
-
-?>
-
+?> 
 <!DOCTYPE html>
 <html>
 <body>
