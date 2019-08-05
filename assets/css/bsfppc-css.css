@@ -14,7 +14,7 @@
   display: none;
 }
 
-input[readonly].bsfppc-drag-feilds {
+input.bsfppc-drag-feilds {
   width: 87%;
   padding: 5px;
   display: inline-block;
