@@ -43,7 +43,9 @@ jQuery(document).ready(function () {
                         }
                       });
           }
-      });jQuery('.bsfppc-item-input').val(""); 
+      },
+      { cancel: '.bsfppc-edit-waring-description' });
+      jQuery('.bsfppc-item-input').val(""); 
     }else{
       jQuery(".bsfppc-hide-cover").css("display", "inline-block");  
       setTimeout(function() {

@@ -64,7 +64,12 @@ $(document).ready(function () {
     var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
 
     if (bsfppc_radio_obj.option == 2 && ($bsfppc_checkboxes.length !== countCheckedbsfppc_checkboxes)) {
-        $(".bsf-overlay").css("display", "block");
+        $(".bsfppc-overlay").css("display", "block");
+         $("#close").on("click", function () {
+                        $('.dashicons-warning').hide();
+                        $(".bsfppc-overlay").css("display", "none");
+                        $('.editor-post-publish-button').prop('disabled', false);
+                    });
     }
 
     if (bsfppc_radio_obj.option != 3 && bsfppc_radio_obj.data.length != 0 && ($bsfppc_checkboxes.length !== countCheckedbsfppc_checkboxes)) {
@@ -125,11 +130,11 @@ $(document).ready(function () {
                 if ($('.editor-post-publish-panel__toggle').length == 1) {
                     $('.editor-post-publish-panel__toggle').prop('disabled', false);
                     $('.editor-post-publish-panel__toggle').prop('title', 'All items checked ! You are good to publish');
-                    $(".bsf-overlay").css("display", "none");
+                    $(".bsfppc-overlay").css("display", "none");
                 } else if ($('.editor-post-publish-button').length == 1) {
                     $('.editor-post-publish-button').prop('disabled', false);
                     $('.editor-post-publish-button').prop('title', 'All items checked ! You are good to publish');
-                    $(".bsf-overlay").css("display", "none");
+                    $(".bsfppc-overlay").css("display", "none");
                 }
             } else if ($bsfppc_checkboxes.length !== countCheckedbsfppc_checkboxes) {
                 // all bsfppc_checkboxes are not yet checked 
@@ -137,17 +142,17 @@ $(document).ready(function () {
                 if ($('.editor-post-publish-panel__toggle').length == 1) {
                     $('.editor-post-publish-panel__toggle').prop('disabled', true);
                     $('.editor-post-publish-panel__toggle').prop('title', 'Pre-Publish-Checklist please check all the items to publish or update or you can publish anyway');
-                    $(".bsf-overlay").css("display", "block");
+                    $(".bsfppc-overlay").css("display", "block");
                     $("#close").on("click", function () {
-                        $(".bsf-overlay").css("display", "none");
+                        $(".bsfppc-overlay").css("display", "none");
                         $('.editor-post-publish-panel__toggle').prop('disabled', false);
                     });
                 } else if ($('.editor-post-publish-button').length == 1) {
                     $('.editor-post-publish-button').prop('disabled', true);
                     $('.editor-post-publish-button').prop('title', 'Pre-Publish-Checklist please check all the items to publish or update or you can publish anyway');
-                    $(".bsf-overlay").css("display", "block");
+                    $(".bsfppc-overlay").css("display", "block");
                     $("#close").on("click", function () {
-                        $(".bsf-overlay").css("display", "none");
+                        $(".bsfppc-overlay").css("display", "none");
                         $('.editor-post-publish-button').prop('disabled', false);
                     });
                 }

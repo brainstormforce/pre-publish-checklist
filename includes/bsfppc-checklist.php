@@ -9,9 +9,9 @@ wp_enqueue_style('bsfppc_backend_css');
 	<tbody>
 		<tr>
 			<th scope="row"> <p>Create a custom checklist</p> </th>
-		   		<td>
-			    	<table id ="list_table">
-				    	<tr>
+				<td>
+					<table id ="list_table">
+						<tr>
 								<input type="text" id="add_item_text_feild" class="bsfppc-item-input" name="bsfppc_checklist_item[]" >
 						</tr>
 					</table>
@@ -23,26 +23,27 @@ wp_enqueue_style('bsfppc_backend_css');
 		</tr>
 		<tr>
 			<th scope="row"><p class="bsfppc_post"> Your List</p> </th>
-			<td class="bsfppclistclass">	
-				
+			<td class="bsfppclistclass">
+
 				<div id="columns" class="ui-droppable ui-sortable bsfppcdragdrop">
 					<?php
-					if( !empty( $bsfppc_checklist_item_data)){?>
+if (!empty($bsfppc_checklist_item_data)) {
+	?>
 						<ul id="bsfppc-ul" class="bsfppc-ul">
 								<?php
-								foreach( $bsfppc_checklist_item_data as $key ){
-									?>
+foreach ($bsfppc_checklist_item_data as $key) {
+		?>
 									<li class="bsfppc-li">
-										<span class = "down"></span> 
-										<span class="dashicons dashicons-menu-alt3"></span> <input type="text" readonly="true" class="bsfppc-drag-feilds" value="<?php echo esc_attr($key); ?>" name="bsfppc_checklist_item[]" >			
-										<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcdelete" value="<?php echo esc_attr($key); ?>" formnovalidate >Delete</button> 
+										<span class = "down"></span>
+										<span class="dashicons dashicons-menu-alt3"></span> <input type="text" readonly="true" class="bsfppc-drag-feilds" value="<?php echo esc_attr($key); ?>" name="bsfppc_checklist_item[]" >
+										<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcdelete" value="<?php echo esc_attr($key); ?>" formnovalidate >Delete</button>
 										<?php
-								}
-					}
-							else{
-							echo "You have do not have any list please add items in the list";
-							} ?>
-									</li> 
+}
+} else {
+	echo 'You have do not have any list please add items in the list';
+}
+?>
+									</li>
 						</ul>
 				</div>
 				<p class="bsfppc-description"> You can drag and drop the items to set the order</p>

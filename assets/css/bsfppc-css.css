@@ -23,20 +23,9 @@ input.bsfppc-drag-feilds {
   margin-left: 0px;
   box-sizing: border-box;
 }
-  .add-button{
+
+.add-button{
   display: none;
-}
-
-popup-overlay
-
-input[type=text].bsfppc-drag-feilds {
-  width: 87%;
-  padding: 5px;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 2px;
-  margin-left: 0px;
-  box-sizing: border-box;
 }
 
 .bsfppc-dynamicfeild {
@@ -50,10 +39,6 @@ input[type=text].bsfppc-drag-feilds {
   margin-bottom: 26px;
 }
 
-/*.remove_field {
-  display: inline-block;
-}*/
-
 .bsfppc_radio_options {
   display: inline-block;
   font-weight: 600;
@@ -62,24 +47,25 @@ input[type=text].bsfppc-drag-feilds {
 .info {
   width: 230px;
   padding: 5px 10px 5px 10px; 
-  border-radius: 15px;
+  border-radius: 10px;
   height: 100px;
   font-family: "Gill Sans MT", "Gill Sans", "My Gill Sans", sans-serif;
   text-align: center;
-  box-shadow: 0px 0px 33px -6px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 25px -6px rgba(0,0,0,0.75);
   border: 1px solid #ddd;
   background-color: #ffffff;
+  border:1px #666;
+  transition:opacity 0.8s;
   position: absolute;
   margin-top: -5px;
-  /*display: none;*/
   z-index: 9999;
   left: -999999px;
+
 }
 
 .bsfppc-tooltip {
   font-weight: 600;
 }
-
 
 .bsfppc-drag-feilds.over {
   box-shadow: 10px 10px 5px #aaaaaa;
@@ -145,14 +131,9 @@ ul.bsfppc-ul.down:before {
   align-content: left;
 }
 
-.ui-sortable-placeholder {
-   box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
-}
-
 .bsfppc-description {
     font-style: italic;
     padding-bottom: 15px;
- 
  }
 
  .form-table td p {
@@ -172,7 +153,7 @@ ul.bsfppc-ul.down:before {
 
 }
 
-.bsfppc-epmptylist-waring-description{
+.bsfppc-emptylist-waring-description{
     font-style: italic;
     border: 1px solid red;
     border-radius: 15px;
@@ -181,8 +162,9 @@ ul.bsfppc-ul.down:before {
     font-weight: normal;
     padding: 0 6px;
     opacity: 0.9;
+    transition: opacity 2.0s ease; 
+    animation:bsfppc-alreadyexists-waring-description 4.0s 1;
     transition: opacity 0.5s ease; 
-
 }
 
 .bsfppc-item-input {
@@ -193,4 +175,25 @@ ul.bsfppc-ul.down:before {
   border-radius: 2px;
   margin-left: 0px;
   box-sizing: border-box;
+}
+
+.bsfppc-alreadyexists-waring-description{
+    font-style: italic;
+    border: 1px solid red;
+    border-radius: 15px;
+    color: red;
+    margin-bottom: 25px
+    font-size: 13px;
+    font-weight: normal;
+    padding: 0 6px;
+    opacity: 0.9;
+    transition: opacity 3.0s ease; 
+    animation:bsfppc-alreadyexists-waring-description 3.0s 1;
+    animation-fill-mode: forwards;
+
+}
+
+@keyframes bsfppc-alreadyexists-waring-description{
+    from {opacity :1;}
+    to {opacity :0;}
 }
