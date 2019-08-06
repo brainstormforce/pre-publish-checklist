@@ -44,7 +44,7 @@ jQuery(document).ready(function () {
                       });
           }
       },
-      { cancel: '.bsfppc-edit-waring-description' });
+      { cancel: '.bsfppc-alreadyexists-waring-description' });
       jQuery('.bsfppc-item-input').val(""); 
     }else{
       jQuery(".bsfppc-hide-cover").css("display", "inline-block");  
@@ -137,11 +137,10 @@ jQuery(document).ready(function () {
             drag_content = [];
           }
         });
-      }
+      },
+      cancel: '.bsfppc-alreadyexists-waring-description' 
 
     });
     jQuery('.bsfppc-ul').disableSelection();
   });
-
-
 });

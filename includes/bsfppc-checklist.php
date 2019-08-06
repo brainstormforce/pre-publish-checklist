@@ -1,7 +1,19 @@
 <?php
-$bsfppc_checklist_item_data = get_option('bsfppc_checklist_data');
-wp_enqueue_script('bsfppc_backend_itemlist_js');
-wp_enqueue_style('bsfppc_backend_css');
+/**
+ * BSF Pre Publish Check list php for displaying the contents on the
+ * general settings tab.
+ * PHP version 7
+ *
+ * @category PHP
+ * @package  Pre Publish Check-list.
+ * @author   Display Name <username@ShubhamW.com>
+ * @license  http://brainstormforce.com
+ * @link     http://brainstormforce.com
+ */
+
+$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
+wp_enqueue_script( 'bsfppc_backend_itemlist_js' );
+wp_enqueue_style( 'bsfppc_backend_css' );
 ?>
 <html>
 <body>
@@ -27,22 +39,22 @@ wp_enqueue_style('bsfppc_backend_css');
 
 				<div id="columns" class="ui-droppable ui-sortable bsfppcdragdrop">
 					<?php
-if (!empty($bsfppc_checklist_item_data)) {
-	?>
+					if ( ! empty( $bsfppc_checklist_item_data ) ) {
+						?>
 						<ul id="bsfppc-ul" class="bsfppc-ul">
 								<?php
-foreach ($bsfppc_checklist_item_data as $key) {
-		?>
+								foreach ( $bsfppc_checklist_item_data as $key ) {
+									?>
 									<li class="bsfppc-li">
 										<span class = "down"></span>
-										<span class="dashicons dashicons-menu-alt3"></span> <input type="text" readonly="true" class="bsfppc-drag-feilds" value="<?php echo esc_attr($key); ?>" name="bsfppc_checklist_item[]" >
-										<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcdelete" value="<?php echo esc_attr($key); ?>" formnovalidate >Delete</button>
+										<span class="dashicons dashicons-menu-alt3"></span> <input type="text" readonly="true" class="bsfppc-drag-feilds" value="<?php echo esc_attr( $key ); ?>" name="bsfppc_checklist_item[]" >
+										<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcdelete" value="<?php echo esc_attr( $key ); ?>" formnovalidate >Delete</button>
 										<?php
-}
-} else {
-	echo 'You have do not have any list please add items in the list';
-}
-?>
+								}
+					} else {
+						echo 'You have do not have any list please add items in the list';
+					}
+					?>
 									</li>
 						</ul>
 				</div>

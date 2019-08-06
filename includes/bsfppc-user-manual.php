@@ -7,7 +7,6 @@
  * @author     Brainstorm Force.
  */
 
-
 ?>
 <div class="bsfppc_user_manual">
 	<br><label class="bsfppc_page_title" for="howtouse">

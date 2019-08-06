@@ -1,5 +1,15 @@
 <?php
-
+/**
+ * BSF Pre Publish Check list
+ * Saving the radio button and post type option in database
+ * PHP version 7
+ *
+ * @category PHP
+ * @package  Pre Publish Check-list.
+ * @author   Display Name <username@ShubhamW.com>
+ * @license  http://brainstormforce.com
+ * @link     http://brainstormforce.com
+ */
 
 if ( isset( $_POST['submit_radio'] ) ) {
 	$_POST['submit_radio'] = sanitize_text_field( $_POST['submit_radio'] );

@@ -1,6 +1,16 @@
 <?php
-/**Display the contents in the general tab in the plugin settings */
+/**
+ * BSF Pre Publish Check list php for Displaying the contents in the general tab in the plugin settings
+ * PHP version 7
+ *
+ * @category PHP
+ * @package  Pre Publish Check-list.
+ * @author   Display Name <username@ShubhamW.com>
+ * @license  http://brainstormforce.com
+ * @link     http://brainstormforce.com
+ */
 
+// Displaying the contents in the general tab in the plugin settings.
 require_once BSF_PPC_ABSPATH . 'includes/bsfppc-save-data.php';
 $bsfppc_radio_button        = get_option( 'bsfppc_radio_button_option_data' );
 $bsfppc_radio_button        = ( ! empty( $bsfppc_radio_button ) ? $bsfppc_radio_button : 3 );
@@ -36,13 +46,13 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 			<td>
 			<?php
 			foreach ( get_post_types( $args, 'objects' ) as $bsfppc_post_type ) {
-				if ( in_array( $bsfppc_post_type->labels->name, $exclude ) ) {
+				if ( in_array( $bsfppc_post_type->labels->name, $exclude, true ) ) {
 					continue;
 				}
 				if ( 'post' !== $bsfppc_post_types ) {
 					if ( ! empty( $bsfppc_post_types ) ) {
 						if ( false !== $bsfppc_post_types ) {
-							if ( in_array( $bsfppc_post_type->name, $bsfppc_post_types ) ) {
+							if ( in_array( $bsfppc_post_type->name, $bsfppc_post_types, true ) ) {
 								echo '<label for="ForPostType">
 	                     <input type="checkbox" checked name="posts[]" value="' . esc_attr( $bsfppc_post_type->name ) . '" >
 	                     ' . esc_attr( $bsfppc_post_type->labels->name ) . '</label><br> ';

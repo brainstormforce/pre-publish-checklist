@@ -6,7 +6,9 @@
  * @package    BSF
  * @author     Brainstorm Force.
  */
+
 ?>
+
 <h1>Pre-publish-checklist</h1>
 
 <?php
