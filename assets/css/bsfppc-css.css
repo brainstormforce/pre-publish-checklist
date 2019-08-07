@@ -78,13 +78,9 @@ input.bsfppc-drag-feilds {
         margin-top:-20px;
         margin-left: 115px;
     }
-    
-.bsfppc-tooltip {
-  font-weight: 600;
-}
 
-.bsfppc-drag-feilds.over {
-  box-shadow: 10px 10px 5px #aaaaaa;
+.bsfppc-tooltip {
+  font-weight: 700;
 }
 
 .bsfppc-setting-name{

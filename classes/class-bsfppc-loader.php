@@ -47,6 +47,7 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 		public function __construct() {
 			include_once BSF_PPC_ABSPATH . 'includes/class-bsfppc-pagesetups.php';
 			add_action( 'admin_enqueue_scripts', array( $this, 'bsfppc_plugin_backend_js' ) );
+			add_action( 'init', array( $this, 'bsfppc_save_data' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'bsfppc_metabox_scripts' ) );
 			add_action( 'wp_ajax_bsfppc_checklistitem_add', array( $this, 'bsfppc_add_item' ), 1 );
 			add_action( 'wp_ajax_nopriv_bsfppc_checklistitem_add', array( $this, 'bsfppc_add_item' ), 1 );
@@ -110,8 +111,8 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 		 * @since 1.0.0
 		 */
 		public function bsfppc_drag_item() {
-			if ( ! empty( $_POST['item_drag_var'] ) ) {
-				$bsfppc_new_drag_items = ( ! empty( $_POST['item_drag_var'] ) ? ( $_POST['item_drag_var'] ) : array() );
+			if ( ! empty( $_POST['item_drag_var'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+				$bsfppc_new_drag_items = ( ! empty( $_POST['item_drag_var'] ) ? ( $_POST['item_drag_var'] ) : array() );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				$bsfppc_new_drag_items = array_map( 'sanitize_text_field', $bsfppc_new_drag_items );
 				if ( empty( $bsfppc_item_drag_contents ) || false === $bsfppc_item_drag_contents ) {
 					$bsfppc_item_drag_contents = array();
@@ -135,8 +136,8 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 			$bsfppc_checklist_item_data = array();
 			$bsfppc_item_exists_key     = '';
 			$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
-			if ( ! empty( $_POST['item_content'] ) ) {
-				$bsfppc_newitems = sanitize_text_field( $_POST['item_content'] );
+			if ( ! empty( $_POST['item_content'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+				$bsfppc_newitems = sanitize_text_field( $_POST['item_content'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				if ( ! empty( $bsfppc_checklist_item_data ) ) {
 					$bsfppc_item_exists_key = array_search( $bsfppc_newitems, $bsfppc_checklist_item_data, true );
 				}
@@ -153,51 +154,85 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 					$bsfppc_ispresent = 1;
 				}
 				?>
-																																																																												<?php
-																																																																												$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
-																																																																												if ( ! empty( $bsfppc_checklist_item_data ) ) {
-																																																																													if ( $bsfppc_ispresent == 1 ) {
-																																																																														?>
-						<p class="warning bsfppc-alreadyexists-waring-description">List item already exists</p>
-																																																																														<?php
-																																																																													}
-
-																																																																													foreach ( $bsfppc_checklist_item_data as $key ) {
-																																																																														?>
-							<li class="bsfppc-li">
-							<span class = "down"></span>
-							<span class="dashicons dashicons-menu-alt3"></span> <input type="text" readonly="true" class="bsfppc-drag-feilds" value="<?php echo esc_attr( $key ); ?>" name="bsfppc_checklist_item[]" >
-							<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcdelete" value="<?php echo esc_attr( $key ); ?>" formnovalidate >Delete</button>
-																																																																														<?php
-																																																																													}
-																																																																												} else {
-																																																																																																																																		 echo 'You have do not have any list please add items in the list';
-																																																																												}
-																																																																												?>
+				<?php
+				$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
+				if ( ! empty( $bsfppc_checklist_item_data ) ) {
+					if ( 1 === $bsfppc_ispresent ) {
+						?>
+							<p class="warning bsfppc-alreadyexists-waring-description">List item already exists</p>
+							<?php
+					}
+					foreach ( $bsfppc_checklist_item_data as $key ) {
+						?>
+								<li class="bsfppc-li">
+								<span class = "down"></span>
+								<span class="dashicons dashicons-menu-alt3"></span> <input type="text" readonly="true" class="bsfppc-drag-feilds" value="<?php echo esc_attr( $key ); ?>" name="bsfppc_checklist_item[]" >
+								<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcdelete" value="<?php echo esc_attr( $key ); ?>" formnovalidate >Delete</button>
+								<?php
+					}
+				} else {
+					echo 'You have do not have any list please add items in the list';
+				}
+				?>
 							</li>
-
-											<?php
-
-											die();
+							<?php
+							die();
 			}
 		}
 
 		/**
 		 * Function for delete via ajax.
 		 *
-		 * Deletes the checklist item from the options table
+		 * Deletes the checklist item from the options table.
 		 *
 		 * @since 1.0.0
 		 */
 		public function bsfppc_delete_item() {
-			if ( isset( $_POST['delete'] ) ) {
+			if ( isset( $_POST['delete'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
-				$bsfppc_delete_key          = array_search( $_POST['delete'], $bsfppc_checklist_item_data, true );
+				$bsfppc_delete_key          = array_search( $_POST['delete'], $bsfppc_checklist_item_data, true );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				unset( $bsfppc_checklist_item_data[ $bsfppc_delete_key ] );
 				update_option( 'bsfppc_checklist_data', $bsfppc_checklist_item_data );
 				echo 'sucess';
 			}
 			die();
+		}
+
+		/**
+		 * Function for saving the Form data.
+		 *
+		 * Adds value from general settings page to the database.
+		 *
+		 * @since 1.0.0
+		 */
+		public function bsfppc_save_data() {
+			$page = ! empty( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : null;
+			if ( 'bsf_ppc' !== $page ) {
+				return;
+			}
+
+			if ( ! empty( $_POST['bsfppc-form'] ) && wp_verify_nonce( sanitize_text_field( $_POST['bsfppc-form'] ), 'bsfppc-form-nonce' ) ) {
+
+				if ( isset( $_POST['submit_radio'] ) ) {
+					$_POST['submit_radio'] = sanitize_text_field( $_POST['submit_radio'] );
+					if ( ! empty( $_POST['bsfppc_radio_button_option'] ) ) {
+						$bsfppc_radio = sanitize_text_field( $_POST['bsfppc_radio_button_option'] );
+						update_option( 'bsfppc_radio_button_option_data', $bsfppc_radio );
+					}
+					$bsfppc_radio_button_data = get_option( 'bsfppc_radio_button_option_data' );
+				}
+
+				if ( isset( $_POST['submit_radio'] ) ) {
+					$_POST['submit_radio'] = sanitize_text_field( $_POST['submit_radio'] );
+					$bsfppc_post_types     = array();
+					if ( ! empty( $_POST['posts'] ) ) {
+						$bsfppc_post_types = $_POST['posts'];
+					}
+					update_option( 'bsfppc_post_types_to_display', $bsfppc_post_types );
+					$bsfppc_post_types_to_display = get_option( 'bsfppc_post_types_to_display' );
+				}
+			}
+
 		}
 	}
 	BSFPPC_Loader::get_instance();

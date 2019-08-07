@@ -1,14 +1,5 @@
 $(document).ready(
     function () {
-   
-        // if( $( '.edit-post-header__settings' ).hasClass('.editor-post-switch-to-draft' )){
-        //     console.log('awesome');
-        //       $( '.edit-post-header__settings' ).children( ':eq(1)' ).after( '<div class="dashicons dashicons-warning"></div>' );
-        // }
-        // else{
-        //     console.log('awesomehelllyeah');
-        //      $('.edit-post-header__settings').children(':eq(2)').after('<div class="dashicons dashicons-warning"></div>');
-        // }
 
         var $bsfppc_checkboxes = $('#checkbox[type="checkbox"]');
         var selected = [];
@@ -104,19 +95,16 @@ $(document).ready(
             setTimeout(
                 function () {
                     $('.editor-post-publish-panel__toggle').prop('disabled', true);
-                    // $('.edit-post-header__settings').children(':eq(1)').after('<div class="dashicons dashicons-warning"></div>');
-
+                    
                 }, 10
             );
             setTimeout(
                 function () {
                     $('.editor-post-publish-button').prop('disabled', true);
-                    if($('.edit-post-header__settings').children('.editor-post-switch-to-draft').length == 0 ) {
-                        console.log('awesome');
+                    if($('.edit-post-header__settings').children('.editor-post-switch-to-draft').length == 0 ) {   
                           $('.edit-post-header__settings').children(':eq(1)').after('<div class="dashicons dashicons-warning"></div>');
                     }
                     else{
-                        console.log('awesomehelllyeah');
                          $('.edit-post-header__settings').children(':eq(2)').after('<div class="dashicons dashicons-warning"></div>');
                     }
                 }, 10

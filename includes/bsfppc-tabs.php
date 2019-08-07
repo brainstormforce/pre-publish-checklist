@@ -17,17 +17,17 @@
 // To get the tab value from URL and store in $active_tab variable.
 $active_tab = 'bsfppc_general_settings';
 
-if ( isset( $_GET['tab'] ) ) {
+if ( isset( $_GET['tab'] ) ) {  //PHPCS:ignore:WordPress.Security.NonceVerification.Recommended
 
-	if ( 'bsfppc_general_settings' === $_GET['tab'] ) {
+	if ( 'bsfppc_general_settings' === $_GET['tab'] ) { //PHPCS:ignore:WordPress.Security.NonceVerification.Recommended
 
 		$active_tab = 'bsfppc_general_settings';
 
-	} elseif ( 'bsfppc-checklist' === $_GET['tab'] ) {
+	} elseif ( 'bsfppc-checklist' === $_GET['tab'] ) { //PHPCS:ignore:WordPress.Security.NonceVerification.Recommended
 
 		$active_tab = 'bsfppc-checklist';
 
-	} elseif ( 'bsfppc-user-manual' === $_GET['tab'] ) {
+	} elseif ( 'bsfppc-user-manual' === $_GET['tab'] ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Recommended
 
 		$active_tab = 'bsfppc-user-manual';
 
@@ -67,15 +67,15 @@ if ( isset( $_GET['tab'] ) ) {
 
 <?php
 // here we display the sections and options in the settings page based on the active tab.
-if ( isset( $_GET['tab'] ) ) {
+if ( isset( $_GET['tab'] ) ) { //PHPCS:ignore:WordPress.Security.NonceVerification.Recommended
 
-	if ( 'bsfppc_general_settings' === $_GET['tab'] ) {
+	if ( 'bsfppc_general_settings' === $_GET['tab'] ) { //PHPCS:ignore:WordPress.Security.NonceVerification.Recommended
 
 		include_once 'bsfppc-frontend.php';
 
-	} elseif ( 'bsfppc-checklist' === $_GET['tab'] ) {
+	} elseif ( 'bsfppc-checklist' === $_GET['tab'] ) { //PHPCS:ignore:WordPress.Security.NonceVerification.Recommended
 		include_once 'bsfppc-checklist.php';
-	} elseif ( 'bsfppc-user-manual' === $_GET['tab'] ) {
+	} elseif ( 'bsfppc-user-manual' === $_GET['tab'] ) { //PHPCS:ignore:WordPress.Security.NonceVerification.Recommended
 		include_once 'bsfppc-user-manual.php';
 	}
 } else {

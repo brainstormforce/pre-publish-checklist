@@ -11,7 +11,6 @@
  */
 
 // Displaying the contents in the general tab in the plugin settings.
-require_once BSF_PPC_ABSPATH . 'includes/bsfppc-save-data.php';
 $bsfppc_radio_button        = get_option( 'bsfppc_radio_button_option_data' );
 $bsfppc_radio_button        = ( ! empty( $bsfppc_radio_button ) ? $bsfppc_radio_button : 3 );
 $bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
@@ -82,6 +81,8 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 	?>
 				<br>
 				<p class="bsfppc-description">Select the post types to have your check list on</p>
+
+				<?php wp_nonce_field( 'bsfppc-form-nonce', 'bsfppc-form' ); ?>
 			<input type="submit" class="button button-primary bsfppc-savesetting"  name="submit_radio" Value="Save Setting"/>
 			<div class="edit-warning">
 					<p class="warning bsfppc-description">    List item cannot be blank</p>
