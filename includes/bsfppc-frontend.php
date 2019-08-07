@@ -44,42 +44,42 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 		<tr>
 			<th scope="row"><p class="bsfppc-setting-name">Post Types </p></th>
 			<td>
-			<?php
-			foreach ( get_post_types( $args, 'objects' ) as $bsfppc_post_type ) {
-				if ( in_array( $bsfppc_post_type->labels->name, $exclude, true ) ) {
-					continue;
-				}
-				if ( 'post' !== $bsfppc_post_types ) {
-					if ( ! empty( $bsfppc_post_types ) ) {
-						if ( false !== $bsfppc_post_types ) {
-							if ( in_array( $bsfppc_post_type->name, $bsfppc_post_types, true ) ) {
-								echo '<label for="ForPostType">
+	<?php
+	foreach ( get_post_types( $args, 'objects' ) as $bsfppc_post_type ) {
+		if ( in_array( $bsfppc_post_type->labels->name, $exclude, true ) ) {
+			continue;
+		}
+		if ( 'post' !== $bsfppc_post_types ) {
+			if ( ! empty( $bsfppc_post_types ) ) {
+				if ( false !== $bsfppc_post_types ) {
+					if ( in_array( $bsfppc_post_type->name, $bsfppc_post_types, true ) ) {
+						echo '<label for="ForPostType">
 	                     <input type="checkbox" checked name="posts[]" value="' . esc_attr( $bsfppc_post_type->name ) . '" >
 	                     ' . esc_attr( $bsfppc_post_type->labels->name ) . '</label><br> ';
-							} else {
-								echo '<label for="ForPostType">
-	                     <input type="checkbox"  name="posts[]" value="' . esc_attr( $bsfppc_post_type->name ) . '">
-	                     ' . esc_attr( $bsfppc_post_type->labels->name ) . '</label><br> ';
-							}
-						}
 					} else {
 						echo '<label for="ForPostType">
 	                     <input type="checkbox"  name="posts[]" value="' . esc_attr( $bsfppc_post_type->name ) . '">
 	                     ' . esc_attr( $bsfppc_post_type->labels->name ) . '</label><br> ';
 					}
-				} else {
-					if ( 'post' === $bsfppc_post_type->name ) {
-						echo '<label for="ForPostType">
+				}
+			} else {
+				echo '<label for="ForPostType">
+	                     <input type="checkbox"  name="posts[]" value="' . esc_attr( $bsfppc_post_type->name ) . '">
+	                     ' . esc_attr( $bsfppc_post_type->labels->name ) . '</label><br> ';
+			}
+		} else {
+			if ( 'post' === $bsfppc_post_type->name ) {
+				echo '<label for="ForPostType">
 	                 <input type="checkbox" checked name="posts[]" value="' . esc_attr( $bsfppc_post_type->name ) . '">
 	                 ' . esc_attr( $bsfppc_post_type->labels->name ) . '</label><br> ';
-					}
-					echo '<label for="ForPostType">
+			}
+			echo '<label for="ForPostType">
 	                 <input type="checkbox"  name="posts[]" value="' . esc_attr( $bsfppc_post_type->name ) . '">
 	                 ' . esc_attr( $bsfppc_post_type->labels->name ) . '</label><br> ';
-				}
-			}
-			$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
-			?>
+		}
+	}
+	$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
+	?>
 				<br>
 				<p class="bsfppc-description">Select the post types to have your check list on</p>
 			<input type="submit" class="button button-primary bsfppc-savesetting"  name="submit_radio" Value="Save Setting"/>

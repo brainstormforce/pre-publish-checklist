@@ -31,6 +31,7 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 	 * @link     http://brainstormforce.com
 	 */
 	class BSFPPC_Pagesetups {
+
 		/**
 		 * Member Variable
 		 *
@@ -77,8 +78,9 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 							<p class="bsfppc-tooltip">:Pre Publish Checklist:</p>
 							<p> Please ensure that you have checked the list before publishing or updating</p>
 						</div>
-						<?php
-			}}
+				<?php
+			}
+		}
 
 		/**
 		 * Function for adding settings page in admin area
@@ -106,7 +108,7 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 		 */
 		public function bsf_ppc_page_html() {
 
-			require_once BSF_PPC_ABSPATH . 'includes/bsfppc-tabs.php';
+			include_once BSF_PPC_ABSPATH . 'includes/bsfppc-tabs.php';
 		}
 		/**
 		 * Add custom meta box
@@ -117,7 +119,7 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 		 */
 		public function bsfppc_add_custom_meta_box() {
 
-				$bsfppc_post_types_to_display = get_option( 'bsfppc_post_types_to_display' );
+			$bsfppc_post_types_to_display = get_option( 'bsfppc_post_types_to_display' );
 			if ( ! empty( $bsfppc_post_types_to_display ) ) {
 				foreach ( $bsfppc_post_types_to_display as $screen ) {
 					add_meta_box(
@@ -152,17 +154,17 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 				foreach ( $bsfppc_checklist_item_data as $key ) {
 					?>
 						<input type="checkbox" name="checkbox[]" id="checkbox" class="bsfppc_checkboxes" value= "<?php echo esc_attr( $key ); ?>"
-						<?php
-						if ( ! empty( $value ) ) {
-							foreach ( $value as $keychecked ) {
-								checked( $keychecked, $key );
-							}
+					<?php
+					if ( ! empty( $value ) ) {
+						foreach ( $value as $keychecked ) {
+							checked( $keychecked, $key );
 						}
-						?>
+					}
+					?>
 						>
-						<?php
-						echo esc_attr( $key );
-						echo '<br/>';
+					<?php
+					 echo esc_attr( $key );
+					 echo '<br/>';
 				}
 				?>
 									<div class="bsfppc-overlay">
@@ -172,7 +174,7 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 											<button id="close" class="components-button is-button is-default">Publish anyway !</button>
 										</div>
 									</div>
-								<?php
+				 <?php
 			} else {
 				echo 'Please create a list to display here from Settings->Pre-Publish-Checklist';
 			}

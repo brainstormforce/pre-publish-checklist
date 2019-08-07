@@ -24,6 +24,7 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 	 * @link     http://brainstormforce.com
 	 */
 	class BSFPPC_Loader {
+
 		/**
 		 * Member Variable
 		 *
@@ -44,7 +45,7 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 		 * Constructor
 		 */
 		public function __construct() {
-			require_once BSF_PPC_ABSPATH . 'includes/class-bsfppc-pagesetups.php';
+			include_once BSF_PPC_ABSPATH . 'includes/class-bsfppc-pagesetups.php';
 			add_action( 'admin_enqueue_scripts', array( $this, 'bsfppc_plugin_backend_js' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'bsfppc_metabox_scripts' ) );
 			add_action( 'wp_ajax_bsfppc_checklistitem_add', array( $this, 'bsfppc_add_item' ), 1 );
@@ -170,14 +171,14 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 																																																																														<?php
 																																																																													}
 																																																																												} else {
-																																																																													echo 'You have do not have any list please add items in the list';
+																																																																																																																																		 echo 'You have do not have any list please add items in the list';
 																																																																												}
 																																																																												?>
 							</li>
 
-																																			<?php
+											<?php
 
-																																			die();
+											die();
 			}
 		}
 

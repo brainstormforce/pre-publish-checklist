@@ -22,8 +22,8 @@ if ( isset( $_POST['submit_radio'] ) ) {
 }
 
 if ( isset( $_POST['submit_radio'] ) ) {
-		$_POST['submit_radio'] = sanitize_text_field( $_POST['submit_radio'] );
-		$bsfppc_post_types     = array();
+	$_POST['submit_radio'] = sanitize_text_field( $_POST['submit_radio'] );
+	$bsfppc_post_types     = array();
 	if ( ! empty( $_POST['posts'] ) ) {
 		$bsfppc_post_types = $_POST['posts'];
 	}

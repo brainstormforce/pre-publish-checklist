@@ -38,23 +38,23 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 			<td class="bsfppclistclass">
 
 				<div id="columns" class="ui-droppable ui-sortable bsfppcdragdrop">
-					<?php
-					if ( ! empty( $bsfppc_checklist_item_data ) ) {
-						?>
+		<?php
+		if ( ! empty( $bsfppc_checklist_item_data ) ) {
+			?>
 						<ul id="bsfppc-ul" class="bsfppc-ul">
-								<?php
-								foreach ( $bsfppc_checklist_item_data as $key ) {
-									?>
+			<?php
+			foreach ( $bsfppc_checklist_item_data as $key ) {
+				?>
 									<li class="bsfppc-li">
 										<span class = "down"></span>
 										<span class="dashicons dashicons-menu-alt3"></span> <input type="text" readonly="true" class="bsfppc-drag-feilds" value="<?php echo esc_attr( $key ); ?>" name="bsfppc_checklist_item[]" >
 										<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcdelete" value="<?php echo esc_attr( $key ); ?>" formnovalidate >Delete</button>
-										<?php
-								}
-					} else {
-						echo 'You have do not have any list please add items in the list';
-					}
-					?>
+				<?php
+			}
+		} else {
+			echo 'You have do not have any list please add items in the list';
+		}
+		?>
 									</li>
 						</ul>
 				</div>
