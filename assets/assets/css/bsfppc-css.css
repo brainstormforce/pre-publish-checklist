@@ -28,6 +28,9 @@ input[readonly].bsfppc-drag-feilds{
   background-color: #fff;
   border: 2px solid #fff;
 }
+input[type=text].bsfppc-drag-feilds{
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0);
+}
 
 .add-button{
   display: none;
@@ -54,7 +57,7 @@ input[readonly].bsfppc-drag-feilds{
   font-weight: 600;
 }
 
-.info {
+.bsfppc-info {
   width: 230px;
   padding: 0px 5px 0px 5px; 
   border-radius: 5px;
@@ -72,7 +75,7 @@ input[readonly].bsfppc-drag-feilds{
   left: -999999px;
 
 }
-.info:before {         
+.bsfppc-info:before {         
         content: '';
         display:block;
         width:0;
@@ -117,7 +120,7 @@ ul.bsfppc-ul {
 
 ul.bsfppc-ul li.bsfppc-li {
   cursor: move;
-  margin: 0px 0px 0px 4px;
+  margin: 0px 0px 0px 0px;
   font-size: 1.25em;
   padding: 5px 0px 5px 5px;
   border-left: 1px solid #d3d3d3;

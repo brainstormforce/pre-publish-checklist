@@ -74,7 +74,7 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 				wp_enqueue_script( 'bsfppc_backend_checkbox_js' );
 				wp_enqueue_style( 'bsfppc_backend_css' );
 				?>
-						<div id="notifications" class="info">
+						<div id="bsfppc_notifications" class="bsfppc-info">
 							<p class="bsfppc-tooltip">:Pre Publish Checklist:</p>
 							<p> Please ensure that you have checked the list before publishing or updating</p>
 						</div>
@@ -92,8 +92,8 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 		public function bsf_ppc_settings_page() {
 			add_submenu_page(
 				'options-general.php',
-				'Pre-publish Checklist',
-				'Pre-publish Checklist',
+				'Pre Publish Checklist',
+				'Pre Publish Checklist',
 				'manage_options',
 				'bsf_ppc',
 				array( $this, 'bsf_ppc_page_html' )

@@ -21,21 +21,19 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 	<tbody>
 		<tr>
 			<th scope="row"> <p>Create a Custom Checklist</p> </th>
-				<td>
-					<table id ="list_table">
-						<tr><div class="bsfppc_input_feild">
-							<input type="text" id="add_item_text_feild" class="bsfppc-item-input" name="bsfppc_checklist_item[]" >
-							<button type="button" id="bsfppc-Savelist" name="submit" class="button button-primary bsfppc_data"   Value="Save List" />Add to list</button>
-							<br>
-								<div class="bsfppc-hide-cover">
-								<p class="warning bsfppc-edit-waring-description">List item cannot be blank</p>
-								</div>
-						</div>
-						</tr>
-					</table>
-					
-					
-				</td>
+			<td>
+				<table id ="list_table">
+					<tr><div class="bsfppc_input_feild">
+						<input type="text" id="add_item_text_feild" class="bsfppc-item-input" name="bsfppc_checklist_item[]" >
+						<button type="button" id="bsfppc-Savelist" name="submit" class="button button-primary bsfppc_data"   Value="Save List" />Add to list</button>
+						<br>
+							<div class="bsfppc-hide-cover">
+							<p class="warning bsfppc-edit-waring-description">List item cannot be blank</p>
+							</div>
+					</div>
+					</tr>
+				</table>					
+			</td>
 		</tr>
 		<tr>
 			<th scope="row"><p class="bsfppc_post">Your List</p> </th>
@@ -69,3 +67,5 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 </table>
 </body>
 </html>
+
+

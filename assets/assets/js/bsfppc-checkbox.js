@@ -21,7 +21,7 @@ $(document).ready(
                 var offset = $(button).offset();
                 var topOffset = $(button).offset().top - $(window).scrollTop();
 
-                $(".info").css(
+                $(".bsfppc-info").css(
                     {
 
                         position: "fixed",
@@ -30,13 +30,15 @@ $(document).ready(
                     }
                 );
             } else {
-                $('.info').css(
+                $('.bsfppc-info').css(
                     {
                         'left': -9999
                     }
                 );
             }
         }
+
+
         $bsfppc_checkboxes.on(
             'change', function () {
 
@@ -49,11 +51,11 @@ $(document).ready(
                             bsfppc_post_id: bsfppc_post_id
                         }, function ( data ) {
                             if (data === 'sucess') {
-                                console.log('done');
+                               
                             } else if (data === 'failure') {
-                                console.log('failure');
+                                
                             } else {
-                                console.log('bsf');
+                                
                             }
                         } 
                     );
@@ -67,11 +69,11 @@ $(document).ready(
                             bsfppc_post_id: bsfppc_post_id
                         }, function (data) {
                             if (data === 'sucess') {
-                                console.log('done');
+                               
                             } else if (data === 'failure') {
-                                console.log('failure');
+                                
                             } else {
-                                console.log('bsf');
+                               
                             }
                         }
                     );

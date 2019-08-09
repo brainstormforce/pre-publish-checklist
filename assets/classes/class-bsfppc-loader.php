@@ -88,11 +88,11 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 		 * @since 1.0.0
 		 */
 		public function bsfppc_metabox_scripts() {
-			$screen                       = get_current_screen();
+			$bsfppc_screen                = get_current_screen();
 			$bsfppc_post_types_to_display = get_option( 'bsfppc_post_types_to_display' );
 			if ( ! empty( $bsfppc_post_types_to_display ) ) {
-				if ( is_object( $screen ) ) {
-					if ( in_array( $screen->post_type, $bsfppc_post_types_to_display, true ) ) {
+				if ( is_object( $bsfppc_screen ) ) {
+					if ( in_array( $bsfppc_screen->post_type, $bsfppc_post_types_to_display, true ) ) {
 						wp_localize_script(
 							'bsfppc_backend_checkbox_js',
 							'bsfppc_meta_box_obj',
@@ -111,8 +111,8 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 		 * @since 1.0.0
 		 */
 		public function bsfppc_drag_item() {
-			if ( ! empty( $_POST['item_drag_var'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-				$bsfppc_new_drag_items = ( ! empty( $_POST['item_drag_var'] ) ? ( $_POST['item_drag_var'] ) : array() );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+			if ( ! empty( $_POST['bsfppc_item_drag_var'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+				$bsfppc_new_drag_items = ( ! empty( $_POST['bsfppc_item_drag_var'] ) ? ( $_POST['bsfppc_item_drag_var'] ) : array() );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				$bsfppc_new_drag_items = array_map( 'sanitize_text_field', $bsfppc_new_drag_items );
 				if ( empty( $bsfppc_item_drag_contents ) || false === $bsfppc_item_drag_contents ) {
 					$bsfppc_item_drag_contents = array();
@@ -162,12 +162,12 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 							<p class="warning bsfppc-alreadyexists-waring-description">List item already exists</p>
 							<?php
 					}
-					foreach ( $bsfppc_checklist_item_data as $key ) {
+					foreach ( $bsfppc_checklist_item_data as $bsfppc_checklist_item_data_key ) {
 						?>
 								<li class="bsfppc-li">
 								<!-- <span class = "down"></span> -->
-								<span class="dashicons dashicons-menu-alt3"></span> <input type="text" readonly="true" class="bsfppc-drag-feilds" value="<?php echo esc_attr( $key ); ?>" name="bsfppc_checklist_item[]" >
-								<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcdelete" value="<?php echo esc_attr( $key ); ?>">Delete</button>
+								<span class="dashicons dashicons-menu-alt3"></span> <input type="text" readonly="true" class="bsfppc-drag-feilds" value="<?php echo esc_attr( $bsfppc_checklist_item_data_key ); ?>" name="bsfppc_checklist_item[]" >
+								<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcdelete" value="<?php echo esc_attr( $bsfppc_checklist_item_data_key ); ?>">Delete</button>
 								<?php
 					}
 				} else {
@@ -191,7 +191,7 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 			if ( isset( $_POST['delete'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				global $wpdb;
 				$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
-				$bsfppc_delete_value        = $_POST['delete'];
+				$bsfppc_delete_value        = $_POST['delete'];//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				$bsfppc_delete_key          = array_search( $_POST['delete'], $bsfppc_checklist_item_data, true );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				unset( $bsfppc_checklist_item_data[ $bsfppc_delete_key ] );
 				update_option( 'bsfppc_checklist_data', $bsfppc_checklist_item_data );
@@ -200,15 +200,15 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 					array(
 						'posts_per_page' => -1,
 						'post_status'    => array( 'publish', 'pending', 'draft' ),
-						'fields'         => 'ids', // Only get post IDs
+						'fields'         => 'ids',
 					)
 				);
 				if ( ! empty( $bsfppc_all_post_ids ) ) {
 					foreach ( $bsfppc_all_post_ids as $bsfppc_postid ) {
 						$bsfppc_pre_value       = get_post_meta( $bsfppc_postid, '_bsfppc_meta_key', true );
-						$bsfppc_post_delete_key = array_search( $_POST['delete'], $bsfppc_pre_value, true );
+						$bsfppc_post_delete_key = array_search( $bsfppc_delete_value, $bsfppc_pre_value, true );
 						if ( false !== $bsfppc_post_delete_key ) {
-							unset( $bsfppc_pre_value[ $bsfppc_post_delete_key ] );
+							unset( $bsfppc_pre_value[ $bsfppc_post_delete_key ] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 							update_post_meta(
 								$bsfppc_postid,
 								'_bsfppc_meta_key',
