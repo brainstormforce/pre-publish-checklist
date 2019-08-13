@@ -1,8 +1,16 @@
+
+
+
+
 $(document).ready(
     function () {
         
         var $bsfppc_checkboxes = $('#checkbox[type="checkbox"]');
-        var selected = [];
+        var $bsfppc_checkboxes_length = $('#checkbox[type="checkbox"]').length;
+        console.log($bsfppc_checkboxes_length);
+        
+        var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
+        console.log(countCheckedbsfppc_checkboxes);
         $(
             function () {
                 /*the function showInfo is executed on mouseover and mouseout*/
@@ -36,7 +44,34 @@ $(document).ready(
                 );
             }
         }
+        if(bsfppc_radio_obj.option == 2){
+        $(document).on('click', "#bsfppc-update", function () {
+             $('.bsfppc-popup').attr('style','display:block');
+           
+           });
 
+
+        $(document).on('click', "#bsfppc-publish", function () {
+             $('.bsfppc-popup').attr('style','display:block');
+           
+           });
+        }else if(bsfppc_radio_obj.option == 2){
+        $(document).on('click', "#bsfppc-update", function () {
+             $('.bsfppc-popup').attr('style','display:block');
+           
+           });
+
+
+        $(document).on('click', "#bsfppc-publish", function () {
+             $('.bsfppc-popup').attr('style','display:block');
+           
+           });
+        }
+
+           $(document).on('click',".bsfppc-closepopup", function () {
+             $('.bsfppc-popup').attr('style','display:none');
+           
+           });
 
         $bsfppc_checkboxes.on(
             'change', function () {
@@ -80,138 +115,110 @@ $(document).ready(
             }
         );
 
-       var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
-        if (bsfppc_radio_obj.option == 1 && bsfppc_radio_obj.data.length != 0 && ($bsfppc_checkboxes.length != countCheckedbsfppc_checkboxes) ) {
-           console.log('in noption 2w');
-            setTimeout(
+ setTimeout(
 
-                function () {
+            function () {
+        
+                if (bsfppc_radio_obj.option != 3 && ($bsfppc_checkboxes_length == countCheckedbsfppc_checkboxes) ){
+                    console.log('checkedasasasasasasasasasasasasasasasasas ');
 
-                      if( ($('.edit-post-header__settings').children('.editor-post-switch-to-draft').length == 0 ) || ($('.edit-post-header__settings').children('.editor-post-save-draft').length == 0 )){   
-                        $('.edit-post-header__settings').children(':eq(2)').after('<div class="dashicons dashicons-warning"></div>');
+                    // $('#bsfppc-publish').attr('style', 'display:none');
+                    // $('#bsfppc-update').attr('style', 'display:none');
+                    // if ($('.editor-post-publish-panel__toggle').length == 1) {
+
+                    //                $('.editor-post-publish-panel__toggle').attr('style', 'display:inline-flex');
+
+                    // } else if ($('.editor-post-publish-button').length == 1) {
+
+                    //     $('.editor-post-publish-button').attr('style', 'display:inline-flex');
+
+                    // }
+                }else if ($bsfppc_checkboxes_length != countCheckedbsfppc_checkboxes ){
+                    console.log('checkednooooooooooooooooooooooooooooooooooo ');
+
+                     if ($('.editor-post-publish-panel__toggle').length == 1) {
+                        console.log('publish wlaa');
+console.log(($('.edit-post-header__settings').children('.editor-post-switch-to-draft').length == 0 ));
+                                    console.log("berrsdxsd");
+                                    console.log(($('.edit-post-header__settings').children('.editor-post-save-draft').length == 0));
+                                   $('.editor-post-publish-panel__toggle').attr('style', 'display:none');
+
+                                } else if ($('.editor-post-publish-button').length == 1) {
+                                    console.log('updatew wlaa');
+
+                                    $('.editor-post-publish-button').attr('style', 'display:none');
+
+                                }
+                    if( ($('.edit-post-header__settings').children('.editor-post-switch-to-draft').length == 0 ) || ($('.edit-post-header__settings').children('.editor-post-save-draft').length == 0) ){
+                        console.log('new page');
+                        $('.edit-post-header__settings').children(':eq(1)').after('<button type="button" class="components-button  is-button is-primary bsfppc-publish" id="bsfppc-publish">Publish...</button>');
                     }
-                        if ($('.editor-post-publish-panel__toggle').length == 1) {
-                            console.log('found publish');
-                            $('.editor-post-publish-panel__toggle').prop('disabled', true);
-                            $('.editor-post-publish-panel__toggle').prop('title', 'Pre-Publish-Checklist please check all the items to publish or update'); 
-                        } else {
-                            $('.editor-post-publish-button').prop('disabled', true);
-                            console.log('found update');
-                            $('.editor-post-publish-button').prop('title', 'Pre-Publish-Checklist please check all the items to publish or update');
+                    else{
 
-                        }
-                    
-                }, 10
-            );
-        }else{
-
-
-        }
-
-
-        var $bsfppc_checkboxes = $('#checkbox[type="checkbox"]');
-        var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
-        if (bsfppc_radio_obj.option == 2 && bsfppc_radio_obj.data.length != 0 ) {
-            setTimeout(
-                function () {
-                    $('.editor-post-publish-panel__toggle').attr('style', 'display:none');
-                    $('.editor-post-publish-button').attr('style', 'display:none');
-                      if($('.edit-post-header__settings').children('.editor-post-switch-to-draft').length == 0 ) {   
-                          // $('.edit-post-header__settings').children(':eq(1)').after('<div class="dashicons dashicons-warning"></div>');
-                         $('.edit-post-header__settings').children(':eq(2)').after('<button type="button" class="components-button  is-button is-primary bsfppc-publish" id="bsfppc-publish">Publish...</button>');
+                         console.log('edit page');
+                        $('.edit-post-header__settings').children(':eq(1)').after('<button type="button" class="components-button  is-button is-primary bsfppc-publish" id="bsfppc-update">Update</button>');
                     }
-                    else {           
-                         // $('.edit-post-header__settings').children(':eq(2)').after('<div class="dashicons dashicons-warning"></div>');
-                         $('.edit-post-header__settings').children(':eq(2)').after('<button type="button" class="components-button  is-button is-primary bsfppc-publish" id="bsfppc-update" >Update</button>');
-                    }
-                }, 10
-            );
-        }
 
-       $(document).on('click', ".bsfppc-publish", function () {
-         $('.bsfppc-popup').attr('style','display:block');
-       
-       });
-
-       $(document).on('click',".bsfppc-closepopup", function () {
-         $('.bsfppc-popup').attr('style','display:none');
-       
-       });
-
-
-        //prevent user from publishing 
-        if (bsfppc_radio_obj.option == 1) {
-            console.log('111111111111111111111111');
-            var $bsfppc_checkboxes = $('#checkbox[type="checkbox"]');
-            var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
-            $bsfppc_checkboxes.change(
-                function () {
-                    var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
-                    if ($bsfppc_checkboxes.length == countCheckedbsfppc_checkboxes) {
-                        // all bsfppc_checkboxes are check
-                        $('.dashicons-warning').hide();
-                        if ($('.editor-post-publish-panel__toggle').length == 1) {
-                            $('.editor-post-publish-panel__toggle').prop('disabled', false);
-                            $('.editor-post-publish-panel__toggle').prop('title', 'All items checked ! You are good to publish');
-                        } else if ($('.editor-post-publish-button').length == 1) {
-                            $('.editor-post-publish-button').prop('disabled', false);
-                            $('.editor-post-publish-button').prop('title', 'All items checked ! You are good to publish');
-
-                        }
-                    } else {
-                        // all bsfppc_checkboxes are not yet checked 
-                        $('.dashicons-warning').show();
-                        if ($('.editor-post-publish-panel__toggle').length == 1) {
-                            $('.editor-post-publish-panel__toggle').prop('disabled', true);
-                            $('.editor-post-publish-panel__toggle').prop('title', 'Pre-Publish-Checklist please check all the items to publish or update'); 
-                        } else if ($('.editor-post-publish-button').length == 1) {
-                            $('.editor-post-publish-button').prop('disabled', true);
-                            $('.editor-post-publish-button').prop('title', 'Pre-Publish-Checklist please check all the items to publish or update');
-
-                        }
-                    }
                 }
-            );
-        }
+        },10
+    );
 
-        //warn user before publising-------------
-        else if (bsfppc_radio_obj.option == 2) {
-            var $bsfppc_checkboxes = $('#checkbox[type="checkbox"]');
-            var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
-            var $bsfppc_checkboxes = $('#checkbox[type="checkbox"]');
-            var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
-            $bsfppc_checkboxes.change(
-                function () {
-                    var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
-                    if ($bsfppc_checkboxes.length == countCheckedbsfppc_checkboxes) {
-                        // all bsfppc_checkboxes are check
-                        $('.bsfppc-publish').attr('style', 'display:none');
+
+
+
+          
+
+        if (bsfppc_radio_obj.option == 1 || bsfppc_radio_obj.option == 2 ){
+        $bsfppc_checkboxes.change(
+            function () {
+                var $bsfppc_checkboxes = $('#checkbox[type="checkbox"]');
+                var $bsfppc_checkboxes_length = $('#checkbox[type="checkbox"]').length;
+                var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
+                if($bsfppc_checkboxes_length == countCheckedbsfppc_checkboxes ){
+                        console.log('checked condition');
+
+                    if ($('.editor-post-publish-panel__toggle').length == 1) {
+
+                               
+                        $('.edit-post-header__settings').children($('#bsfppc-publish').attr('style', 'display:none'));
+                        $('.editor-post-publish-panel__toggle').attr('style', 'display:inline-flex');
+
+                    } else if ($('.editor-post-publish-button').length == 1) {
+
                         
-                        $('.dashicons-warning').hide();
-                        if ($('.editor-post-publish-panel__toggle').length == 1) {
+                        $('.edit-post-header__settings').children(':eq(2)').after($('#bsfppc-update').attr('style', 'display:none'));
+                        $('.editor-post-publish-button').attr('style', 'display:inline-flex');
 
-                           $('.editor-post-publish-panel__toggle').attr('style', 'display:inline-flex');
+                    }
 
-                        } else if ($('.editor-post-publish-button').length == 1) {
+                }else if($bsfppc_checkboxes_length != countCheckedbsfppc_checkboxes ){
+                    console.log('not checked condition');
+                    if ($('.editor-post-publish-panel__toggle').length == 1) {
+                        console.log('publishaksbjbha');
+                            $('.editor-post-publish-panel__toggle').attr('style', 'display:none');
+                            console.log($('#bsfppc-publish').length == 0);
+                            $('.edit-post-header__settings').children(':eq(2)').after($('#bsfppc-publish').attr('style','display:inline-flex'));
+                            if($('#bsfppc-publish').length == 0 ){
+                                console.log('in adding button');
+                               $('.edit-post-header__settings').children(':eq(2)').after('<button type="button" class="components-button  is-button is-primary bsfppc-publish" id="bsfppc-publish">Publish...</button>');
+                            }
 
-                            $('.editor-post-publish-button').attr('style', 'display:inline-flex');
+                    } else if ($('.editor-post-publish-button').length == 1) {
+                        console.log('upadte');
 
-                        }
-                    } else if ($bsfppc_checkboxes.length !== countCheckedbsfppc_checkboxes) {
-                        $('.edit-post-header__settings').children($('#bsfppc-update').attr('style', 'display:inline-flex'));
-                        $('.edit-post-header__settings').children(':eq(2)').after($('#bsfppc-publish').attr('style', 'display:inline-flex'));
-                        $('.editor-post-publish-panel__toggle').attr('style', 'display:none');
-                        if ($('.editor-post-publish-panel__toggle').length == 1) {
-                        $('.editor-post-publish-button').attr('style', 'display:none');
-                    $('.edit-post-header__settings').children(':eq(2)').after($('#bsfppc-publish').attr('style', 'display:inline-flex'));
-                        } else if ($('.editor-post-publish-button').length == 1) {
-                        $('.edit-post-header__settings').children(':eq(2)').after($('#bsfppc-update').attr('style', 'display:inline-flex'));
-                        $('.editor-post-publish-button').attr('style', 'display:none');
-                           
-                        }
+                            $('.editor-post-publish-button').attr('style', 'display:none');
+                            
+                            $('.edit-post-header__settings').children(':eq(2)').after($('#bsfppc-update').attr('style','display:inline-flex'));
+                            if($('#bsfppc-update').length = 0 ){
+                               $('.edit-post-header__settings').children(':eq(2)').after('<button type="button" class="components-button  is-button is-primary bsfppc-publish" id="bsfppc-update">Update</button>');
+                            }
+
+
+
+
                     }
                 }
-            );
+            });
         }
         //Do nothing--------------
         else if (bsfppc_radio_obj.option == 3) {
@@ -230,7 +237,7 @@ $(document).ready(
                             $('.editor-post-publish-button').prop('title', 'All items checked ! You are good to publish');
 
                         }
-                    } else {
+                    } else if($bsfppc_checkboxes.length != countCheckedbsfppc_checkboxes)  {
                         // all bsfppc_checkboxes are not yet checked 
                         $('.dashicons-warning').show();
                         if ($('.editor-post-publish-panel__toggle').length == 1) {
