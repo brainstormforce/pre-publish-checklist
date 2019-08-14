@@ -1,13 +1,13 @@
 jQuery(document).ready(function () {
   var add_button = jQuery('.add_field_button ');
   var bsfppc_item_content = [];
-  var drag_content = [];
+  var bsfppc_drag_contents = [];
   var input_feilds = jQuery('#add_item_text_feild[type="text"]');
 
   //Ajax trigger for adding an element in the array 
      jQuery(document).on('click', "#bsfppc-Savelist", function () {
      if(jQuery('.bsfppc-item-input').val().length !== 0){   
-      console.log(jQuery('.bsfppc-item-input').attr('value'));
+      
      jQuery('#bsfppc-ul').sortable();
     jQuery( "#bsfppc-ul" ).sortable( "destroy" );
       jQuery.post(bsfppc_add_delete_obj.url, {
@@ -24,26 +24,25 @@ jQuery(document).ready(function () {
       });
       jQuery('#bsfppc-ul').sortable({
           update: function () {
-                  var item_drag_var = [];
-                  var item_drag_var = jQuery('.bsfppc-drag-feilds');
-                  item_drag_var.each(function () {
+                  var bsfppc_item_drag_var = [];
+                  var bsfppc_item_drag_var = jQuery('.bsfppc-drag-feilds');
+                  bsfppc_item_drag_var.each(function () {
                     
-                    drag_content.push(jQuery(this).attr('value'));
-                  });
-                  console.log(drag_content);
-                    jQuery.post(bsfppc_add_delete_obj.url, {
+                    bsfppc_drag_contents.push(jQuery(this).attr('value'));
+                  });console.log(bsfppc_drag_contents);
+                      jQuery.post(bsfppc_add_delete_obj.url, {
                       action: 'bsfppc_checklistitem_drag',
-                      item_drag_var: drag_content
+                      bsfppc_item_drag_var: bsfppc_drag_contents
                     }, function (data) {
                         if (data === 'sucess') {
-                          drag_content = [];
+                          bsfppc_drag_contents = [];
                         } else if (data === 'failure') {
-                          drag_content = [];
+                          bsfppc_drag_contents = [];
                         } else {
-                          drag_content = [];
+                          bsfppc_drag_contents = [];
                         }
                       });
-          }
+          }, placeholder: "dashed-placeholder"
       },
       { cancel: '.bsfppc-alreadyexists-waring-description' });
       jQuery('.bsfppc-item-input').val(""); 
@@ -57,10 +56,11 @@ jQuery(document).ready(function () {
 
   //Ajax trigger for deleting an element in the array
   jQuery(document).on('click', '.bsfppcdelete', function () {
-    var txt;
-    var r = confirm("Are you sure you want to delete ");
-    if (r == true) {
+    var bsfppc_txt;
+    var bsfppc_delete_flag = confirm("Are you sure you want to delete ");
+    if (bsfppc_delete_flag == true) {
       jQuery(this).parents('li:first').remove();
+      console.time('Timer1');
       jQuery.post(bsfppc_add_delete_obj.url, {
         action: 'bsfppc_checklistitem_delete',
         delete: jQuery(this).attr('value')
@@ -70,34 +70,37 @@ jQuery(document).ready(function () {
         } else {
           
         }
-      });
+      });console.timeEnd('Timer1');
     } else {
-      txt = "You pressed Cancel!";
+      bsfppc_txt = "You pressed Cancel!";
     }
   });
 
   jQuery(function () {
-    jQuery('#bsfppc-ul').sortable({
+    jQuery('#bsfppc-ul').sortable({  
       update: function () {
-        var item_drag_var = [];
-        var item_drag_var = jQuery('.bsfppc-drag-feilds');
-        item_drag_var.each(function () {
-          drag_content.push(jQuery(this).attr('value'));
-        });console.log(drag_content);
+        var bsfppc_item_drag_var = [];
+        var bsfppc_item_drag_var = jQuery('.bsfppc-drag-feilds');
+        bsfppc_item_drag_var.each(function () {
+          bsfppc_drag_contents.push(jQuery(this).attr('value'));
+        });
+        console.log(bsfppc_drag_contents);
         jQuery.post(bsfppc_add_delete_obj.url, {
           action: 'bsfppc_checklistitem_drag',
-          item_drag_var: drag_content
+          bsfppc_item_drag_var: bsfppc_drag_contents
         }, function (data) {
           if (data === 'sucess') {           
-            drag_content = [];
+            bsfppc_drag_contents = [];
           } else {
-            drag_content = [];
+            bsfppc_drag_contents = [];
           }
         });
       },
-      cancel: '.bsfppc-alreadyexists-waring-description' 
+      cancel: '.bsfppc-alreadyexists-waring-description' ,
+      placeholder: "dashed-placeholder"
 
     });
+
     jQuery('.bsfppc-ul').disableSelection();
   });
 });

@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:  Pre-Publish Checklist
+ * Plugin Name:  Pre Publish Checklist
  * Description:  With Pre-Publish Checklist, you’ll never have to be worried about accidentally publishing a post.
  * Version:     1.0.0
  * Author:      Brainstorm Force
