@@ -90,21 +90,8 @@ $(document).ready(
 
             function () {
         
-                if (bsfppc_radio_obj.option != 3 && ($bsfppc_checkboxes_length == countCheckedbsfppc_checkboxes) ){
-                    // console.log('checkedasasasasasasasasasasasasasasasasas ');
-
-                    // $('#bsfppc-publish').attr('style', 'display:none');
-                    // $('#bsfppc-update').attr('style', 'display:none');
-                    // if ($('.editor-post-publish-panel__toggle').length == 1) {
-
-                    //                $('.editor-post-publish-panel__toggle').attr('style', 'display:inline-flex');
-
-                    // } else if ($('.editor-post-publish-button').length == 1) {
-
-                    //     $('.editor-post-publish-button').attr('style', 'display:inline-flex');
-
-                    // }
-                }else if ($bsfppc_checkboxes_length != countCheckedbsfppc_checkboxes ){
+                if (bsfppc_radio_obj.option != 3 && ($bsfppc_checkboxes_length != countCheckedbsfppc_checkboxes) ){
+                 
                     // console.log('checkednooooooooooooooooooooooooooooooooooo');
 
                      if ($('.editor-post-publish-panel__toggle').length == 1) {
