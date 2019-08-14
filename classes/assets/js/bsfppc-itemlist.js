@@ -42,7 +42,7 @@ jQuery(document).ready(function () {
                           bsfppc_drag_contents = [];
                         }
                       });
-          }
+          }, placeholder: "dashed-placeholder"
       },
       { cancel: '.bsfppc-alreadyexists-waring-description' });
       jQuery('.bsfppc-item-input').val(""); 
@@ -77,7 +77,7 @@ jQuery(document).ready(function () {
   });
 
   jQuery(function () {
-    jQuery('#bsfppc-ul').sortable({
+    jQuery('#bsfppc-ul').sortable({  
       update: function () {
         var bsfppc_item_drag_var = [];
         var bsfppc_item_drag_var = jQuery('.bsfppc-drag-feilds');
@@ -96,7 +96,8 @@ jQuery(document).ready(function () {
           }
         });
       },
-      cancel: '.bsfppc-alreadyexists-waring-description' 
+      cancel: '.bsfppc-alreadyexists-waring-description' ,
+      placeholder: "dashed-placeholder"
 
     });
 

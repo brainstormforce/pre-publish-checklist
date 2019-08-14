@@ -36,6 +36,9 @@ input[type=text].bsfppc-drag-feilds{
   display: none;
 }
 
+.dashicons-menu-alt2 {
+  padding-top: 10px;
+}
 .dashicons-warning:before {
     content: "\f534";
     margin-left: -10px;
@@ -101,9 +104,7 @@ input[type=text].bsfppc-drag-feilds{
   font-weight: 600 ;
 }
 
-.dashicons-menu-alt3 {
-  padding-top: 10px;
-}
+
 
 .button-primary.bsfppcsave {
   display: none;
@@ -120,15 +121,23 @@ ul.bsfppc-ul {
 }
 
 ul.bsfppc-ul li.bsfppc-li {
-  cursor: move;
-  margin: 0px 0px 0px 0px;
-  font-size: 1.25em;
-  padding: 5px 0px 5px 5px;
-  border-left: 1px solid #d3d3d3;
-  border-right: 1px solid #d3d3d3;
-  background: #fff;
-}
+    cursor: move;
+    margin: 0px 0px 0px 0px;
+    font-size: 1.25em;
+    padding: 5px 0px 5px 5px;
+    border-left: 1px solid #d3d3d3;
+    border-right: 1px solid #d3d3d3;
+    background: #fff;
+    font-weight: 600;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 2px 0px #ddd;
+  }
 
+.dashed-placeholder {
+  border: 1px dashed #999;
+  margin: 10px 0px 10px 0px;
+  padding: 8px 0px 40px 6px;
+}
 ul.bsfppc-ul div {
   font-size: 0.5em;
   letter-spacing: 10px;
@@ -184,9 +193,8 @@ ul.bsfppc-ul.down:before {
   margin: 0 12px 0 3px;
 }
 
-.bsfppc-popup {
+.bsfppc-popup-warn  {
     width: 400px;
-    display: none;
     border-radius: 5px;
     height: 200px;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
@@ -196,12 +204,63 @@ ul.bsfppc-ul.down:before {
     background-color: #ffffff;
     border: 1px #666;
     transition: opacity 0.8s;
-    position: absolute;
-    margin-top: -44%;
-    margin-left: 30%;
-    z-index: 9999;
+    position: relative;
+    z-index: 99;
+    margin-top: 5%;
+    margin-left: 35%;
+}
+.bsfppc-popup-prevent{
+    width: 400px;
+    border-radius: 5px;
+    height: 200px;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    text-align: center;
+    box-shadow: 0px 0px 15px -6px rgba(0,0,0,0.75);
+    border: 1px solid #ddd;
+    background-color: #ffffff;
+    border: 1px #666;
+    transition: opacity 0.8s;
+    position: relative;
+    z-index: 99;
+    margin-top: 5%;
+    margin-left: 35%;
+
 }
 
+.bsfppc-modal-warn {
+
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    padding-top: 100px;
+    background-color: black;
+    background-color: rgba(0, 0, 0, 0.4);
+    -webkit-transition: 0.5s;
+    overflow: auto;
+    transition: all 0.3s linear;
+}
+.bsfppc-modal-prevent{
+
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    padding-top: 100px;
+    background-color: black;
+    background-color: rgba(0, 0, 0, 0.4);
+    -webkit-transition: 0.5s;
+    overflow: auto;
+    transition: all 0.3s linear;
+}
+
+}
 .bsfppc-description {
     font-style: italic;
     padding-bottom: 15px;
@@ -267,11 +326,15 @@ ul.bsfppc-ul.down:before {
   background-color: #ddd;
 }
 
+
+.cd-buttons-prevent p:hover {
+  background-color: #ddd;
+}
+
 .cd-buttons p {
     display: inline-block;
     height: 60px;
     line-height: 60px;
-    text-transform: uppercase;
     float: left;
     width: 50%;
     margin: 0;
@@ -283,7 +346,21 @@ ul.bsfppc-ul.down:before {
     -moz-transition: background-color 0.2s;
     transition: background-color 0.2s;
 }
+.cd-buttons-prevent p{
+  display: block;
+    height: 60px;
+    line-height: 60px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: #f5f5f5;
+    list-style: none;
+    -webkit-transition: background-color 0.2s;
+    -moz-transition: background-color 0.2s;
+    transition: background-color 0.2s;
 
+
+}
 .bsfppc-popup-option-okay .bsfppc-popup-options-publishanyway{
   border: 2px solid #ddd;
 }

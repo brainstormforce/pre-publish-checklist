@@ -166,7 +166,7 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 						?>
 								<li class="bsfppc-li">
 								<!-- <span class = "down"></span> -->
-								<span class="dashicons dashicons-menu-alt3"></span> <input type="text" readonly="true" class="bsfppc-drag-feilds" value="<?php echo esc_attr( $bsfppc_checklist_item_data_key ); ?>" name="bsfppc_checklist_item[]" >
+								<span class="dashicons dashicons-menu-alt2"></span> <input type="text" readonly="true" class="bsfppc-drag-feilds" value="<?php echo esc_attr( $bsfppc_checklist_item_data_key ); ?>" name="bsfppc_checklist_item[]" >
 								<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcdelete" value="<?php echo esc_attr( $bsfppc_checklist_item_data_key ); ?>">Delete</button>
 								<?php
 					}

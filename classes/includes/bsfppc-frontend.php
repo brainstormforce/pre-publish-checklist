@@ -31,12 +31,12 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 		<tr><th scope="row"><p class="bsfppc-setting-name">On Publish Attempt </p></th>
 			<td>
 			<form method ="POST">
-				<input type="radio" name="bsfppc_radio_button_option" value="1" <?php checked( $bsfppc_radio_button, 1 ); ?> > <div class="bsfppc_radio_options">Prevent User from Publishing</div>
-				<p class="bsfppc-description">The user will not be able to publish until he checks all the checkboxes</p>
-				<input type="radio" name="bsfppc_radio_button_option" value="2" <?php checked( $bsfppc_radio_button, 2 ); ?> > <div class="bsfppc_radio_options">Warn User Before Publishing</div>
-				<p class="bsfppc-description">The user will be warned before publishing or he can publish anyway</p>
-				<input type="radio" name="bsfppc_radio_button_option" value="3" <?php checked( $bsfppc_radio_button, 3 ); ?> > <div class="bsfppc_radio_options">Do Nothing</div>
-				<p class="bsfppc-description" >The user will be allowed to publish without any warning </p>
+				<input type="radio" name="bsfppc_radio_button_option" value="1" <?php checked( $bsfppc_radio_button, 1 ); ?> > <div class="bsfppc_radio_options">Prevent User from Publishing</div><br>
+				<i>The user will not be able to publish until he checks all the checkboxes</i><br>
+				<br><input type="radio" name="bsfppc_radio_button_option" value="2" <?php checked( $bsfppc_radio_button, 2 ); ?> > <div class="bsfppc_radio_options">Warn User Before Publishing</div><br>
+				<i>The user will be warned before publishing or he can publish anyway</i><br>
+				<br><input type="radio" name="bsfppc_radio_button_option" value="3" <?php checked( $bsfppc_radio_button, 3 ); ?> > <div class="bsfppc_radio_options">Do Nothing</div><br>
+				<i>The user will be allowed to publish without any warning </i><br>
 				<br/>
 		</td>
 		</tr>
@@ -80,10 +80,10 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 	$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
 	?>
 				<br>
-				<p class="bsfppc-description">Select the post types to have your check list on</p>
+				<i>Select the post types to have your check list on</i> <br>
 
 				<?php wp_nonce_field( 'bsfppc-form-nonce', 'bsfppc-form' ); ?>
-			<input type="submit" class="button button-primary bsfppc-savesetting"  name="submit_radio" Value="Save Setting"/>
+			<br><input type="submit" class="button button-primary bsfppc-savesetting"  name="submit_radio" Value="Save Setting"/>
 			<div class="edit-warning">
 					<p class="warning bsfppc-description">    List item cannot be blank</p>
 			</div>

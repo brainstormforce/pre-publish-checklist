@@ -29,7 +29,7 @@ jQuery(document).ready(function () {
                   bsfppc_item_drag_var.each(function () {
                     
                     bsfppc_drag_contents.push(jQuery(this).attr('value'));
-                  });
+                  });console.log(bsfppc_drag_contents);
                       jQuery.post(bsfppc_add_delete_obj.url, {
                       action: 'bsfppc_checklistitem_drag',
                       bsfppc_item_drag_var: bsfppc_drag_contents
@@ -42,7 +42,7 @@ jQuery(document).ready(function () {
                           bsfppc_drag_contents = [];
                         }
                       });
-          }
+          }, placeholder: "dashed-placeholder"
       },
       { cancel: '.bsfppc-alreadyexists-waring-description' });
       jQuery('.bsfppc-item-input').val(""); 
@@ -60,6 +60,7 @@ jQuery(document).ready(function () {
     var bsfppc_delete_flag = confirm("Are you sure you want to delete ");
     if (bsfppc_delete_flag == true) {
       jQuery(this).parents('li:first').remove();
+      console.time('Timer1');
       jQuery.post(bsfppc_add_delete_obj.url, {
         action: 'bsfppc_checklistitem_delete',
         delete: jQuery(this).attr('value')
@@ -69,20 +70,21 @@ jQuery(document).ready(function () {
         } else {
           
         }
-      });
+      });console.timeEnd('Timer1');
     } else {
       bsfppc_txt = "You pressed Cancel!";
     }
   });
 
   jQuery(function () {
-    jQuery('#bsfppc-ul').sortable({
+    jQuery('#bsfppc-ul').sortable({  
       update: function () {
         var bsfppc_item_drag_var = [];
         var bsfppc_item_drag_var = jQuery('.bsfppc-drag-feilds');
         bsfppc_item_drag_var.each(function () {
           bsfppc_drag_contents.push(jQuery(this).attr('value'));
         });
+        console.log(bsfppc_drag_contents);
         jQuery.post(bsfppc_add_delete_obj.url, {
           action: 'bsfppc_checklistitem_drag',
           bsfppc_item_drag_var: bsfppc_drag_contents
@@ -94,9 +96,11 @@ jQuery(document).ready(function () {
           }
         });
       },
-      cancel: '.bsfppc-alreadyexists-waring-description' 
+      cancel: '.bsfppc-alreadyexists-waring-description' ,
+      placeholder: "dashed-placeholder"
 
     });
+
     jQuery('.bsfppc-ul').disableSelection();
   });
 });

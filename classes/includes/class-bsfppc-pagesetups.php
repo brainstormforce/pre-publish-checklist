@@ -73,20 +73,24 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 			if ( ( ! empty( $_GET['action'] ) && 'edit' === $_GET['action'] ) || 'edit.php' === $bsfppc_screen->parent_file || 'post-new.php' === $bsfppc_screen->parent_file || 'page' === $bsfppc_screen->post_type ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Recommended
 				wp_enqueue_script( 'bsfppc_backend_checkbox_js' );
 				wp_enqueue_style( 'bsfppc_backend_css' );
-				?>
-						<div id="bsfppc_notifications" class="bsfppc-info">
-							<p class="bsfppc-tooltip">Pre Publish Checklist</p>
-							<p> Please check all the items before publishing or updating</p>
+				?>		<div class = "bsfppc-modal-warn">
+							<div id="bsfppc_notifications" class="bsfppc-popup-warn">
+								<p class="bsfppc-tooltip">Pre Publish Checklist</p>
+								<p class="bsfppc-popup-description">You have not completed your Pre Publish Checklist yet what would you like to do?</p>
+								<ul class="cd-buttons">
+								<li><p class="bsfppc-popup-option-dontpublish">Don't Publish</p></li>
+								<li><p class="bsfppc-popup-options-publishanyway">Publish Anyway</p></li>
+								</ul>
+							</div>
 						</div>
-
-						<div id="bsfppc_notifications" class="bsfppc-popup">
-							<p class="bsfppc-tooltip">Pre Publish Checklist</p>
-							<span class="bsfppc-closepopup dashicons dashicons-no-alt"></span>
-							<p class="bsfppc-popup-description"> Please ensure that you have checked the list before publishing or updating or you can publish anyway</p>
-							<ul class="cd-buttons">
-							<li><p class="bsfppc-popup-option-okay">Yes</p></li>
-							<li><p class="bsfppc-popup-options-publishanyway">No</p></li>
-							</ul>
+						<div class = "bsfppc-modal-prevent">
+							<div id="bsfppc_notifications" class="bsfppc-popup-prevent">
+								<p class="bsfppc-tooltip">Pre Publish Checklist</p>
+								<p class="bsfppc-popup-description"> Please check all the items before publishing</p>
+								<ul class="cd-buttons-prevent">
+								<li><p class="bsfppc-popup-option-okay">Okay!</p></li>
+								</ul>
+							</div>
 						</div>
 				<?php
 			}
