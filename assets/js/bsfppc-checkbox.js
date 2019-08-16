@@ -210,8 +210,9 @@ $(document).ready(
                         } else if ($('.editor-post-publish-button').length == 1) {
                             $('.editor-post-publish-button').prop('title', 'Pre-Publish-Checklist some items still remaining !');
                         }
-                    }
+                    }  
                 }
+
             );
         }
 
@@ -221,15 +222,22 @@ $(document).ready(
               // console.log(' warn clicked up[date] user option');
 
              $('.bsfppc-modal-warn').attr('style','display:block');
+             var content = $( "#bsfppc_custom_meta_box" ).html();
+                $('.bsfppc-modal-checklist').replaceWith('<div class="bsfppc-modal-checklist">' + content + '</div>');
+                $('.bsfppc-modal-checklist').children(':eq(0)').remove();
+                $('.bsfppc-modal-checklist').children('.hndle').remove();   
 
            });
 
         $(document).on('click', "#bsfppc-publish", function () {
              // console.log(' warn clicked publish  user option');
              $('.bsfppc-modal-warn').attr('style','display:block');
+             var content = $( "#bsfppc_custom_meta_box" ).html();
+                $('.bsfppc-modal-checklist').replaceWith('<div class="bsfppc-modal-checklist">' + content + '</div>');
+                $('.bsfppc-modal-checklist').children(':eq(0)').remove();
+                $('.bsfppc-modal-checklist').children('.hndle').remove();   
            
            });
-
 
          
         }else if(bsfppc_radio_obj.option == 1){
@@ -237,6 +245,10 @@ $(document).ready(
         $(document).on('click', "#bsfppc-update", function () {
             // console.log(' prevent update button clicked');
              $('.bsfppc-modal-prevent').attr('style','display:inline-block');
+             var content = $( "#bsfppc_custom_meta_box" ).html();
+                $('.bsfppc-modal-checklist').replaceWith('<div class="bsfppc-modal-checklist">' + content + '</div>');
+                $('.bsfppc-modal-checklist').children(':eq(0)').remove();
+                $('.bsfppc-modal-checklist').children('.hndle').remove();   
            
            });
 
@@ -244,11 +256,18 @@ $(document).ready(
         $(document).on('click', "#bsfppc-publish", function () {
             // console.log('prevent publish button clicked');
              $('.bsfppc-modal-prevent').attr('style','display:block');
+
+            var content = $( "#bsfppc_custom_meta_box" ).html();
+                $('#bsfppc-modal-id').replaceWith('<div class="bsfppc-modal-checklist">' + content + '</div>');
+                $('.bsfppc-modal-checklist').children(':eq(0)').remove();
+                $('.bsfppc-modal-checklist').children('.hndle').remove();   
            
            });
          $(document).on('click',".bsfppc-popup-option-okay", function () {
              $('.bsfppc-modal-prevent').attr('style','display:none');
-           
+            document.querySelector('#bsfppc_custom_meta_box').scrollIntoView({                 
+                behavior: 'smooth' 
+            });             
            });
         }
         
@@ -273,10 +292,11 @@ $(document).ready(
                  
            });
           $(document).on('click',".bsfppc-popup-option-dontpublish", function () {
-             $('.bsfppc-modal-warn').attr('style','display:none');
-           
+                $('.bsfppc-modal-warn').attr('style','display:none');
+                    document.querySelector('#bsfppc_custom_meta_box').scrollIntoView({                 
+                    behavior: 'smooth' 
+                });               
            });
-
     }
 
 );

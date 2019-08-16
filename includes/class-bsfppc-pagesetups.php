@@ -71,6 +71,9 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 		public function bsfppc_markup() {
 			$bsfppc_screen = get_current_screen();
 			if ( ( ! empty( $_GET['action'] ) && 'edit' === $_GET['action'] ) || 'edit.php' === $bsfppc_screen->parent_file || 'post-new.php' === $bsfppc_screen->parent_file || 'page' === $bsfppc_screen->post_type ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Recommended
+				// global $post;
+				// $bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
+				// $value                      = get_post_meta( $post->ID, '_bsfppc_meta_key', true );
 				wp_enqueue_script( 'bsfppc_backend_checkbox_js' );
 				wp_enqueue_style( 'bsfppc_backend_css' );
 				?>		<div class = "bsfppc-modal-warn">
@@ -87,6 +90,7 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 							<div id="bsfppc_notifications" class="bsfppc-popup-prevent">
 								<p class="bsfppc-tooltip">Pre Publish Checklist</p>
 								<p class="bsfppc-popup-description"> Please check all the items before publishing</p>
+								<div class="bsfppc-modal-checklist" id="bsfppc-modal-id" ></div>
 								<ul class="cd-buttons-prevent">
 								<li><p class="bsfppc-popup-option-okay">Okay!</p></li>
 								</ul>
@@ -179,15 +183,6 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 					echo esc_attr( $key );
 					echo '<br/>';
 				}
-				?>
-									<div class="bsfppc-overlay">
-										<div class="bsfppc-content">
-											<br>
-											<p class="bsfppc-warning"> Please check all the checkboxes before publishing or you can publish anyway </p>
-											<button id="close" class="components-button is-button is-default">Publish anyway !</button>
-										</div>
-									</div>
-				<?php
 			} else {
 				echo 'Please create a list to display here from Settings->Pre-Publish-Checklist';
 			}
