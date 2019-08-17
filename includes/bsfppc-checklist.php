@@ -21,7 +21,7 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 	<tbody>
 		<tr>
 			<th scope="row"> <p>Create a Custom Checklist</p> </th>
-			<td>
+			<td class="bsfppc-table">
 				<table id ="list_table">
 					<tr><div class="bsfppc_input_feild">
 						<input type="text" id="add_item_text_feild" class="bsfppc-item-input" name="bsfppc_checklist_item[]" >
@@ -37,7 +37,7 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 		</tr>
 		<tr>
 			<th scope="row"><p class="bsfppc_post">Your List</p> </th>
-			<td class="bsfppclistclass">
+			<td class="bsfppc-list-table">
 
 				<div id="columns" class="ui-droppable ui-sortable bsfppcdragdrop">
 		<?php
@@ -50,17 +50,20 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 									<li class="bsfppc-li">
 										<!-- <span class = "down"></span> -->
 										<span class="dashicons dashicons-menu-alt2"></span> <input type="text" readonly="true" class="bsfppc-drag-feilds" value="<?php echo esc_attr( $key ); ?>" name="bsfppc_checklist_item[]" >
-										<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcdelete" value="<?php echo esc_attr( $key ); ?>">Delete</button>
+										<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcdelete" value="<?php echo esc_attr( $key ); ?>">Delete</button></li>
 				<?php
 			}
 		} else {
 			echo 'You have do not have any list please add items in the list';
 		}
 		?>
-									</li>
+									
 						</ul>
 				</div>
-				<p class="bsfppc-description"> You can drag and drop the items to set the order</p>
+				<p class="bsfppc-description"> You can drag and drop the items to set the order</p><br><br>
+				<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcedit">Edit Items</button><span class="spinner"></span>
+				<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcsave">Save Changes </button>
+
 			</td>
 		</tr>
 	</tbody>

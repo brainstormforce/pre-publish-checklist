@@ -103,4 +103,56 @@ jQuery(document).ready(function () {
 
     jQuery('.bsfppc-ul').disableSelection();
   });
+
+
+
+
+
+
+    jQuery(document).on('click', '.bsfppcsave', function () {
+    var empty = true;
+    jQuery('.bsfppc-drag-feilds').each(function(){
+       if(jQuery(this).val().length == 0){
+          empty =false;
+          return false;
+        }
+     });
+    if(empty == true) {   
+    jQuery('.bsfppcsave').css("display", "none");
+    jQuery('.bsfppc-drag-feilds').prop("readonly", true);
+    var bsfppc_item_drag_var = [];
+    var bsfppc_item_drag_var = jQuery('.bsfppc-drag-feilds');
+    bsfppc_item_drag_var.each(function () {
+      bsfppc_drag_contents.push(jQuery(this).attr('value'));
+    });
+    console.log(bsfppc_drag_contents);
+    jQuery.post(bsfppc_add_delete_obj.url, {
+      action: 'bsfppc_checklistitem_drag',
+      bsfppc_item_drag_var: bsfppc_drag_contents
+    }, function (data) {
+      if (data === 'sucess') {
+      } else {
+        bsfppc_drag_contents = [];
+      }
+    });
+  }else{
+      jQuery(".edit-warning").css("display", "inline-block");  
+      setTimeout(function() {
+      jQuery(".edit-warning").css("display", "none");
+      }, 2000);
+    }
+  });
+
+
+
+   jQuery('.bsfppcedit').click(function () {
+    jQuery('.bsfppc-drag-feilds' ).removeAttr('readonly');
+    jQuery( '.bsfppc-drag-feilds' ).focus();
+    jQuery('.bsfppcsave').css("display", "inline-block");
+
+  });
+
+
+
+
 });

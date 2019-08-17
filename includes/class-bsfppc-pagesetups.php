@@ -80,6 +80,7 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 							<div id="bsfppc_notifications" class="bsfppc-popup-warn">
 								<p class="bsfppc-tooltip">Pre Publish Checklist</p>
 								<p class="bsfppc-popup-description">You have not completed your Pre Publish Checklist yet what would you like to do?</p>
+								<div class="bsfppc-modal-checklist" id="bsfppc-modal-id" ></div>
 								<ul class="cd-buttons">
 								<li><p class="bsfppc-popup-option-dontpublish">Don't Publish</p></li>
 								<li><p class="bsfppc-popup-options-publishanyway">Publish Anyway</p></li>
@@ -178,7 +179,7 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 						}
 					}
 					?>
-						>
+						
 					<?php
 					echo esc_attr( $key );
 					echo '<br/>';
