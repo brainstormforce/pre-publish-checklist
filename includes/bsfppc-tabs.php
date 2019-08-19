@@ -38,11 +38,11 @@ if ( isset( $_GET['tab'] ) ) {  //PHPCS:ignore:WordPress.Security.NonceVerificat
 <!-- WordPress provides the styling for tabs. -->
 
 <!-- when tab buttons are clicked we jump back to the same page but with a new parameter that represents the clicked tab. accordingly we make it active -->
-<h2 class="nav-tab-wrapper">
+<h2 class="nav-tab-wrapper bsfppc-nav-tab-wrapper">
 <a href="?page=bsf_ppc&tab=bsfppc_general_settings" class="nav-tab tb 
 	<?php
 	if ( 'bsfppc_general_settings' === $active_tab ) {
-		echo 'nav-tab-active';
+		echo 'nav-tab-active bsfppc-active-tab';
 	}
 	?>
 	"><?php esc_attr_e( 'General Settings', 'Pre-publish-checklist' ); ?></a>
@@ -51,7 +51,7 @@ if ( isset( $_GET['tab'] ) ) {  //PHPCS:ignore:WordPress.Security.NonceVerificat
 		<a href="?page=bsf_ppc&tab=bsfppc-checklist" class="nav-tab tb 
 	<?php
 	if ( 'bsfppc-checklist' === $active_tab ) {
-		echo 'nav-tab-active';
+		echo 'nav-tab-active bsfppc-active-tab';
 	}
 	?>
 		"><?php esc_attr_e( 'Checklist', 'Pre-publish-checklist' ); ?></a>
@@ -59,7 +59,7 @@ if ( isset( $_GET['tab'] ) ) {  //PHPCS:ignore:WordPress.Security.NonceVerificat
 		<a href="?page=bsf_ppc&tab=bsfppc-user-manual" class="nav-tab tb 
 	<?php
 	if ( 'bsfppc-user-manual' === $active_tab ) {
-		echo 'nav-tab-active';
+		echo 'nav-tab-active bsfppc-active-tab';
 	}
 	?>
 		"><?php esc_attr_e( 'Getting Started', 'Pre-publish-checklist' ); ?></a>

@@ -17,10 +17,10 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 ?>
 <html>
 <body>
-<table class="form-table">
+<table class="form-table bsfppc-form-table">
 	<tbody>
 		<tr>
-			<th scope="row"> <p>Create a Custom Checklist</p> </th>
+			<th scope="row"> <p class="bsfppc-post">Create a Custom Checklist</p> </th>
 			<td class="bsfppc-table">
 				<table id ="list_table">
 					<tr><div class="bsfppc_input_feild">
@@ -36,7 +36,7 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"><p class="bsfppc_post">Your List</p> </th>
+			<th scope="row"><p class="bsfppc-post">Your List</p> </th>
 			<td class="bsfppc-list-table">
 
 				<div id="columns" class="ui-droppable ui-sortable bsfppcdragdrop">
@@ -60,10 +60,7 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 									
 						</ul>
 				</div>
-				<p class="bsfppc-description"> You can drag and drop the items to set the order</p><br><br>
-				<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcedit">Edit Items</button><span class="spinner"></span>
-				<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcsave">Save Changes </button>
-
+				<i> Click the list item to edit, You can drag and drop the list items to change the order </i><br><br>
 			</td>
 		</tr>
 	</tbody>

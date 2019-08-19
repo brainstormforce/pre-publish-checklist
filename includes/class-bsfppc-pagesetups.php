@@ -172,17 +172,20 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 				foreach ( $bsfppc_checklist_item_data as $key ) {
 					?>
 						<input type="checkbox" name="checkbox[]" id="checkbox" class="bsfppc_checkboxes" value= "<?php echo esc_attr( $key ); ?>"
-					<?php
+
+					<?php					
 					if ( ! empty( $value ) ) {
 						foreach ( $value as $keychecked ) {
 							checked( $keychecked, $key );
 						}
 					}
 					?>
-						
+						>
 					<?php
+					
 					echo esc_attr( $key );
 					echo '<br/>';
+					
 				}
 			} else {
 				echo 'Please create a list to display here from Settings->Pre-Publish-Checklist';

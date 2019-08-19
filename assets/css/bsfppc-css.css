@@ -62,8 +62,9 @@ input[type=text].bsfppc-drag-feilds{
 }
 
 .bsfppc-tooltip {
-  font-weight: 700;
-  display: inline-flex;
+    font-weight: 600;
+    display: inline-flex;
+    font-size: 20px;
 }
 
 .bsfppc-setting-name{
@@ -95,7 +96,7 @@ ul.bsfppc-ul li.bsfppc-li {
     
     /*margin: 0px 0px 0px 0px;*/
     font-size: 1.25em;
-    padding: 5px 0px 5px 5px;
+    padding: 5px 0px 5px 7px;
     border-left: 1px solid #d3d3d3;
     border-right: 1px solid #d3d3d3;
     background: #fff;
@@ -167,7 +168,7 @@ ul.bsfppc-ul.down:before {
 .bsfppc-popup-warn  {
     width: 400px;
     min-height: 200px;
-    border-radius: 5px;
+
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
     text-align: center;
     box-shadow: 0px 0px 15px -6px rgba(0,0,0,0.75);
@@ -182,7 +183,7 @@ ul.bsfppc-ul.down:before {
 }
 .bsfppc-popup-prevent{
     width: 400px;
-    border-radius: 5px;
+
     min-height: 200px;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
     text-align: center;
@@ -241,8 +242,9 @@ ul.bsfppc-ul.down:before {
   margin-bottom: 0px;
  }
 
-.bsfppc_input_feild{
-  margin-top: 15px;
+.bsfppc_input_feild {
+    margin-top: 15px;
+    max-width: 800px;
 }
 .bsfppc-edit-waring-description{
     font-style: italic;
@@ -309,6 +311,7 @@ ul.bsfppc-ul.down:before {
     width: 50%;
     padding: 0;
     border: 0;
+    cursor: pointer;
     background: #f5f5f5;
     list-style: none;
     transition: background-color 0.2s;
@@ -320,6 +323,7 @@ ul.bsfppc-ul.down:before {
     line-height: 60px;
     margin-top: -17px;
     padding: 0;
+    cursor: pointer;
     border: 0;
     cursor: pointer;
     background: #f5f5f5;
@@ -330,12 +334,12 @@ ul.bsfppc-ul.down:before {
 
 
 }
-.bsfppc-popup-option-okay p{
-  border: 2px solid #ddd;
-  transition-duration: 5s;
-   transition-timing-function: linear;
-}
 
+p.bsfppc-popup-option-okay {
+  transition-duration: 5s;
+  margin-top: 35px;
+  transition-timing-function: linear;
+}
 
 .bsfppc-popup-options-publishanyway{
   border: 2px solid #ddd;
@@ -349,34 +353,46 @@ ul.bsfppc-ul.down:before {
     padding-bottom: 15px;
     margin-left: 30%;
 }
+.bsfppc-nav-tab-wrapper{
 
-.bsfppcdelete{
-   margin-top: 3px;
-   margin-right: 0px;
+  border-bottom: none;
 }
 
-.postbox{
+button#Delete {
+    margin-top: 3px;
+}
+ul.bsfppc-ul {
+    position: relative;
+    padding: 10;
+    max-width: 795px;
+    list-style-type: none;
+}
+table.form-table.bsfppc-form-table {
+    background: white;
+    max-width: 99%;
+    margin-top: 0px;
+    padding: 15px;
+}
+p.bsfppc-setting-name {
+    padding-left: 10px;
+}
 
-  
+a.nav-tab.tb.nav-tab-active.bsfppc-active-tab {
+    background: white;
 }
-.form-table{
-  max-width: 1000px;
-}
-/*.bsfppc-list-table{
-  position: relative;
 
+.bsfppc-post{
+  padding-left: 15px;
 }
-.bsfppcdragdrop{
-  position: absolute;
-}*/
-/*@media only screen and (min-width : 150px) and (max-width : 780px)
-{
-  {}
-  .bsfppc-ul
-  {
-    width: 70%;
-    margin: 0 auto;
-  }
 
+h2.nav-tab-wrapper.bsfppc-nav-tab-wrapper {
+    border-bottom: none;
 }
-*/
+
+.bsfppc-frontend-form{
+  margin-top:7px;
+}
+
+td.bsfppc-posttypes {
+    padding-top: 20px;
+}

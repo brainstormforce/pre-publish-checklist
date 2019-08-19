@@ -54,6 +54,8 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 			add_action( 'wp_ajax_nopriv_bsfppc_checklistitem_delete', array( $this, 'bsfppc_delete_item' ), 1 );
 			add_action( 'wp_ajax_bsfppc_checklistitem_drag', array( $this, 'bsfppc_drag_item' ), 1 );
 			add_action( 'wp_ajax_nopriv_bsfppc_checklistitem_drag', array( $this, 'bsfppc_drag_item' ), 1 );
+			add_action( 'wp_ajax_bsfppc_checklistitem_edit', array( $this, 'bsfppc_edit_item' ), 1 );
+			add_action( 'wp_ajax_nopriv_bsfppc_checklistitem_edit', array( $this, 'bsfppc_edit_item' ), 1 );
 		}
 		/**
 		 * Plugin Styles for admin dashboard.
@@ -112,6 +114,7 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 		 */
 		public function bsfppc_drag_item() {
 			if ( ! empty( $_POST['bsfppc_item_drag_var'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+				var_dump($_POST['bsfppc_item_drag_var']);
 				$bsfppc_new_drag_items = ( ! empty( $_POST['bsfppc_item_drag_var'] ) ? ( $_POST['bsfppc_item_drag_var'] ) : array() );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				$bsfppc_new_drag_items = array_map( 'sanitize_text_field', $bsfppc_new_drag_items );
 				if ( empty( $bsfppc_item_drag_contents ) || false === $bsfppc_item_drag_contents ) {
@@ -125,6 +128,7 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 			}
 			die();
 		}
+
 		/**
 		 * Function for adding checklist  via ajax.
 		 *
@@ -220,6 +224,45 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 				echo 'sucess';
 			}
 			die();
+		}
+
+		public function bsfppc_edit_item() {
+			if ( isset( $_POST['bsfppc_edit_value'] ) && isset($_POST['bsfppc_prev_value']) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+				global $wpdb;
+				$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
+				$bsfppc_prev_value		= $_POST['bsfppc_prev_value'];
+				$bsfppc_edit_value        = $_POST['bsfppc_edit_value'];//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+				$bsfppc_edit_key          = array_search( $_POST['bsfppc_prev_value'], $bsfppc_checklist_item_data, true );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+				$bsfppc_checklist_item_data[$bsfppc_edit_key] = $bsfppc_edit_value ;
+				update_option( 'bsfppc_checklist_data', $bsfppc_checklist_item_data );
+				echo 'sucess';
+				$bsfppc_all_post_ids = get_posts(
+					array(
+						'posts_per_page' => -1,
+						'post_status'    => array( 'publish', 'pending', 'draft' ),
+						'fields'         => 'ids',
+					)
+				);
+				if ( ! empty( $bsfppc_all_post_ids ) ) {
+					foreach ( $bsfppc_all_post_ids as $bsfppc_postid ) {
+						$bsfppc_prev_value		= $_POST['bsfppc_prev_value'];
+						$bsfppc_edit_value        = $_POST['bsfppc_edit_value'];//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+						$bsfppc_pre_checklist_values       = get_post_meta( $bsfppc_postid, '_bsfppc_meta_key', true );
+						$bsfppc_post_edit_key          = array_search( $_POST['bsfppc_prev_value'], $bsfppc_pre_checklist_values, true );
+						if ( false !== $bsfppc_post_edit_key ) {
+							 $bsfppc_pre_checklist_values[$bsfppc_edit_key] = $bsfppc_edit_value ;//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+							update_post_meta(
+								$bsfppc_postid,
+								'_bsfppc_meta_key',
+								$bsfppc_pre_checklist_values
+							);
+						}
+					}
+				}
+				echo 'sucess';
+			}
+			die();
+			
 		}
 
 		/**
