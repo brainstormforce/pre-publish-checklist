@@ -7,9 +7,12 @@
  * @author  Brainstorm Force.
  */
 
+echo '<h1 class="bsfppc_main_title">';
+esc_attr_e( 'Pre Publish Checklist', 'pre publish checklist ' );
+echo '</h1>';
 ?>
 
-<h1>Pre Publish Checklist</h1>
+
 
 <?php
 // Navigation.

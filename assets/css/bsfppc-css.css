@@ -353,10 +353,10 @@ p.bsfppc-popup-option-okay {
     padding-bottom: 15px;
     margin-left: 30%;
 }
-.bsfppc-nav-tab-wrapper{
+/*.bsfppc-nav-tab-wrapper{
 
   border-bottom: none;
-}
+}*/
 
 button#Delete {
     margin-top: 3px;
@@ -368,7 +368,7 @@ ul.bsfppc-ul {
     list-style-type: none;
 }
 table.form-table.bsfppc-form-table {
-    background: white;
+    background: #f1f1f1;
     max-width: 99%;
     margin-top: 0px;
     padding: 15px;
@@ -378,16 +378,16 @@ p.bsfppc-setting-name {
 }
 
 a.nav-tab.tb.nav-tab-active.bsfppc-active-tab {
-    background: white;
+    background: #f1f1f1;
 }
 
 .bsfppc-post{
   padding-left: 15px;
 }
 
-h2.nav-tab-wrapper.bsfppc-nav-tab-wrapper {
+/*h2.nav-tab-wrapper.bsfppc-nav-tab-wrapper {
     border-bottom: none;
-}
+}*/
 
 .bsfppc-frontend-form{
   margin-top:7px;
@@ -395,4 +395,12 @@ h2.nav-tab-wrapper.bsfppc-nav-tab-wrapper {
 
 td.bsfppc-posttypes {
     padding-top: 20px;
+}
+
+.bsfppc_main_title{
+  font-size: 23px;
+    font-weight: 400;
+    line-height: 30px;
+    padding-top: 5px;
+    padding-left: 5px;
 }

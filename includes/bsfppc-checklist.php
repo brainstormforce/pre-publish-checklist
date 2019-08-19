@@ -24,7 +24,7 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 			<td class="bsfppc-table">
 				<table id ="list_table">
 					<tr><div class="bsfppc_input_feild">
-						<input type="text" id="add_item_text_feild" class="bsfppc-item-input" name="bsfppc_checklist_item[]" >
+						<input type="text" id="add_item_text_feild" class="bsfppc-item-input" name="bsfppc_checklist_item[]" minlength= 1 >
 						<button type="button" id="bsfppc-Savelist" name="submit" class="button button-primary bsfppc_data"   Value="Save List" />Add to list</button>
 						<br>
 							<div class="bsfppc-hide-cover">
@@ -60,7 +60,8 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 									
 						</ul>
 				</div>
-				<i> Click the list item to edit, You can drag and drop the list items to change the order </i><br><br>
+				
+				<i> Click the list item to edit, You can drag and drop the list items to change the order.</i><br><br>
 			</td>
 		</tr>
 	</tbody>

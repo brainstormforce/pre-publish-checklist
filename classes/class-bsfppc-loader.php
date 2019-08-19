@@ -250,7 +250,7 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 						$bsfppc_pre_checklist_values       = get_post_meta( $bsfppc_postid, '_bsfppc_meta_key', true );
 						$bsfppc_post_edit_key          = array_search( $_POST['bsfppc_prev_value'], $bsfppc_pre_checklist_values, true );
 						if ( false !== $bsfppc_post_edit_key ) {
-							 $bsfppc_pre_checklist_values[$bsfppc_edit_key] = $bsfppc_edit_value ;//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+							 $bsfppc_pre_checklist_values[$bsfppc_post_edit_key] = $bsfppc_edit_value ;//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 							update_post_meta(
 								$bsfppc_postid,
 								'_bsfppc_meta_key',

@@ -32,11 +32,11 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 			<td>
 			<form method ="POST" class="bsfppc-frontend-form">
 				<input type="radio" name="bsfppc_radio_button_option" value="1" <?php checked( $bsfppc_radio_button, 1 ); ?> > <div class="bsfppc_radio_options">Prevent User from Publishing</div>
-				<p>The user will not be able to publish until he checks all the checkboxes</p><br>
+				<p class="description">The user will not be able to publish until he checks all the checkboxes.</p><br>
 				<input type="radio" name="bsfppc_radio_button_option" value="2" <?php checked( $bsfppc_radio_button, 2 ); ?> > <div class="bsfppc_radio_options">Warn User Before Publishing</div>
-				<p>The user will be warned before publishing or he can publish anyway</p><br>
+				<p class="description">The user will be warned before publishing or he can publish anyway.</p><br>
 				<input type="radio" name="bsfppc_radio_button_option" value="3" <?php checked( $bsfppc_radio_button, 3 ); ?> > <div class="bsfppc_radio_options">Do Nothing</div>
-				<p>The user will be allowed to publish without any warning </p><br>
+				<p class="description">The user will be allowed to publish without any warning.</p><br>
 				<br/>
 		</td>
 		</tr>
@@ -80,7 +80,7 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 	$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
 	?>
 				<br>
-				<p>Select the post types to have your check list on</p> <br>
+				<p class="description">Select the post types to have your check list on.</p> <br>
 
 				<?php wp_nonce_field( 'bsfppc-form-nonce', 'bsfppc-form' ); ?>
 			<br><input type="submit" class="button button-primary bsfppc-savesetting"  name="submit_radio" Value="Save Setting"/>

@@ -6,8 +6,9 @@ jQuery(document).ready(function () {
 
   //Ajax trigger for adding an element in the array 
      jQuery(document).on('click', "#bsfppc-Savelist", function () {
-     if(jQuery('.bsfppc-item-input').val().length !== 0){   
-      
+      console.log(jQuery('.bsfppc-item-input').val());
+     if(jQuery('.bsfppc-item-input').val().replace(/ /g,'').length !== 0  ){   
+     // $("#id").val().replace(/ /g,'').length
      jQuery('#bsfppc-ul').sortable();
     jQuery( "#bsfppc-ul" ).sortable( "destroy" );
       jQuery.post(bsfppc_add_delete_obj.url, {
@@ -56,8 +57,9 @@ jQuery(document).ready(function () {
 
   //Ajax trigger for deleting an element in the array
   jQuery(document).on('click', '.bsfppcdelete', function () {
+    console.log(jQuery(this).prev().val().length);
     // console.log(jQuery(this).prop("name")== 'Delete');
-    if(jQuery(this).prop("name")== 'Delete'){
+    if(jQuery(this).prop("name") == 'Delete'){
       console.log(jQuery('.bsfppcdelete').html() == 'Delete');
     var bsfppc_txt;
     var bsfppc_delete_flag = confirm("Are you sure you want to Delete ");
@@ -78,7 +80,11 @@ jQuery(document).ready(function () {
     }
   }
   else if(jQuery(this).prop("name") == 'Save'){
-      jQuery(this).prop("name") == 'Delete'
+
+    if(jQuery(this).prev().val().replace(/ /g,'').length !== 0  ){   
+      console.log('inside');
+
+      jQuery(this).attr("name" , "Delete");
        jQuery(this).html("Delete");
       jQuery(this).prev().attr('readonly' , true );
         if( jQuery(this).val() != jQuery(this).prev().val() ){
@@ -90,41 +96,20 @@ jQuery(document).ready(function () {
                 if (data === 'sucess') {
                   
                 } else {
+
+               
                   
                 }
               });
         }
 
+  }}else if(jQuery(this).prev().val().length == 0){   
+     jQuery(".bsfppc-hide-cover").css("visibility", "visible");  
+                setTimeout(function() {
+                  jQuery(".bsfppc-hide-cover").css("visibility", "hidden");
+                }, 2000);
   }
   });
-
-  // jQuery(function () {
-  //   jQuery('#bsfppc-ul').sortable({  
-  //     update: function () {
-  //       var bsfppc_item_drag_var = [];
-  //       var bsfppc_item_drag_var = jQuery('.bsfppc-drag-feilds');
-  //       bsfppc_item_drag_var.each(function () {
-  //         bsfppc_drag_contents.push(jQuery(this).attr('value'));
-  //       });
-  //       console.log(bsfppc_drag_contents);
-  //       jQuery.post(bsfppc_add_delete_obj.url, {
-  //         action: 'bsfppc_checklistitem_drag',
-  //         bsfppc_item_edit_var: bsfppc_drag_contents
-  //       }, function (data) {
-  //         if (data === 'sucess') {           
-  //           bsfppc_drag_contents = [];
-  //         } else {
-  //           bsfppc_drag_contents = [];
-  //         }
-  //       });
-  //     },
-  //     cancel: '.bsfppc-alreadyexists-waring-description' ,
-  //     placeholder: "dashed-placeholder"
-
-  //   });
-
-  //   jQuery('.bsfppc-ul').disableSelection();
-  // });.
 
         jQuery('#bsfppc-ul').sortable({
           update: function () {
