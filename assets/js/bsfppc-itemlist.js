@@ -57,10 +57,10 @@ jQuery(document).ready(function () {
 
   //Ajax trigger for deleting an element in the array
   jQuery(document).on('click', '.bsfppcdelete', function () {
-    console.log(jQuery(this).prev().val().length);
+   
     // console.log(jQuery(this).prop("name")== 'Delete');
     if(jQuery(this).prop("name") == 'Delete'){
-      console.log(jQuery('.bsfppcdelete').html() == 'Delete');
+  
     var bsfppc_txt;
     var bsfppc_delete_flag = confirm("Are you sure you want to Delete ");
     if (bsfppc_delete_flag == true) {
@@ -82,12 +82,12 @@ jQuery(document).ready(function () {
   else if(jQuery(this).prop("name") == 'Save'){
 
     if(jQuery(this).prev().val().replace(/ /g,'').length !== 0  ){   
-      console.log('inside');
 
       jQuery(this).attr("name" , "Delete");
-       jQuery(this).html("Delete");
+             jQuery(this).html("Delete");
       jQuery(this).prev().attr('readonly' , true );
         if( jQuery(this).val() != jQuery(this).prev().val() ){
+ 
                 jQuery.post(bsfppc_add_delete_obj.url, {
                 action: 'bsfppc_checklistitem_edit',
                 bsfppc_edit_value : jQuery(this).prev().val(),
@@ -103,7 +103,10 @@ jQuery(document).ready(function () {
               });
         }
 
-  }}else if(jQuery(this).prev().val().length == 0){   
+  }jQuery(this).attr("value" , jQuery(this).prev().val() );
+
+
+  }else if(jQuery(this).prev().val().length == 0){   
      jQuery(".bsfppc-hide-cover").css("visibility", "visible");  
                 setTimeout(function() {
                   jQuery(".bsfppc-hide-cover").css("visibility", "hidden");
