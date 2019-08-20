@@ -114,7 +114,6 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 		 */
 		public function bsfppc_drag_item() {
 			if ( ! empty( $_POST['bsfppc_item_drag_var'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-				var_dump($_POST['bsfppc_item_drag_var']);
 				$bsfppc_new_drag_items = ( ! empty( $_POST['bsfppc_item_drag_var'] ) ? ( $_POST['bsfppc_item_drag_var'] ) : array() );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				$bsfppc_new_drag_items = array_map( 'sanitize_text_field', $bsfppc_new_drag_items );
 				if ( empty( $bsfppc_item_drag_contents ) || false === $bsfppc_item_drag_contents ) {
@@ -209,8 +208,8 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 				);
 				if ( ! empty( $bsfppc_all_post_ids ) ) {
 					foreach ( $bsfppc_all_post_ids as $bsfppc_postid ) {
-						$bsfppc_pre_value       = get_post_meta( $bsfppc_postid, '_bsfppc_meta_key', true );
-						if( ! empty($bsfppc_pre_value) ){
+						$bsfppc_pre_value = get_post_meta( $bsfppc_postid, '_bsfppc_meta_key', true );
+						if ( ! empty( $bsfppc_pre_value ) ) {
 							$bsfppc_post_delete_key = array_search( $bsfppc_delete_value, $bsfppc_pre_value, true );
 							if ( false !== $bsfppc_post_delete_key ) {
 								unset( $bsfppc_pre_value[ $bsfppc_post_delete_key ] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
@@ -228,15 +227,22 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 			die();
 		}
 
+		/**
+		 * Function for editing checklist  via ajax.
+		 *
+		 * Edits the checklist item in the database.
+		 *
+		 * @since 1.0.0
+		 */
 		public function bsfppc_edit_item() {
-			if ( isset( $_POST['bsfppc_edit_value'] ) && isset($_POST['bsfppc_prev_value']) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+			if ( isset( $_POST['bsfppc_edit_value'] ) && isset( $_POST['bsfppc_prev_value'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				global $wpdb;
 				$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
-				if(! empty($bsfppc_checklist_item_data)){
-					$bsfppc_prev_value		= $_POST['bsfppc_prev_value'];
-					$bsfppc_edit_value        = $_POST['bsfppc_edit_value'];//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-					$bsfppc_edit_key          = array_search( $_POST['bsfppc_prev_value'], $bsfppc_checklist_item_data, true );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-					$bsfppc_checklist_item_data[$bsfppc_edit_key] = $bsfppc_edit_value ;
+				if ( ! empty( $bsfppc_checklist_item_data ) ) {
+					$bsfppc_prev_value                              = $_POST['bsfppc_prev_value'];//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+					$bsfppc_edit_value                              = $_POST['bsfppc_edit_value'];//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+					$bsfppc_edit_key                                = array_search( $_POST['bsfppc_prev_value'], $bsfppc_checklist_item_data, true );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+					$bsfppc_checklist_item_data[ $bsfppc_edit_key ] = $bsfppc_edit_value;
 					update_option( 'bsfppc_checklist_data', $bsfppc_checklist_item_data );
 					echo 'sucess';
 					$bsfppc_all_post_ids = get_posts(
@@ -248,17 +254,19 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 					);
 					if ( ! empty( $bsfppc_all_post_ids ) ) {
 						foreach ( $bsfppc_all_post_ids as $bsfppc_postid ) {
-							$bsfppc_prev_value		= $_POST['bsfppc_prev_value'];
-							$bsfppc_edit_value        = $_POST['bsfppc_edit_value'];//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-							$bsfppc_pre_checklist_values       = get_post_meta( $bsfppc_postid, '_bsfppc_meta_key', true );
-							$bsfppc_post_edit_key          = array_search( $_POST['bsfppc_prev_value'], $bsfppc_pre_checklist_values, true );
-							if ( false !== $bsfppc_post_edit_key ) {
-								 $bsfppc_pre_checklist_values[$bsfppc_post_edit_key] = $bsfppc_edit_value ;//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-								update_post_meta(
-									$bsfppc_postid,
-									'_bsfppc_meta_key',
-									$bsfppc_pre_checklist_values
-								);
+							$bsfppc_prev_value           = $_POST['bsfppc_prev_value'];//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+							$bsfppc_edit_value           = $_POST['bsfppc_edit_value'];//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+							$bsfppc_pre_checklist_values = get_post_meta( $bsfppc_postid, '_bsfppc_meta_key', true );
+							if ( ! empty( $bsfppc_pre_checklist_values ) ) {
+								$bsfppc_post_edit_key = array_search( $_POST['bsfppc_prev_value'], $bsfppc_pre_checklist_values, true );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+								if ( false !== $bsfppc_post_edit_key ) {
+									$bsfppc_pre_checklist_values[ $bsfppc_post_edit_key ] = $bsfppc_edit_value;//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+									update_post_meta(
+										$bsfppc_postid,
+										'_bsfppc_meta_key',
+										$bsfppc_pre_checklist_values
+									);
+								}
 							}
 						}
 					}
@@ -267,7 +275,7 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 				echo 'empty';
 			}
 			die();
-			
+
 		}
 
 		/**

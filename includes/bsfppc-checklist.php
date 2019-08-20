@@ -57,10 +57,8 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 			echo 'You have do not have any list please add items in the list';
 		}
 		?>
-									
 						</ul>
 				</div>
-				
 				<i> Click the list item to edit, You can drag and drop the list items to change the order.</i><br><br>
 			</td>
 		</tr>

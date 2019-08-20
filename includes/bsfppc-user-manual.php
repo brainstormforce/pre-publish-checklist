@@ -6,6 +6,7 @@
  * @package BSF
  * @author  Brainstorm Force.
  */
+
 wp_enqueue_style( 'bsfppc_backend_css' );
 ?>
 <!DOCTYPE html>
@@ -28,7 +29,6 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 		</div>
 	</td>
 		</tr>
-		
 	</tbody>
 </table>
 </body>

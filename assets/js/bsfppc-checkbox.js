@@ -236,12 +236,7 @@ $(document).ready(
                 
            
            });
-         $(document).on('click',".bsfppc-popup-option-okay", function () {
-             $('.bsfppc-modal-prevent').attr('style','display:none');
-            document.querySelector('#bsfppc_custom_meta_box').scrollIntoView({                 
-                behavior: 'smooth' 
-            });             
-           });
+         
         }
         
          $(document).on('click',".bsfppc-popup-options-publishanyway", function () {
@@ -269,6 +264,13 @@ $(document).ready(
                     document.querySelector('#bsfppc_custom_meta_box').scrollIntoView({                 
                     behavior: 'smooth' 
                 });               
+           });
+
+          $(document).on('click',".bsfppc-popup-option-okay", function () {
+             $('.bsfppc-modal-prevent').attr('style','display:none');
+            document.querySelector('#bsfppc_custom_meta_box').scrollIntoView({                 
+                behavior: 'smooth' 
+            });             
            });
     }
 

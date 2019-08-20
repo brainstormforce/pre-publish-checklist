@@ -71,9 +71,6 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 		public function bsfppc_markup() {
 			$bsfppc_screen = get_current_screen();
 			if ( ( ! empty( $_GET['action'] ) && 'edit' === $_GET['action'] ) || 'edit.php' === $bsfppc_screen->parent_file || 'post-new.php' === $bsfppc_screen->parent_file || 'page' === $bsfppc_screen->post_type ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Recommended
-				// global $post;
-				// $bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
-				// $value                      = get_post_meta( $post->ID, '_bsfppc_meta_key', true );
 				wp_enqueue_script( 'bsfppc_backend_checkbox_js' );
 				wp_enqueue_style( 'bsfppc_backend_css' );
 				?>		<div class = "bsfppc-modal-warn">
@@ -173,7 +170,7 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 					?>
 						<input type="checkbox" name="checkbox[]" id="checkbox" class="bsfppc_checkboxes" value= "<?php echo esc_attr( $key ); ?>"
 
-					<?php					
+					<?php
 					if ( ! empty( $value ) ) {
 						foreach ( $value as $keychecked ) {
 							checked( $keychecked, $key );
@@ -182,10 +179,10 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 					?>
 						>
 					<?php
-					
+
 					echo esc_attr( $key );
 					echo '<br/>';
-					
+
 				}
 			} else {
 				echo 'Please create a list to display here from Settings->Pre-Publish-Checklist';
