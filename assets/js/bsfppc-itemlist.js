@@ -80,17 +80,19 @@ jQuery(document).ready(function () {
     }
   }
   else if(jQuery(this).prop("name") == 'Save'){
+    jQuery('.bsfppc-drag-feilds').attr('style','width:79%');
+    jQuery('.bsfppcedit').attr('style','display:inline-block');
 
-    if(jQuery(this).prev().val().replace(/ /g,'').length !== 0  ){   
+    if(jQuery(this).prevUntil(".dashicons-menu-alt2" ,".bsfppc-drag-feilds" ).val().replace(/ /g,'').length !== 0  ){   
 
       jQuery(this).attr("name" , "Delete");
-             jQuery(this).html("Delete");
-      jQuery(this).prev().attr('readonly' , true );
-        if( jQuery(this).val() != jQuery(this).prev().val() ){
+             jQuery(this).html('<span class="dashicons dashicons-trash bsfppc-delete-dashicon"></span>Delete');
+      jQuery('.bsfppc-drag-feilds').attr('readonly' , true );
+        if( jQuery(this).val() != jQuery(this).prevUntil(".dashicons-menu-alt2" ,".bsfppc-drag-feilds" ).val() ){
  
                 jQuery.post(bsfppc_add_delete_obj.url, {
                 action: 'bsfppc_checklistitem_edit',
-                bsfppc_edit_value : jQuery(this).prev().val(),
+                bsfppc_edit_value : jQuery(this).prevUntil(".dashicons-menu-alt2" ,".bsfppc-drag-feilds" ).val(),
                 bsfppc_prev_value : jQuery(this).val()
               }, function (data) {
                 if (data === 'sucess') {
@@ -104,6 +106,29 @@ jQuery(document).ready(function () {
         }
 
   }jQuery(this).attr("value" , jQuery(this).prev().val() );
+          jQuery('#bsfppc-ul').sortable({
+          update: function () {
+                  var bsfppc_item_drag_var = [];
+                  var bsfppc_item_drag_var = jQuery('.bsfppc-drag-feilds');
+                  bsfppc_item_drag_var.each(function () {
+                    
+                    bsfppc_drag_contents.push(jQuery(this).attr('value'));
+                  });console.log(bsfppc_drag_contents);
+                      jQuery.post(bsfppc_add_delete_obj.url, {
+                      action: 'bsfppc_checklistitem_drag',
+                      bsfppc_item_drag_var: bsfppc_drag_contents
+                    }, function (data) {
+                        if (data === 'sucess') {
+                          bsfppc_drag_contents = [];
+                        } else if (data === 'failure') {
+                          bsfppc_drag_contents = [];
+                        } else {
+                          bsfppc_drag_contents = [];
+                        }
+                      });
+          }, placeholder: "dashed-placeholder"
+      },
+      { cancel: '.bsfppc-alreadyexists-waring-description' });
 
 
   }else if(jQuery(this).prev().val().length == 0){   
@@ -138,10 +163,14 @@ jQuery(document).ready(function () {
       },
       { cancel: '.bsfppc-alreadyexists-waring-description' });
 
-    jQuery(document).on('click', '.bsfppc-drag-feilds', function () {
-    jQuery(this).removeAttr('readonly');
-    jQuery(this).focus();
-    jQuery(this).parent('.bsfppc-li').find(".bsfppcdelete").html("Save");
+    jQuery(document).on('click', '.bsfppcedit', function () {
+    jQuery(this).attr('style','display:none');
+    jQuery(this).prev().attr('style','width:87%');
+    jQuery('#bsfppc-ul').sortable();
+    jQuery( "#bsfppc-ul" ).sortable( "destroy" );
+    jQuery(this).prev().removeAttr('readonly');
+    jQuery(this).prev().focus();
+    jQuery(this).parent('.bsfppc-li').find(".bsfppcdelete").html('<span class="dashicons dashicons-portfolio"></span> Save');
     jQuery(this).parent('.bsfppc-li').find(".bsfppcdelete").attr("name" , "Save");
    });  
 });

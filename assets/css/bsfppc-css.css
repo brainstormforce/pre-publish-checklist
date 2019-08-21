@@ -16,7 +16,7 @@
 
 input.bsfppc-drag-feilds {
   padding: 5px;
-  width: 87%;
+  width: 79%;
   display: inline-block;
   border: 2px solid #fff;
   margin-left: 0px;
@@ -27,6 +27,7 @@ input.bsfppc-drag-feilds {
 input[readonly].bsfppc-drag-feilds{
   background-color: #fff;
   border: 2px solid #fff;
+  cursor: move;
 }
 input[type=text].bsfppc-drag-feilds{
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0);
@@ -63,7 +64,7 @@ input[type=text].bsfppc-drag-feilds{
 
 .bsfppc-tooltip {
     font-weight: 600;
-    display: inline-flex;
+    display: block;
     font-size: 20px;
 }
 
@@ -167,36 +168,35 @@ ul.bsfppc-ul.down:before {
 
 .bsfppc-popup-warn  {
     width: 400px;
-    min-height: 200px;
-
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
     text-align: center;
     box-shadow: 0px 0px 15px -6px rgba(0,0,0,0.75);
-    border: 1px solid #ddd;
     background-color: #ffffff;
-    border: 1px #666;
     transition: opacity 0.8s;
-    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -70%);
+    position: absolute;
     z-index: 99;
-    margin-top: 5%;
-    margin-left: 35%;
+    border-radius: 5px;
+    margin-top: 50;
+    margin-left: 50;
 }
-.bsfppc-popup-prevent{
+.bsfppc-popup-prevent {
     width: 400px;
-
-    min-height: 200px;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
     text-align: center;
     box-shadow: 0px 0px 15px -6px rgba(0,0,0,0.75);
-    border: 1px solid #ddd;
     background-color: #ffffff;
-    border: 1px #666;
     transition: opacity 0.8s;
-    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -70%);
+    position: absolute;
     z-index: 99;
-    margin-top: 5%;
-    margin-left: 35%;
-
+    border-radius: 5px;
+    margin-top: 50;
+    margin-left: 50;
 }
 
 .bsfppc-modal-warn {
@@ -207,8 +207,7 @@ ul.bsfppc-ul.down:before {
     top: 0;
     z-index: 9999;
     width: 100%;
-    height: 100%;
-    padding-top: 100px;
+    height: 100%;    
     background-color: black;
     background-color: rgba(0, 0, 0, 0.4);
     -webkit-transition: 0.5s;
@@ -222,8 +221,7 @@ ul.bsfppc-ul.down:before {
     top: 0;
     z-index: 9999;
     width: 100%;
-    height: 100%;
-    padding-top: 100px;
+    height: 100%;    
     background-color: black;
     background-color: rgba(0, 0, 0, 0.4);
     -webkit-transition: 0.5s;
@@ -294,16 +292,18 @@ ul.bsfppc-ul.down:before {
     to {opacity :0;}
 }
 
-.cd-buttons p:hover {
+.bsfppc-buttons p:hover {
+  background-color: #ddd;
+}
+.bsfppc-buttons-prevent p:hover {
   background-color: #ddd;
 }
 
-
-.cd-buttons-prevent p :hover {
+.bsfppc-buttons-prevent p :hover {
   background-color: #ddd;
 }
 
-.cd-buttons p {
+.bsfppc-buttons p {
     display: inline-block;
     height: 60px;
     line-height: 60px;
@@ -311,28 +311,25 @@ ul.bsfppc-ul.down:before {
     width: 50%;
     padding: 0;
     border: 0;
+    border-radius: 0px 0px 5px 5px;
     cursor: pointer;
     background: #f5f5f5;
     list-style: none;
     transition: background-color 0.2s;
 }
 
-.cd-buttons-prevent p {
+.bsfppc-buttons-prevent p {
   display: block;
     height: 60px;
     line-height: 60px;
-    margin-top: -17px;
+    margin-bottom: -13px;
     padding: 0;
-    cursor: pointer;
     border: 0;
+    border-radius: 0px 0px 5px 5px;
     cursor: pointer;
     background: #f5f5f5;
     list-style: none;
-    -webkit-transition: background-color 0.2s;
-    -moz-transition: background-color 0.2s;
     transition: background-color 0.2s;
-
-
 }
 
 p.bsfppc-popup-option-okay {
@@ -341,26 +338,12 @@ p.bsfppc-popup-option-okay {
   transition-timing-function: linear;
 }
 
-.bsfppc-popup-options-publishanyway{
-  border: 2px solid #ddd;
-}
-
-
-.bsfppc-popup-description{}
-
 .bsfppc-modal-checklist{
     text-align: left;
     padding-bottom: 15px;
     margin-left: 30%;
 }
-/*.bsfppc-nav-tab-wrapper{
 
-  border-bottom: none;
-}*/
-
-button#Delete {
-    margin-top: 3px;
-}
 ul.bsfppc-ul {
     position: relative;
     padding: 10;
@@ -385,10 +368,6 @@ a.nav-tab.tb.nav-tab-active.bsfppc-active-tab {
   padding-left: 15px;
 }
 
-/*h2.nav-tab-wrapper.bsfppc-nav-tab-wrapper {
-    border-bottom: none;
-}*/
-
 .bsfppc-frontend-form{
   margin-top:7px;
 }
@@ -403,4 +382,73 @@ td.bsfppc-posttypes {
     line-height: 30px;
     padding-top: 5px;
     padding-left: 5px;
+}
+
+
+
+.bsfppcedit:hover {
+   color: #0085ba;
+  }
+
+
+.bsfppcdelete:hover {
+   color: #0085ba;
+  }
+
+.bsfppcedit {
+    margin-top: 3px;
+    content: "\f182";
+    background: #fff;
+    border: none;
+    margin: 0px;
+    display: inline-block;
+    font-size: 13px;
+    line-height: 20px;
+    vertical-align: middle;
+    text-align: center;
+    margin-left: 0px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.bsfppcdelete {
+    margin-top: 3px;
+    content: "\f182";
+    background: #fff;
+    border: none;
+    margin: 0px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 13px;
+    line-height: 20px;
+    vertical-align: middle;
+    text-align: center;
+    margin-left: 0px;
+    text-decoration: none;
+}
+
+.bsfppc-popup-option-dontpublish {
+    display: inline-block;
+    width: 50%;
+    padding: 15px 0 15px 0px;
+    cursor: pointer;
+    background: #f5f5f5;
+    border-radius: 0px 0px 0px 5px;
+}
+
+.bsfppc-popup-options-publishanyway { 
+    display: inline;
+    width: 50%;
+    padding: 15px 0 15px 0px;
+    cursor: pointer;
+    background: #f5f5f5;
+    border-radius: 0px 0px 5px 0px;
+}
+
+.bsfppc-button-wrapper {
+    display: flex;
+    margin-top: 50px;
+}
+
+.bsfppc-popup-option-dontpublish {
+
 }

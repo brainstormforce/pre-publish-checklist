@@ -5,7 +5,7 @@
  * Version:     1.0.0
  * Author:      Brainstorm Force
  * Author URI:  https://brainstormforce.com
- * Text Domain: PrePublishCheckList.
+ * Text Domain: bsf-pre-publish-checklist.
  * Main
  *
  * PHP version 7
@@ -24,4 +24,4 @@ define( 'BSF_PPC_PLUGIN_URL', untrailingslashit( plugins_url( '', __FILE__ ) ) )
 define( 'BSF_PPC_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 
 require_once 'classes/class-bsfppc-loader.php';
-require_once 'includes/class-bsfppc-pagesetups.php';
+require_once 'classes/class-bsfppc-pagesetups.php';

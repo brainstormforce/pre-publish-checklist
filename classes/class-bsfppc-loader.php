@@ -40,11 +40,12 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 			}
 			return self::$instance;
 		}
+
 		/**
 		 * Constructor
 		 */
 		public function __construct() {
-			include_once BSF_PPC_ABSPATH . 'includes/class-bsfppc-pagesetups.php';
+			$this->bsfppc_load();
 			add_action( 'admin_enqueue_scripts', array( $this, 'bsfppc_plugin_backend_js' ) );
 			add_action( 'init', array( $this, 'bsfppc_save_data' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'bsfppc_metabox_scripts' ) );
@@ -56,6 +57,15 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 			add_action( 'wp_ajax_nopriv_bsfppc_checklistitem_drag', array( $this, 'bsfppc_drag_item' ), 1 );
 			add_action( 'wp_ajax_bsfppc_checklistitem_edit', array( $this, 'bsfppc_edit_item' ), 1 );
 			add_action( 'wp_ajax_nopriv_bsfppc_checklistitem_edit', array( $this, 'bsfppc_edit_item' ), 1 );
+		}
+		/**
+         * Loads classes and includes.
+         *
+         * @since 1.0
+         * @return void
+         */
+		private static function bsfppc_load(){ 
+			include_once BSF_PPC_ABSPATH . 'classes/class-bsfppc-pagesetups.php';
 		}
 		/**
 		 * Plugin Styles for admin dashboard.
@@ -170,7 +180,9 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 								<li class="bsfppc-li">
 								<!-- <span class = "down"></span> -->
 								<span class="dashicons dashicons-menu-alt2"></span> <input type="text" readonly="true" class="bsfppc-drag-feilds" value="<?php echo esc_attr( $bsfppc_checklist_item_data_key ); ?>" name="bsfppc_checklist_item[]" >
-								<button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcdelete" value="<?php echo esc_attr( $bsfppc_checklist_item_data_key ); ?>">Delete</button>
+								<button type="button" id = "edit" name="Delete" class="bsfppcedit" value="<?php echo esc_attr( $bsfppc_checklist_item_data_key ); ?>"> <span class="dashicons dashicons-edit"></span>Edit</button>
+										<button type="button" id = "Delete" name="Delete" class="bsfppcdelete" value="<?php echo esc_attr( $bsfppc_checklist_item_data_key ); ?>"> <span class="dashicons dashicons-trash bsfppc-delete-dashicon"></span>Delete</button>
+								<!-- <button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcdelete" value="<?php echo esc_attr( $bsfppc_checklist_item_data_key ); ?>">Delete</button> -->
 								<?php
 					}
 				} else {
@@ -194,8 +206,8 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 			if ( isset( $_POST['delete'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				global $wpdb;
 				$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
-				$bsfppc_delete_value        = $_POST['delete'];//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-				$bsfppc_delete_key          = array_search( $_POST['delete'], $bsfppc_checklist_item_data, true );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+				$bsfppc_delete_value        = sanitize_text_field( $_POST['delete'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+				$bsfppc_delete_key          = array_search( $bsfppc_delete_value , $bsfppc_checklist_item_data, true );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				unset( $bsfppc_checklist_item_data[ $bsfppc_delete_key ] );
 				update_option( 'bsfppc_checklist_data', $bsfppc_checklist_item_data );
 				echo 'sucess';
@@ -239,9 +251,9 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 				global $wpdb;
 				$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
 				if ( ! empty( $bsfppc_checklist_item_data ) ) {
-					$bsfppc_prev_value                              = $_POST['bsfppc_prev_value'];//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-					$bsfppc_edit_value                              = $_POST['bsfppc_edit_value'];//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-					$bsfppc_edit_key                                = array_search( $_POST['bsfppc_prev_value'], $bsfppc_checklist_item_data, true );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+					$bsfppc_prev_value                              = sanitize_text_field($_POST['bsfppc_prev_value']);//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+					$bsfppc_edit_value                              = sanitize_text_field( $_POST['bsfppc_edit_value'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+					$bsfppc_edit_key                                = array_search( $bsfppc_prev_value, $bsfppc_checklist_item_data, true );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 					$bsfppc_checklist_item_data[ $bsfppc_edit_key ] = $bsfppc_edit_value;
 					update_option( 'bsfppc_checklist_data', $bsfppc_checklist_item_data );
 					echo 'sucess';
@@ -254,11 +266,9 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 					);
 					if ( ! empty( $bsfppc_all_post_ids ) ) {
 						foreach ( $bsfppc_all_post_ids as $bsfppc_postid ) {
-							$bsfppc_prev_value           = $_POST['bsfppc_prev_value'];//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-							$bsfppc_edit_value           = $_POST['bsfppc_edit_value'];//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 							$bsfppc_pre_checklist_values = get_post_meta( $bsfppc_postid, '_bsfppc_meta_key', true );
 							if ( ! empty( $bsfppc_pre_checklist_values ) ) {
-								$bsfppc_post_edit_key = array_search( $_POST['bsfppc_prev_value'], $bsfppc_pre_checklist_values, true );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+								$bsfppc_post_edit_key = array_search( $bsfppc_prev_value, $bsfppc_pre_checklist_values, true );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 								if ( false !== $bsfppc_post_edit_key ) {
 									$bsfppc_pre_checklist_values[ $bsfppc_post_edit_key ] = $bsfppc_edit_value;//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 									update_post_meta(
