@@ -59,7 +59,8 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 				<?php
 			}
 		} else {
-			echo 'You have do not have any list please add items in the list';
+			// echo 'You do not have any list please add items in the list';
+			?><p class="bsfppc-nolist-item">You do not have any items in the list please add items in the list.</p><?php
 		}
 		?>
 						</ul>

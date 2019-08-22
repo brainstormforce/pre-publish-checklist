@@ -452,3 +452,8 @@ td.bsfppc-posttypes {
 .bsfppc-popup-option-dontpublish {
 
 }
+p.bsfppc-nolist-item{
+
+    padding-top: 13px;
+    font-style: italic;
+}
