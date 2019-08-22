@@ -289,14 +289,19 @@ $(document).ready(
             });
             for (var i = 1; i >= 0; i--) {
                 
-            $('#bsfppc_custom_meta_box').fadeOut('slow', function(){
+            $('#bsfppc_custom_meta_box').fadeOut(800, function(){
                 $(this).attr('style','background-color:#f2fff9');
-                $(this).fadeIn('slow', function(){
-                    $(this).attr('style','background-color:#fff');
+                $(this).fadeIn(2000, function(){
+                    $(this).attr('style','background-color:#f2fff9');
                 });
+                 jQuery('#bsfppc_custom_meta_box').focus();
+            setTimeout(function(){
+                 $('#bsfppc_custom_meta_box').attr('style','background-color:#fff');
+            },100)
             });
+
         }
-            jQuery('#bsfppc_custom_meta_box').focus();
+
         });
     }
 

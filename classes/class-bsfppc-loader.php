@@ -146,35 +146,18 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 		 * @since 1.0.0
 		 */
 		public function bsfppc_add_item() {
-			$bsfppc_checklist_item_data = array();
-			$bsfppc_item_exists_key     = '';
-			$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
 			if ( ! empty( $_POST['bsfppc_item_content'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				$bsfppc_newitems = sanitize_text_field( $_POST['bsfppc_item_content'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-				if ( ! empty( $bsfppc_checklist_item_data ) ) {
-					$bsfppc_item_exists_key = array_search( $bsfppc_newitems, $bsfppc_checklist_item_data, true );
-				}
-				if ( empty( $bsfppc_item_exists_key ) && 0 !== $bsfppc_item_exists_key ) {
-
-					$item_contents = get_option( 'bsfppc_checklist_data' );
-					if ( empty( $item_contents ) || false === $item_contents ) {
+					$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
+					if ( empty( $bsfppc_checklist_item_data ) || false === $bsfppc_checklist_item_data ) {
 						$bsfppc_checklist_item_data = array();
 					}
 					array_push( $bsfppc_checklist_item_data, $bsfppc_newitems );
 					update_option( 'bsfppc_checklist_data', $bsfppc_checklist_item_data );
-					$bsfppc_ispresent = 0;
-				} else {
-					$bsfppc_ispresent = 1;
-				}
 				?>
 				<?php
-				$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
+				/*$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );*/
 				if ( ! empty( $bsfppc_checklist_item_data ) ) {
-					if ( 1 === $bsfppc_ispresent ) {
-						?>
-							<p class="warning bsfppc-alreadyexists-waring-description">List item already exists</p>
-							<?php
-					}
 					foreach ( $bsfppc_checklist_item_data as $bsfppc_checklist_item_data_key ) {
 						?>
 								<li class="bsfppc-li">
@@ -182,7 +165,6 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 								<span class="dashicons dashicons-menu-alt2"></span> <input type="text" readonly="true" class="bsfppc-drag-feilds" value="<?php echo esc_attr( $bsfppc_checklist_item_data_key ); ?>" name="bsfppc_checklist_item[]" >
 								<button type="button" id = "edit" name="Delete" class="bsfppcedit" value="<?php echo esc_attr( $bsfppc_checklist_item_data_key ); ?>"> <span class="dashicons dashicons-edit"></span>Edit</button>
 										<button type="button" id = "Delete" name="Delete" class="bsfppcdelete" value="<?php echo esc_attr( $bsfppc_checklist_item_data_key ); ?>"> <span class="dashicons dashicons-trash bsfppc-delete-dashicon"></span>Delete</button>
-								<!-- <button type="button" id = "Delete" name="Delete" class="button button-primary bsfppcdelete" value="<?php echo esc_attr( $bsfppc_checklist_item_data_key ); ?>">Delete</button> -->
 								<?php
 					}
 				} else {

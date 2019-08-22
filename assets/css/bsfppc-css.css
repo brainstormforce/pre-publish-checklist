@@ -1,10 +1,20 @@
-.bsfppc-hide-cover {
+.bsfppc-hide-empty-warning {
   visibility: hidden;
+  z-index: 99;
+   display: inline;
+
 }
 
-.edit-warning{
-  display: none;
+.bsfppc-hide-exists-warning {
+  visibility: hidden;
+  display: inline;
+  z-index: 99;
+  background-color: #f1f1f1;
 }
+
+/*.edit-warning{
+  display: none;
+}*/
 
 .popup-content {
   color: #191e23;
@@ -12,6 +22,10 @@
 }
 .bsfppc-overlay{
   display: none;
+}
+
+.bsfppc-warning-div{
+  display: block;
 }
 
 input.bsfppc-drag-feilds {
@@ -134,21 +148,6 @@ ul.bsfppc-ul.down:before {
   align-content: left;
 }
 
-.bsfppc-closepopup{
-    display: inline-block;
-    background-color: #fff;
-    cursor: pointer;
-    display: inline-block;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    font-size: 25px;
-    line-height: 30px;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-}
-
 #bsfppc-update{
   padding: 0 12px 2px;
   height: 33px;
@@ -244,8 +243,9 @@ ul.bsfppc-ul.down:before {
     margin-top: 15px;
     max-width: 800px;
 }
-.bsfppc-edit-waring-description{
+.bsfppc-list-waring-description{
     font-style: italic;
+    font-size: 13px;
     border: 1px solid red;
     border-radius: 15px;
     color: red;
@@ -255,8 +255,8 @@ ul.bsfppc-ul.down:before {
     opacity: 0.9;
     transition: opacity 0.5s ease; 
     display: inline-block;
-
 }
+
 
 .bsfppc-item-input {
   width: 88%;

@@ -84,9 +84,6 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 
 				<?php wp_nonce_field( 'bsfppc-form-nonce', 'bsfppc-form' ); ?>
 			<br><input type="submit" class="button button-primary bsfppc-savesetting"  name="submit_radio" Value="Save Setting"/>
-			<div class="edit-warning">
-					<p class="warning bsfppc-description"> <?php esc_html_e( 'List item cannot be blank', 'bsf-pre-publish-checklist' )?></p>
-			</div>
 			</form>
 			</td>
 		</tr>

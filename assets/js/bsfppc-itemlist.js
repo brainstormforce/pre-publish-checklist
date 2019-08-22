@@ -6,8 +6,25 @@ jQuery(document).ready(function () {
 
   //Ajax trigger for adding an element in the array 
      jQuery(document).on('click', "#bsfppc-Savelist", function () {
+      var bsfppc_input_item = jQuery('.bsfppc-item-input').val()
+      var bsfppc_item_drag_var = [];
+                  var bsfppc_item_drag_var = jQuery('.bsfppc-drag-feilds');
+                  bsfppc_item_drag_var.each(function () {
+                    
+                    bsfppc_drag_contents.push(jQuery(this).attr('value'));
+                  });
+        if(jQuery.inArray(bsfppc_input_item, bsfppc_drag_contents) !== -1){
+          console.log('presernt');
+          var bsfppc_item_exists = 1;
+          console.log(bsfppc_item_exists); 
+
+        }else{
+          var bsfppc_item_exists = 0;
+          console.log(bsfppc_item_exists); 
+        }
+              
       console.log(jQuery('.bsfppc-item-input').val());
-     if(jQuery('.bsfppc-item-input').val().replace(/ /g,'').length !== 0  ){   
+     if(jQuery('.bsfppc-item-input').val().replace(/ /g,'').length !== 0 && bsfppc_item_exists !== 1 ){   
      // $("#id").val().replace(/ /g,'').length
      jQuery('#bsfppc-ul').sortable();
     jQuery( "#bsfppc-ul" ).sortable( "destroy" );
@@ -48,11 +65,18 @@ jQuery(document).ready(function () {
       { cancel: '.bsfppc-alreadyexists-waring-description' });
       jQuery('.bsfppc-item-input').val(""); 
     }else{
-      jQuery(".bsfppc-hide-cover").css("visibility", "visible");  
-      setTimeout(function() {
-        jQuery(".bsfppc-hide-cover").css("visibility", "hidden");
-      }, 2000);
-    }
+     
+           jQuery(".bsfppc-hide-empty-warning").css("visibility", "visible"); 
+            if(bsfppc_item_exists == 1){ 
+              jQuery(".bsfppc-list-waring-description").html('List item already exists');
+            }else{
+              jQuery(".bsfppc-list-waring-description").html('List item cannot be empty');
+            }
+          setTimeout(function() {
+            jQuery(".bsfppc-hide-empty-warning").css("visibility", "hidden");
+          }, 2000);
+      }
+    
   });
 
   //Ajax trigger for deleting an element in the array

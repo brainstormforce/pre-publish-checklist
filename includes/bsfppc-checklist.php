@@ -27,9 +27,11 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 						<input type="text" id="add_item_text_feild" class="bsfppc-item-input" name="bsfppc_checklist_item[]" minlength= 1 >
 						<button type="button" id="bsfppc-Savelist" name="submit" class="button button-primary bsfppc_data"   Value="Save List" /><?php esc_html_e( 'Add to list', 'bsf-pre-publish-checklist' )?></button>
 						<br>
-							<div class="bsfppc-hide-cover">
-							<p class="warning bsfppc-edit-waring-description"><?php esc_html_e( 'List item cannot be blank', 'bsf-pre-publish-checklist' )?></p>
+						<div class="bsfppc-warning-div">
+							<div class="bsfppc-hide-empty-warning">
+							<p class="warning bsfppc-list-waring-description"><?php esc_html_e( 'List item cannot be blank', 'bsf-pre-publish-checklist' )?></p>
 							</div>
+						</div>
 					</div>
 					</tr>
 				</table>					
@@ -62,7 +64,7 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 		?>
 						</ul>
 				</div>
-				<i> <?php esc_html_e( 'Click the list item to edit, You can drag and drop the list items to change the order.', 'bsf-pre-publish-checklist' )?></i><br><br>
+				<i> <?php esc_html_e( 'You can drag and drop the list items to change the order.', 'bsf-pre-publish-checklist' )?></i><br><br>
 			</td>
 		</tr>
 	</tbody>
