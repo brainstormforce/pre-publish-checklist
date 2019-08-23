@@ -80,8 +80,7 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 								<div class="bsfppc-button-wrapper">
 									<div class="bsfppc-popup-option-dontpublish">Don't Publish</div>
 									<div class="bsfppc-popup-options-publishanyway">Publish Anyway</div>
-								</div>
-								
+								</div>	
 							</div>
 						</div>
 						<div class = "bsfppc-modal-prevent">

@@ -68,7 +68,7 @@ input[type=text].bsfppc-drag-feilds{
 
 .form-table td p {
   margin-top: 4px;
-  margin-bottom: 26px;
+  margin-bottom: 0px;
 }
 
 .bsfppc_radio_options {
@@ -108,10 +108,9 @@ ul.bsfppc-ul {
 }
 
 ul.bsfppc-ul li.bsfppc-li {
-    
-    /*margin: 0px 0px 0px 0px;*/
+    margin: 0px 0px 0px 0px;
     font-size: 1.25em;
-    padding: 5px 0px 5px 7px;
+    padding: 0px 0px 0px 7px;
     border-left: 1px solid #d3d3d3;
     border-right: 1px solid #d3d3d3;
     background: #fff;
@@ -123,7 +122,7 @@ ul.bsfppc-ul li.bsfppc-li {
 .dashed-placeholder {
   border: 1px dashed #999;
   margin: 10px 0px 10px 0px;
-  padding: 8px 0px 40px 6px;
+  padding: 5px 0px 35px 6px;
 }
 ul.bsfppc-ul div {
   font-size: 0.5em;
@@ -235,9 +234,6 @@ ul.bsfppc-ul.down:before {
     color: #666;
  }
 
- .form-table td p {
-  margin-bottom: 0px;
- }
 
 .bsfppc_input_feild {
     margin-top: 15px;
@@ -449,11 +445,22 @@ td.bsfppc-posttypes {
     margin-top: 50px;
 }
 
-.bsfppc-popup-option-dontpublish {
-
-}
 p.bsfppc-nolist-item{
 
     padding-top: 13px;
     font-style: italic;
 }
+
+.bsfppc-empty-list {
+    
+    /*margin: 0px 0px 0px 0px;*/
+    font-size: 1.25em;
+    visibility: hidden;
+    max-width: 785px;
+    padding: 5px 0px 5px 7px;
+    border-left: 2px solid #d3d3d3;
+    border-right: 2px solid #d3d3d3;
+    background: #fff;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 2px 0px #ddd;
+  }

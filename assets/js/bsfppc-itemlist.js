@@ -24,7 +24,8 @@ jQuery(document).ready(function () {
         }
               
       console.log(jQuery('.bsfppc-item-input').val());
-     if(jQuery('.bsfppc-item-input').val().replace(/ /g,'').length !== 0 && bsfppc_item_exists !== 1 ){   
+     if(jQuery('.bsfppc-item-input').val().replace(/ /g,'').length !== 0 && bsfppc_item_exists !== 1 ){  
+     jQuery('.bsfppc-empty-list').attr('style','visibility:hidden'); 
      // $("#id").val().replace(/ /g,'').length
      jQuery('#bsfppc-ul').sortable();
     jQuery( "#bsfppc-ul" ).sortable( "destroy" );
@@ -76,6 +77,7 @@ jQuery(document).ready(function () {
             jQuery(".bsfppc-hide-empty-warning").css("visibility", "hidden");
           }, 2000);
       }
+
     
   });
 
@@ -161,6 +163,11 @@ jQuery(document).ready(function () {
                   jQuery(".bsfppc-hide-cover").css("visibility", "hidden");
                 }, 2000);
   }
+  if (jQuery(".bsfppc-drag-feilds").length == 0) {
+      jQuery('.bsfppc-empty-list').attr('style','visibility:visible');
+    }else if(jQuery(".bsfppc-drag-feilds").length !== 0){
+      jQuery('.bsfppc-empty-list').attr('style','visibility:hidden');
+    }
   });
 
         jQuery('#bsfppc-ul').sortable({
@@ -197,4 +204,11 @@ jQuery(document).ready(function () {
     jQuery(this).parent('.bsfppc-li').find(".bsfppcdelete").html('<span class="dashicons dashicons-portfolio"></span> Save');
     jQuery(this).parent('.bsfppc-li').find(".bsfppcdelete").attr("name" , "Save");
    });  
+console.log(jQuery(".bsfppc-li").length);
+  if (jQuery(".bsfppc-drag-feilds").length == 0) {
+      jQuery('.bsfppc-empty-list').attr('style','visibility:visible');
+    }else if(jQuery(".bsfppc-drag-feilds").length !== 0){
+      jQuery('.bsfppc-empty-list').attr('style','visibility:hidden');
+    }
+
 });

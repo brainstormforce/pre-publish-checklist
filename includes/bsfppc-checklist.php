@@ -20,16 +20,16 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 <table class="form-table bsfppc-form-table">
 	<tbody>
 		<tr>
-			<th scope="row"> <p class="bsfppc-post"><?php esc_html_e( 'Create a Custom Checklist', 'bsf-pre-publish-checklist' )?></p> </th>
+			<th scope="row"> <p class="bsfppc-post"><?php esc_html_e( 'Create a Custom Checklist', 'bsf-pre-publish-checklist' ); ?></p> </th>
 			<td class="bsfppc-table">
 				<table id ="list_table">
 					<tr><div class="bsfppc_input_feild">
 						<input type="text" id="add_item_text_feild" class="bsfppc-item-input" name="bsfppc_checklist_item[]" minlength= 1 >
-						<button type="button" id="bsfppc-Savelist" name="submit" class="button button-primary bsfppc_data"   Value="Save List" /><?php esc_html_e( 'Add to list', 'bsf-pre-publish-checklist' )?></button>
+						<button type="button" id="bsfppc-Savelist" name="submit" class="button button-primary bsfppc_data"   Value="Save List" /><?php esc_html_e( 'Add to list', 'bsf-pre-publish-checklist' ); ?></button>
 						<br>
 						<div class="bsfppc-warning-div">
 							<div class="bsfppc-hide-empty-warning">
-							<p class="warning bsfppc-list-waring-description"><?php esc_html_e( 'List item cannot be blank', 'bsf-pre-publish-checklist' )?></p>
+							<p class="warning bsfppc-list-waring-description"><?php esc_html_e( 'List item cannot be blank', 'bsf-pre-publish-checklist' ); ?></p>
 							</div>
 						</div>
 					</div>
@@ -38,7 +38,7 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"><p class="bsfppc-post"><?php esc_html_e( 'Your List', 'bsf-pre-publish-checklist' )?></p> </th>
+			<th scope="row"><p class="bsfppc-post"><?php esc_html_e( 'Your List', 'bsf-pre-publish-checklist' ); ?></p> </th>
 			<td class="bsfppc-list-table">
 
 				<div id="columns" class="ui-droppable ui-sortable bsfppcdragdrop">
@@ -58,14 +58,10 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 									</li>
 				<?php
 			}
-		} else {
-			// echo 'You do not have any list please add items in the list';
-			?><p class="bsfppc-nolist-item">You do not have any items in the list please add items in the list.</p><?php
-		}
-		?>
+		} ?>
 						</ul>
 				</div>
-				<i> <?php esc_html_e( 'You can drag and drop the list items to change the order.', 'bsf-pre-publish-checklist' )?></i><br><br>
+				<p class="bsfppc-empty-list"><?php esc_html_e( 'You do not have any items in the list please add items in the list.', 'bsf-pre-publish-checklist' ); ?></p>
 			</td>
 		</tr>
 	</tbody>
