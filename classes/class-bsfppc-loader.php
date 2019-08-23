@@ -186,6 +186,7 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 		public function bsfppc_delete_item() {
 			if ( isset( $_POST['delete'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				global $wpdb;
+				$bsfppc_post_types_to_display = get_option( 'bsfppc_post_types_to_display' );
 				$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
 				$bsfppc_delete_value        = sanitize_text_field( $_POST['delete'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				$bsfppc_delete_key          = array_search( $bsfppc_delete_value, $bsfppc_checklist_item_data, true );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
@@ -194,10 +195,11 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 				echo 'sucess';
 				$bsfppc_all_post_ids = get_posts(
 					array(
-						'posts_per_page' => -1,
-						'post_status'    => array( 'publish', 'pending', 'draft' ),
-						'fields'         => 'ids',
-					)
+							'posts_per_page' => -1,
+							'post_type' 	 => $bsfppc_post_types_to_display,
+							'post_status'    => array( 'publish', 'pending', 'draft' ),
+							'fields'         => 'ids',
+						)
 				);
 				if ( ! empty( $bsfppc_all_post_ids ) ) {
 					foreach ( $bsfppc_all_post_ids as $bsfppc_postid ) {
@@ -230,10 +232,12 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 		public function bsfppc_edit_item() {
 			if ( isset( $_POST['bsfppc_edit_value'] ) && isset( $_POST['bsfppc_prev_value'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				global $wpdb;
+				$bsfppc_post_types_to_display = get_option( 'bsfppc_post_types_to_display' );
 				$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
+				$bsfppc_post_types_to_display = get_option( 'bsfppc_post_types_to_display' );
 				if ( ! empty( $bsfppc_checklist_item_data ) ) {
-					$bsfppc_prev_value                              = sanitize_text_field( $_POST['bsfppc_prev_value'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-					$bsfppc_edit_value                              = sanitize_text_field( $_POST['bsfppc_edit_value'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+					$bsfppc_prev_value                              = $_POST['bsfppc_prev_value'] ;//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+					$bsfppc_edit_value                              = $_POST['bsfppc_edit_value'] ;//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 					$bsfppc_edit_key                                = array_search( $bsfppc_prev_value, $bsfppc_checklist_item_data, true );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 					$bsfppc_checklist_item_data[ $bsfppc_edit_key ] = $bsfppc_edit_value;
 					update_option( 'bsfppc_checklist_data', $bsfppc_checklist_item_data );
@@ -241,15 +245,27 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 					$bsfppc_all_post_ids = get_posts(
 						array(
 							'posts_per_page' => -1,
+							'post_type' 	 => $bsfppc_post_types_to_display,
 							'post_status'    => array( 'publish', 'pending', 'draft' ),
 							'fields'         => 'ids',
 						)
 					);
 					if ( ! empty( $bsfppc_all_post_ids ) ) {
+						echo'inn';
 						foreach ( $bsfppc_all_post_ids as $bsfppc_postid ) {
+							var_dump($bsfppc_postid);
+							
 							$bsfppc_pre_checklist_values = get_post_meta( $bsfppc_postid, '_bsfppc_meta_key', true );
+							// var_dump($bsfppc_pre_checklist_values);
+
 							if ( ! empty( $bsfppc_pre_checklist_values ) ) {
-								$bsfppc_post_edit_key = array_search( $bsfppc_prev_value, $bsfppc_pre_checklist_values, true );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+								// var_dump($bsfppc_pre_checklist_values);
+								// echo"prev valuue --";
+								// print_r($bsfppc_prev_value);
+								var_dump($bsfppc_pre_checklist_values);
+								echo "<br>";
+								$bsfppc_post_edit_key = array_search( $bsfppc_prev_value , $bsfppc_pre_checklist_values, true );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+								var_dump($bsfppc_post_edit_key);
 								if ( false !== $bsfppc_post_edit_key ) {
 									$bsfppc_pre_checklist_values[ $bsfppc_post_edit_key ] = $bsfppc_edit_value;//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 									update_post_meta(

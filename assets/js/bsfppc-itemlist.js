@@ -195,6 +195,9 @@ jQuery(document).ready(function () {
       { cancel: '.bsfppc-alreadyexists-waring-description' });
 
     jQuery(document).on('click', '.bsfppcedit', function () {
+      jQuery(".bsfppc-drag-feilds").each(function(){
+        jQuery(this).attr('style','cursor:default');
+      })
     jQuery(this).attr('style','display:none');
     jQuery(this).prev().attr('style','width:87%');
     jQuery('#bsfppc-ul').sortable();
