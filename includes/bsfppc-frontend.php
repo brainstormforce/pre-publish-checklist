@@ -18,9 +18,9 @@ wp_enqueue_script( 'bsfppc_backend_itemlist_js' );
 wp_enqueue_style( 'bsfppc_backend_css' );
 $bsfppc_post_types = get_option( 'bsfppc_post_types_to_display' );
 $args              = array(
-	'public' => true,
-
+	'public' => true
 );
+
 $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 ?>
 <!DOCTYPE html>
@@ -31,24 +31,24 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 		<tr><th scope="row"><p class="bsfppc-setting-name">On Publish Attempt </p></th>
 			<td>
 			<form method ="POST" class="bsfppc-frontend-form">
-				<input type="radio" name="bsfppc_radio_button_option" value="1" <?php checked( $bsfppc_radio_button, 1 ); ?> > <div class="bsfppc_radio_options"><?php esc_html_e( 'Prevent User from Publishing', 'bsf-pre-publish-checklist' ); ?></div>
-				<p class="description"><?php esc_html_e( 'The user will not be able to publish until he checks all the checkboxes.', 'bsf-pre-publish-checklist' ); ?></p><br>
-				<input type="radio" name="bsfppc_radio_button_option" value="2" <?php checked( $bsfppc_radio_button, 2 ); ?> > <div class="bsfppc_radio_options"><?php esc_html_e( 'Warn User Before Publishing', 'bsf-pre-publish-checklist' ); ?></div>
-				<p class="description"><?php esc_html_e( 'The user will be warned before publishing or he can publish anyway.', 'bsf-pre-publish-checklist' ); ?></p><br>
-				<input type="radio" name="bsfppc_radio_button_option" value="3" <?php checked( $bsfppc_radio_button, 3 ); ?> > <div class="bsfppc_radio_options"><?php esc_html_e( 'Do Nothing.', 'bsf-pre-publish-checklist' ); ?></div>
-				<p class="description"><?php esc_html_e( 'The user will be allowed to publish without any warning.', 'bsf-pre-publish-checklist' ); ?></p><br>
+				<input type="radio" name="bsfppc_radio_button_option" value="1" <?php checked( $bsfppc_radio_button, 1 ); ?> > <div class="bsfppc_radio_options"><?php esc_html_e( 'Prevent User from Publishing', 'bsf-pre-publish-checklist' )?></div>
+				<p class="description"><?php esc_html_e( 'The user will not be able to publish until he checks all the checkboxes.', 'bsf-pre-publish-checklist' )?></p><br>
+				<input type="radio" name="bsfppc_radio_button_option" value="2" <?php checked( $bsfppc_radio_button, 2 ); ?> > <div class="bsfppc_radio_options"><?php esc_html_e( 'Warn User Before Publishing', 'bsf-pre-publish-checklist' )?></div>
+				<p class="description"><?php esc_html_e( 'The user will be warned before publishing or he can publish anyway.', 'bsf-pre-publish-checklist' )?></p><br>
+				<input type="radio" name="bsfppc_radio_button_option" value="3" <?php checked( $bsfppc_radio_button, 3 ); ?> > <div class="bsfppc_radio_options"><?php esc_html_e( 'Do Nothing.', 'bsf-pre-publish-checklist' )?></div>
+				<p class="description"><?php esc_html_e( 'The user will be allowed to publish without any warning.', 'bsf-pre-publish-checklist' )?></p><br>
 				<br/>
 		</td>
 		</tr>
 		<tr>
-			<th scope="row"><p class="bsfppc-setting-name"><?php esc_html_e( 'Post Types', 'bsf-pre-publish-checklist' ); ?></p></th>
+			<th scope="row"><p class="bsfppc-setting-name"><?php esc_html_e( 'Post Types', 'bsf-pre-publish-checklist' )?></p></th>
 			<td class = "bsfppc-posttypes">
 	<?php
 	foreach ( get_post_types( $args, 'objects' ) as $bsfppc_post_type ) {
-		if ( in_array( $bsfppc_post_type->labels->name, $exclude, true ) ) {
+		if ( in_array( $bsfppc_post_type->labels->name, $exclude, true )  ) {
 			continue;
 		}
-		if ( 'post' !== $bsfppc_post_types ) {
+		if ( 'post' !== $bsfppc_post_types && post_type_supports( ''.$bsfppc_post_type->name.'', 'editor' ) == true){
 			if ( ! empty( $bsfppc_post_types ) ) {
 				if ( false !== $bsfppc_post_types ) {
 					if ( in_array( $bsfppc_post_type->name, $bsfppc_post_types, true ) ) {
@@ -67,7 +67,7 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 	                     ' . esc_attr( $bsfppc_post_type->labels->name ) . '</label><br> ';
 			}
 		} else {
-			if ( 'post' === $bsfppc_post_type->name ) {
+			if ( 'post' === $bsfppc_post_type->name && post_type_supports( ''.$bsfppc_post_type->name.'', 'editor' ) == true ) {
 				echo '<label for="ForPostType">
 	                 <input type="checkbox" checked name="posts[]" value="' . esc_attr( $bsfppc_post_type->name ) . '">
 	                 ' . esc_attr( $bsfppc_post_type->labels->name ) . '</label><br> ';
@@ -80,7 +80,7 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 	$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
 	?>
 				<br>
-				<p class="description"><?php esc_html_e( 'Select the post types to have your check list on.', 'bsf-pre-publish-checklist' ); ?></p> <br>
+				<p class="description"><?php esc_html_e( 'Select the post types to have your check list on.', 'bsf-pre-publish-checklist' )?></p> <br>
 
 				<?php wp_nonce_field( 'bsfppc-form-nonce', 'bsfppc-form' ); ?>
 			<br><input type="submit" class="button button-primary bsfppc-savesetting"  name="submit_radio" Value="Save Setting"/>

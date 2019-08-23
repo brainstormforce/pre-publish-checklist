@@ -236,8 +236,8 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 				$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
 				$bsfppc_post_types_to_display = get_option( 'bsfppc_post_types_to_display' );
 				if ( ! empty( $bsfppc_checklist_item_data ) ) {
-					$bsfppc_prev_value                              = $_POST['bsfppc_prev_value'] ;//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-					$bsfppc_edit_value                              = $_POST['bsfppc_edit_value'] ;//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+					$bsfppc_prev_value                              = sanitize_text_field($_POST['bsfppc_prev_value']) ;//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+					$bsfppc_edit_value                              = sanitize_text_field($_POST['bsfppc_edit_value']) ;//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 					$bsfppc_edit_key                                = array_search( $bsfppc_prev_value, $bsfppc_checklist_item_data, true );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 					$bsfppc_checklist_item_data[ $bsfppc_edit_key ] = $bsfppc_edit_value;
 					update_option( 'bsfppc_checklist_data', $bsfppc_checklist_item_data );
