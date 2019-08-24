@@ -1,6 +1,5 @@
 .bsfppc-hide-empty-warning {
   visibility: hidden;
-  z-index: 99;
    display: inline;
 
 }
@@ -8,7 +7,6 @@
 .bsfppc-hide-exists-warning {
   visibility: hidden;
   display: inline;
-  z-index: 99;
   background-color: #f1f1f1;
 }
 
@@ -35,7 +33,6 @@ input.bsfppc-drag-feilds {
   border: 2px solid #fff;
   margin-left: 0px;
   box-sizing: border-box;
-  z-index: 99;
 }
 
 input[readonly].bsfppc-drag-feilds{

@@ -35,7 +35,7 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 				<p class="description"><?php esc_html_e( 'The user will not be able to publish until he checks all the checkboxes.', 'bsf-pre-publish-checklist' )?></p><br>
 				<input type="radio" name="bsfppc_radio_button_option" value="2" <?php checked( $bsfppc_radio_button, 2 ); ?> > <div class="bsfppc_radio_options"><?php esc_html_e( 'Warn User Before Publishing', 'bsf-pre-publish-checklist' )?></div>
 				<p class="description"><?php esc_html_e( 'The user will be warned before publishing or he can publish anyway.', 'bsf-pre-publish-checklist' )?></p><br>
-				<input type="radio" name="bsfppc_radio_button_option" value="3" <?php checked( $bsfppc_radio_button, 3 ); ?> > <div class="bsfppc_radio_options"><?php esc_html_e( 'Do Nothing.', 'bsf-pre-publish-checklist' )?></div>
+				<input type="radio" name="bsfppc_radio_button_option" value="3" <?php checked( $bsfppc_radio_button, 3 ); ?> > <div class="bsfppc_radio_options"><?php esc_html_e( 'Do Nothing', 'bsf-pre-publish-checklist' )?></div>
 				<p class="description"><?php esc_html_e( 'The user will be allowed to publish without any warning.', 'bsf-pre-publish-checklist' )?></p><br>
 				<br/>
 		</td>

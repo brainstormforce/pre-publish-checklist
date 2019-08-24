@@ -38,7 +38,7 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"><p class="bsfppc-post"><?php esc_html_e( 'Your List', 'bsf-pre-publish-checklist' ); ?></p> </th>
+			<th scope="row"><p class="bsfppc-post"><?php esc_html_e( 'Your List', 'bsf-pre-publish-checklist' ); ?></p> <span class="components-spinner"></span></th>
 			<td class="bsfppc-list-table">
 
 				<div id="columns" class="ui-droppable ui-sortable bsfppcdragdrop">
