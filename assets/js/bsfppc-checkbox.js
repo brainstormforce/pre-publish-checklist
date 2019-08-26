@@ -189,35 +189,37 @@ $(document).ready(
                 }
 
             }else{
-                   $(document).on('click', "#publish", function(e) {
-                    var $bsfppc_checkboxes = $('#checkbox[type="checkbox"]');
-                    var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
-                    console.log($bsfppc_checkboxes.length);
-                    console.log(countCheckedbsfppc_checkboxes);
+                   if (bsfppc_radio_obj.option == 1 || bsfppc_radio_obj.option == 2) {
+                       $(document).on('click', "#publish", function(e) {
+                        var $bsfppc_checkboxes = $('#checkbox[type="checkbox"]');
+                        var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
+                        console.log($bsfppc_checkboxes.length);
+                        console.log(countCheckedbsfppc_checkboxes);
 
-                    if ($bsfppc_checkboxes.length == countCheckedbsfppc_checkboxes){
-                        return true;
-                    }
-                    else{
-                           if(bsfppc_publish_flag == 0){
-                            console.log('in flag 0');
-                                if (bsfppc_radio_obj.option == 2 ) {
-                                    console.log('in rdaio option 2 flag 0');
-                                    $('.bsfppc-modal-warn').attr('style', 'display:block');
+                        if ($bsfppc_checkboxes.length == countCheckedbsfppc_checkboxes){
+                            return true;
+                        }
+                        else{
+                               if(bsfppc_publish_flag == 0){
+                                console.log('in flag 0');
+                                    if (bsfppc_radio_obj.option == 2 ) {
+                                        console.log('in rdaio option 2 flag 0');
+                                        $('.bsfppc-modal-warn').attr('style', 'display:block');
+                                    }
+                                    else if(bsfppc_radio_obj.option == 1){
+                                         console.log('in rdaio option 1  flag 0');
+                                         $('.bsfppc-modal-prevent').attr('style', 'display:block');
+                                    }
+                                    return false;
+                                }else if(bsfppc_publish_flag == 1){
+                                    console.log('publish holya pahije');
+                                    bsfppc_publish_flag == 0;
+                                    return true;
                                 }
-                                else if(bsfppc_radio_obj.option == 1){
-                                     console.log('in rdaio option 1  flag 0');
-                                     $('.bsfppc-modal-prevent').attr('style', 'display:block');
-                                }
-                                return false;
-                            }else if(bsfppc_publish_flag == 1){
-                                console.log('publish holya pahije');
-                                bsfppc_publish_flag == 0;
-                                return true;
-                            }
-                    }
+                        }
 
-                 });
+                     });
+                   }
             }
 
 
@@ -295,15 +297,9 @@ $(document).ready(
                         behavior: 'smooth'
                     });
                     
-                        
-                        $('#bsfppc_custom_meta_box').fadeOut(1500 ,  function(){
-                            $(this).attr('style','background-color:#f2fff9');
-                            $(this).fadeIn( 1500 , function(){
-                                $(this).attr('style','background-color:#f2fff9');
-                            });
-                        });
-                    
-                    
+                    $('#bsfppc_custom_meta_box').animate( {backgroundColor: '#1e8cbe', color: '#fff', boxShadow: 'inset 0px 0px 5px 2px rgba(255,255,255,1)' } , 500);
+                    $('#bsfppc_custom_meta_box').animate( {backgroundColor: '#fff'} , 500);
+                    $('#bsfppc_custom_meta_box').animate( {color: '#000'} , 300 );  
                     jQuery('#bsfppc_custom_meta_box').focus();
                 });
 
@@ -315,8 +311,10 @@ $(document).ready(
                     document.querySelector('#bsfppc_custom_meta_box').scrollIntoView({
                         behavior: 'smooth'
                     });
-                    $('#bsfppc_custom_meta_box').animate( {backgroundColor: 'red'} , 1000);
-                    $('#bsfppc_custom_meta_box').animate( {backgroundColor: '#fff'} , 1000);
+                    $('#bsfppc_custom_meta_box').animate( {backgroundColor: '#1e8cbe', color: '#fff', boxShadow: 'inset 0px 0px 5px 2px rgba(255,255,255,1)' } , 500);
+                    $('#bsfppc_custom_meta_box').animate( {backgroundColor: '#fff'} , 500);
+                    $('#bsfppc_custom_meta_box').animate( {color: '#000'} , 300 );
+
 
                 });
     }
