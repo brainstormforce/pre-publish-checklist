@@ -17,7 +17,7 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 		<tr>
 			<td>
 		<div class="bsfppc_user_manual">
-		<br><label class="bsfppc_page_title" for="howtouse"> How to Use? </label> <br><br>
+		<h4><label class="bsfppc_page_title" for="howtouse"> How to Use? </label> </h4>
 		<?php
 		echo '
 		<b>Step 1</b> : Under the <i>General Settings</i> Tab, Select the option you want that is what you want to do on publish attempt and click save settings. Select post types to display the meta box in the meta settings.<br><br>

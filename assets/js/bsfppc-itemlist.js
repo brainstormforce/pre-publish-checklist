@@ -7,6 +7,7 @@ jQuery(document).ready(function() {
 
     jQuery('#bsfppc-ul').sortable({
         update: function() {
+             jQuery('.bsfppc-spinner').addClass("is-active");
           bsfppc_drag_contents = [];
           console.log('previous enable');
             jQuery(this).sortable("disable");
@@ -21,8 +22,8 @@ jQuery(document).ready(function() {
                 bsfppc_item_drag_var: bsfppc_drag_contents
             },function(data) {
                 if (data === 'sucess') {
-                    bsfppc_drag_contents = [];
                     jQuery('#bsfppc-ul').sortable("enable");
+                    jQuery('.bsfppc-spinner').removeClass("is-active");
                 }
             });
         },
@@ -30,6 +31,7 @@ jQuery(document).ready(function() {
     });
     //Ajax trigger for adding an element in the array 
     jQuery(document).on('click', "#bsfppc-Savelist", function() {
+
         var bsfppc_input_item = jQuery('.bsfppc-item-input').val()
         var bsfppc_item_drag_var = [];
         var bsfppc_item_drag_var = jQuery('.bsfppc-drag-feilds');
@@ -46,8 +48,8 @@ jQuery(document).ready(function() {
             console.log(bsfppc_item_exists);
         }
         if (jQuery('.bsfppc-item-input').val().replace(/ /g, '').length !== 0 && bsfppc_item_exists !== 1) {
+            jQuery('.bsfppc-spinner').addClass("is-active");
             jQuery('.bsfppc-empty-list').attr('style', 'visibility:hidden');
-            // jQuery("#bsfppc-ul").sortable("destroy");
             jQuery.post(bsfppc_add_delete_obj.url, {
                     action: 'bsfppc_checklistitem_add',
                     bsfppc_item_content: jQuery('.bsfppc-item-input').attr('value')
@@ -60,6 +62,7 @@ jQuery(document).ready(function() {
                         jQuery(".bsfppcdragdrop").html(data);
                     }
                 });
+            jQuery('.bsfppc-spinner').removeClass("is-active");
             jQuery( "#bsfppc-ul" ).sortable( "refresh" );
          
             jQuery('.bsfppc-item-input').val("");
@@ -85,6 +88,7 @@ jQuery(document).ready(function() {
             var bsfppc_txt;
             var bsfppc_delete_flag = confirm("Are you sure you want to Delete ");
             if (bsfppc_delete_flag == true) {
+                jQuery('.bsfppc-spinner').addClass("is-active");
                 jQuery(this).parents('li:first').remove();
                 jQuery.post(bsfppc_add_delete_obj.url, {
                     action: 'bsfppc_checklistitem_delete',
@@ -96,6 +100,7 @@ jQuery(document).ready(function() {
 
                     }
                 });
+                jQuery('.bsfppc-spinner').removeClass("is-active");
             } else {
                 bsfppc_txt = "You pressed Cancel!";
             }
@@ -104,7 +109,7 @@ jQuery(document).ready(function() {
             jQuery('.bsfppcedit').attr('style', 'display:inline-block');
 
             if (jQuery(this).prevUntil(".dashicons-menu-alt2", ".bsfppc-drag-feilds").val().replace(/ /g, '').length !== 0) {
-
+                jQuery('.bsfppc-spinner').addClass("is-active");
                 jQuery(this).attr("name", "Delete");
                 jQuery(this).html('<span class="dashicons dashicons-trash bsfppc-delete-dashicon"></span>Delete');
                 jQuery('.bsfppc-drag-feilds').attr('readonly', true);
@@ -117,6 +122,7 @@ jQuery(document).ready(function() {
                     }, function(data) {
                         if (data === 'sucess') {
                             console.log('done');
+                            jQuery('.bsfppc-spinner').removeClass("is-active");
                         }
                     });
                 }

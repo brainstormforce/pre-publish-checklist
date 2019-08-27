@@ -2,30 +2,8 @@ $(document).ready(
     function() {
         var bsfppc_publish_flag = 0;
         var $bsfppc_checkboxes = $('#checkbox[type="checkbox"]');
-        var $bsfppc_checkboxes_length = $('#checkbox[type="checkbox"]').length;
-        
-             
-           
-        var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
-       
-        // if($('#publish').length==1){
-        //      if ($bsfppc_checkboxes_length != countCheckedbsfppc_checkboxes) {
-                               
-        //                         console.log('start');
-        //                          var bsfppc_prevent = function(e) {
-        //                             e.preventDefault();
-        //                             e.stopPropagation();
-        //                          }
-        //                           $('#publish').bind('click', bsfppc_prevent);
-
-        //                     }
-        // }else{
-        //     if ($bsfppc_checkboxes_length == countCheckedbsfppc_checkboxes) {
-
-        //                         $('#publish').unbind('click', bsfppc_prevent);
-
-        //                     }
-        // }                    
+        var $bsfppc_checkboxes_length = $('#checkbox[type="checkbox"]').length; 
+        var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;     
         $bsfppc_checkboxes.on(
             'change',
             function() {
@@ -38,15 +16,6 @@ $(document).ready(
                             bsfppc_field_value: $(this).attr('value'),
                             bsfppc_post_id: bsfppc_post_id
                         },
-                        function(data) {
-                            if (data === 'sucess') {
-
-                            } else if (data === 'failure') {
-
-                            } else {
-
-                            }
-                        }
                     );
                 } else if ($(this).prop("checked") == false) {
 
@@ -57,15 +26,6 @@ $(document).ready(
                             bsfppc_field_value: $(this).attr('value'),
                             bsfppc_post_id: bsfppc_post_id
                         },
-                        function(data) {
-                            if (data === 'sucess') {
-
-                            } else if (data === 'failure') {
-
-                            } else {
-
-                            }
-                        }
                     );
                 }
             }
@@ -165,18 +125,15 @@ $(document).ready(
                         function() {
                             var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
                             if ($bsfppc_checkboxes.length == countCheckedbsfppc_checkboxes) {
-
-                                $('.dashicons-warning').hide();
+                                //all checkboxes are checked
                                 if ($('.editor-post-publish-panel__toggle').length == 1) {
                                     $('.editor-post-publish-panel__toggle').prop('title', 'All items checked ! You are good to publish');
-
                                 } else if ($('.editor-post-publish-button').length == 1) {
                                     $('.editor-post-publish-button').prop('title', 'All items checked ! You are good to publish');
-
                                 }
                             } else if ($bsfppc_checkboxes.length != countCheckedbsfppc_checkboxes) {
                                 // all bsfppc_checkboxes are not yet checked 
-                                $('.dashicons-warning').show();
+                               
                                 if ($('.editor-post-publish-panel__toggle').length == 1) {
                                     $('.editor-post-publish-panel__toggle').prop('title', 'Pre-Publish-Checklist some items still remaining ');
                                 } else if ($('.editor-post-publish-button').length == 1) {
@@ -297,10 +254,16 @@ $(document).ready(
                         behavior: 'smooth'
                     });
                     
-                    $('#bsfppc_custom_meta_box').animate( {backgroundColor: '#1e8cbe', color: '#fff', boxShadow: 'inset 0px 0px 5px 2px rgba(255,255,255,1)' } , 500);
-                    $('#bsfppc_custom_meta_box').animate( {backgroundColor: '#fff'} , 500);
-                    $('#bsfppc_custom_meta_box').animate( {color: '#000'} , 300 );  
+                     if($('#publish').length == 1){
+                        $('#bsfppc_custom_meta_box').animate( {backgroundColor: '#1e8cbe', color: '#fff', boxShadow: 'inset 0px 0px 5px 2px rgba(255,255,255,1)' } , 500);
+                        $('#bsfppc_custom_meta_box').animate( {backgroundColor: '#fff'} , 500);
+                        $('#bsfppc_custom_meta_box').animate( {color: '#000'} , 300 );
+                    }
                     jQuery('#bsfppc_custom_meta_box').focus();
+                    $('#bsfppc_custom_meta_box').addClass('bsfppc-metabox-background');
+                     setTimeout(function(){
+                             $('#bsfppc_custom_meta_box').removeClass('bsfppc-metabox-background');
+                        },1000)
                 });
 
                 $(document).on('click', ".bsfppc-popup-option-okay", function() {
@@ -311,11 +274,16 @@ $(document).ready(
                     document.querySelector('#bsfppc_custom_meta_box').scrollIntoView({
                         behavior: 'smooth'
                     });
-                    $('#bsfppc_custom_meta_box').animate( {backgroundColor: '#1e8cbe', color: '#fff', boxShadow: 'inset 0px 0px 5px 2px rgba(255,255,255,1)' } , 500);
-                    $('#bsfppc_custom_meta_box').animate( {backgroundColor: '#fff'} , 500);
-                    $('#bsfppc_custom_meta_box').animate( {color: '#000'} , 300 );
+                     if($('#publish').length == 1){
+                        $('#bsfppc_custom_meta_box').animate( {backgroundColor: '#1e8cbe', color: '#fff', boxShadow: 'inset 0px 0px 5px 2px rgba(255,255,255,1)' } , 500);
+                        $('#bsfppc_custom_meta_box').actionimate( {backgroundColor: '#fff'} , 500);
+                        $('#bsfppc_custom_meta_box').animate( {color: '#000'} , 300 );
+                    }
 
-
+                     $('#bsfppc_custom_meta_box').addClass('bsfppc-metabox-background');
+                     setTimeout(function(){
+                             $('#bsfppc_custom_meta_box').removeClass('bsfppc-metabox-background');
+                        },1000)
                 });
     }
 

@@ -28,7 +28,7 @@
 
 input.bsfppc-drag-feilds {
   padding: 5px;
-  width: 79%;
+/*  width: 79%;*/
   display: inline-block;
   border: 2px solid #fff;
   margin-left: 0px;
@@ -66,11 +66,6 @@ input[type=text].bsfppc-drag-feilds{
 .form-table td p {
   margin-top: 4px;
   margin-bottom: 0px;
-}
-
-.bsfppc_radio_options {
-  display: inline-block;
-  font-weight: 600;
 }
 
 .bsfppc-tooltip {
@@ -354,6 +349,7 @@ a.nav-tab.tb.nav-tab-active.bsfppc-active-tab {
 
 .bsfppc-post{
   padding-left: 15px;
+  display: inline-block;
 }
 
 .bsfppc-frontend-form{
@@ -457,4 +453,50 @@ p.bsfppc-nolist-item{
     background: #fff;
     margin-bottom: 10px;
     box-shadow: 0px 0px 2px 0px #ddd;
+  }
+
+  span.spinner.bsfppc-spinner.is-active {
+    margin-top: 0;
+}
+
+
+.bsfppc_radio_options {
+    display: inline-block;
+    font-weight: 600;
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  
+  .bsfppc-drag-feilds{
+    width: 77%;
+  }
+  
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .bsfppc-drag-feilds{
+    width: 70%;
+  }
+}
+
+@media (min-width: 1281px) {
+  
+  .bsfppc-drag-feilds{
+    width: 79%;
+  }
+  
+}
+
+div#bsfppc_custom_meta_box {  
+   transition:1.0s ease;
+   -moz-transition:1.0s ease;
+   -webkit-transition:1.0s ease;
+  }
+
+  .bsfppc-metabox-background{
+   background:#c1edff;
+   color: white;
+   transition:1.0s ease;
+   -moz-transition:1.0s ease;
+   -webkit-transition:1.0s ease;
   }
