@@ -41,7 +41,7 @@ jQuery(document).ready(function() {
         });
         if (jQuery.inArray(bsfppc_input_item, bsfppc_drag_contents) !== -1) {
             var bsfppc_item_exists = 1;
-            jQuery('.bsfppc-spinner').removeClass("is-active");
+            
 
         } else {
             var bsfppc_item_exists = 0;
@@ -73,8 +73,10 @@ jQuery(document).ready(function() {
             jQuery(".bsfppc-hide-empty-warning").css("visibility", "visible");
             if (bsfppc_item_exists == 1) {
                 jQuery(".bsfppc-list-waring-description").html('List item already exists');
+                jQuery('.bsfppc-spinner').removeClass("is-active");
             } else {
                 jQuery(".bsfppc-list-waring-description").html('List item cannot be empty');
+                jQuery('.bsfppc-spinner').removeClass("is-active");
             }
             setTimeout(function() {
                 jQuery(".bsfppc-hide-empty-warning").css("visibility", "hidden");
