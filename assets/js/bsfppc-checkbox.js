@@ -250,14 +250,11 @@ $(document).ready(
 
                     $('.bsfppc-modal-warn').attr('style', 'display:none');
                     document.querySelector('#bsfppc_custom_meta_box').scrollIntoView({
-                        behavior: 'smooth'
+                        behavior: 'smooth',
+                        block: "start",
+                        inline: "nearest"
                     });
-                    
-                     if($('#publish').length == 1){
-                        $('#bsfppc_custom_meta_box').animate( {backgroundColor: '#1e8cbe', color: '#fff', boxShadow: 'inset 0px 0px 5px 2px rgba(255,255,255,1)' } , 500);
-                        $('#bsfppc_custom_meta_box').animate( {backgroundColor: '#fff'} , 500);
-                        $('#bsfppc_custom_meta_box').animate( {color: '#000'} , 300 );
-                    }
+
                     jQuery('#bsfppc_custom_meta_box').focus();
                     $('#bsfppc_custom_meta_box').addClass('bsfppc-metabox-background');
                      setTimeout(function(){
@@ -271,14 +268,11 @@ $(document).ready(
                     }
                     $('.bsfppc-modal-prevent').attr('style', 'display:none');
                     document.querySelector('#bsfppc_custom_meta_box').scrollIntoView({
-                        behavior: 'smooth'
+                        behavior: 'smooth',
+                        block: "start",
+                        inline: "nearest"
+                        
                     });
-                     if($('#publish').length == 1){
-                        $('#bsfppc_custom_meta_box').animate( {backgroundColor: '#1e8cbe', color: '#fff', boxShadow: 'inset 0px 0px 5px 2px rgba(255,255,255,1)' } , 500);
-                        $('#bsfppc_custom_meta_box').actionimate( {backgroundColor: '#fff'} , 500);
-                        $('#bsfppc_custom_meta_box').animate( {color: '#000'} , 300 );
-                    }
-
                      $('#bsfppc_custom_meta_box').addClass('bsfppc-metabox-background');
                      setTimeout(function(){
                              $('#bsfppc_custom_meta_box').removeClass('bsfppc-metabox-background');

@@ -495,8 +495,11 @@ div#bsfppc_custom_meta_box {
 
   .bsfppc-metabox-background{
    background:#c1edff;
-   color: white;
    transition:1.0s ease;
    -moz-transition:1.0s ease;
    -webkit-transition:1.0s ease;
+  }
+
+  .bsfppc-checklist-heading{
+    margin: 0px 0 10px 0;
   }

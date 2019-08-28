@@ -41,11 +41,10 @@ jQuery(document).ready(function() {
         });
         if (jQuery.inArray(bsfppc_input_item, bsfppc_drag_contents) !== -1) {
             var bsfppc_item_exists = 1;
-
+            jQuery('.bsfppc-spinner').removeClass("is-active");
 
         } else {
             var bsfppc_item_exists = 0;
-
         }
         if (jQuery('.bsfppc-item-input').val().replace(/ /g, '').length !== 0 && bsfppc_item_exists !== 1) {
             
@@ -58,16 +57,18 @@ jQuery(document).ready(function() {
                     if (jQuery('.bsfppc-ul')[0]) {
                         jQuery(".bsfppc-ul").html(data);
                         jQuery('.bsfppc-spinner').removeClass("is-active");
+                        jQuery('.bsfppc-item-input').val("");
                     } else {
                         data = '<ul id="bsfppc-ul" class="bsfppc-ul">' + data + '</ul>';
                         jQuery(".bsfppcdragdrop").html(data);
                         jQuery('.bsfppc-spinner').removeClass("is-active");
+                        jQuery('.bsfppc-item-input').val("");
                     }
                 });
             
             jQuery("#bsfppc-ul").sortable("refresh");
 
-            jQuery('.bsfppc-item-input').val("");
+            
         } else {
             jQuery(".bsfppc-hide-empty-warning").css("visibility", "visible");
             if (bsfppc_item_exists == 1) {
@@ -93,7 +94,7 @@ jQuery(document).ready(function() {
                 jQuery(this).parents('li:first').remove();
                 jQuery.post(bsfppc_add_delete_obj.url, {
                     action: 'bsfppc_checklistitem_delete',
-                    delete: jQuery(this).attr('value')
+                    delete: jQuery(this).prevUntil(".dashicons-menu-alt2", ".bsfppc-drag-feilds").val()
                 }, function(data) {
                     if (data === 'sucess') {
                         jQuery('.bsfppc-spinner').removeClass("is-active");
@@ -130,6 +131,7 @@ jQuery(document).ready(function() {
                         }
                         jQuery('.bsfppc-spinner').removeClass("is-active");
                     });
+
                 }
             }
             jQuery(this).attr("value", jQuery(this).prev().val());
