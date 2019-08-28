@@ -112,7 +112,7 @@ jQuery(document).ready(function() {
                 bsfppc_txt = "You pressed Cancel!";
             }
         } else if (jQuery(this).prop("name") == 'Save') {
-            jQuery('.bsfppc-drag-feilds').attr('style', 'width:79%');
+            jQuery('.bsfppc-drag-feilds').attr('style', 'width:81%');
             jQuery('.bsfppcedit').attr('style', 'display:inline-block');
 
             if (jQuery(this).prevUntil(".dashicons-menu-alt2", ".bsfppc-drag-feilds").val().replace(/ /g, '').length !== 0) {
@@ -157,7 +157,7 @@ jQuery(document).ready(function() {
             jQuery(this).attr('style', 'cursor:default');
         })
         jQuery(this).attr('style', 'display:none');
-        jQuery(this).prev().attr('style', 'width:87%');
+        jQuery(this).prev().attr('style', 'width:89%');
         jQuery("#bsfppc-ul").sortable("disable");
         jQuery(this).prev().removeAttr('readonly');
         jQuery(this).prev().focus();

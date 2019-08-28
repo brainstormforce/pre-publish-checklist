@@ -10,10 +10,6 @@
   background-color: #f1f1f1;
 }
 
-/*.edit-warning{
-  display: none;
-}*/
-
 .popup-content {
   color: #191e23;
   display: block;
@@ -28,16 +24,18 @@
 
 input.bsfppc-drag-feilds {
   padding: 5px;
-/*  width: 79%;*/
   display: inline-block;
   border: 2px solid #fff;
   margin-left: 0px;
   box-sizing: border-box;
+  color: #000;
 }
 
 input[readonly].bsfppc-drag-feilds{
   background-color: #fff;
   border: 2px solid #fff;
+  color: #000;
+  width: 81%;
   
 }
 input[type=text].bsfppc-drag-feilds{
@@ -56,12 +54,6 @@ input[type=text].bsfppc-drag-feilds{
     content: "\f534";
     margin-left: -10px;
 }
-
-/*.bsfppc-dynamicfeild {
-  margin-top: 1px;
-  margin-bottom: -20px;
-  padding: 0px;
-}*/
 
 .form-table td p {
   margin-top: 4px;
@@ -102,6 +94,7 @@ ul.bsfppc-ul {
 ul.bsfppc-ul li.bsfppc-li {
     margin: 0px 0px 0px 0px;
     font-size: 1.25em;
+    display: flex;
     padding: 0px 0px 0px 7px;
     border-left: 1px solid #d3d3d3;
     border-right: 1px solid #d3d3d3;
@@ -116,6 +109,7 @@ ul.bsfppc-ul li.bsfppc-li {
   margin: 10px 0px 10px 0px;
   padding: 5px 0px 35px 6px;
 }
+
 ul.bsfppc-ul div {
   font-size: 0.5em;
   letter-spacing: 10px;
@@ -126,14 +120,6 @@ ul.bsfppc-ul.up,
 ul.bsfppc-ul.down {
   float: left;
 }
-
-/*ul.bsfppc-ul.up:before {
-  content: "\f077";
-}
-
-ul.bsfppc-ul.down:before {
-  content: "\f078";
-}*/
 
 .bsfppcdragdrop {
   align-content: left;
@@ -172,6 +158,7 @@ ul.bsfppc-ul.down:before {
     margin-top: 50;
     margin-left: 50;
 }
+
 .bsfppc-popup-prevent {
     width: 400px;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
@@ -204,6 +191,7 @@ ul.bsfppc-ul.down:before {
     overflow: auto;
     transition: all 0.3s linear;
 }
+
 .bsfppc-modal-prevent{
     display: none;
     position: fixed;
@@ -231,6 +219,7 @@ ul.bsfppc-ul.down:before {
     margin-top: 15px;
     max-width: 800px;
 }
+
 .bsfppc-list-waring-description{
     font-style: italic;
     font-size: 13px;
@@ -244,7 +233,6 @@ ul.bsfppc-ul.down:before {
     transition: opacity 0.5s ease; 
     display: inline-block;
 }
-
 
 .bsfppc-item-input {
   width: 88%;
@@ -368,44 +356,33 @@ td.bsfppc-posttypes {
     padding-left: 5px;
 }
 
-
-
 .bsfppcedit:hover {
    color: #0085ba;
   }
-
 
 .bsfppcdelete:hover {
    color: #0085ba;
   }
 
 .bsfppcedit {
-    margin-top: 3px;
-    content: "\f182";
     background: #fff;
     border: none;
-    margin: 0px;
-    display: inline-block;
+    margin: auto;
     font-size: 13px;
     line-height: 20px;
-    vertical-align: middle;
     text-align: center;
     margin-left: 0px;
     cursor: pointer;
     text-decoration: none;
 }
 .bsfppcdelete {
-    margin-top: 3px;
-    content: "\f182";
     background: #fff;
     border: none;
     margin: 0px;
     cursor: pointer;
-    display: inline-block;
     font-size: 13px;
     line-height: 20px;
-    vertical-align: middle;
-    text-align: center;
+    margin: auto;
     margin-left: 0px;
     text-decoration: none;
 }
@@ -442,8 +419,6 @@ p.bsfppc-nolist-item{
 }
 
 .bsfppc-empty-list {
-    
-    /*margin: 0px 0px 0px 0px;*/
     font-size: 1.25em;
     visibility: hidden;
     max-width: 785px;
@@ -465,8 +440,7 @@ p.bsfppc-nolist-item{
     font-weight: 600;
 }
 
-@media (min-width: 1025px) and (max-width: 1280px) {
-  
+/*@media (min-width: 1025px) and (max-width: 1280px) {
   .bsfppc-drag-feilds{
     width: 77%;
   }
@@ -485,7 +459,7 @@ p.bsfppc-nolist-item{
     width: 79%;
   }
   
-}
+}*/
 
 div#bsfppc_custom_meta_box {  
    transition:1.0s ease;
