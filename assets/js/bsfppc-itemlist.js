@@ -9,14 +9,14 @@ jQuery(document).ready(function() {
         update: function() {
             jQuery('.bsfppc-spinner').addClass("is-active");
             bsfppc_drag_contents = [];
-            console.log('previous enable');
+
             jQuery(this).sortable("disable");
             var bsfppc_item_drag_var = [];
             var bsfppc_item_drag_var = jQuery('.bsfppc-drag-feilds');
             bsfppc_item_drag_var.each(function() {
                 bsfppc_drag_contents.push(jQuery(this).attr('value'));
             });
-            console.log(bsfppc_drag_contents);
+
             jQuery.post(bsfppc_add_delete_obj.url, {
                 action: 'bsfppc_checklistitem_drag',
                 bsfppc_item_drag_var: bsfppc_drag_contents
@@ -41,11 +41,11 @@ jQuery(document).ready(function() {
         });
         if (jQuery.inArray(bsfppc_input_item, bsfppc_drag_contents) !== -1) {
             var bsfppc_item_exists = 1;
-            console.log(bsfppc_item_exists);
+
 
         } else {
             var bsfppc_item_exists = 0;
-            console.log(bsfppc_item_exists);
+
         }
         if (jQuery('.bsfppc-item-input').val().replace(/ /g, '').length !== 0 && bsfppc_item_exists !== 1) {
             
@@ -84,7 +84,6 @@ jQuery(document).ready(function() {
     //Ajax trigger for deleting an element in the array
     jQuery(document).on('click', '.bsfppcdelete', function() {
 
-        // console.log(jQuery(this).prop("name")== 'Delete');
         if (jQuery(this).prop("name") == 'Delete') {
         
             var bsfppc_txt;
@@ -126,7 +125,7 @@ jQuery(document).ready(function() {
                         bsfppc_prev_value: jQuery(this).val()
                     }, function(data) {
                         if (data === 'sucess') {
-                            console.log('done');
+
                             
                         }
                         jQuery('.bsfppc-spinner').removeClass("is-active");
@@ -161,7 +160,7 @@ jQuery(document).ready(function() {
         jQuery(this).parent('.bsfppc-li').find(".bsfppcdelete").html('<span class="dashicons dashicons-portfolio"></span> Save');
         jQuery(this).parent('.bsfppc-li').find(".bsfppcdelete").attr("name", "Save");
     });
-    console.log(jQuery(".bsfppc-li").length);
+
     if (jQuery(".bsfppc-drag-feilds").length == 0) {
         jQuery('.bsfppc-empty-list').attr('style', 'visibility:visible');
     } else if (jQuery(".bsfppc-drag-feilds").length !== 0) {

@@ -24,4 +24,4 @@ define( 'BSF_PPC_PLUGIN_URL', untrailingslashit( plugins_url( '', __FILE__ ) ) )
 define( 'BSF_PPC_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 
 require_once 'classes/class-bsfppc-loader.php';
-require_once 'classes/class-bsfppc-pagesetups.php';
+

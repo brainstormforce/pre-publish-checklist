@@ -17,6 +17,7 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 ?>
 <html>
 <body>
+<div class="table-wrapper">
 <table class="form-table bsfppc-form-table">
 	<tbody>
 		<tr>
@@ -66,6 +67,7 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 		</tr>
 	</tbody>
 </table>
+</div>
 </body>
 </html>
 

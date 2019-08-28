@@ -184,7 +184,6 @@ $(document).ready(
 
                     $(document).on('click', "#bsfppc-update", function() {
 
-
                         $('.bsfppc-modal-warn').attr('style', 'display:block');
 
                     });

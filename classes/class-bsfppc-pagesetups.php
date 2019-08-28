@@ -59,12 +59,12 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 			add_action( 'wp_ajax_nopriv_bsfppc_ajax_add_change', array( $this, 'bsfppc_meta_box_ajax_add_handler' ), 1 );
 			add_action( 'wp_ajax_bsfppc_ajax_delete_change', array( $this, 'bsfppc_meta_box_ajax_delete_handler' ), 1 );
 			add_action( 'wp_ajax_nopriv_bsfppc_ajax_delete_change', array( $this, 'bsfppc_meta_box_ajax_delete_handler' ), 1 );
-			add_action( 'admin_footer', array( $this, 'bsfppc_markup' ) );
+			add_action( 'admin_footer', array( $this, 'bsfppc_markup' ));
 		}
 		/**
 		 * Function for HTML markup of notification.
 		 *
-		 * Shows hover notification about why is the publish button disabled
+		 * Shows the pop-up of warning a user or preventing a user.
 		 *
 		 * @since 1.0.0
 		 */
