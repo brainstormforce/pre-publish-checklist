@@ -112,14 +112,14 @@ jQuery(document).ready(function() {
                 bsfppc_txt = "You pressed Cancel!";
             }
         } else if (jQuery(this).prop("name") == 'Save') {
-            jQuery('.bsfppc-drag-feilds').attr('style', 'width:81%');
-            jQuery('.bsfppcedit').attr('style', 'display:inline-block');
+            jQuery(this).prevUntil(".dashicons-menu-alt2", ".bsfppc-drag-feilds").attr('style', 'width:81%');
+            jQuery(this).prev().attr('style', 'display:inline-block');
 
             if (jQuery(this).prevUntil(".dashicons-menu-alt2", ".bsfppc-drag-feilds").val().replace(/ /g, '').length !== 0) {
                 
                 jQuery(this).attr("name", "Delete");
                 jQuery(this).html('<span class="dashicons dashicons-trash bsfppc-delete-dashicon"></span>Delete');
-                jQuery('.bsfppc-drag-feilds').attr('readonly', true);
+                jQuery(this).prevUntil(".dashicons-menu-alt2", ".bsfppc-drag-feilds").attr('readonly', true);
                 if (jQuery(this).val() != jQuery(this).prevUntil(".dashicons-menu-alt2", ".bsfppc-drag-feilds").val()) {
                     jQuery('.bsfppc-spinner').addClass("is-active");
                     jQuery.post(bsfppc_add_delete_obj.url, {

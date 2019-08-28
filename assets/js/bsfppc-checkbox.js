@@ -251,9 +251,11 @@ $(document).ready(
                     $('.bsfppc-modal-warn').attr('style', 'display:none');
                     document.querySelector('#bsfppc_custom_meta_box').scrollIntoView({
                         behavior: 'smooth',
-                        block: "start",
-                        inline: "nearest"
+                        // block: "start",
+                        inline: "nearest",
+                        viewPadding: { y: 5000 }
                     });
+                    $("#bsfppc_custom_meta_box").scrollTop += 50;
 
                     jQuery('#bsfppc_custom_meta_box').focus();
                     $('#bsfppc_custom_meta_box').addClass('bsfppc-metabox-background');
@@ -269,8 +271,9 @@ $(document).ready(
                     $('.bsfppc-modal-prevent').attr('style', 'display:none');
                     document.querySelector('#bsfppc_custom_meta_box').scrollIntoView({
                         behavior: 'smooth',
-                        block: "start",
-                        inline: "nearest"
+                        // block: "start",
+                        inline: "nearest",
+                        viewPadding: { y: 5000 }
                         
                     });
                      $('#bsfppc_custom_meta_box').addClass('bsfppc-metabox-background');

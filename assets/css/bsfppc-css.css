@@ -29,6 +29,7 @@ input.bsfppc-drag-feilds {
   margin-left: 0px;
   box-sizing: border-box;
   color: #000;
+  width: 89%;
 }
 
 input[readonly].bsfppc-drag-feilds{
@@ -40,6 +41,7 @@ input[readonly].bsfppc-drag-feilds{
 }
 input[type=text].bsfppc-drag-feilds{
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0);
+
 }
 
 .add-button{
@@ -440,27 +442,6 @@ p.bsfppc-nolist-item{
     font-weight: 600;
 }
 
-/*@media (min-width: 1025px) and (max-width: 1280px) {
-  .bsfppc-drag-feilds{
-    width: 77%;
-  }
-  
-}
-
-@media (min-width: 768px) and (max-width: 1024px) {
-  .bsfppc-drag-feilds{
-    width: 70%;
-  }
-}
-
-@media (min-width: 1281px) {
-  
-  .bsfppc-drag-feilds{
-    width: 79%;
-  }
-  
-}*/
-
 div#bsfppc_custom_meta_box {  
    transition:1.0s ease;
    -moz-transition:1.0s ease;
@@ -476,4 +457,12 @@ div#bsfppc_custom_meta_box {
 
   .bsfppc-checklist-heading{
     margin: 0px 0 10px 0;
+  }
+
+  .bsfppcdelete:focus{
+    outline: none;
+  }
+
+  .bsfppcedit:focus{
+  outline: none;
   }
