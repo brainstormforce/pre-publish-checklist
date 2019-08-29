@@ -103,7 +103,6 @@ ul.bsfppc-ul li.bsfppc-li {
     background: #fff;
     font-weight: 600;
     margin-bottom: 10px;
-    box-shadow: 0px 0px 2px 0px #ddd;
   }
 
 .dashed-placeholder {
@@ -219,7 +218,7 @@ ul.bsfppc-ul.down {
 
 .bsfppc_input_feild {
     margin-top: 15px;
-    max-width: 800px;
+    max-width: 840px;
 }
 
 .bsfppc-list-waring-description{
@@ -237,7 +236,7 @@ ul.bsfppc-ul.down {
 }
 
 .bsfppc-item-input {
-  width: 88%;
+  width: 84%;
   padding: 5px;
   display: inline-block;
   border: 1px solid #ccc;
@@ -466,3 +465,13 @@ div#bsfppc_custom_meta_box {
   .bsfppcedit:focus{
   outline: none;
   }
+
+  .bsfppc-new-list-item{
+     transition:2.0s ease;
+    -moz-transition:2.0s ease;
+    -webkit-transition:2.0s ease;
+    -webkit-box-shadow: 0px 0px 9px 5px rgba(193,237,255,1);
+    -moz-box-shadow: 0px 0px 9px 5px rgba(193,237,255,1);
+    box-shadow: 0px 0px 9px 5px rgba(193,237,255,1);
+
+}

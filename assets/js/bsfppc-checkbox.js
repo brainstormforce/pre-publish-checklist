@@ -3,7 +3,56 @@ $(document).ready(
         var bsfppc_publish_flag = 0;
         var $bsfppc_checkboxes = $('#checkbox[type="checkbox"]');
         var $bsfppc_checkboxes_length = $('#checkbox[type="checkbox"]').length; 
-        var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;     
+        var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
+        $(document).on('click', ".editor-post-preview", function() { 
+                setTimeout( function() {
+                        console.log('in function');
+                            var $bsfppc_checkboxes = $('#checkbox[type="checkbox"]');
+                            var $bsfppc_checkboxes_length = $('#checkbox[type="checkbox"]').length;
+                            var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
+                            if ($bsfppc_checkboxes_length == countCheckedbsfppc_checkboxes) {
+
+
+                                if ($('.editor-post-publish-panel__toggle').length == 1) {
+
+
+                                    $('.edit-post-header__settings').children($('#bsfppc-publish').attr('style', 'display:none'));
+                                    $('.editor-post-publish-panel__toggle').attr('style', 'display:inline-flex');
+
+                                } else if ($('.editor-post-publish-button').length == 1) {
+
+
+                                    $('.edit-post-header__settings').children(':eq(2)').after($('#bsfppc-update').attr('style', 'display:none'));
+                                    $('.editor-post-publish-button').attr('style', 'display:inline-flex');
+
+                                }
+
+                            } else if ($bsfppc_checkboxes_length != countCheckedbsfppc_checkboxes) {
+
+                                if ($('.editor-post-publish-panel__toggle').length == 1) {
+
+                                    $('.editor-post-publish-panel__toggle').attr('style', 'display:none');
+
+                                    $('.edit-post-header__settings').children(':eq(2)').after($('#bsfppc-publish').attr('style', 'display:inline-flex'));
+                                    if ($('#bsfppc-publish').length == 0) {
+
+                                        $('.edit-post-header__settings').children(':eq(2)').after('<button type="button" class="components-button  is-button is-primary bsfppc-publish" id="bsfppc-publish">Publish...</button>');
+                                    }
+
+                                } else if ($('.editor-post-publish-button').length == 1) {
+
+                                    $('.editor-post-publish-button').attr('style', 'display:none');
+
+                                    $('.edit-post-header__settings').children(':eq(2)').after($('#bsfppc-update').attr('style', 'display:inline-flex'));
+                                    if ($('#bsfppc-update').length == 0) {
+
+                                        $('.edit-post-header__settings').children(':eq(2)').after('<button type="button" class="components-button  is-button is-primary bsfppc-publish" id="bsfppc-update">Update</button>');
+                                    }
+                                }
+                            }
+                    }, 5000
+                );
+        });    
         $bsfppc_checkboxes.on(
             'change',
             function() {
@@ -109,10 +158,6 @@ $(document).ready(
 
                                         $('.edit-post-header__settings').children(':eq(2)').after('<button type="button" class="components-button  is-button is-primary bsfppc-publish" id="bsfppc-update">Update</button>');
                                     }
-
-
-
-
                                 }
                             }
                         });
@@ -251,9 +296,8 @@ $(document).ready(
                     $('.bsfppc-modal-warn').attr('style', 'display:none');
                     document.querySelector('#bsfppc_custom_meta_box').scrollIntoView({
                         behavior: 'smooth',
-                        // block: "start",
-                        inline: "nearest",
-                        viewPadding: { y: 5000 }
+                        block: "end",
+                        inline: "nearest"
                     });
                     $("#bsfppc_custom_meta_box").scrollTop += 50;
 
@@ -271,10 +315,8 @@ $(document).ready(
                     $('.bsfppc-modal-prevent').attr('style', 'display:none');
                     document.querySelector('#bsfppc_custom_meta_box').scrollIntoView({
                         behavior: 'smooth',
-                        // block: "start",
-                        inline: "nearest",
-                        viewPadding: { y: 5000 }
-                        
+                        block: "start",
+                        inline: "nearest"                
                     });
                      $('#bsfppc_custom_meta_box').addClass('bsfppc-metabox-background');
                      setTimeout(function(){

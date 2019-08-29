@@ -168,7 +168,6 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 			global $post;
 			$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
 			$value                      = get_post_meta( $post->ID, '_bsfppc_meta_key', true );
-			?><h4 class="bsfppc-checklist-heading">Default Checklist</h4><?php
 			if ( ! empty( $bsfppc_checklist_item_data ) ) {
 				foreach ( $bsfppc_checklist_item_data as $key ) {
 					?>

@@ -4,7 +4,7 @@ jQuery(document).ready(function() {
     var bsfppc_drag_contents = [];
     var input_feilds = jQuery('#add_item_text_feild[type="text"]');
 
-
+ 
     jQuery('#bsfppc-ul').sortable({
         update: function() {
             jQuery('.bsfppc-spinner').addClass("is-active");
@@ -31,7 +31,7 @@ jQuery(document).ready(function() {
     });
     //Ajax trigger for adding an element in the array 
     jQuery(document).on('click', "#bsfppc-Savelist", function() {
-        jQuery('.bsfppc-spinner').addClass("is-active");
+        jQuery('.bsfppc-add-spinner').addClass("is-active");
         var bsfppc_input_item = jQuery('.bsfppc-item-input').val()
         var bsfppc_item_drag_var = [];
         var bsfppc_item_drag_var = jQuery('.bsfppc-drag-feilds');
@@ -56,27 +56,36 @@ jQuery(document).ready(function() {
                 function(data) {
                     if (jQuery('.bsfppc-ul')[0]) {
                         jQuery(".bsfppc-ul").html(data);
-                        jQuery('.bsfppc-spinner').removeClass("is-active");
+                        jQuery('.bsfppc-add-spinner').removeClass("is-active");
                         jQuery('.bsfppc-item-input').val("");
+                                            jQuery("ul.bsfppc-ul li:last-child").addClass("bsfppc-new-list-item");
+                     setTimeout(function(){
+                             jQuery('ul.bsfppc-ul li:last-child').removeClass('bsfppc-new-list-item');
+                        },1000)
                     } else {
                         data = '<ul id="bsfppc-ul" class="bsfppc-ul">' + data + '</ul>';
                         jQuery(".bsfppcdragdrop").html(data);
-                        jQuery('.bsfppc-spinner').removeClass("is-active");
+                        jQuery('.bsfppc-add-spinner').removeClass("is-active");
                         jQuery('.bsfppc-item-input').val("");
+                        jQuery("ul.bsfppc-ul li:last-child").addClass("bsfppc-new-list-item");
+                     setTimeout(function(){
+                             jQuery('ul.bsfppc-ul li:last-child').removeClass('bsfppc-new-list-item');
+                        },2000)
                     }
                 });
-            
+
             jQuery("#bsfppc-ul").sortable("refresh");
+
 
             
         } else {
             jQuery(".bsfppc-hide-empty-warning").css("visibility", "visible");
             if (bsfppc_item_exists == 1) {
                 jQuery(".bsfppc-list-waring-description").html('List item already exists');
-                jQuery('.bsfppc-spinner').removeClass("is-active");
+                jQuery('.bsfppc-add-spinner').removeClass("is-active");
             } else {
                 jQuery(".bsfppc-list-waring-description").html('List item cannot be empty');
-                jQuery('.bsfppc-spinner').removeClass("is-active");
+                jQuery('.bsfppc-add-spinner').removeClass("is-active");
             }
             setTimeout(function() {
                 jQuery(".bsfppc-hide-empty-warning").css("visibility", "hidden");

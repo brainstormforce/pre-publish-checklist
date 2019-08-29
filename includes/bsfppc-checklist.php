@@ -26,7 +26,7 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 				<table id ="list_table">
 					<tr><div class="bsfppc_input_feild">
 						<input type="text" id="add_item_text_feild" class="bsfppc-item-input" name="bsfppc_checklist_item[]" minlength= 1 >
-						<button type="button" id="bsfppc-Savelist" name="submit" class="button button-primary bsfppc_data"   Value="Save List" /><?php esc_html_e( 'Add to list', 'bsf-pre-publish-checklist' ); ?></button>
+						<button type="button" id="bsfppc-Savelist" name="submit" class="button button-primary bsfppc_data"   Value="Save List" /><?php esc_html_e( 'Add to list', 'bsf-pre-publish-checklist' ); ?></button><span class="spinner bsfppc-add-spinner"></span>
 						<br>
 						<div class="bsfppc-warning-div">
 							<div class="bsfppc-hide-empty-warning">
