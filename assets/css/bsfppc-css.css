@@ -29,6 +29,7 @@ input.bsfppc-drag-feilds {
   margin-left: 0px;
   box-sizing: border-box;
   color: #000;
+  font-size: 13px;
   width: 88%;
 }
 
@@ -52,10 +53,7 @@ input[type=text].bsfppc-drag-feilds{
   cursor: move;
   padding-top: 8px;
 }
-.dashicons-warning:before {
-    content: "\f534";
-    margin-left: -10px;
-}
+
 
 .form-table td p {
   margin-top: 4px;
@@ -117,10 +115,10 @@ ul.bsfppc-ul div {
   width: 10px;
 }
 
-ul.bsfppc-ul.up,
+/*ul.bsfppc-ul.up,
 ul.bsfppc-ul.down {
   float: left;
-}
+}*/
 
 .bsfppcdragdrop {
   align-content: left;

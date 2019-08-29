@@ -50,7 +50,7 @@ $(document).ready(
                                     }
                                 }
                             }
-                    }, 5000
+                    }, 2500
                 );
         });    
         $bsfppc_checkboxes.on(
@@ -315,7 +315,7 @@ $(document).ready(
                     $('.bsfppc-modal-prevent').attr('style', 'display:none');
                     document.querySelector('#bsfppc_custom_meta_box').scrollIntoView({
                         behavior: 'smooth',
-                        block: "start",
+                        block: "end",
                         inline: "nearest"                
                     });
                      $('#bsfppc_custom_meta_box').addClass('bsfppc-metabox-background');
