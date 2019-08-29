@@ -67,6 +67,7 @@ jQuery(document).ready(function() {
                         jQuery(".bsfppcdragdrop").html(data);
                         jQuery('.bsfppc-add-spinner').removeClass("is-active");
                         jQuery('.bsfppc-item-input').val("");
+                         jQuery("ul.bsfppc-ul li:last-child").animate("bsfppc-new-list-item");
                         jQuery("ul.bsfppc-ul li:last-child").addClass("bsfppc-new-list-item");
                      setTimeout(function(){
                              jQuery('ul.bsfppc-ul li:last-child').removeClass('bsfppc-new-list-item');
@@ -121,7 +122,7 @@ jQuery(document).ready(function() {
                 bsfppc_txt = "You pressed Cancel!";
             }
         } else if (jQuery(this).prop("name") == 'Save') {
-            jQuery(this).prevUntil(".dashicons-menu-alt2", ".bsfppc-drag-feilds").attr('style', 'width:81%');
+            jQuery(this).prevUntil(".dashicons-menu-alt2", ".bsfppc-drag-feilds").attr('style', 'width:80%');
             jQuery(this).prev().attr('style', 'display:inline-block');
 
             if (jQuery(this).prevUntil(".dashicons-menu-alt2", ".bsfppc-drag-feilds").val().replace(/ /g, '').length !== 0) {
@@ -166,7 +167,7 @@ jQuery(document).ready(function() {
             jQuery(this).attr('style', 'cursor:default');
         })
         jQuery(this).attr('style', 'display:none');
-        jQuery(this).prev().attr('style', 'width:89%');
+        jQuery(this).prev().attr('style', 'width:88%');
         jQuery("#bsfppc-ul").sortable("disable");
         jQuery(this).prev().removeAttr('readonly');
         jQuery(this).prev().focus();
