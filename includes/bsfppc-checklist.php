@@ -48,18 +48,19 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 			?>
 						<ul id="bsfppc-ul" class="bsfppc-ul">
 			<?php
-			foreach ( $bsfppc_checklist_item_data as $key ) {
+			foreach ( $bsfppc_checklist_item_data as $bsfppc_key ) {
 				?>
 									<li class="bsfppc-li">
 										<!-- <span class = "down"></span> -->
-										<span class="dashicons dashicons-menu-alt2 bsfppc-move-dashicon"></span> <input type="text" readonly="true" class="bsfppc-drag-feilds" value="<?php echo esc_attr( $key ); ?>" name="bsfppc_checklist_item[]" >
-										<button type="button" id = "edit" name="Delete" class="bsfppcedit" value="<?php echo esc_attr( $key ); ?>"> <span class="dashicons dashicons-edit"></span>Edit</button>
-										<button type="button" id = "Delete" name="Delete" class="bsfppcdelete" value="<?php echo esc_attr( $key ); ?>"> <span class="dashicons dashicons-trash bsfppc-delete-dashicon"></span>Delete</button>
+										<span class="dashicons dashicons-menu-alt2 bsfppc-move-dashicon"></span> <input type="text" readonly="true" class="bsfppc-drag-feilds" value="<?php echo esc_attr( $bsfppc_key ); ?>" name="bsfppc_checklist_item[]" >
+										<button type="button" id = "edit" name="Delete" class="bsfppcedit" value="<?php echo esc_attr( $bsfppc_key ); ?>"> <span class="dashicons dashicons-edit"></span>Edit</button>
+										<button type="button" id = "Delete" name="Delete" class="bsfppcdelete" value="<?php echo esc_attr( $bsfppc_key ); ?>"> <span class="dashicons dashicons-trash bsfppc-delete-dashicon"></span>Delete</button>
 
 									</li>
 				<?php
 			}
-		} ?>
+		}
+		?>
 						</ul>
 				</div>
 				<p class="bsfppc-empty-list"><?php esc_html_e( 'You do not have any items in the list please add items in the list.', 'bsf-pre-publish-checklist' ); ?></p>

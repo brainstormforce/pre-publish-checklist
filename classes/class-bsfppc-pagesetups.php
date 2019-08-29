@@ -52,14 +52,13 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 		 * Constructor
 		 */
 		public function __construct() {
-
 			add_action( 'add_meta_boxes', array( $this, 'bsfppc_add_custom_meta_box' ) );
 			add_action( 'admin_menu', array( $this, 'bsf_ppc_settings_page' ) );
 			add_action( 'wp_ajax_bsfppc_ajax_add_change', array( $this, 'bsfppc_meta_box_ajax_add_handler' ), 1 );
 			add_action( 'wp_ajax_nopriv_bsfppc_ajax_add_change', array( $this, 'bsfppc_meta_box_ajax_add_handler' ), 1 );
 			add_action( 'wp_ajax_bsfppc_ajax_delete_change', array( $this, 'bsfppc_meta_box_ajax_delete_handler' ), 1 );
 			add_action( 'wp_ajax_nopriv_bsfppc_ajax_delete_change', array( $this, 'bsfppc_meta_box_ajax_delete_handler' ), 1 );
-			add_action( 'admin_footer', array( $this, 'bsfppc_markup' ));
+			add_action( 'admin_footer', array( $this, 'bsfppc_markup' ) );
 		}
 		/**
 		 * Function for HTML markup of notification.
@@ -68,38 +67,38 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 		 *
 		 * @since 1.0.0
 		 */
-        public function bsfppc_markup() {
-            $bsfppc_screen = get_current_screen();
+		public function bsfppc_markup() {
+			$bsfppc_screen = get_current_screen();
 
-            // If not edit or add new page, post or custom post type window then return;
-            if( ! isset( $bsfppc_screen->parent_base ) && 'edit' !== $bsfppc_screen->parent_base ) {
-                return;
-            }
+			// If not edit or add new page, post or custom post type window then return.
+			if ( ! isset( $bsfppc_screen->parent_base ) && 'edit' !== $bsfppc_screen->parent_base ) {
+				return;
+			}
 
-            wp_enqueue_script( 'bsfppc_backend_checkbox_js' );
-            wp_enqueue_style( 'bsfppc_backend_css' );
-            ?>
-            <div class = "bsfppc-modal-warn">
-                <div id="bsfppc_notifications" class="bsfppc-popup-warn">
-                    <p class="bsfppc-tooltip">Pre Publish Checklist</p>
-                    <p class="bsfppc-popup-description">You have not completed your Pre Publish Checklist yet what would you like to do?</p>
-                    <div class="bsfppc-button-wrapper">
-                        <div class="bsfppc-popup-option-dontpublish">Don't Publish</div>
-                        <div class="bsfppc-popup-options-publishanyway">Publish Anyway</div>
-                    </div>    
-                </div>
-            </div>
-            <div class = "bsfppc-modal-prevent">
-                <div id="bsfppc_notifications" class="bsfppc-popup-prevent">
-                    <p class="bsfppc-tooltip">Pre Publish Checklist</p>
-                    <p class="bsfppc-popup-description"> Please check all the items before publishing</p>
-                    <ul class="bsfppc-buttons-prevent">
-                    <li><p class="bsfppc-popup-option-okay">Okay, Take me to the list!</p></li>
-                    </ul>
-                </div>
-            </div>
-            <?php
-        }
+			wp_enqueue_script( 'bsfppc_backend_checkbox_js' );
+			wp_enqueue_style( 'bsfppc_backend_css' );
+			?>
+			<div class = "bsfppc-modal-warn">
+				<div id="bsfppc_notifications" class="bsfppc-popup-warn">
+					<p class="bsfppc-tooltip">Pre Publish Checklist</p>
+					<p class="bsfppc-popup-description">You have not completed your Pre Publish Checklist yet what would you like to do?</p>
+					<div class="bsfppc-button-wrapper">
+						<div class="bsfppc-popup-option-dontpublish">Don't Publish</div>
+						<div class="bsfppc-popup-options-publishanyway">Publish Anyway</div>
+					</div>    
+				</div>
+			</div>
+			<div class = "bsfppc-modal-prevent">
+				<div id="bsfppc_notifications" class="bsfppc-popup-prevent">
+					<p class="bsfppc-tooltip">Pre Publish Checklist</p>
+					<p class="bsfppc-popup-description"> Please check all the items before publishing</p>
+					<ul class="bsfppc-buttons-prevent">
+					<li><p class="bsfppc-popup-option-okay">Okay, Take me to the list!</p></li>
+					</ul>
+				</div>
+			</div>
+			<?php
+		}
 
 		/**
 		 * Function for adding settings page in admin area
@@ -126,8 +125,7 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 		 * @since 1.0.0
 		 */
 		public function bsf_ppc_page_html() {
-
-			include_once BSF_PPC_ABSPATH . 'includes/bsfppc-tabs.php';
+			include_once BSFPPC_ABSPATH . 'includes/bsfppc-tabs.php';
 		}
 		/**
 		 * Add custom meta box
@@ -137,7 +135,6 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 		 * @since 1.0.0
 		 */
 		public function bsfppc_add_custom_meta_box() {
-
 			$bsfppc_post_types_to_display = get_option( 'bsfppc_post_types_to_display' );
 			if ( ! empty( $bsfppc_post_types_to_display ) ) {
 				foreach ( $bsfppc_post_types_to_display as $screen ) {
@@ -161,7 +158,6 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 		 * @since 1.0.0
 		 */
 		public function bsfppc_custom_box_html() {
-
 			wp_enqueue_script( 'bsfppc_backend_checkbox_js' );
 			wp_enqueue_script( 'bsfppc_backend_tooltip_js' );
 			wp_enqueue_style( 'bsfppc_backend_css' );
@@ -185,7 +181,6 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 
 					echo esc_attr( $key );
 					echo '<br/>';
-
 				}
 			} else {
 				echo 'Please create a list to display here from Settings->Pre-Publish-Checklist';
