@@ -160,7 +160,7 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 						?>
 								<li class="bsfppc-li">
 								<!-- <span class = "down"></span> -->
-								<span class="dashicons dashicons-menu-alt2"></span> <input type="text" readonly="true" class="bsfppc-drag-feilds" value="<?php echo esc_attr( $bsfppc_checklist_item_data_key ); ?>" name="bsfppc_checklist_item[]" >
+								<span class="dashicons dashicons-menu-alt2 bsfppc-move-dashicon"></span> <input type="text" readonly="true" class="bsfppc-drag-feilds" value="<?php echo esc_attr( $bsfppc_checklist_item_data_key ); ?>" name="bsfppc_checklist_item[]" >
 								<button type="button" id = "edit" name="Delete" class="bsfppcedit" value="<?php echo esc_attr( $bsfppc_checklist_item_data_key ); ?>"> <span class="dashicons dashicons-edit"></span>Edit</button>
 										<button type="button" id = "Delete" name="Delete" class="bsfppcdelete" value="<?php echo esc_attr( $bsfppc_checklist_item_data_key ); ?>"> <span class="dashicons dashicons-trash bsfppc-delete-dashicon"></span>Delete</button>
 								<?php

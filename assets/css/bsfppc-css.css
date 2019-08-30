@@ -34,14 +34,17 @@ input.bsfppc-drag-feilds {
 }
 
 input[readonly].bsfppc-drag-feilds{
-  background-color: #fff;
-  border: 2px solid #fff;
-  color: #000;
-  width: 80%;
+    background-color: #fff;
+    color: #000;
+    width: 100%;
+    max-width: 630px;
+    border: none;
   
 }
 input[type=text].bsfppc-drag-feilds{
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0);
+  border: none;
+
 
 }
 
@@ -49,9 +52,9 @@ input[type=text].bsfppc-drag-feilds{
   display: none;
 }
 
-.dashicons-menu-alt2 {
+.dashicons-menu-alt2.bsfppc-move-dashicon {
   cursor: move;
-  padding-top: 8px;
+  padding: 5px 0px 0px 7px;
 }
 
 
@@ -95,18 +98,17 @@ ul.bsfppc-ul li.bsfppc-li {
     margin: 0px 0px 0px 0px;
     font-size: 1.25em;
     display: flex;
-    padding: 0px 0px 0px 7px;
-    border-left: 1px solid #d3d3d3;
-    border-right: 1px solid #d3d3d3;
+    padding: 10px 0px 10px 0px;
+    border: 0.5px solid #d3d3d3;
     background: #fff;
     font-weight: 600;
     margin-bottom: 10px;
   }
 
-.dashed-placeholder {
+.bsfppc-dashed-placeholder {
   border: 1px dashed #999;
   margin: 10px 0px 10px 0px;
-  padding: 5px 0px 35px 6px;
+  padding: 5px 0px 45px 6px;
 }
 
 ul.bsfppc-ul div {
@@ -446,7 +448,7 @@ div#bsfppc_custom_meta_box {
   }
 
   .bsfppc-metabox-background{
-   background:#c1edff;
+   background:  #fff8e5;
    transition:1.0s ease;
    -moz-transition:1.0s ease;
    -webkit-transition:1.0s ease;
@@ -472,4 +474,7 @@ div#bsfppc_custom_meta_box {
     -moz-box-shadow: 0px 0px 9px 5px rgba(193,237,255,1);
     box-shadow: 0px 0px 9px 5px rgba(193,237,255,1);
 
+}
+p.bsfppc-popup-description {
+    padding: 0px 20px 0px 20px;
 }

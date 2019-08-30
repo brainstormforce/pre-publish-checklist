@@ -8,7 +8,7 @@
  */
 
 echo '<h1 class="bsfppc_main_title">';
-esc_attr_e( 'Pre Publish Checklist', 'bsf-pre-publish-checklist' );
+esc_attr_e( 'Pre-Publish Checklist', 'bsf-pre-publish-checklist' );
 echo '</h1>';
 ?>
 

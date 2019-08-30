@@ -80,7 +80,7 @@ $bsfppc_exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templat
 	$bsfppc_checklist_item_data = get_option( 'bsfppc_checklist_data' );
 	?>
 				<br>
-				<p class="description"><?php esc_html_e( 'Select the post types to have your check list on.', 'bsf-pre-publish-checklist' ); ?></p> <br>
+				<p class="description"><?php esc_html_e( 'Select the post types where to display the Pre-Publish Checklist.', 'bsf-pre-publish-checklist' ); ?></p> <br>
 
 				<?php wp_nonce_field( 'bsfppc-form-nonce', 'bsfppc-form' ); ?>
 			<br><input type="submit" class="button button-primary bsfppc-savesetting"  name="submit_radio" Value="Save Setting"/>

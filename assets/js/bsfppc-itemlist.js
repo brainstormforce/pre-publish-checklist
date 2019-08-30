@@ -2,35 +2,41 @@ jQuery(document).ready(function() {
     var add_button = jQuery('.add_field_button ');
     var bsfppc_item_content = [];
     var bsfppc_drag_contents = [];
+
     var input_feilds = jQuery('#add_item_text_feild[type="text"]');
+    function bsfppc_sortable(){ 
+            jQuery('#bsfppc-ul').sortable({
+            update: function() {
+                jQuery('.bsfppc-spinner').addClass("is-active");
+                bsfppc_drag_contents = [];
 
- 
-    jQuery('#bsfppc-ul').sortable({
-        update: function() {
-            jQuery('.bsfppc-spinner').addClass("is-active");
-            bsfppc_drag_contents = [];
+                jQuery(this).sortable("disable");
+                var bsfppc_item_drag_var = [];
+                var bsfppc_item_drag_var = jQuery('.bsfppc-drag-feilds');
+                bsfppc_item_drag_var.each(function() {
+                    bsfppc_drag_contents.push(jQuery(this).attr('value'));
+                });
 
-            jQuery(this).sortable("disable");
-            var bsfppc_item_drag_var = [];
-            var bsfppc_item_drag_var = jQuery('.bsfppc-drag-feilds');
-            bsfppc_item_drag_var.each(function() {
-                bsfppc_drag_contents.push(jQuery(this).attr('value'));
-            });
+                jQuery.post(bsfppc_add_delete_obj.url, {
+                    action: 'bsfppc_checklistitem_drag',
+                    bsfppc_item_drag_var: bsfppc_drag_contents
+                }, function(data) {
+                    if (data === 'sucess') {
+                        jQuery('#bsfppc-ul').sortable("enable");
+                        jQuery('.bsfppc-spinner').removeClass("is-active");
+                    }
+                });
+            },
+            placeholder: "bsfppc-dashed-placeholder"
+        });
+    }
+    bsfppc_sortable( jQuery('#bsfppc-ul') );
 
-            jQuery.post(bsfppc_add_delete_obj.url, {
-                action: 'bsfppc_checklistitem_drag',
-                bsfppc_item_drag_var: bsfppc_drag_contents
-            }, function(data) {
-                if (data === 'sucess') {
-                    jQuery('#bsfppc-ul').sortable("enable");
-                    jQuery('.bsfppc-spinner').removeClass("is-active");
-                }
-            });
-        },
-        placeholder: "dashed-placeholder"
-    });
+
     //Ajax trigger for adding an element in the array 
     jQuery(document).on('click', "#bsfppc-Savelist", function() {
+        bsfppc_sortable( jQuery('#bsfppc-ul') );
+
         jQuery('.bsfppc-add-spinner').addClass("is-active");
         var bsfppc_input_item = jQuery('.bsfppc-item-input').val()
         var bsfppc_item_drag_var = [];
@@ -47,30 +53,34 @@ jQuery(document).ready(function() {
             var bsfppc_item_exists = 0;
         }
         if (jQuery('.bsfppc-item-input').val().replace(/ /g, '').length !== 0 && bsfppc_item_exists !== 1) {
-            
             jQuery('.bsfppc-empty-list').attr('style', 'visibility:hidden');
             jQuery.post(bsfppc_add_delete_obj.url, {
                     action: 'bsfppc_checklistitem_add',
                     bsfppc_item_content: jQuery('.bsfppc-item-input').attr('value')
                 },
                 function(data) {
+                     bsfppc_sortable( jQuery('#bsfppc-ul') );
                     if (jQuery('.bsfppc-ul')[0]) {
                         jQuery(".bsfppc-ul").html(data);
                         jQuery('.bsfppc-add-spinner').removeClass("is-active");
                         jQuery('.bsfppc-item-input').val("");
-                                            jQuery("ul.bsfppc-ul li:last-child").addClass("bsfppc-new-list-item");
+                        jQuery('ul.bsfppc-ul li:last-child').children().css('background-color', '#f7fcfe');
+                        jQuery('ul.bsfppc-ul li:last-child').css('background-color', '#f7fcfe');
                      setTimeout(function(){
-                             jQuery('ul.bsfppc-ul li:last-child').removeClass('bsfppc-new-list-item');
+                        jQuery('ul.bsfppc-ul li:last-child').children().css('background-color', '#fff');
+                        jQuery('ul.bsfppc-ul li:last-child').css('background-color', '#fff');
                         },1000)
                     } else {
                         data = '<ul id="bsfppc-ul" class="bsfppc-ul">' + data + '</ul>';
+
                         jQuery(".bsfppcdragdrop").html(data);
                         jQuery('.bsfppc-add-spinner').removeClass("is-active");
                         jQuery('.bsfppc-item-input').val("");
-                         jQuery("ul.bsfppc-ul li:last-child").animate("bsfppc-new-list-item");
-                        jQuery("ul.bsfppc-ul li:last-child").addClass("bsfppc-new-list-item");
+                        jQuery('ul.bsfppc-ul li:last-child').children().css('background-color','#f7fcfe');
+                        jQuery('ul.bsfppc-ul li:last-child').css('background-color', '#f7fcfe');
                      setTimeout(function(){
-                             jQuery('ul.bsfppc-ul li:last-child').removeClass('bsfppc-new-list-item');
+                        jQuery('ul.bsfppc-ul li:last-child').children().css('background-color', '#fff');
+                        jQuery('ul.bsfppc-ul li:last-child').css('background-color', '#fff');
                         },2000)
                     }
                 });
@@ -100,7 +110,7 @@ jQuery(document).ready(function() {
         if (jQuery(this).prop("name") == 'Delete') {
         
             var bsfppc_txt;
-            var bsfppc_delete_flag = confirm("Are you sure you want to Delete ");
+            var bsfppc_delete_flag = confirm("Are you sure to delete this checklist item?");
             if (bsfppc_delete_flag == true) {
                 jQuery('.bsfppc-spinner').addClass("is-active");
                 jQuery(this).parents('li:first').remove();

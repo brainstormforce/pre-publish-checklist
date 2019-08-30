@@ -20,26 +20,8 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 <div class="bsfppc-table-wrapper">
 <table class="form-table bsfppc-form-table">
 	<tbody>
-		<tr>
-			<th scope="row"> <p class="bsfppc-post"><?php esc_html_e( 'Create a Custom Checklist', 'bsf-pre-publish-checklist' ); ?></p> </th>
-			<td class="bsfppc-table">
-				<table id ="list_table">
-					<tr><div class="bsfppc_input_feild">
-						<input type="text" id="add_item_text_feild" class="bsfppc-item-input" name="bsfppc_checklist_item[]" minlength= 1 >
-						<button type="button" id="bsfppc-Savelist" name="submit" class="button button-primary bsfppc_data"   Value="Save List" /><?php esc_html_e( 'Add to list', 'bsf-pre-publish-checklist' ); ?></button><span class="spinner bsfppc-add-spinner"></span>
-						<br>
-						<div class="bsfppc-warning-div">
-							<div class="bsfppc-hide-empty-warning">
-							<p class="warning bsfppc-list-waring-description"><?php esc_html_e( 'List item cannot be blank', 'bsf-pre-publish-checklist' ); ?></p>
-							</div>
-						</div>
-					</div>
-					</tr>
-				</table>					
-			</td>
-		</tr>
-		<tr>
-			<th scope="row"><p class="bsfppc-post"><span class="spinner bsfppc-spinner"></span><?php esc_html_e( 'Your List', 'bsf-pre-publish-checklist' ); ?></p> </th>
+				<tr>
+			<th scope="row"><p class="bsfppc-post"><span class="spinner bsfppc-spinner"></span><?php esc_html_e( 'Pre-Publish Checklist', 'bsf-pre-publish-checklist' ); ?></p> </th>
 			<td class="bsfppc-list-table">
 
 				<div id="columns" class="bsfppcdragdrop">
@@ -66,6 +48,25 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 				<p class="bsfppc-empty-list"><?php esc_html_e( 'You do not have any items in the list please add items in the list.', 'bsf-pre-publish-checklist' ); ?></p>
 			</td>
 		</tr>
+		<tr>
+			<th scope="row"> <p class="bsfppc-post"><?php esc_html_e( 'Add New Item in Checklist', 'bsf-pre-publish-checklist' ); ?></p> </th>
+			<td class="bsfppc-table">
+				<table id ="list_table">
+					<tr><div class="bsfppc_input_feild">
+						<input type="text" id="add_item_text_feild" class="bsfppc-item-input" name="bsfppc_checklist_item[]" minlength= 1 >
+						<button type="button" id="bsfppc-Savelist" name="submit" class="button button-primary bsfppc_data"   Value="Save List" /><?php esc_html_e( 'Add to list', 'bsf-pre-publish-checklist' ); ?></button><span class="spinner bsfppc-add-spinner"></span>
+						<br>
+						<div class="bsfppc-warning-div">
+							<div class="bsfppc-hide-empty-warning">
+							<p class="warning bsfppc-list-waring-description"><?php esc_html_e( 'List item cannot be blank', 'bsf-pre-publish-checklist' ); ?></p>
+							</div>
+						</div>
+					</div>
+					</tr>
+				</table>					
+			</td>
+		</tr>
+
 	</tbody>
 </table>
 </div>
