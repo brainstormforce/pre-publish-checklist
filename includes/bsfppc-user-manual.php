@@ -20,11 +20,11 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 		<h4><label class="bsfppc_page_title" for="howtouse"> How to Use? </label> </h4>
 		<?php
 		echo '
-		<b>Step 1</b> : Under the <i>General Settings</i> Tab, Select the option you want that is what you want to do on publish attempt and click save settings. Select post types to display the meta box in the meta settings.<br><br>
-		<b>Step 2</b> : Go to the <i>Checklist</i> Tab, Add the required items in the list that you want to check while publishing or updating a post. <br><br>
-		<b>Step 3</b> : Go to the <i>Edit Post</i>  or <i>Add new</i> Post/Page. You will see a meta box in the meta settings.<br><br>
-		<b>Step 4</b> : That' . "'" . 's it! Edit your pages and post without being feared about an accidental publish or update.  <br><br><br>';
-
+		<b>Step 1</b> : Under the <i>General Settings</i> Tab, select the appropriate option from On Publish Attempt and click Save Settings.attempt and click save settings.<br><br>
+		<b>Step 2</b> : Select the <i>Post Types</i> on which you want to display the meta box having the Pre Publish checklist.<br><br>
+		<b>Step 3</b> : Go to the <i>Checklist</i> Tab, Add the required items in the list that you want to check while publishing or updating a post. <br><br>
+		<b>Step 4</b> : Go to the <i>Edit Post</i>  or <i>Add new</i> Post/Page. You will see a meta box in the meta settings.<br><br>
+		<b>Step 5</b> : That' . "'" . 's it! Edit your pages and post without being feared about an accidental publish or update.  <br><br><br>';
 		?>
 		</div>
 	</td>

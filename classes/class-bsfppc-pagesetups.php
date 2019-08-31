@@ -181,7 +181,7 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 						>
 					<?php
 
-					echo esc_attr( $key );
+					?><div class="bsfppc-checklist"><?php echo esc_attr( $key );?></div><?php
 					echo '<br/>';
 				}
 			} else {

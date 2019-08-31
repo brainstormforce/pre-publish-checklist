@@ -4,9 +4,27 @@ $(document).ready(
         var $bsfppc_checkboxes = $('#checkbox[type="checkbox"]');
         var $bsfppc_checkboxes_length = $('#checkbox[type="checkbox"]').length; 
         var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
+
+        $(".bsfppc_checkboxes").each(function(){
+            if($(this).prop("checked") == true) {
+                $(this).next().addClass("bsfppc-checklist-checked");
+
+            }else if($(this).prop("checked") == false){
+                $(this).next().removeClass("bsfppc-checklist-checked");
+            }
+        });
+
+        $(document).on('click', ".bsfppc_checkboxes", function() {
+            if($(this).prop("checked") == true) {
+                $(this).next().addClass("bsfppc-checklist-checked");
+
+            }else if($(this).prop("checked") == false){
+                $(this).next().removeClass("bsfppc-checklist-checked");
+            }
+
+        });
         $(document).on('click', ".editor-post-preview", function() { 
                 setTimeout( function() {
-                        console.log('in function');
                             var $bsfppc_checkboxes = $('#checkbox[type="checkbox"]');
                             var $bsfppc_checkboxes_length = $('#checkbox[type="checkbox"]').length;
                             var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
@@ -195,26 +213,25 @@ $(document).ready(
                        $(document).on('click', "#publish", function(e) {
                         var $bsfppc_checkboxes = $('#checkbox[type="checkbox"]');
                         var countCheckedbsfppc_checkboxes = $bsfppc_checkboxes.filter(':checked').length;
-                        console.log($bsfppc_checkboxes.length);
-                        console.log(countCheckedbsfppc_checkboxes);
+
 
                         if ($bsfppc_checkboxes.length == countCheckedbsfppc_checkboxes){
                             return true;
                         }
                         else{
                                if(bsfppc_publish_flag == 0){
-                                console.log('in flag 0');
+                                
                                     if (bsfppc_radio_obj.option == 2 ) {
                                         console.log('in rdaio option 2 flag 0');
                                         $('.bsfppc-modal-warn').attr('style', 'display:block');
                                     }
                                     else if(bsfppc_radio_obj.option == 1){
-                                         console.log('in rdaio option 1  flag 0');
+                                         
                                          $('.bsfppc-modal-prevent').attr('style', 'display:block');
                                     }
                                     return false;
                                 }else if(bsfppc_publish_flag == 1){
-                                    console.log('publish holya pahije');
+                                    
                                     bsfppc_publish_flag == 0;
                                     return true;
                                 }
@@ -234,7 +251,7 @@ $(document).ready(
                     });
 
                     $(document).on('click', "#bsfppc-publish", function() {
-                        console.log('hi');
+                        
                         // console.log(' warn clicked publish  user option');
                         $('.bsfppc-modal-warn').attr('style', 'display:block');
 
@@ -279,7 +296,7 @@ $(document).ready(
                         $('.editor-post-publish-button').trigger('click', 'update');
 
                     }else {
-                        console.log('its the condition');
+                        
                         bsfppc_publish_flag = 1;
                         $('.bsfppc-modal-warn').attr('style', 'display:none');
                         $('#publish').trigger('click', 'publish');

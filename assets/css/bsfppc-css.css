@@ -478,3 +478,11 @@ div#bsfppc_custom_meta_box {
 p.bsfppc-popup-description {
     padding: 0px 20px 0px 20px;
 }
+
+.bsfppc-checklist-checked{
+  text-decoration: line-through;
+}
+.bsfppc-checklist{
+  display: inline-block;
+  margin-top: 20px;
+}
