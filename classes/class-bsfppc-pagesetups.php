@@ -69,9 +69,8 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 		 */
 		public function bsfppc_markup() {
 			$bsfppc_screen = get_current_screen();
-
 			// If not edit or add new page, post or custom post type window then return.
-			if ( ! isset( $bsfppc_screen->parent_base ) && 'edit' !== $bsfppc_screen->parent_base ) {
+			if ( ! isset( $bsfppc_screen->parent_base ) || (isset( $bsfppc_screen->parent_base ) && 'edit' !== $bsfppc_screen->parent_base) ) {
 				return;
 			}
 			if ( ( ! empty( $_GET['action'] ) && 'edit' === $_GET['action'] ) || 'edit.php' === $bsfppc_screen->parent_file || 'post-new.php' === $bsfppc_screen->parent_file || 'page' === $bsfppc_screen->post_type ){

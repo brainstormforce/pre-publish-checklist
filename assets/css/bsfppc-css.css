@@ -486,3 +486,6 @@ p.bsfppc-popup-description {
   display: inline-block;
   margin-top: 20px;
 }
+td.bsfppc-publish-attempt-options {
+  padding-top: 20px;
+}
