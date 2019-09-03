@@ -5,7 +5,7 @@
  * PHP version 7
  *
  * @category PHP
- * @package  Pre Publish Check-list.
+ * @package  Pre-Publish Checklist.
  * @author   Display Name <username@ShubhamW.com>
  * @license  http://brainstormforce.com
  * @link     http://brainstormforce.com
@@ -73,11 +73,8 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 			if ( ! isset( $bsfppc_screen->parent_base ) || (isset( $bsfppc_screen->parent_base ) && 'edit' !== $bsfppc_screen->parent_base) ) {
 				return;
 			}
-			if ( ( ! empty( $_GET['action'] ) && 'edit' === $_GET['action'] ) || 'edit.php' === $bsfppc_screen->parent_file || 'post-new.php' === $bsfppc_screen->parent_file || 'page' === $bsfppc_screen->post_type ){
-
 			wp_enqueue_script( 'bsfppc_backend_checkbox_js' );
 			wp_enqueue_style( 'bsfppc_backend_css' );
-			}
 			?>
 			<div class = "bsfppc-modal-warn">
 				<div id="bsfppc_notifications" class="bsfppc-popup-warn">
@@ -93,9 +90,11 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 				<div id="bsfppc_notifications" class="bsfppc-popup-prevent">
 					<h2>Pre-Publish Checklist</h2>
 					<p class="bsfppc-popup-description"> Please check all the checklist items before publishing.</p>
-					<ul class="bsfppc-buttons-prevent">
-					<li><p class="bsfppc-popup-option-okay">Okay, Take Me to the List!</p></li>
-					</ul>
+					<div class="bsfppc-prevent-button-wrapper">
+						<div class="bsfppc-popup-option-okay">Okay, Take Me to the List!</div>
+					</div>  
+					
+					
 				</div>
 			</div>
 			<?php
@@ -168,6 +167,7 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 			if ( ! empty( $bsfppc_checklist_item_data ) ) {
 				foreach ( $bsfppc_checklist_item_data as $key ) {
 					?>
+					<div class="bsfppc-checklist-item-wrapper">
 						<input type="checkbox" name="checkbox[]" id="checkbox" class="bsfppc_checkboxes" value= "<?php echo esc_attr( $key ); ?>"
 
 					<?php
@@ -180,8 +180,8 @@ if ( ! class_exists( 'BSFPPC_Pagesetups' ) ) :
 						>
 					<?php
 
-					?><div class="bsfppc-checklist"><?php echo esc_attr( $key );?></div><?php
-					echo '<br/>';
+					?><div class="bsfppc-checklist"><?php echo esc_attr( $key );?></div></div><?php
+					
 				}
 			} else {
 				echo 'Please create a list to display here from Settings->Pre-Publish-Checklist';

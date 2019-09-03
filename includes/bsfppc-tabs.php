@@ -3,7 +3,7 @@
  * Settings page of Pre Publish CHecklist
  *
  * @since   1.0.0
- * @package BSF
+ * @package Pre-Publish Checklist.
  * @author  Brainstorm Force.
  */
 

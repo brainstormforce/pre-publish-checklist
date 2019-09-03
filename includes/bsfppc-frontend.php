@@ -4,7 +4,7 @@
  * PHP version 7
  *
  * @category PHP
- * @package  Pre Publish Check-list.
+ * @package  Pre-Publish Checklist.
  * @author   Display Name <username@ShubhamW.com>
  * @license  http://brainstormforce.com
  * @link     http://brainstormforce.com
@@ -82,7 +82,7 @@ $bsfppc_exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templat
 				<p class="description"><?php esc_html_e( 'Select the post types where to display the Pre-Publish Checklist.', 'bsf-pre-publish-checklist' ); ?></p> <br>
 
 				<?php wp_nonce_field( 'bsfppc-form-nonce', 'bsfppc-form' ); ?>
-			<br><input type="submit" class="button button-primary bsfppc-savesetting"  name="submit_radio" Value="Save Setting"/>
+			<br><input type="submit" class="button button-primary bsfppc-savesetting"  name="submit_radio" Value="Save Settings"/>
 			
 			</td>
 		</tr>

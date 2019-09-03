@@ -5,7 +5,7 @@
  * PHP version 7
  *
  * @category PHP
- * @package  Pre Publish Check-list.
+ * @package  Pre-Publish Checklist.
  * @author   Display Name <username@ShubhamW.com>
  * @license  http://brainstormforce.com
  * @link     http://brainstormforce.com
@@ -38,7 +38,7 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 										<button type="button" id = "edit" name="Delete" class="bsfppcedit" value="<?php echo esc_attr( $bsfppc_key ); ?>"> <span class="dashicons dashicons-edit"></span>Edit</button>
 										<button type="button" id = "Delete" name="Delete" class="bsfppcdelete" value="<?php echo esc_attr( $bsfppc_key ); ?>"> <span class="dashicons dashicons-trash bsfppc-delete-dashicon"></span>Delete</button>
 
-									</li>
+									</li><!-- <span class="spinner bsfppc-spinner is-active"></span> -->
 				<?php
 			}
 		}
@@ -54,7 +54,7 @@ wp_enqueue_style( 'bsfppc_backend_css' );
 				<table id ="list_table">
 					<tr><div class="bsfppc_input_feild">
 						<input type="text" id="add_item_text_feild" class="bsfppc-item-input" name="bsfppc_checklist_item[]" minlength= 1 >
-						<button type="button" id="bsfppc-Savelist" name="submit" class="button button-primary bsfppc_data"   Value="Save List" /><?php esc_html_e( 'Add to list', 'bsf-pre-publish-checklist' ); ?></button><span class="spinner bsfppc-add-spinner"></span>
+						<button type="button" id="bsfppc-Savelist" name="submit" class="button button-primary bsfppc_data"   Value="Save List" /><?php esc_html_e( 'Add to List', 'bsf-pre-publish-checklist' ); ?></button><span class="spinner bsfppc-add-spinner"></span>
 						<br>
 						<div class="bsfppc-warning-div">
 							<div class="bsfppc-hide-empty-warning">

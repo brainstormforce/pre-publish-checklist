@@ -177,7 +177,7 @@ jQuery(document).ready(function() {
             jQuery(this).attr('style', 'cursor:default');
         })
         jQuery(this).attr('style', 'display:none');
-        jQuery(this).prev().attr('style', 'width:88%');
+        jQuery(this).prev().attr('style', 'width:87%');
         jQuery("#bsfppc-ul").sortable("disable");
         jQuery(this).prev().removeAttr('readonly');
         jQuery(this).prev().focus();

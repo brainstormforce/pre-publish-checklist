@@ -18,7 +18,7 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 	 * PHP version 7
 	 *
 	 * @category PHP
-	 * @package  Pre Publish Check list
+	 * @package  Pre-Publish Checklist.
 	 * @author   Display Name <username@ShubhamW.com>
 	 * @license  http://brainstormforce.com
 	 * @link     http://brainstormforce.com
@@ -45,6 +45,7 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 		 * Constructor
 		 */
 		public function __construct() {
+			$this->bsfppc_default_list_data();
 			$this->bsfppc_load();
 			add_action( 'admin_enqueue_scripts', array( $this, 'bsfppc_plugin_backend_js' ) );
 			add_action( 'init', array( $this, 'bsfppc_save_data' ) );
@@ -57,6 +58,13 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 			add_action( 'wp_ajax_nopriv_bsfppc_checklistitem_drag', array( $this, 'bsfppc_drag_item' ), 1 );
 			add_action( 'wp_ajax_bsfppc_checklistitem_edit', array( $this, 'bsfppc_edit_item' ), 1 );
 			add_action( 'wp_ajax_nopriv_bsfppc_checklistitem_edit', array( $this, 'bsfppc_edit_item' ), 1 );
+		}
+
+
+		public function bsfppc_default_list_data() {
+			$bsfppc_default_checklist_data = array("Spelling & Grammar Checked","Featured Image Assigned","Category Selected","Formatting Done","Title is Catchy","Social Images Assigned" ,"Done SEO");
+			
+			add_option( 'bsfppc_checklist_data', $bsfppc_default_checklist_data );
 		}
 		/**
 		 * Loads classes and includes.
@@ -161,8 +169,8 @@ if ( ! class_exists( 'BSFPPC_Loader' ) ) :
 								<li class="bsfppc-li">
 								<!-- <span class = "down"></span> -->
 								<span class="dashicons dashicons-menu-alt2 bsfppc-move-dashicon"></span> <input type="text" readonly="true" class="bsfppc-drag-feilds" value="<?php echo esc_attr( $bsfppc_checklist_item_data_key ); ?>" name="bsfppc_checklist_item[]" >
-								<button type="button" id = "edit" name="Delete" class="bsfppcedit" value="<?php echo esc_attr( $bsfppc_checklist_item_data_key ); ?>"> <span class="dashicons dashicons-edit"></span>Edit</button>
-										<button type="button" id = "Delete" name="Delete" class="bsfppcdelete" value="<?php echo esc_attr( $bsfppc_checklist_item_data_key ); ?>"> <span class="dashicons dashicons-trash bsfppc-delete-dashicon"></span>Delete</button>
+								<button type="button" id = "edit" name="Delete" class="bsfppcedit" value="<?php echo $bsfppc_checklist_item_data_key; ?>"> <span class="dashicons dashicons-edit"></span>Edit</button>
+										<button type="button" id = "Delete" name="Delete" class="bsfppcdelete" value="<?php echo $bsfppc_checklist_item_data_key ; ?>"> <span class="dashicons dashicons-trash bsfppc-delete-dashicon"></span>Delete</button>
 								<?php
 					}
 				} else {
