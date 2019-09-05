@@ -287,13 +287,15 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 * @since 1.0.0
 		 */
 		public function ppc_save_data() {
+
 			$page = ! empty( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : null;
-			if ( 'bsf_ppc' !== $page ) {
+			if ( 'ppc' !== $page ) {
 				return;
 			}
 
 			if ( ! empty( $_POST['ppc-form'] ) && wp_verify_nonce( sanitize_text_field( $_POST['ppc-form'] ), 'ppc-form-nonce' ) ) {
 				if ( isset( $_POST['submit_radio'] ) ) {
+	
 					$_POST['submit_radio'] = sanitize_text_field( $_POST['submit_radio'] );
 					if ( ! empty( $_POST['ppc_radio_button_option'] ) ) {
 						$ppc_radio = sanitize_text_field( $_POST['ppc_radio_button_option'] );
