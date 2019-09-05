@@ -21,7 +21,7 @@ wp_enqueue_style( 'ppc_backend_css' );
 <table class="form-table ppc-form-table">
 	<tbody>
 				<tr>
-			<th scope="row"><p class="ppc-post"><span class="spinner ppc-spinner"></span><?php esc_html_e( 'Pre-Publish Checklist', 'bsf-pre-publish-checklist' ); ?></p> </th>
+			<th scope="row"><p class="ppc-list-label"><span class="spinner ppc-spinner"></span><?php esc_html_e( 'Pre-Publish Checklist', 'bsf-pre-publish-checklist' ); ?></p> </th>
 			<td class="ppc-list-table">
 
 				<div id="columns" class="ppcdragdrop">
@@ -49,12 +49,12 @@ wp_enqueue_style( 'ppc_backend_css' );
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"> <p class="ppc-post"><?php esc_html_e( 'Add New Item in Checklist', 'bsf-pre-publish-checklist' ); ?></p> </th>
+			<th scope="row"> <p class="ppc-label"><?php esc_html_e( 'Add New Item in Checklist', 'bsf-pre-publish-checklist' ); ?></p> </th>
 			<td class="ppc-table">
 				<table id ="list_table">
 					<tr><div class="ppc_input_feild">
 						<input type="text" id="add_item_text_feild" class="ppc-item-input" name="ppc_checklist_item[]" minlength= 1 >
-						<button type="button" id="ppc-Savelist" name="submit" class="button button-primary ppc_data"   Value="Save List" /><?php esc_html_e( 'Add to Lists', 'bsf-pre-publish-checklist' ); ?></button><span class="spinner ppc-add-spinner"></span>
+						<button type="button" id="ppc-Savelist" name="submit" class="button button-primary ppc_data"   Value="Save List" /><?php esc_html_e( 'Add to List', 'bsf-pre-publish-checklist' ); ?></button><span class="spinner ppc-add-spinner"></span>
 						<br>
 						<div class="ppc-warning-div">
 							<div class="ppc-hide-empty-warning">

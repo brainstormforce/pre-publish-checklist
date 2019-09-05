@@ -172,6 +172,9 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 					<div class="ppc-percentage"></div>
 				</div>
 			</div>
+<!-- 			<div class="ppc-hide-checked-item-buttton-wrapper">
+			<button class="components-button is-button is-default ppc-hide-checked-item-buttton" name="ppc-hide-checked-item">Hide Checked Items</button>
+			</div> -->
 			<?php
 			if ( ! empty( $ppc_checklist_item_data ) ) {
 				foreach ( $ppc_checklist_item_data as $key ) {
@@ -190,7 +193,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 					<?php
 
 					?><div class="ppc-checklist"><?php echo esc_attr( $key );?></div></div><?php		
-				}?><!-- <button class="components-button is-button is-default ppc-hide-checked-item-buttton" name="ppc-hide-checked-item">Hide Checked Items</button> --><?php
+				}?><?php
 			} else {
 				echo 'Please create a list to display here from Settings->Pre-Publish-Checklist';
 			}

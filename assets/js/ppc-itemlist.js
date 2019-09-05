@@ -40,20 +40,18 @@ jQuery(document).ready(function() {
         jQuery('.ppc-add-spinner').addClass("is-active");
         var ppc_input_item = jQuery('.ppc-item-input').val()
         var ppc_item_drag_var = [];
+        var ppc_drag_contents = [];
         var ppc_item_drag_var = jQuery('.ppc-drag-feilds');
         ppc_item_drag_var.each(function() {
-
             ppc_drag_contents.push(jQuery(this).attr('value'));
         });
         if (jQuery.inArray(ppc_input_item, ppc_drag_contents) !== -1) {
-            var ppc_item_exists = 1;
-            
-
+            var ppc_item_exists = 1;    
         } else {
             var ppc_item_exists = 0;
         }
-        if (jQuery('.ppc-item-input').val().replace(/ /g, '').length !== 0 && ppc_item_exists !== 1) {
-            jQuery('.ppc-empty-list').attr('style', 'visibility:hidden');
+        if (jQuery('.ppc-item-input').val().replace(/ /g, '').length !== 0 && ppc_item_exists == 0) {
+            jQuery('.ppc-empty-list').attr('style', 'display:none');
             jQuery.post(ppc_add_delete_obj.url, {
                     action: 'ppc_checklistitem_add',
                     ppc_item_content: jQuery('.ppc-item-input').attr('value')
@@ -166,9 +164,9 @@ jQuery(document).ready(function() {
             }, 2000);
         }
         if (jQuery(".ppc-drag-feilds").length == 0) {
-            jQuery('.ppc-empty-list').attr('style', 'visibility:visible');
+            jQuery('.ppc-empty-list').attr('style', 'display:block');
         } else if (jQuery(".ppc-drag-feilds").length !== 0) {
-            jQuery('.ppc-empty-list').attr('style', 'visibility:hidden');
+            jQuery('.ppc-empty-list').attr('style', 'display:none');
         }
     });
 
@@ -186,9 +184,9 @@ jQuery(document).ready(function() {
     });
 
     if (jQuery(".ppc-drag-feilds").length == 0) {
-        jQuery('.ppc-empty-list').attr('style', 'visibility:visible');
+        jQuery('.ppc-empty-list').attr('style', 'display:block');
     } else if (jQuery(".ppc-drag-feilds").length !== 0) {
-        jQuery('.ppc-empty-list').attr('style', 'visibility:hidden');
+        jQuery('.ppc-empty-list').attr('style', 'display:none');
     }
 
 });

@@ -195,7 +195,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 				global $wpdb;
 				$ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
 				$ppc_checklist_item_data   = get_option( 'ppc_checklist_data' );
-				$ppc_delete_value          = sanitize_text_field( $_POST['delete'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+				$ppc_delete_value          = sanitize_text_field($_POST['delete']) ;//PHPCS:ignore:WordPress.Security.NonceVerification.Missing				
 				$ppc_delete_key            = array_search( $ppc_delete_value, $ppc_checklist_item_data, true );
 				unset( $ppc_checklist_item_data[ $ppc_delete_key ] );
 				update_option( 'ppc_checklist_data', $ppc_checklist_item_data );
