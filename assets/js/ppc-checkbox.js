@@ -164,10 +164,10 @@ $(document).ready(
                             var ppc_checkboxes_length = $('#checkbox[type="checkbox"]').length;
                             var countCheckedppc_checkboxes = ppc_checkboxes.filter(':checked').length;
                             var ppc_checked_checkboxes = ppc_checkboxes.filter(':checked');
-                            ppc_percentage_completed = (countCheckedppc_checkboxes / ppc_checkboxes_length)*100;
+                            var ppc_percentage_completed = (countCheckedppc_checkboxes / ppc_checkboxes_length)*100;
 
                             $('.ppc-percentage').attr('style', 'width:'+ppc_percentage_completed+'%');
-                             $(".ppc-percentage-value").html(Math.round(ppc_percentage_completed)+"%"); 
+                            $(".ppc-percentage-value").html(Math.round(ppc_percentage_completed)+"%"); 
                            
                             // jQuery(".ppc-percentage-value").html(Math.round(ppc_percentage_completed));
 
@@ -217,10 +217,18 @@ $(document).ready(
                 else if (ppc_radio_obj.option == 3) {
                     var ppc_checkboxes = $('#checkbox[type="checkbox"]');
                     var countCheckedppc_checkboxes = ppc_checkboxes.filter(':checked').length;
+
                     ppc_checkboxes.change(
                         function() {
                             var countCheckedppc_checkboxes = ppc_checkboxes.filter(':checked').length;
-                            if ($ppc_checkboxes.length == countCheckedppc_checkboxes) {
+                            var ppc_checked_checkboxes = ppc_checkboxes.filter(':checked');
+                            var ppc_percentage_completed = (countCheckedppc_checkboxes / ppc_checkboxes_length)*100;
+
+                            $('.ppc-percentage').attr('style', 'width:'+ppc_percentage_completed+'%');
+                            $(".ppc-percentage-value").html(Math.round(ppc_percentage_completed)+"%"); 
+                           
+                            var countCheckedppc_checkboxes = ppc_checkboxes.filter(':checked').length;
+                            if (ppc_checkboxes.length == countCheckedppc_checkboxes) {
                                 //all checkboxes are checked
                                 if ($('.editor-post-publish-panel__toggle').length == 1) {
                                     $('.editor-post-publish-panel__toggle').prop('title', 'All items checked ! You are good to publish');
@@ -243,16 +251,7 @@ $(document).ready(
             }else{
                 //Conditions for classic editor.
                    if (ppc_radio_obj.option == 1 || ppc_radio_obj.option == 2) {
-                    ppc_checkboxes.change(
-                        function() {
-                            var ppc_checkboxes = $('#checkbox[type="checkbox"]');
-                            var ppc_checkboxes_length = $('#checkbox[type="checkbox"]').length;
-                            var countCheckedppc_checkboxes = ppc_checkboxes.filter(':checked').length;
-                            var ppc_checked_checkboxes = ppc_checkboxes.filter(':checked');
-                            ppc_percentage_completed = (countCheckedppc_checkboxes / ppc_checkboxes_length)*100;
-                            $('.ppc-percentage').attr('style', 'width:'+ppc_percentage_completed+'%');
-                             $(".ppc-percentage-value").html(Math.round(ppc_percentage_completed)+"%"); 
-                         });
+                   
                        $(document).on('click', "#publish", function(e) {
                         var ppc_checkboxes = $('#checkbox[type="checkbox"]');
                         var countCheckedppc_checkboxes = ppc_checkboxes.filter(':checked').length;
@@ -282,7 +281,16 @@ $(document).ready(
                      });
                    }
             }
-
+             ppc_checkboxes.change(
+                        function() {
+                            var ppc_checkboxes = $('#checkbox[type="checkbox"]');
+                            var ppc_checkboxes_length = $('#checkbox[type="checkbox"]').length;
+                            var countCheckedppc_checkboxes = ppc_checkboxes.filter(':checked').length;
+                            var ppc_checked_checkboxes = ppc_checkboxes.filter(':checked');
+                            ppc_percentage_completed = (countCheckedppc_checkboxes / ppc_checkboxes_length)*100;
+                            $('.ppc-percentage').attr('style', 'width:'+ppc_percentage_completed+'%');
+                             $(".ppc-percentage-value").html(Math.round(ppc_percentage_completed)+"%"); 
+                         });
 
                     if (ppc_radio_obj.option == 2) {
 
