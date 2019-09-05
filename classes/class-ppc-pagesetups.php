@@ -53,7 +53,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 */
 		public function __construct() {
 			add_action( 'add_meta_boxes', array( $this, 'ppc_add_custom_meta_box' ) );
-			add_action( 'admin_menu', array( $this, 'bsf_ppc_settings_page' ) );
+			add_action( 'admin_menu', array( $this, 'ppc_settings_page' ) );
 			add_action( 'wp_ajax_ppc_ajax_add_change', array( $this, 'ppc_meta_box_ajax_add_handler' ), 1 );
 			add_action( 'wp_ajax_nopriv_ppc_ajax_add_change', array( $this, 'ppc_meta_box_ajax_add_handler' ), 1 );
 			add_action( 'wp_ajax_ppc_ajax_delete_change', array( $this, 'ppc_meta_box_ajax_delete_handler' ), 1 );
@@ -107,14 +107,14 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 *
 		 * @since 1.0.0
 		 */
-		public function bsf_ppc_settings_page() {
+		public function ppc_settings_page() {
 			add_submenu_page(
 				'options-general.php',
 				'Pre-Publish Checklist',
 				'Pre-Publish Checklist',
 				'manage_options',
-				'bsf_ppc',
-				array( $this, 'bsf_ppc_page_html' )
+				'ppc',
+				array( $this, 'ppc_page_html' )
 			);
 		}
 		/**
@@ -124,7 +124,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 *
 		 * @since 1.0.0
 		 */
-		public function bsf_ppc_page_html() {
+		public function ppc_page_html() {
 			include_once PPC_ABSPATH . 'includes/ppc-tabs.php';
 		}
 		/**
