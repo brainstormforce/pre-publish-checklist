@@ -154,7 +154,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 */
 		public function ppc_add_item() {
 			if ( ! empty( $_POST['ppc_item_content'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-				$ppc_newitems                = wp_strip_all_tags( $_POST['ppc_item_content'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+				$ppc_newitems                = sanitize_text_field( $_POST['ppc_item_content'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 					$ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
 				if ( empty( $ppc_checklist_item_data ) || false === $ppc_checklist_item_data ) {
 					$ppc_checklist_item_data = array();
@@ -196,8 +196,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 				$ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
 				$ppc_checklist_item_data   = get_option( 'ppc_checklist_data' );
 				$ppc_delete_value          = sanitize_text_field($_POST['delete']) ;//PHPCS:ignore:WordPress.Security.NonceVerification.Missing				
-				$ppc_delete_key            = array_search( $ppc_delete_value, $ppc_checklist_item_data, true );
-				unset( $ppc_checklist_item_data[ $ppc_delete_key ] );
+				$ppc_delete_key            = array_search( $ppc_delete_value, $ppc_checklist_item_data, true);				unset( $ppc_checklist_item_data[ $ppc_delete_key ] );
 				update_option( 'ppc_checklist_data', $ppc_checklist_item_data );
 				echo 'sucess';
 				$ppc_all_post_ids = get_posts(

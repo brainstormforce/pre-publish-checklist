@@ -520,6 +520,7 @@ td.ppc-publish-attempt-options {
 
 p.ppc-list-label {
     padding: 13px 0 0 15px;
+    display: inline-block;
 }
 
 p.ppc-label {
