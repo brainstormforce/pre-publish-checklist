@@ -125,7 +125,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 * @since 1.0.0
 		 */
 		public function ppc_page_html() {
-			include_once PPC_ABSPATH . 'includes/ppc-tabs.php';
+			require_once PPC_ABSPATH . 'includes/ppc-tabs.php';
 		}
 		/**
 		 * Add custom meta box
@@ -136,7 +136,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 */
 		public function ppc_add_custom_meta_box() {
 			$ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
-			if ( ! empty( $ppc_post_types_to_display ) ) {
+			if ( ! empty( $ppc_post_types_to_display ) || $ppc_post_types_to_display !== false) {
 				foreach ( $ppc_post_types_to_display as $screen ) {
 					add_meta_box(
 						'ppc_custom_meta_box', // Unique ID.
@@ -240,9 +240,9 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 				$ppcpost    = sanitize_text_field( $_POST['ppc_post_id'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				$ppc_delete = sanitize_text_field( $_POST['ppc_field_value'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				$pre_data      = get_post_meta( $ppcpost, '_ppc_meta_key', true );
-				$key           = array_search( $ppc_delete, $pre_data, true );
-				if ( false !== $key ) {
-					unset( $pre_data[ $key ] );
+				$ppc_delete_metabox_item_key           = array_search( $ppc_delete, $pre_data, true );
+				if ( false !== $ppc_delete_metabox_item_key ) {
+					unset( $pre_data[ $ppc_delete_metabox_item_key ] );
 				}
 				update_post_meta(
 					$ppcpost,
