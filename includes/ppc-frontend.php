@@ -29,14 +29,14 @@ $ppc_exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates'
 <form method ="POST" class="ppc-frontend-form">
 <table class="form-table ppc-form-table">
 	<tbody>
-		<tr><th scope="row"><p class="ppc-setting-name">On Publish Attempt </p></th>
+		<tr><th scope="row"><p class="ppc-setting-name">Publish Button Action If Checklist Is Incomplete</p></th>
 			<td class="ppc-publish-attempt-options">
 				<input type="radio" name="ppc_radio_button_option" value="1" <?php checked( $ppc_radio_button, 1 ); ?> > <div class="ppc_radio_options"><?php esc_html_e( 'Prevent User from Publishing', 'bsf-pre-publish-checklist' ); ?></div>
-				<p class="description"><?php esc_html_e( 'The user will not be able to publish until he checks all the checkboxes.', 'bsf-pre-publish-checklist' ); ?></p><br>
+				<p class="description"><?php esc_html_e( 'User will not be able to publish until complete the checklist.', 'bsf-pre-publish-checklist' ); ?></p><br>
 				<input type="radio" name="ppc_radio_button_option" value="2" <?php checked( $ppc_radio_button, 2 ); ?> > <div class="ppc_radio_options"><?php esc_html_e( 'Warn User Before Publishing', 'bsf-pre-publish-checklist' ); ?></div>
-				<p class="description"><?php esc_html_e( 'The user will be warned before publishing or he can publish anyway.', 'bsf-pre-publish-checklist' ); ?></p><br>
+				<p class="description"><?php esc_html_e( 'A warning message will display on click of the publish button.', 'bsf-pre-publish-checklist' ); ?></p><br>
 				<input type="radio" name="ppc_radio_button_option" value="3" <?php checked( $ppc_radio_button, 3 ); ?> > <div class="ppc_radio_options"><?php esc_html_e( 'Do Nothing', 'bsf-pre-publish-checklist' ); ?></div>
-				<p class="description"><?php esc_html_e( 'The user will be allowed to publish without any warning.', 'bsf-pre-publish-checklist' ); ?></p>
+				<p class="description"><?php esc_html_e( 'User will be allowed to publish without any warning.', 'bsf-pre-publish-checklist' ); ?></p>
 		</td>
 		</tr>
 		<tr>

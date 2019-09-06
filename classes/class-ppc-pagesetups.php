@@ -79,7 +79,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 			<div class = "ppc-modal-warn">
 				<div id="ppc_notifications" class="ppc-popup-warn">
 					<h2>Pre-Publish Checklist</h2>
-					<p class="ppc-popup-description">Your Pre-Publish Checklist is still pending. What would you like to do?</p>
+					<p class="ppc-popup-description">Your Pre-Publish Checklist is incomplete. What would you like to do?</p>
 					<div class="ppc-button-wrapper">
 						<div class="ppc-popup-option-dontpublish">Don't Publish</div>
 						<div class="ppc-popup-options-publishanyway">Publish Anyway</div>
