@@ -115,8 +115,9 @@ jQuery(document).ready(
                     jQuery.post(
                         ppc_meta_box_obj.url, {
                             action: 'ppc_ajax_add_change',
-                            ppc_field_value: jQuery(this).attr('value'),
-                            ppc_post_id: ppc_post_id
+                            ppc_key_value: jQuery(this).attr('value'),
+                            ppc_post_id: ppc_post_id,
+                            ppc_field_value:jQuery(this).next().html()
                         },
                     );
                 } else if (jQuery(this).prop("checked") == false) {
@@ -125,7 +126,7 @@ jQuery(document).ready(
                     jQuery.post(
                         ppc_meta_box_obj.url, {
                             action: 'ppc_ajax_delete_change',
-                            ppc_field_value: jQuery(this).attr('value'),
+                            ppc_key_value: jQuery(this).attr('value'),
                             ppc_post_id: ppc_post_id
                         },
                     );

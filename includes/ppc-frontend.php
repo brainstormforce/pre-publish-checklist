@@ -11,6 +11,7 @@
  */
 
 // Displaying the contents in the general tab in the plugin settings.
+// delete_option('ppc_checklist_data');
 $ppc_radio_button        = get_option( 'ppc_radio_button_option_data' );
 $ppc_radio_button        = ( ! empty( $ppc_radio_button ) ? $ppc_radio_button : 3 );
 $ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
@@ -22,6 +23,7 @@ $ppc_args       = array(
 );
 
 $ppc_exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
+
 ?>
 <!DOCTYPE html>
 <html>

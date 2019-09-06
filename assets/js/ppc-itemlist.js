@@ -36,9 +36,8 @@ jQuery(document).ready(function() {
     //Ajax trigger for adding an element in the array 
     jQuery(document).on('click', "#ppc-Savelist", function() {
         ppc_sortable( jQuery('#ppc-ul') );
-
         jQuery('.ppc-add-spinner').addClass("is-active");
-        var ppc_input_item = jQuery('.ppc-item-input').val()
+        var ppc_input_item = jQuery('.ppc-item-input').val();
         var ppc_item_drag_var = [];
         var ppc_drag_contents = [];
         var ppc_item_drag_var = jQuery('.ppc-drag-feilds');
@@ -52,6 +51,7 @@ jQuery(document).ready(function() {
         }
         if (jQuery('.ppc-item-input').val().replace(/ /g, '').length !== 0 && ppc_item_exists == 0) {
             jQuery('.ppc-empty-list').attr('style', 'display:none');
+            console.log(jQuery('.ppc-item-input').attr('value'));
             jQuery.post(ppc_add_delete_obj.url, {
                     action: 'ppc_checklistitem_add',
                     ppc_item_content: jQuery('.ppc-item-input').attr('value')
@@ -112,9 +112,10 @@ jQuery(document).ready(function() {
             if (ppc_delete_flag == true) {
                 jQuery('.ppc-spinner').addClass("is-active");
                 jQuery(this).parents('li:first').remove();
+                console.log(jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").attr('$ppc_item_key'));
                 jQuery.post(ppc_add_delete_obj.url, {
                     action: 'ppc_checklistitem_delete',
-                    delete: jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").val()
+                    delete: jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").attr('$ppc_item_key')
                 }, function(data) {
                     if (data === 'sucess') {
                         jQuery('.ppc-spinner').removeClass("is-active");
@@ -140,6 +141,8 @@ jQuery(document).ready(function() {
                 jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").attr('readonly', true);
                 if (jQuery(this).val() != jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").val()) {
                     jQuery('.ppc-spinner').addClass("is-active");
+                    console.log(jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").val());
+                    console.log(jQuery(this).val());
                     jQuery.post(ppc_add_delete_obj.url, {
                         action: 'ppc_checklistitem_edit',
                         ppc_edit_value: jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").val(),

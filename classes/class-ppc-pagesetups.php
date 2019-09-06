@@ -163,8 +163,10 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 			wp_enqueue_style( 'ppc_backend_css' );
 			global $post;
 			$ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
+			var_dump($ppc_checklist_item_data);
 			$value                      = get_post_meta( $post->ID, '_ppc_meta_key', true );
-
+			// echo "<pre>";
+			// var_dump($value);
 			?>
 			<div class="ppc-percentage-wrapper">
 				<span class="ppc-percentage-value"></span>
@@ -177,10 +179,10 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 			</div> -->
 			<?php
 			if ( ! empty( $ppc_checklist_item_data ) ) {
-				foreach ( $ppc_checklist_item_data as $key ) {
+				foreach ( $ppc_checklist_item_data as $ppc_key => $ppc_value ) {
 					?>
 					<div class="ppc-checklist-item-wrapper">
-						<input type="checkbox" name="checkbox[]" id="checkbox" class="ppc_checkboxes" value= "<?php echo esc_attr( $key ); ?>"
+						<input type="checkbox" name="checkbox[]" id="checkbox" class="ppc_checkboxes" value= "<?php echo  $ppc_key ; ?>"
 
 					<?php
 					if ( ! empty( $value ) ) {
@@ -192,7 +194,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 						>
 					<?php
 
-					?><div class="ppc-checklist"><?php echo esc_attr( $key );?></div></div><?php		
+					?><div class="ppc-checklist"><?php echo esc_attr( $ppc_value );?></div></div><?php		
 				}?><?php
 			} else {
 				echo 'Please create a list to display here from Settings->Pre-Publish-Checklist';
@@ -208,9 +210,11 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 */
 		public function ppc_meta_box_ajax_add_handler() {
 			if ( isset( $_POST['ppc_field_value'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-				$ppcpost        = sanitize_text_field( $_POST['ppc_post_id'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-				$ppc_check_data = array( sanitize_text_field( $_POST['ppc_field_value'] ) );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+				$ppcpost        =  $_POST['ppc_post_id'] ;//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+				// delete_post_meta( $ppcpost, '_ppc_meta_key' );
+				$ppc_check_data = array(  $_POST['ppc_key_value'] => $_POST['ppc_field_value']  );//	PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				$pre_data          = get_post_meta( $ppcpost, '_ppc_meta_key', true );
+				var_dump($pre_data);
 				if ( ! empty( $pre_data ) ) {
 					$ppc_checklist_add_data = array_merge( $pre_data, $ppc_check_data );
 				} else {
@@ -225,7 +229,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 			} else {
 				echo 'failure';
 			}
-			die;
+			wp_die();
 		}
 
 		/**
@@ -236,14 +240,14 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 * @since 1.0.0
 		 */
 		public function ppc_meta_box_ajax_delete_handler() {
-			if ( isset( $_POST['ppc_field_value'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+			if ( isset( $_POST['ppc_key_value'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				$ppcpost    = sanitize_text_field( $_POST['ppc_post_id'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-				$ppc_delete = sanitize_text_field( $_POST['ppc_field_value'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+				$ppc_delete_key =  $_POST['ppc_key_value'] ;//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				$pre_data      = get_post_meta( $ppcpost, '_ppc_meta_key', true );
-				$ppc_delete_metabox_item_key           = array_search( $ppc_delete, $pre_data, true );
-				if ( false !== $ppc_delete_metabox_item_key ) {
-					unset( $pre_data[ $ppc_delete_metabox_item_key ] );
-				}
+				var_dump($pre_data);
+				if(!empty($pre_data)){
+					unset( $pre_data[ $ppc_delete_key ] );
+				}	
 				update_post_meta(
 					$ppcpost,
 					'_ppc_meta_key',
@@ -252,7 +256,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 			} else {
 				echo 'failure';
 			}
-			die;
+			wp_die();
 		}
 
 	}
