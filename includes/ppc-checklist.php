@@ -14,6 +14,7 @@
 $ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
 wp_enqueue_script( 'ppc_backend_itemlist_js' );
 wp_enqueue_style( 'ppc_backend_css' );
+
 ?>
 <html>
 <body>
@@ -39,7 +40,7 @@ wp_enqueue_style( 'ppc_backend_css' );
 										<!-- <span class = "down"></span> -->
 										<span class="dashicons dashicons-menu-alt2 ppc-move-dashicon"></span> <input type="text" readonly="true" class="ppc-drag-feilds" $ppc_item_key ="<?php echo  $ppc_key ?>" value="<?php echo  $ppc_value ?>" name="ppc_checklist_item[]" >
 										<button type="button" id = "edit" name="Delete" class="ppcedit" value="<?php echo esc_attr( $ppc_key ); ?>"> <span class="dashicons dashicons-edit"></span>Edit</button>
-										<button type="button" id = "Delete" name="Delete" class="ppcdelete" value="<?php echo esc_attr( $ppc_key ); ?>"> <span class="dashicons dashicons-trash ppc-delete-dashicon"></span>Delete</button>
+										<button type="button" id = "Delete" name="Delete" class="ppcdelete" value="<?php echo esc_attr( $ppc_value ); ?>"> <span class="dashicons dashicons-trash ppc-delete-dashicon"></span>Delete</button>
 
 									</li><!-- <span class="spinner ppc-spinner is-active"></span> -->
 				<?php

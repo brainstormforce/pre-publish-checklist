@@ -163,7 +163,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 			wp_enqueue_style( 'ppc_backend_css' );
 			global $post;
 			$ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
-			var_dump($ppc_checklist_item_data);
+			// var_dump($ppc_checklist_item_data);
 			$value                      = get_post_meta( $post->ID, '_ppc_meta_key', true );
 			// echo "<pre>";
 			// var_dump($value);
@@ -185,9 +185,11 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 						<input type="checkbox" name="checkbox[]" id="checkbox" class="ppc_checkboxes" value= "<?php echo  $ppc_key ; ?>"
 
 					<?php
+
 					if ( ! empty( $value ) ) {
-						foreach ( $value as $keychecked ) {
-							checked( $keychecked, $key );
+						foreach ( $value as $ppc_key => $ppc_value ) {
+							
+							checked( $ppc_key, $ppc_value );
 						}
 					}
 					?>
