@@ -28,21 +28,17 @@ wp_enqueue_style( 'ppc_backend_css' );
 				<div id="columns" class="ppcdragdrop">
 		<?php
 		if ( ! empty( $ppc_checklist_item_data ) ) {
-			// echo "<pre>";
-			// print_r($ppc_checklist_item_data);
-			// wp_die();
 			?>
 						<ul id="ppc-ul" class="ppc-ul">
 			<?php
 			foreach ( $ppc_checklist_item_data as $ppc_key => $ppc_value ) {
 				?>
 									<li class="ppc-li">
-										<!-- <span class = "down"></span> -->
-										<span class="dashicons dashicons-menu-alt2 ppc-move-dashicon"></span> <input type="text" readonly="true" class="ppc-drag-feilds" $ppc_item_key ="<?php echo  $ppc_key ?>" value="<?php echo  $ppc_value ?>" name="ppc_checklist_item[]" >
+										<span class="dashicons dashicons-menu-alt2 ppc-move-dashicon"></span> <input type="text" readonly="true" class="ppc-drag-feilds" $ppc_item_key ="<?php echo esc_attr( $ppc_key ); ?>" value="<?php echo esc_attr( $ppc_value ); ?>" name="ppc_checklist_item[]" >
 										<button type="button" id = "edit" name="Delete" class="ppcedit" value="<?php echo esc_attr( $ppc_key ); ?>"> <span class="dashicons dashicons-edit"></span>Edit</button>
 										<button type="button" id = "Delete" name="Delete" class="ppcdelete" value="<?php echo esc_attr( $ppc_value ); ?>"> <span class="dashicons dashicons-trash ppc-delete-dashicon"></span>Delete</button>
 
-									</li><!-- <span class="spinner ppc-spinner is-active"></span> -->
+									</li>
 				<?php
 			}
 		}

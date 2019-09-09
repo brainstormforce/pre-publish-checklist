@@ -53,7 +53,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			add_action( 'wp_ajax_ppc_checklistitem_delete', array( $this, 'ppc_delete_item' ), 1 );
 			add_action( 'wp_ajax_ppc_checklistitem_drag', array( $this, 'ppc_drag_item' ), 1 );
 			add_action( 'wp_ajax_ppc_checklistitem_edit', array( $this, 'ppc_edit_item' ), 1 );
-		
+
 		}
 		/**
 		 * Stores default list in the database.
@@ -61,12 +61,19 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 * @since 1.0
 		 * @return void
 		 */
-
 		public function ppc_default_list_data() {
-			$ppc_default_checklist_data = array( "ppc_key1" => "Spelling & Grammar Checked","ppc_key2" =>"Featured Image Assigned","ppc_key3" =>"Category Selected","ppc_key4" =>"Formatting Done","ppc_key5" =>"Title is Catchy","ppc_key6 "=>"Social Images Assigned" ,"ppc_key7" =>"Done SEO");
-			$ppc_default_post_types = array('post','page');
+			$ppc_default_checklist_data = array(
+				'ppc_key2' => 'Featured Image Assigned',
+				'ppc_key3' => 'Category Selected',
+				'ppc_key4' => 'Formatting Done',
+				'ppc_key5' => 'Title is Catchy',
+				'ppc_key6' => 'Social Images Assigned',
+				'ppc_key7' => 'Done SEO',
+				'ppc_key8' => 'Spelling and Grammar Checked',
+			);
+			$ppc_default_post_types     = array( 'post', 'page' );
 			add_option( 'ppc_checklist_data', $ppc_default_checklist_data );
-			add_option('ppc_post_types_to_display',$ppc_default_post_types );
+			add_option( 'ppc_post_types_to_display', $ppc_default_post_types );
 		}
 		/**
 		 * Loads classes and includes.
@@ -75,7 +82,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 * @return void
 		 */
 		public function ppc_load() {
-			require_once  PPC_ABSPATH . 'classes/class-ppc-pagesetups.php';
+			require_once PPC_ABSPATH . 'classes/class-ppc-pagesetups.php';
 		}
 		/**
 		 * Plugin Styles for admin dashboard.
@@ -93,7 +100,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			wp_register_script( 'ppc_backend_checkbox_js', PPC_PLUGIN_URL . '/assets/js/ppc-checkbox.js', null, '1.0', false );
 			wp_register_script( 'ppc_backend_itemlist_js', PPC_PLUGIN_URL . '/assets/js/ppc-itemlist.js', null, '1.0', false );
 			wp_register_style( 'ppc_backend_css', PPC_PLUGIN_URL . '/assets/css/ppc-css.css', null, '1.0', false );
-			if($ppc_radio_button !== false && $ppc_checklist_item_data !==false ){
+			if ( false !== $ppc_radio_button && false !== $ppc_checklist_item_data ) {
 				wp_localize_script(
 					'ppc_backend_checkbox_js',
 					'ppc_radio_obj',
@@ -105,7 +112,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			}
 			wp_localize_script( 'ppc_backend_itemlist_js', 'ppc_add_delete_obj', array( 'url' => admin_url( 'admin-ajax.php' ) ) );
 
-			//Localize scripts for meta box.
+			// Localize scripts for meta box.
 			$ppc_screen                = get_current_screen();
 			$ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
 			if ( ! empty( $ppc_post_types_to_display ) ) {
@@ -131,8 +138,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 */
 		public function ppc_drag_item() {
 			if ( ! empty( $_POST['ppc_order'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-				$ppc_new_drag_items = $_POST['ppc_order'];
-				$ppc_item_drag_contents = array_map( 'sanitize_text_field', $ppc_new_drag_items );
+				$ppc_item_drag_contents = array_map( 'sanitize_text_field', $_POST['ppc_order'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				update_option( 'ppc_checklist_data', $ppc_item_drag_contents );
 				echo 'sucess';
 			}
@@ -148,12 +154,12 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 */
 		public function ppc_add_item() {
 			if ( ! empty( $_POST['ppc_item_content'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-				$ppc_newitems                =  sanitize_text_field($_POST['ppc_item_content']) ;//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-				$ppc_newitem_key = uniqid('ppc_key');
+				$ppc_newitems            = sanitize_text_field( $_POST['ppc_item_content'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+				$ppc_newitem_key         = uniqid( 'ppc_key' );
 				$ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
-				if( empty($ppc_checklist_item_data) ){
+				if ( empty( $ppc_checklist_item_data ) ) {
 					$ppc_checklist_item_data = array();
-					}
+				}
 				$ppc_checklist_item_data += [ $ppc_newitem_key => $ppc_newitems ];
 				update_option( 'ppc_checklist_data', $ppc_checklist_item_data );
 				?>
@@ -163,9 +169,9 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 						?>
 								<li class="ppc-li">
 								<!-- <span class = "down"></span> -->
-								<span class="dashicons dashicons-menu-alt2 ppc-move-dashicon"></span> <input type="text" readonly="true" class="ppc-drag-feilds" $ppc_item_key ="<?php echo  $ppc_key ?>" value="<?php echo  $ppc_value ?>" name="ppc_checklist_item[]" >
-								<button type="button" id = "edit" name="Delete" class="ppcedit" value="<?php echo $ppc_key; ?>"> <span class="dashicons dashicons-edit"></span>Edit</button>
-										<button type="button" id = "Delete" name="Delete" class="ppcdelete" value="<?php echo $ppc_value ; ?>"> <span class="dashicons dashicons-trash ppc-delete-dashicon"></span>Delete</button>
+								<span class="dashicons dashicons-menu-alt2 ppc-move-dashicon"></span> <input type="text" readonly="true" class="ppc-drag-feilds" $ppc_item_key ="<?php echo esc_attr( $ppc_key ); ?>" value="<?php echo esc_attr( $ppc_value ); ?>" name="ppc_checklist_item[]" >
+								<button type="button" id = "edit" name="Delete" class="ppcedit" value="<?php echo esc_attr( $ppc_key ); ?>"> <span class="dashicons dashicons-edit"></span>Edit</button>
+										<button type="button" id = "Delete" name="Delete" class="ppcdelete" value="<?php echo esc_attr( $ppc_value ); ?>"> <span class="dashicons dashicons-trash ppc-delete-dashicon"></span>Delete</button>
 								<?php
 					}
 				} else {
@@ -190,15 +196,15 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 				global $wpdb;
 				$ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
 				$ppc_checklist_item_data   = get_option( 'ppc_checklist_data' );
-				$ppc_delete_value          = $_POST['delete'] ;//PHPCS:ignore:WordPress.Security.NonceVerification.Missing	
+				$ppc_delete_value          = sanitize_text_field( $_POST['delete'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing	
 
-				if($ppc_checklist_item_data !== false){		
+				if ( false !== $ppc_checklist_item_data ) {
 					unset( $ppc_checklist_item_data[ $ppc_delete_value ] );
 					update_option( 'ppc_checklist_data', $ppc_checklist_item_data );
 					echo 'sucess';
 				}
-				$ppc_checklist_item_data   = get_option( 'ppc_checklist_data' );
-				$ppc_all_post_ids = get_posts(
+				$ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
+				$ppc_all_post_ids        = get_posts(
 					array(
 						'posts_per_page' => -1,
 						'post_type'      => $ppc_post_types_to_display,
@@ -210,16 +216,15 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 					foreach ( $ppc_all_post_ids as $ppc_postid ) {
 
 						$ppc_pre_value = get_post_meta( $ppc_postid, '_ppc_meta_key', true );
-						echo "<pre>";
 						if ( ! empty( $ppc_pre_value ) ) {
-							
+
 								unset( $ppc_pre_value[ $ppc_delete_value ] );
 								update_post_meta(
 									$ppc_postid,
 									'_ppc_meta_key',
 									$ppc_pre_value
 								);
-							
+
 						}
 					}
 				}
@@ -236,16 +241,16 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 * @since 1.0.0
 		 */
 		public function ppc_edit_item() {
-			
+
 			if ( isset( $_POST['ppc_edit_value'] ) && isset( $_POST['ppc_edit_key'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				global $wpdb;
-				
+
 				$ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
 				$ppc_checklist_item_data   = get_option( 'ppc_checklist_data' );
 				$ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
 				if ( ! empty( $ppc_checklist_item_data ) ) {
-					$ppc_edit_value                              = sanitize_text_field( $_POST['ppc_edit_value'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-					$ppc_edit_key             = sanitize_key( $_POST['ppc_edit_key'] ); 
+					$ppc_edit_value                           = sanitize_text_field( $_POST['ppc_edit_value'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+					$ppc_edit_key                             = sanitize_text_field( $_POST['ppc_edit_key'] );
 					$ppc_checklist_item_data[ $ppc_edit_key ] = $ppc_edit_value;
 					update_option( 'ppc_checklist_data', $ppc_checklist_item_data );
 					echo 'sucess';
@@ -293,14 +298,14 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 
 			if ( ! empty( $_POST['ppc-form'] ) && wp_verify_nonce( sanitize_text_field( $_POST['ppc-form'] ), 'ppc-form-nonce' ) ) {
 				if ( isset( $_POST['submit_radio'] ) ) {
-	
-					//saves the radio button option.
+
+					// saves the radio button option.
 					if ( ! empty( $_POST['ppc_radio_button_option'] ) ) {
 						$ppc_radio = sanitize_text_field( $_POST['ppc_radio_button_option'] );
 						update_option( 'ppc_radio_button_option_data', $ppc_radio );
-					}	
-					//saves the posts types to have our meta box on.
-					$ppc_post_types     = array();
+					}
+					// saves the posts types to have our meta box on.
+					$ppc_post_types = array();
 					if ( ! empty( $_POST['posts'] ) ) {
 						$ppc_post_types = $_POST['posts'];
 					}

@@ -1,6 +1,5 @@
 jQuery(document).ready(function() {
     var add_button = jQuery('.add_field_button ');
-    var ppc_item_content = [];
     var ppc_drag_contents = [];
 
     var input_feilds = jQuery('#add_item_text_feild[type="text"]');
@@ -8,7 +7,6 @@ jQuery(document).ready(function() {
             jQuery('#ppc-ul').sortable({
             update: function() {
                 jQuery('.ppc-spinner').addClass("is-active");
-                // ppc_drag_contents = [];
                 jQuery(this).sortable("disable");
                 var ppc_drag_contents = {};
                 var ppc_item_drag_var = jQuery('.ppc-drag-feilds');
@@ -16,17 +14,14 @@ jQuery(document).ready(function() {
                     ppc_item_key = jQuery(this).attr('$ppc_item_key');
                     ppc_drag_contents[ppc_item_key] = jQuery(this).attr('value');
                 });
-                console.log(ppc_drag_contents.length);
                 jQuery.post( 
                     ppc_add_delete_obj.url , {
                     action: 'ppc_checklistitem_drag',
                     ppc_order: ppc_drag_contents
                 },
-                function(data) {
-                    if (data === 'sucess') {
+                function(data) { 
                         jQuery('#ppc-ul').sortable("enable");
                         jQuery('.ppc-spinner').removeClass("is-active");
-                    }
                 }
                 );
             },
@@ -54,7 +49,6 @@ jQuery(document).ready(function() {
         }
         if (jQuery('.ppc-item-input').val().replace(/ /g, '').length !== 0 && ppc_item_exists == 0) {
             jQuery('.ppc-empty-list').attr('style', 'display:none');
-            console.log(jQuery('.ppc-item-input').attr('value'));
             jQuery.post(ppc_add_delete_obj.url, {
                     action: 'ppc_checklistitem_add',
                     ppc_item_content: jQuery('.ppc-item-input').attr('value')
@@ -114,18 +108,11 @@ jQuery(document).ready(function() {
             if (ppc_delete_flag == true) {
                 jQuery('.ppc-spinner').addClass("is-active");
                 jQuery(this).parents('li:first').remove();
-                console.log(jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").attr('$ppc_item_key'));
                 jQuery.post(ppc_add_delete_obj.url, {
                     action: 'ppc_checklistitem_delete',
                     delete: jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").attr('$ppc_item_key')
                 }, function(data) {
-                    if (data === 'sucess') {
-                        jQuery('.ppc-spinner').removeClass("is-active");
-
-                    } else {
-                        jQuery('.ppc-spinner').removeClass("is-active");
-
-                    }
+                        jQuery('.ppc-spinner').removeClass("is-active");                    
                 });
                 
                 
@@ -135,14 +122,10 @@ jQuery(document).ready(function() {
         } else if (jQuery(this).prop("name") == 'Save') {
             jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").attr('style', 'width:80%');
             jQuery(this).prev().attr('style', 'display:inline-block');
-
             if (jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").val().replace(/ /g, '').length !== 0) {
-                
                 jQuery(this).attr("name", "Delete");
                 jQuery(this).html('<span class="dashicons dashicons-trash ppc-delete-dashicon"></span>Delete');
                 jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").attr('readonly', true);
-                console.log(jQuery(this).val());
-                console.log(jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").val());
                 if (jQuery(this).val() != jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").val()) {
                     jQuery(this).attr("value", jQuery(this).prev().val());
                     jQuery('.ppc-spinner').addClass("is-active");

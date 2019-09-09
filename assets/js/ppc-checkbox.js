@@ -7,59 +7,7 @@ jQuery(document).ready(
         var ppc_percentage_completed = (countCheckedppc_checkboxes / ppc_checkboxes_length)*100;
         jQuery('.ppc-percentage').attr('style', 'width:'+ppc_percentage_completed+'%'); 
         jQuery(".ppc-percentage-value").html(Math.round(ppc_percentage_completed)+"%");
-
-        jQuery(".ppc_checkboxes").each(function(){
-            if(jQuery(this).prop("checked") == true) {
-                jQuery(this).next().addClass("ppc-checklist-checked");
-
-            }else if(jQuery(this).prop("checked") == false){
-                jQuery(this).next().removeClass("ppc-checklist-checked");
-            }
-        });
-        ppc_checkboxes.change(
-                        function() {
-                            var ppc_checkboxes = jQuery('#checkbox[type="checkbox"]');
-                            var ppc_checkboxes_length = jQuery('#checkbox[type="checkbox"]').length;
-                            var countCheckedppc_checkboxes = ppc_checkboxes.filter(':checked').length;
-                            var ppc_checked_checkboxes = ppc_checkboxes.filter(':checked');
-                            ppc_percentage_completed = (countCheckedppc_checkboxes / ppc_checkboxes_length)*100;
-                            jQuery('.ppc-percentage').attr('style', 'width:'+ppc_percentage_completed+'%');
-                             jQuery(".ppc-percentage-value").html(Math.round(ppc_percentage_completed)+"%"); 
-                         });
-
-        // jQuery(document).on('click', ".ppc-hide-checked-item-buttton", function() {
-        //     var ppc_checked_checkboxes = ppc_checkboxes.filter(':checked');
-            
-        //     if(ppc_checked_checkboxes.length !== 0 && jQuery(this).prop("name") =="ppc-hide-checked-item" ){
-                    
-        //         ppc_checked_checkboxes.each(function(){                
-        //         jQuery(this).parents('.ppc-checklist-item-wrapper').hide();
-        //         });
-        //         jQuery(this).attr("name", "ppc-show-checked-item");
-        //         jQuery(this).html('Show Checked Items');   
-
-        //     }else if(jQuery(this).prop("name") =="ppc-show-checked-item"){
-        //         jQuery(this).attr("name", "ppc-show-checked-item");
-        //         ppc_checked_checkboxes.each(function(){                
-        //             jQuery(this).parents('.ppc-checklist-item-wrapper').show();
-        //         });
-        //         jQuery(this).attr("name", "ppc-hide-checked-item");
-        //         jQuery(this).html('Hide Checked Items');  
-        //     }
-        // });
-
-        jQuery(document).on('click', ".ppc_checkboxes", function() {
-            jQuery(this).attr("name", "Delete");
-            if(jQuery(this).prop("checked") == true) {
-                jQuery(this).next().addClass("ppc-checklist-checked");
-
-            }else if(jQuery(this).prop("checked") == false){
-                jQuery(this).next().removeClass("ppc-checklist-checked");
-            }
-
-        });
-        jQuery(document).on('click', ".editor-post-preview", function() { 
-                setTimeout( function() {
+        var ppc_checkbox_function =  function() {
                             var ppc_checkboxes = jQuery('#checkbox[type="checkbox"]');
                             var ppc_checkboxes_length = jQuery('#checkbox[type="checkbox"]').length;
                             var countCheckedppc_checkboxes = ppc_checkboxes.filter(':checked').length;
@@ -103,7 +51,38 @@ jQuery(document).ready(
                                     }
                                 }
                             }
-                    }, 2500
+                    }
+        jQuery(".ppc_checkboxes").each(function(){
+            if(jQuery(this).prop("checked") == true) {
+                jQuery(this).next().addClass("ppc-checklist-checked");
+
+            }else if(jQuery(this).prop("checked") == false){
+                jQuery(this).next().removeClass("ppc-checklist-checked");
+            }
+        });
+        ppc_checkboxes.change(
+                        function() {
+                            var ppc_checkboxes = jQuery('#checkbox[type="checkbox"]');
+                            var ppc_checkboxes_length = jQuery('#checkbox[type="checkbox"]').length;
+                            var countCheckedppc_checkboxes = ppc_checkboxes.filter(':checked').length;
+                            var ppc_checked_checkboxes = ppc_checkboxes.filter(':checked');
+                            ppc_percentage_completed = (countCheckedppc_checkboxes / ppc_checkboxes_length)*100;
+                            jQuery('.ppc-percentage').attr('style', 'width:'+ppc_percentage_completed+'%');
+                             jQuery(".ppc-percentage-value").html(Math.round(ppc_percentage_completed)+"%"); 
+                         });
+
+        jQuery(document).on('click', ".ppc_checkboxes", function() {
+            jQuery(this).attr("name", "Delete");
+            if(jQuery(this).prop("checked") == true) {
+                jQuery(this).next().addClass("ppc-checklist-checked");
+
+            }else if(jQuery(this).prop("checked") == false){
+                jQuery(this).next().removeClass("ppc-checklist-checked");
+            }
+
+        });
+        jQuery(document).on('click', ".editor-post-preview", function() { 
+                setTimeout( ppc_checkbox_function , 2500
                 );
         });    
         ppc_checkboxes.on(
@@ -112,6 +91,8 @@ jQuery(document).ready(
 
                 if (jQuery(this).prop("checked") == true) {
                     var ppc_post_id = jQuery("#post_ID").val()
+                    var decoded = jQuery(this).next().html().replace(/&amp;/g, '&');
+                    console.log(decoded);
                     jQuery.post(
                         ppc_meta_box_obj.url, {
                             action: 'ppc_ajax_add_change',
@@ -168,54 +149,7 @@ jQuery(document).ready(
                 );
 
                 if (ppc_radio_obj.option == 1 || ppc_radio_obj.option == 2) {
-                    ppc_checkboxes.change(
-                        function() {
-
-                            var ppc_checkboxes = jQuery('#checkbox[type="checkbox"]');
-                            var ppc_checkboxes_length = jQuery('#checkbox[type="checkbox"]').length;
-                            var countCheckedppc_checkboxes = ppc_checkboxes.filter(':checked').length;
-
-                            if (ppc_checkboxes_length == countCheckedppc_checkboxes) {
-
-
-                                if (jQuery('.editor-post-publish-panel__toggle').length == 1) {
-
-
-                                    jQuery('.edit-post-header__settings').children(jQuery('#ppc-publish').attr('style', 'display:none'));
-                                    jQuery('.editor-post-publish-panel__toggle').attr('style', 'display:inline-flex');
-
-                                } else if (jQuery('.editor-post-publish-button').length == 1) {
-
-
-                                    jQuery('.edit-post-header__settings').children(':eq(2)').after(jQuery('#ppc-update').attr('style', 'display:none'));
-                                    jQuery('.editor-post-publish-button').attr('style', 'display:inline-flex');
-
-                                }
-
-                            } else if (ppc_checkboxes_length != countCheckedppc_checkboxes) {
-
-                                if (jQuery('.editor-post-publish-panel__toggle').length == 1) {
-
-                                    jQuery('.editor-post-publish-panel__toggle').attr('style', 'display:none');
-
-                                    jQuery('.edit-post-header__settings').children(':eq(2)').after(jQuery('#ppc-publish').attr('style', 'display:inline-flex'));
-                                    if (jQuery('#ppc-publish').length == 0) {
-
-                                        jQuery('.edit-post-header__settings').children(':eq(2)').after('<button type="button" class="components-button  is-button is-primary ppc-publish" id="ppc-publish">Publish...</button>');
-                                    }
-
-                                } else if (jQuery('.editor-post-publish-button').length == 1) {
-
-                                    jQuery('.editor-post-publish-button').attr('style', 'display:none');
-
-                                    jQuery('.edit-post-header__settings').children(':eq(2)').after(jQuery('#ppc-update').attr('style', 'display:inline-flex'));
-                                    if (jQuery('#ppc-update').length == 0) {
-
-                                        jQuery('.edit-post-header__settings').children(':eq(2)').after('<button type="button" class="components-button  is-button is-primary ppc-publish" id="ppc-update">Update</button>');
-                                    }
-                                }
-                            }
-                        });
+                    ppc_checkboxes.change(ppc_checkbox_function );
                 }
                 //Do nothing--------------
                 else if (ppc_radio_obj.option == 3) {

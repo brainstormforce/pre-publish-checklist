@@ -11,12 +11,13 @@
  */
 
 // Displaying the contents in the general tab in the plugin settings.
-// delete_option('ppc_checklist_data');
+delete_option( 'ppc_checklist_data' );
 $ppc_radio_button        = get_option( 'ppc_radio_button_option_data' );
 $ppc_radio_button        = ( ! empty( $ppc_radio_button ) ? $ppc_radio_button : 3 );
 $ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
 wp_enqueue_script( 'ppc_backend_itemlist_js' );
 wp_enqueue_style( 'ppc_backend_css' );
+delete_option( 'ppc_checklist_data' );
 $ppc_post_types = get_option( 'ppc_post_types_to_display' );
 $ppc_args       = array(
 	'public' => true,
@@ -84,8 +85,7 @@ $ppc_exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates'
 				<p class="description"><?php esc_html_e( 'Select the post types where to display the Pre-Publish Checklist.', 'bsf-pre-publish-checklist' ); ?></p> <br>
 
 				<?php wp_nonce_field( 'ppc-form-nonce', 'ppc-form' ); ?>
-			<br><input type="submit" class="button button-primary ppc-savesetting"  name="submit_radio" Value="Save Settings"/>
-			
+			<br><input type="submit" class="button button-primary ppc-savesetting"  name="submit_radio" Value="Save Settings"/>		
 			</td>
 		</tr>
 		</tbody>
