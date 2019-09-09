@@ -1,6 +1,6 @@
 <?php
 /**
- * Settings page of Pre Publish CHecklist
+ * Settings page of Pre-Publish Checklist
  *
  * @since   1.0.0
  * @package Pre-Publish Checklist.
@@ -71,13 +71,13 @@ if ( isset( $_GET['tab'] ) ) { //PHPCS:ignore:WordPress.Security.NonceVerificati
 
 	if ( 'ppc_general_settings' === $_GET['tab'] ) { //PHPCS:ignore:WordPress.Security.NonceVerification.Recommended
 
-		include_once 'ppc-frontend.php';
+		require_once 'ppc-frontend.php';
 	} elseif ( 'ppc-checklist' === $_GET['tab'] ) { //PHPCS:ignore:WordPress.Security.NonceVerification.Recommended
-		include_once 'ppc-checklist.php';
+		require_once 'ppc-checklist.php';
 	} elseif ( 'ppc-user-manual' === $_GET['tab'] ) { //PHPCS:ignore:WordPress.Security.NonceVerification.Recommended
-		include_once 'ppc-user-manual.php';
+		require_once 'ppc-user-manual.php';
 	}
 } else {
-	include_once 'ppc-frontend.php';
+	require_once 'ppc-frontend.php';
 }
 

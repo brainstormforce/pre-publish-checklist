@@ -1,6 +1,6 @@
 <?php
 /**
- * BSF Pre Publish Check list php for displaying the contents on the
+ * Pre-Publish Check list php for displaying the contents on the
  * general settings tab.
  * PHP version 7
  *

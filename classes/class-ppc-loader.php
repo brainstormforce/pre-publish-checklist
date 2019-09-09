@@ -1,11 +1,11 @@
 <?php
 /**
- * BSF Pre Publish Check list.
+ * Pre-Publish Checklist.
  *
  * PHP version 7
  *
  * @category PHP
- * @package  Pre Publish Check-list.
+ * @package  Pre-Publish Checklist.
  * @author   Display Name <username@ShubhamW.com>
  * @license  http://brainstormforce.com
  * @link     http://brainstormforce.com
@@ -13,7 +13,7 @@
 
 if ( ! class_exists( 'PPC_Loader' ) ) :
 	/**
-	 * Pre Publish Check list doc comment.
+	 * Pre-Publish Checklist doc comment.
 	 *
 	 * PHP version 7
 	 *
@@ -53,7 +53,6 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			add_action( 'wp_ajax_ppc_checklistitem_delete', array( $this, 'ppc_delete_item' ), 1 );
 			add_action( 'wp_ajax_ppc_checklistitem_drag', array( $this, 'ppc_drag_item' ), 1 );
 			add_action( 'wp_ajax_ppc_checklistitem_edit', array( $this, 'ppc_edit_item' ), 1 );
-
 		}
 		/**
 		 * Stores default list in the database.
@@ -126,7 +125,6 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 					}
 				}
 			}
-
 		}
 
 		/**
@@ -214,17 +212,14 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 				);
 				if ( ! empty( $ppc_all_post_ids ) ) {
 					foreach ( $ppc_all_post_ids as $ppc_postid ) {
-
 						$ppc_pre_value = get_post_meta( $ppc_postid, '_ppc_meta_key', true );
 						if ( ! empty( $ppc_pre_value ) ) {
-
 								unset( $ppc_pre_value[ $ppc_delete_value ] );
 								update_post_meta(
 									$ppc_postid,
 									'_ppc_meta_key',
 									$ppc_pre_value
 								);
-
 						}
 					}
 				}
@@ -236,12 +231,11 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		/**
 		 * Function for editing checklist  via ajax.
 		 *
-		 * Edits the checklist item in the database.
+		 * Edits the checklist item in the database as well as post meta.
 		 *
 		 * @since 1.0.0
 		 */
 		public function ppc_edit_item() {
-
 			if ( isset( $_POST['ppc_edit_value'] ) && isset( $_POST['ppc_edit_key'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				global $wpdb;
 
@@ -250,7 +244,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 				$ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
 				if ( ! empty( $ppc_checklist_item_data ) ) {
 					$ppc_edit_value                           = sanitize_text_field( $_POST['ppc_edit_value'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-					$ppc_edit_key                             = sanitize_text_field( $_POST['ppc_edit_key'] );
+					$ppc_edit_key                             = sanitize_text_field( $_POST['ppc_edit_key'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 					$ppc_checklist_item_data[ $ppc_edit_key ] = $ppc_edit_value;
 					update_option( 'ppc_checklist_data', $ppc_checklist_item_data );
 					echo 'sucess';
@@ -285,12 +279,11 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		/**
 		 * Function for saving the Form data.
 		 *
-		 * Adds value from general settings page to the database.
+		 * Saves value from general settings page to the database.
 		 *
 		 * @since 1.0.0
 		 */
 		public function ppc_save_data() {
-
 			$page = ! empty( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : null;
 			if ( 'ppc' !== $page ) {
 				return;

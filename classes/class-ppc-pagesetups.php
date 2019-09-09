@@ -1,12 +1,12 @@
 <?php
 /**
- * BSF Pre Publish Checklist page setups comment
+ * Pre-Publish Checklist page setups comment
  *
  * PHP version 7
  *
  * @category PHP
  * @package  Pre-Publish Checklist.
- * @author   Display Name <username@ShubhamW.com>
+ * @author   Display Name <username@BrainstormForce.com>
  * @license  http://brainstormforce.com
  * @link     http://brainstormforce.com
  */
@@ -20,13 +20,13 @@
 
 if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 	/**
-	 * Pre Publish Checklist Loader Doc comment
+	 * Pre-Publish Checklist Loader Doc comment
 	 *
 	 * PHP version 7
 	 *
 	 * @category PHP
 	 * @package  Pre Publish Check-list
-	 * @author   Display Name <username@ShubhamW.com>
+	 * @author   Display Name <username@BrainstormForce.com>
 	 * @license  http://brainstormforce.com
 	 * @link     http://brainstormforce.com
 	 */
