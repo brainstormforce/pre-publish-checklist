@@ -8,23 +8,27 @@ jQuery(document).ready(function() {
             jQuery('#ppc-ul').sortable({
             update: function() {
                 jQuery('.ppc-spinner').addClass("is-active");
-                ppc_drag_contents = [];
+                // ppc_drag_contents = [];
                 jQuery(this).sortable("disable");
-                var ppc_drag_contents = [];
+                var ppc_drag_contents = {};
                 var ppc_item_drag_var = jQuery('.ppc-drag-feilds');
                 ppc_item_drag_var.each(function() {
                     ppc_item_key = jQuery(this).attr('$ppc_item_key');
                     ppc_drag_contents[ppc_item_key] = jQuery(this).attr('value');
                 });
-                jQuery.post(ppc_add_delete_obj.url, {
+                console.log(ppc_drag_contents.length);
+                jQuery.post( 
+                    ppc_add_delete_obj.url , {
                     action: 'ppc_checklistitem_drag',
                     ppc_order: ppc_drag_contents
-                },function(data) {
+                },
+                function(data) {
                     if (data === 'sucess') {
                         jQuery('#ppc-ul').sortable("enable");
                         jQuery('.ppc-spinner').removeClass("is-active");
                     }
-                });
+                }
+                );
             },
             placeholder: "ppc-dashed-placeholder"
         });
@@ -137,27 +141,23 @@ jQuery(document).ready(function() {
                 jQuery(this).attr("name", "Delete");
                 jQuery(this).html('<span class="dashicons dashicons-trash ppc-delete-dashicon"></span>Delete');
                 jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").attr('readonly', true);
+                console.log(jQuery(this).val());
+                console.log(jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").val());
                 if (jQuery(this).val() != jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").val()) {
-                    console.log('454545454');
+                    jQuery(this).attr("value", jQuery(this).prev().val());
                     jQuery('.ppc-spinner').addClass("is-active");
-                    console.log(jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").val());
-                    console.log(jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").attr('$ppc_item_key'));
-                    console.log();
                     jQuery.post(ppc_add_delete_obj.url, {
                         action: 'ppc_checklistitem_edit',
                         ppc_edit_value: jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").val(),
                         ppc_edit_key: jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").attr('$ppc_item_key')
                     }, function(data) {
-                        if (data === 'sucess') {
-
-                            
-                        }
                         jQuery('.ppc-spinner').removeClass("is-active");
+
                     });
 
                 }
             }
-            jQuery(this).attr("value", jQuery(this).prev().val());
+            
             jQuery("#ppc-ul").sortable("enable");
 
         } else if (jQuery(this).prev().val().length == 0) {

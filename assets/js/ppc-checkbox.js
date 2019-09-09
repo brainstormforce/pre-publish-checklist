@@ -27,26 +27,26 @@ jQuery(document).ready(
                              jQuery(".ppc-percentage-value").html(Math.round(ppc_percentage_completed)+"%"); 
                          });
 
-        jQuery(document).on('click', ".ppc-hide-checked-item-buttton", function() {
-            var ppc_checked_checkboxes = ppc_checkboxes.filter(':checked');
+        // jQuery(document).on('click', ".ppc-hide-checked-item-buttton", function() {
+        //     var ppc_checked_checkboxes = ppc_checkboxes.filter(':checked');
             
-            if(ppc_checked_checkboxes.length !== 0 && jQuery(this).prop("name") =="ppc-hide-checked-item" ){
+        //     if(ppc_checked_checkboxes.length !== 0 && jQuery(this).prop("name") =="ppc-hide-checked-item" ){
                     
-                ppc_checked_checkboxes.each(function(){                
-                jQuery(this).parents('.ppc-checklist-item-wrapper').hide();
-                });
-                jQuery(this).attr("name", "ppc-show-checked-item");
-                jQuery(this).html('Show Checked Items');   
+        //         ppc_checked_checkboxes.each(function(){                
+        //         jQuery(this).parents('.ppc-checklist-item-wrapper').hide();
+        //         });
+        //         jQuery(this).attr("name", "ppc-show-checked-item");
+        //         jQuery(this).html('Show Checked Items');   
 
-            }else if(jQuery(this).prop("name") =="ppc-show-checked-item"){
-                jQuery(this).attr("name", "ppc-show-checked-item");
-                ppc_checked_checkboxes.each(function(){                
-                    jQuery(this).parents('.ppc-checklist-item-wrapper').show();
-                });
-                jQuery(this).attr("name", "ppc-hide-checked-item");
-                jQuery(this).html('Hide Checked Items');  
-            }
-        });
+        //     }else if(jQuery(this).prop("name") =="ppc-show-checked-item"){
+        //         jQuery(this).attr("name", "ppc-show-checked-item");
+        //         ppc_checked_checkboxes.each(function(){                
+        //             jQuery(this).parents('.ppc-checklist-item-wrapper').show();
+        //         });
+        //         jQuery(this).attr("name", "ppc-hide-checked-item");
+        //         jQuery(this).html('Hide Checked Items');  
+        //     }
+        // });
 
         jQuery(document).on('click', ".ppc_checkboxes", function() {
             jQuery(this).attr("name", "Delete");
