@@ -23,7 +23,7 @@ define( 'PPC_PLUGIN_URL', untrailingslashit( plugins_url( '', __FILE__ ) ) );
 
 define( 'PPC_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 
-define( 'PPC_VERSION' , '1.0.0');
+define( 'PPC_VERSION', '1.0.0' );
 
 require_once 'classes/class-ppc-loader.php';
 

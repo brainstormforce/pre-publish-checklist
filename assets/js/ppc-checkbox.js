@@ -74,8 +74,7 @@ jQuery(document).ready(
             'change',
             function() {
                 if (jQuery(this).prop("checked") == true) {
-                    var ppc_post_id = jQuery("#post_ID").val()
-                    var decoded = jQuery(this).next().html().replace(/&amp;/g, '&');
+                    var ppc_post_id = jQuery("#post_ID").val();
                     jQuery.post(
                         ppc_meta_box_obj.url, {
                             action: 'ppc_ajax_add_change',

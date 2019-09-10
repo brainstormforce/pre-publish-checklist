@@ -92,8 +92,8 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		public function ppc_plugin_backend_js() {
 			$ppc_radio_button        = get_option( 'ppc_radio_button_option_data' );
 			$ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
-			wp_register_script( 'ppc_backend_checkbox_js', PPC_PLUGIN_URL . '/assets/js/ppc-checkbox.js', null, PPC_VERSION , false );
-			wp_register_script( 'ppc_backend_itemlist_js', PPC_PLUGIN_URL . '/assets/js/ppc-itemlist.js', null, PPC_VERSION , false );
+			wp_register_script( 'ppc_backend_checkbox_js', PPC_PLUGIN_URL . '/assets/js/ppc-checkbox.js', null, PPC_VERSION, false );
+			wp_register_script( 'ppc_backend_itemlist_js', PPC_PLUGIN_URL . '/assets/js/ppc-itemlist.js', null, PPC_VERSION, false );
 			wp_register_style( 'ppc_backend_css', PPC_PLUGIN_URL . '/assets/css/ppc-css.css', null, PPC_VERSION, false );
 			if ( false !== $ppc_radio_button && false !== $ppc_checklist_item_data ) {
 				wp_localize_script(
@@ -151,7 +151,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 				$ppc_newitems            = sanitize_text_field( $_POST['ppc_item_content'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				$ppc_newitem_key         = uniqid( 'ppc_key' );
 				$ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
-				if ( empty( $ppc_checklist_item_data ) ) {
+				if ( empty( $ppc_checklist_item_data ) || false === $ppc_checklist_item_data ) {
 					$ppc_checklist_item_data = array();
 				}
 				$ppc_checklist_item_data += [ $ppc_newitem_key => $ppc_newitems ];
@@ -207,7 +207,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 				);
 				if ( ! empty( $ppc_all_post_ids ) ) {
 					foreach ( $ppc_all_post_ids as $ppc_postid ) {
-						$ppc_pre_value = get_post_meta( $ppc_postid, '_ppc_meta_key' ,true);
+						$ppc_pre_value = get_post_meta( $ppc_postid, '_ppc_meta_key', true );
 						if ( ! empty( $ppc_pre_value ) ) {
 								unset( $ppc_pre_value[ $ppc_delete_value ] );
 								update_post_meta(
@@ -253,7 +253,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 					);
 					if ( ! empty( $ppc_all_post_ids ) ) {
 						foreach ( $ppc_all_post_ids as $ppc_postid ) {
-							$ppc_pre_checklist_values = get_post_meta( $ppc_postid, '_ppc_meta_key', true);
+							$ppc_pre_checklist_values = get_post_meta( $ppc_postid, '_ppc_meta_key', true );
 							if ( ! empty( $ppc_pre_checklist_values ) ) {
 								$ppc_pre_checklist_values[ $ppc_edit_key ] = $ppc_edit_value;
 									update_post_meta(
@@ -295,7 +295,6 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 					// saves the posts types to have our meta box on.
 					$ppc_post_types = array();
 					if ( ! empty( $_POST['posts'] ) ) {
-
 						$ppc_post_types = array_map( 'sanitize_text_field', $_POST['posts'] );
 					}
 					update_option( 'ppc_post_types_to_display', $ppc_post_types );
