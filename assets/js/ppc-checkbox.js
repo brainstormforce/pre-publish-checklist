@@ -7,6 +7,7 @@ jQuery(document).ready(
         var ppc_percentage_completed = (countCheckedppc_checkboxes / ppc_checkboxes_length)*100;
         jQuery('.ppc-percentage').attr('style', 'width:'+ppc_percentage_completed+'%'); 
         jQuery(".ppc-percentage-value").html(Math.round(ppc_percentage_completed)+"%");
+        //function to be executed when the itemlist changes.
         var ppc_checkbox_function =  function() {
                             var ppc_checkboxes = jQuery('#checkbox[type="checkbox"]');
                             var ppc_checkboxes_length = jQuery('#checkbox[type="checkbox"]').length;
@@ -35,6 +36,7 @@ jQuery(document).ready(
                                 }
                             }
                     }
+        //Strikethrough the checked item.
         jQuery(".ppc_checkboxes").each(function(){
             if(jQuery(this).prop("checked") == true) {
                 jQuery(this).next().addClass("ppc-checklist-checked");
@@ -42,6 +44,17 @@ jQuery(document).ready(
                 jQuery(this).next().removeClass("ppc-checklist-checked");
             }
         });
+        jQuery(document).on('click', ".ppc_checkboxes", function() {
+            jQuery(this).attr("name", "Delete");
+            if(jQuery(this).prop("checked") == true) {
+                jQuery(this).next().addClass("ppc-checklist-checked");
+
+            }else if(jQuery(this).prop("checked") == false){
+                jQuery(this).next().removeClass("ppc-checklist-checked");
+            }
+        });
+
+        //Change the progress bar length with respect to checked item.
         ppc_checkboxes.change(
                         function() {
                             var ppc_checkboxes = jQuery('#checkbox[type="checkbox"]');
@@ -52,15 +65,7 @@ jQuery(document).ready(
                             jQuery('.ppc-percentage').attr('style', 'width:'+ppc_percentage_completed+'%');
                              jQuery(".ppc-percentage-value").html(Math.round(ppc_percentage_completed)+"%"); 
                          });
-        jQuery(document).on('click', ".ppc_checkboxes", function() {
-            jQuery(this).attr("name", "Delete");
-            if(jQuery(this).prop("checked") == true) {
-                jQuery(this).next().addClass("ppc-checklist-checked");
-
-            }else if(jQuery(this).prop("checked") == false){
-                jQuery(this).next().removeClass("ppc-checklist-checked");
-            }
-        });
+        //place the publish button correctly on preveiw click.
         jQuery(document).on('click', ".editor-post-preview", function() { 
                 setTimeout( ppc_checkbox_function , 2500
                 );

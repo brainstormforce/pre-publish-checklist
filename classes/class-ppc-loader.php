@@ -207,7 +207,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 				);
 				if ( ! empty( $ppc_all_post_ids ) ) {
 					foreach ( $ppc_all_post_ids as $ppc_postid ) {
-						$ppc_pre_value = get_post_meta( $ppc_postid, '_ppc_meta_key' );
+						$ppc_pre_value = get_post_meta( $ppc_postid, '_ppc_meta_key' ,true);
 						if ( ! empty( $ppc_pre_value ) ) {
 								unset( $ppc_pre_value[ $ppc_delete_value ] );
 								update_post_meta(
@@ -253,7 +253,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 					);
 					if ( ! empty( $ppc_all_post_ids ) ) {
 						foreach ( $ppc_all_post_ids as $ppc_postid ) {
-							$ppc_pre_checklist_values = get_post_meta( $ppc_postid, '_ppc_meta_key');
+							$ppc_pre_checklist_values = get_post_meta( $ppc_postid, '_ppc_meta_key', true);
 							if ( ! empty( $ppc_pre_checklist_values ) ) {
 								$ppc_pre_checklist_values[ $ppc_edit_key ] = $ppc_edit_value;
 									update_post_meta(
@@ -295,6 +295,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 					// saves the posts types to have our meta box on.
 					$ppc_post_types = array();
 					if ( ! empty( $_POST['posts'] ) ) {
+
 						$ppc_post_types = array_map( 'sanitize_text_field', $_POST['posts'] );
 					}
 					update_option( 'ppc_post_types_to_display', $ppc_post_types );
