@@ -1,7 +1,6 @@
 jQuery(document).ready(function() {
     var add_button = jQuery('.add_field_button ');
     var ppc_drag_contents = [];
-
     var input_feilds = jQuery('#add_item_text_feild[type="text"]');
     function ppc_sortable(){ 
             jQuery('#ppc-ul').sortable({
@@ -29,9 +28,7 @@ jQuery(document).ready(function() {
         });
     }
     ppc_sortable( jQuery('#ppc-ul') );
-
-
-    //Ajax trigger for adding an element in the array 
+    //Ajax trigger for adding an element in the array of checklist.
     jQuery(document).on('click', "#ppc-Savelist", function() {
         ppc_sortable( jQuery('#ppc-ul') );
         jQuery('.ppc-add-spinner').addClass("is-active");
@@ -78,11 +75,7 @@ jQuery(document).ready(function() {
                         },2000)
                     }
                 });
-
-            jQuery("#ppc-ul").sortable("refresh");
-
-
-            
+            jQuery("#ppc-ul").sortable("refresh");            
         } else {
             jQuery(".ppc-hide-empty-warning").css("visibility", "visible");
             if (ppc_item_exists == 1) {
@@ -97,12 +90,9 @@ jQuery(document).ready(function() {
             }, 2000);
         }
     });
-
-    //Ajax trigger for deleting an element in the array
+    //Ajax trigger for deleting an element in the array of checklist.
     jQuery(document).on('click', '.ppcdelete', function() {
-
-        if (jQuery(this).prop("name") == 'Delete') {
-        
+        if (jQuery(this).prop("name") == 'Delete') {        
             var ppc_txt;
             var ppc_delete_flag = confirm("Are you sure to delete this checklist item?");
             if (ppc_delete_flag == true) {
@@ -113,9 +103,7 @@ jQuery(document).ready(function() {
                     delete: jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").attr('$ppc_item_key')
                 }, function(data) {
                         jQuery('.ppc-spinner').removeClass("is-active");                    
-                });
-                
-                
+                });      
             } else {
                 ppc_txt = "You pressed Cancel!";
             }
@@ -135,14 +123,10 @@ jQuery(document).ready(function() {
                         ppc_edit_key: jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").attr('$ppc_item_key')
                     }, function(data) {
                         jQuery('.ppc-spinner').removeClass("is-active");
-
                     });
-
                 }
-            }
-            
+            }            
             jQuery("#ppc-ul").sortable("enable");
-
         } else if (jQuery(this).prev().val().length == 0) {
             jQuery(".ppc-hide-cover").css("visibility", "visible");
             setTimeout(function() {
@@ -155,7 +139,7 @@ jQuery(document).ready(function() {
             jQuery('.ppc-empty-list').attr('style', 'display:none');
         }
     });
-
+    //function to trigger on click of edit button.
     jQuery(document).on('click', '.ppcedit', function() {
         jQuery(".ppc-drag-feilds").each(function() {
             jQuery(this).attr('style', 'cursor:default');
@@ -168,11 +152,9 @@ jQuery(document).ready(function() {
         jQuery(this).parent('.ppc-li').find(".ppcdelete").html('<span class="dashicons dashicons-portfolio"></span> Save');
         jQuery(this).parent('.ppc-li').find(".ppcdelete").attr("name", "Save");
     });
-
     if (jQuery(".ppc-drag-feilds").length == 0) {
         jQuery('.ppc-empty-list').attr('style', 'display:block');
     } else if (jQuery(".ppc-drag-feilds").length !== 0) {
         jQuery('.ppc-empty-list').attr('style', 'display:none');
     }
-
 });

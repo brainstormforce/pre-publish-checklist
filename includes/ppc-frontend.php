@@ -1,6 +1,6 @@
 <?php
 /**
- * Pre-Publish Check list php for Displaying the contents in the general tab in the plugin settings
+ * Pre-Publish Checklist php for Displaying the contents in the general tab in the plugin settings
  * PHP version 7
  *
  * @category PHP
@@ -14,7 +14,7 @@
 $ppc_radio_button        = get_option( 'ppc_radio_button_option_data' );
 $ppc_radio_button        = ( ! empty( $ppc_radio_button ) ? $ppc_radio_button : 3 );
 $ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
-wp_enqueue_script( 'ppc_backend_itemlist_js' );
+// wp_enqueue_script( 'ppc_backend_itemlist_js' );
 wp_enqueue_style( 'ppc_backend_css' );
 $ppc_post_types = get_option( 'ppc_post_types_to_display' );
 $ppc_args       = array(

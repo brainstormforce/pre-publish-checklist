@@ -1,6 +1,6 @@
 <?php
 /**
- * The Pre Publish Checklist User Manual tab
+ * The Pre-Publish Checklist User Manual tab
  *
  * @since   1.0.0
  * @package Pre-Publish Checklist.

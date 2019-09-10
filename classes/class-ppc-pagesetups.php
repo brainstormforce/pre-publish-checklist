@@ -234,7 +234,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		public function ppc_meta_box_ajax_delete_handler() {
 			if ( isset( $_POST['ppc_key_value'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				$ppcpost        = sanitize_text_field( $_POST['ppc_post_id'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-				$ppc_delete_key = $_POST['ppc_key_value'];//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+				$ppc_delete_key = sanitize_text_field($_POST['ppc_key_value']);//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
 				$pre_data       = get_post_meta( $ppcpost, '_ppc_meta_key', true );
 				if ( ! empty( $pre_data ) ) {
 					unset( $pre_data[ $ppc_delete_key ] );

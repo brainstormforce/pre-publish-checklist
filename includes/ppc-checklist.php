@@ -14,7 +14,10 @@
 $ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
 wp_enqueue_script( 'ppc_backend_itemlist_js' );
 wp_enqueue_style( 'ppc_backend_css' );
-
+wp_enqueue_script( 'jquery' );
+wp_enqueue_script( 'jquery-ui-core' );
+wp_enqueue_script( 'jquery-ui-sortable' );
+wp_enqueue_script( 'jQuery-ui-droppable' );
 ?>
 <html>
 <body>

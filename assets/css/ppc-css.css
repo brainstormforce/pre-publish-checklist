@@ -427,7 +427,6 @@ p.ppc-nolist-item{
 
 .ppc-empty-list {
     font-size: 1.25em;
-    /*visibility: hidden;*/
     max-width: 785px;
     padding: 5px 0px 5px 7px;
     border-left: 2px solid #d3d3d3;
@@ -488,14 +487,13 @@ p.ppc-popup-description {
 .ppc-checklist-checked{
   text-decoration: line-through;
 }
-.ppc-checklist{
-  display: inline;
-}
+
 td.ppc-publish-attempt-options {
   padding-top: 20px;
 }
 .ppc-checklist-item-wrapper{
   margin-top: 20px; 
+  display: flex;
 }
 
 .ppc-percentage-background{
@@ -526,6 +524,10 @@ p.ppc-label {
 }
 
 .form-table td p {
-    /* margin-top: 4px; */
     margin-bottom: 0;
+}
+
+
+input.ppc_checkboxes{
+  margin-top: 2px;
 }

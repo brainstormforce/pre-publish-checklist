@@ -12,41 +12,24 @@ jQuery(document).ready(
                             var ppc_checkboxes_length = jQuery('#checkbox[type="checkbox"]').length;
                             var countCheckedppc_checkboxes = ppc_checkboxes.filter(':checked').length;
                             if (ppc_checkboxes_length == countCheckedppc_checkboxes) {
-
-
                                 if (jQuery('.editor-post-publish-panel__toggle').length == 1) {
-
-
                                     jQuery('.edit-post-header__settings').children(jQuery('#ppc-publish').attr('style', 'display:none'));
                                     jQuery('.editor-post-publish-panel__toggle').attr('style', 'display:inline-flex');
-
                                 } else if (jQuery('.editor-post-publish-button').length == 1) {
-
-
                                     jQuery('.edit-post-header__settings').children(':eq(2)').after(jQuery('#ppc-update').attr('style', 'display:none'));
                                     jQuery('.editor-post-publish-button').attr('style', 'display:inline-flex');
-
                                 }
-
                             } else if (ppc_checkboxes_length != countCheckedppc_checkboxes) {
-
                                 if (jQuery('.editor-post-publish-panel__toggle').length == 1) {
-
                                     jQuery('.editor-post-publish-panel__toggle').attr('style', 'display:none');
-
                                     jQuery('.edit-post-header__settings').children(':eq(2)').after(jQuery('#ppc-publish').attr('style', 'display:inline-flex'));
                                     if (jQuery('#ppc-publish').length == 0) {
-
                                         jQuery('.edit-post-header__settings').children(':eq(2)').after('<button type="button" class="components-button  is-button is-primary ppc-publish" id="ppc-publish">Publish...</button>');
                                     }
-
                                 } else if (jQuery('.editor-post-publish-button').length == 1) {
-
                                     jQuery('.editor-post-publish-button').attr('style', 'display:none');
-
                                     jQuery('.edit-post-header__settings').children(':eq(2)').after(jQuery('#ppc-update').attr('style', 'display:inline-flex'));
                                     if (jQuery('#ppc-update').length == 0) {
-
                                         jQuery('.edit-post-header__settings').children(':eq(2)').after('<button type="button" class="components-button  is-button is-primary ppc-publish" id="ppc-update">Update</button>');
                                     }
                                 }
@@ -55,7 +38,6 @@ jQuery(document).ready(
         jQuery(".ppc_checkboxes").each(function(){
             if(jQuery(this).prop("checked") == true) {
                 jQuery(this).next().addClass("ppc-checklist-checked");
-
             }else if(jQuery(this).prop("checked") == false){
                 jQuery(this).next().removeClass("ppc-checklist-checked");
             }
@@ -70,7 +52,6 @@ jQuery(document).ready(
                             jQuery('.ppc-percentage').attr('style', 'width:'+ppc_percentage_completed+'%');
                              jQuery(".ppc-percentage-value").html(Math.round(ppc_percentage_completed)+"%"); 
                          });
-
         jQuery(document).on('click', ".ppc_checkboxes", function() {
             jQuery(this).attr("name", "Delete");
             if(jQuery(this).prop("checked") == true) {
@@ -79,7 +60,6 @@ jQuery(document).ready(
             }else if(jQuery(this).prop("checked") == false){
                 jQuery(this).next().removeClass("ppc-checklist-checked");
             }
-
         });
         jQuery(document).on('click', ".editor-post-preview", function() { 
                 setTimeout( ppc_checkbox_function , 2500
@@ -88,11 +68,9 @@ jQuery(document).ready(
         ppc_checkboxes.on(
             'change',
             function() {
-
                 if (jQuery(this).prop("checked") == true) {
                     var ppc_post_id = jQuery("#post_ID").val()
                     var decoded = jQuery(this).next().html().replace(/&amp;/g, '&');
-                    console.log(decoded);
                     jQuery.post(
                         ppc_meta_box_obj.url, {
                             action: 'ppc_ajax_add_change',
@@ -102,7 +80,6 @@ jQuery(document).ready(
                         },
                     );
                 } else if (jQuery(this).prop("checked") == false) {
-
                     var ppc_post_id = jQuery("#post_ID").val()
                     jQuery.post(
                         ppc_meta_box_obj.url, {
@@ -116,38 +93,23 @@ jQuery(document).ready(
         );
     if(jQuery('#publish').length !== 1){
                 setTimeout(
-
                     function() {
-
-                        if (ppc_radio_obj.option != 3 && (ppc_checkboxes_length != countCheckedppc_checkboxes)) {
-
-
-                            if (jQuery('.editor-post-publish-panel__toggle').length == 1) {
+                        if(ppc_radio_obj.option != 3 && (ppc_checkboxes_length != countCheckedppc_checkboxes)) {
+                            if(jQuery('.editor-post-publish-panel__toggle').length == 1) {
                                 jQuery('.editor-post-publish-panel__toggle').attr('style', 'display:none');
-
-                            } else if (jQuery('.editor-post-publish-button').length == 1) {
-
-
+                            } else if(jQuery('.editor-post-publish-button').length == 1) {
                                 jQuery('.editor-post-publish-button').attr('style', 'display:none');
-
                             }
-                            if (jQuery('.edit-post-header__settings').children('.editor-post-save-draft').length != 0) {
-
+                            if( jQuery('.edit-post-header__settings').children('.editor-post-save-draft').length != 0 ){
                                 jQuery('.edit-post-header__settings').children(':eq(1)').after('<button type="button" class="components-button  is-button is-primary ppc-publish" id="ppc-publish">Publish...</button>');
-                            } else if (jQuery('.edit-post-header__settings').children('.editor-post-switch-to-draft').length == 1) {
-
-
+                            } else if(jQuery('.edit-post-header__settings').children('.editor-post-switch-to-draft').length == 1) {
                                 jQuery('.edit-post-header__settings').children(':eq(1)').after('<button type="button" class="components-button  is-button is-primary ppc-publish" id="ppc-update">Update</button>');
-                            } else if (jQuery('.edit-post-header__settings').children('.editor-post-switch-to-draft').length == 0) {
-
-
+                            } else if(jQuery('.edit-post-header__settings').children('.editor-post-switch-to-draft').length == 0) {
                                 jQuery('.edit-post-header__settings').children(':eq(1)').after('<button type="button" class="components-button  is-button is-primary ppc-publish" id="ppc-publish">Publish...</button>');
                             }
-
                         }
                     }, 10
                 );
-
                 if (ppc_radio_obj.option == 1 || ppc_radio_obj.option == 2) {
                     ppc_checkboxes.change(ppc_checkbox_function );
                 }
@@ -155,12 +117,9 @@ jQuery(document).ready(
                 else if (ppc_radio_obj.option == 3) {
                     var ppc_checkboxes = jQuery('#checkbox[type="checkbox"]');
                     var countCheckedppc_checkboxes = ppc_checkboxes.filter(':checked').length;
-
                     ppc_checkboxes.change(
                         function() {
-                            var countCheckedppc_checkboxes = ppc_checkboxes.filter(':checked').length;
-
-                           
+                            var countCheckedppc_checkboxes = ppc_checkboxes.filter(':checked').length;                           
                             var countCheckedppc_checkboxes = ppc_checkboxes.filter(':checked').length;
                             if (ppc_checkboxes.length == countCheckedppc_checkboxes) {
                                 //all checkboxes are checked
@@ -170,8 +129,7 @@ jQuery(document).ready(
                                     jQuery('.editor-post-publish-button').prop('title', 'All items checked ! You are good to publish');
                                 }
                             } else if (ppc_checkboxes.length != countCheckedppc_checkboxes) {
-                                // all ppc_checkboxes are not yet checked 
-                               
+                                // All ppc_checkboxes are not yet checked                                
                                 if (jQuery('.editor-post-publish-panel__toggle').length == 1) {
                                     jQuery('.editor-post-publish-panel__toggle').prop('title', 'Pre-Publish-Checklist some items still remaining ');
                                 } else if (jQuery('.editor-post-publish-button').length == 1) {
@@ -179,18 +137,14 @@ jQuery(document).ready(
                                 }
                             }
                         }
-
                     );
                 }
             }else{
                 //Conditions for classic editor.
-                   if (ppc_radio_obj.option == 1 || ppc_radio_obj.option == 2) {
-                   
+                   if (ppc_radio_obj.option == 1 || ppc_radio_obj.option == 2) {                   
                        jQuery(document).on('click', "#publish", function(e) {
                         var ppc_checkboxes = jQuery('#checkbox[type="checkbox"]');
                         var countCheckedppc_checkboxes = ppc_checkboxes.filter(':checked').length;
-
-
                         if (ppc_checkboxes.length == countCheckedppc_checkboxes){
                             return true;
                         }
@@ -211,77 +165,45 @@ jQuery(document).ready(
                                     return true;
                                 }
                         }
-
                      });
                    }
-            }
-             
+            }             
                     if (ppc_radio_obj.option == 2) {
-
                     jQuery(document).on('click', "#ppc-update", function() {
-
                         jQuery('.ppc-modal-warn').attr('style', 'display:block');
-
                     });
-
                     jQuery(document).on('click', "#ppc-publish", function() {
                         jQuery('.ppc-modal-warn').attr('style', 'display:block');
-
-
                     });
-
-
                 } else if (ppc_radio_obj.option == 1) {
-
                     jQuery(document).on('click', "#ppc-update", function() {
-
                         jQuery('.ppc-modal-prevent').attr('style', 'display:inline-block');
-
                     });
-
-
                     jQuery(document).on('click', "#ppc-publish", function() {
-
                         jQuery('.ppc-modal-prevent').attr('style', 'display:block');
-
                         var content = jQuery("#ppc_custom_meta_box").html();
-
-
                     });
-
                 }
-
-                jQuery(document).on('click', ".ppc-popup-options-publishanyway", function() {
-                
+                jQuery(document).on('click', ".ppc-popup-options-publishanyway", function() {                
                     jQuery('.ppc-modal-warn').attr('style', 'display:none');
                     if (jQuery('.editor-post-publish-panel__toggle').length == 1) {
-
                         jQuery('.edit-post-header__settings').children(jQuery('#ppc-publish').attr('style', 'display:none'));
                         jQuery('.editor-post-publish-panel__toggle').attr('style', 'display:inline-flex');
                         jQuery('.editor-post-publish-panel__toggle').trigger('click', 'publish');
-
                     } else if (jQuery('.editor-post-publish-button').length == 1) {
-
-
                         jQuery('.edit-post-header__settings').children(':eq(2)').after(jQuery('#ppc-update').attr('style', 'display:none'));
                         jQuery('.editor-post-publish-button').attr('style', 'display:inline-flex');
                         jQuery('.editor-post-publish-button').trigger('click', 'update');
-
-                    }else {
-                        
+                    }else {                        
                         ppc_publish_flag = 1;
                         jQuery('.ppc-modal-warn').attr('style', 'display:none');
                         jQuery('#publish').trigger('click', 'publish');
                     }
-
-
                 });
                 jQuery(document).on('click', ".ppc-popup-option-dontpublish", function() {
-
                      if( jQuery('#ppc_custom_meta_box').attr("class") == 'postbox closed' ){
                         jQuery('#ppc_custom_meta_box').attr('class','postbox');
                     }
-
                     jQuery('.ppc-modal-warn').attr('style', 'display:none');
                     document.querySelector('#ppc_custom_meta_box').scrollIntoView({
                         behavior: 'smooth',
@@ -289,14 +211,12 @@ jQuery(document).ready(
                         inline: "nearest"
                     });
                     jQuery("#ppc_custom_meta_box").scrollTop += 50;
-
                     jQuery('#ppc_custom_meta_box').focus();
                     jQuery('#ppc_custom_meta_box').addClass('ppc-metabox-background');
                      setTimeout(function(){
                              jQuery('#ppc_custom_meta_box').removeClass('ppc-metabox-background');
                         },1000)
                 });
-
                 jQuery(document).on('click', ".ppc-popup-option-okay", function() {
                     if( jQuery('#ppc_custom_meta_box').attr("class") == 'postbox closed' ){
                         jQuery('#ppc_custom_meta_box').attr('class','postbox');
@@ -313,5 +233,4 @@ jQuery(document).ready(
                         },1000)
                 });
     }
-
 );
