@@ -1,8 +1,8 @@
 {
-  "name": "header-footer-elementor",
-  "version": "1.1.4",
+  "name": "pre-publish-checklist",
+  "version": "0.0.1",
   "main": "Gruntfile.js",
-  "author": "Nikhil Chavan",
+  "author": "Brainstorm Force",
   "devDependencies": {
     "grunt": "~1.0.2",
     "grunt-wp-i18n": "~1.0.2",
