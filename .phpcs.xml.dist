@@ -31,7 +31,7 @@
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
 			<!-- Value: replace the function, class, and variable prefixes used. Separate multiple prefixes with a comma. -->
-			<property name="prefixes" type="array" value="pre-publish-checklist,ppl"/>
+			<property name="prefixes" type="array" value="ppc"/>
 		</properties>
 	</rule>
 	<rule ref="WordPress.WP.I18n">
