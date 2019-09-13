@@ -1,8 +1,11 @@
 jQuery(document).ready(function() {
     var add_button = jQuery('.add_field_button ');
     var ppc_drag_contents = [];
+    var ppc_spinner = jQuery('.ppc-add-spinner');
     var input_feilds = jQuery('#add_item_text_feild[type="text"]');
+    
     function ppc_sortable(){ 
+
             jQuery('#ppc-ul').sortable({
             update: function() {
                 jQuery('.ppc-spinner').addClass("is-active");
@@ -12,11 +15,13 @@ jQuery(document).ready(function() {
                 ppc_item_drag_var.each(function() {
                     ppc_item_key = jQuery(this).attr('$ppc_item_key');
                     ppc_drag_contents[ppc_item_key] = jQuery(this).attr('value');
+
                 });
                 jQuery.post( 
                     ppc_add_delete_obj.url , {
                     action: 'ppc_checklistitem_drag',
-                    ppc_order: ppc_drag_contents
+                    ppc_order: ppc_drag_contents,
+                    ppc_security : ppc_add_delete_obj.security
                 },
                 function(data) { 
                         jQuery('#ppc-ul').sortable("enable");
@@ -30,8 +35,9 @@ jQuery(document).ready(function() {
     ppc_sortable( jQuery('#ppc-ul') );
     //Ajax trigger for adding an element in the array of checklist.
     jQuery(document).on('click', "#ppc-Savelist", function() {
+
         ppc_sortable( jQuery('#ppc-ul') );
-        jQuery('.ppc-add-spinner').addClass("is-active");
+        ppc_spinner.addClass("is-active");
         var ppc_input_item = jQuery('.ppc-item-input').val();
         var ppc_item_drag_var = [];
         var ppc_drag_contents = [];
@@ -48,13 +54,14 @@ jQuery(document).ready(function() {
             jQuery('.ppc-empty-list').attr('style', 'display:none');
             jQuery.post(ppc_add_delete_obj.url, {
                     action: 'ppc_checklistitem_add',
-                    ppc_item_content: jQuery('.ppc-item-input').attr('value')
+                    ppc_item_content: jQuery('.ppc-item-input').attr('value'),
+                    ppc_security : ppc_add_delete_obj.security
                 },
                 function(data) {
                      ppc_sortable( jQuery('#ppc-ul') );
                     if (jQuery('.ppc-ul')[0]) {
                         jQuery(".ppc-ul").html(data);
-                        jQuery('.ppc-add-spinner').removeClass("is-active");
+                        ppc_spinner.removeClass("is-active");
                         jQuery('.ppc-item-input').val("");
                         jQuery('ul.ppc-ul li:last-child').children().css('background-color', '#f7fcfe');
                         jQuery('ul.ppc-ul li:last-child').css('background-color', '#f7fcfe');
@@ -65,7 +72,7 @@ jQuery(document).ready(function() {
                     } else {
                         data = '<ul id="ppc-ul" class="ppc-ul">' + data + '</ul>';
                         jQuery(".ppcdragdrop").html(data);
-                        jQuery('.ppc-add-spinner').removeClass("is-active");
+                        ppc_spinner.removeClass("is-active");
                         jQuery('.ppc-item-input').val("");
                         jQuery('ul.ppc-ul li:last-child').children().css('background-color','#f7fcfe');
                         jQuery('ul.ppc-ul li:last-child').css('background-color', '#f7fcfe');
@@ -80,10 +87,10 @@ jQuery(document).ready(function() {
             jQuery(".ppc-hide-empty-warning").css("visibility", "visible");
             if (ppc_item_exists == 1) {
                 jQuery(".ppc-list-waring-description").html('List item already exists');
-                jQuery('.ppc-add-spinner').removeClass("is-active");
+                ppc_spinner.removeClass("is-active");
             } else {
                 jQuery(".ppc-list-waring-description").html('List item cannot be empty');
-                jQuery('.ppc-add-spinner').removeClass("is-active");
+                ppc_spinner.removeClass("is-active");
             }
             setTimeout(function() {
                 jQuery(".ppc-hide-empty-warning").css("visibility", "hidden");
@@ -92,6 +99,7 @@ jQuery(document).ready(function() {
     });
     //Ajax trigger for deleting an element in the array of checklist.
     jQuery(document).on('click', '.ppcdelete', function() {
+
         if (jQuery(this).prop("name") == 'Delete') {        
             var ppc_txt;
             var ppc_delete_flag = confirm("Are you sure to delete this checklist item?");
@@ -100,7 +108,8 @@ jQuery(document).ready(function() {
                 jQuery(this).parents('li:first').remove();
                 jQuery.post(ppc_add_delete_obj.url, {
                     action: 'ppc_checklistitem_delete',
-                    delete: jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").attr('$ppc_item_key')
+                    delete: jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").attr('$ppc_item_key'),
+                    ppc_security : ppc_add_delete_obj.security
                 }, function(data) {
                         jQuery('.ppc-spinner').removeClass("is-active");                    
                 });      
@@ -108,6 +117,7 @@ jQuery(document).ready(function() {
                 ppc_txt = "You pressed Cancel!";
             }
         } else if (jQuery(this).prop("name") == 'Save') {
+
             jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").attr('style', 'width:80%');
             jQuery(this).prev().attr('style', 'display:inline-block');
             if (jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").val().replace(/ /g, '').length !== 0) {
@@ -120,7 +130,8 @@ jQuery(document).ready(function() {
                     jQuery.post(ppc_add_delete_obj.url, {
                         action: 'ppc_checklistitem_edit',
                         ppc_edit_value: jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").val(),
-                        ppc_edit_key: jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").attr('$ppc_item_key')
+                        ppc_edit_key: jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").attr('$ppc_item_key'),
+                        ppc_security : ppc_add_delete_obj.security
                     }, function(data) {
                         jQuery('.ppc-spinner').removeClass("is-active");
                     });
@@ -128,14 +139,17 @@ jQuery(document).ready(function() {
             }            
             jQuery("#ppc-ul").sortable("enable");
         } else if (jQuery(this).prev().val().length == 0) {
+
             jQuery(".ppc-hide-cover").css("visibility", "visible");
             setTimeout(function() {
                 jQuery(".ppc-hide-cover").css("visibility", "hidden");
             }, 2000);
         }
         if (jQuery(".ppc-drag-feilds").length == 0) {
+
             jQuery('.ppc-empty-list').attr('style', 'display:block');
         } else if (jQuery(".ppc-drag-feilds").length !== 0) {
+
             jQuery('.ppc-empty-list').attr('style', 'display:none');
         }
     });
@@ -157,4 +171,5 @@ jQuery(document).ready(function() {
     } else if (jQuery(".ppc-drag-feilds").length !== 0) {
         jQuery('.ppc-empty-list').attr('style', 'display:none');
     }
+
 });

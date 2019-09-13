@@ -25,7 +25,7 @@ wp_enqueue_script( 'jQuery-ui-droppable' );
 <table class="form-table ppc-form-table">
 	<tbody>
 				<tr>
-			<th scope="row"><p class="ppc-list-label"><span class="spinner ppc-spinner"></span><?php esc_html_e( 'Pre-Publish Checklist', 'bsf-pre-publish-checklist' ); ?></p> </th>
+			<th scope="row"><p class="ppc-list-label"><span class="spinner ppc-spinner"></span><?php esc_html_e( 'Pre-Publish Checklist', 'pre-publish-checklist' ); ?></p> </th>
 			<td class="ppc-list-table">
 
 				<div id="columns" class="ppcdragdrop">
@@ -48,20 +48,20 @@ wp_enqueue_script( 'jQuery-ui-droppable' );
 		?>
 						</ul>
 				</div>
-				<p class="ppc-empty-list"><?php esc_html_e( 'You do not have any items in the list please add items in the list.', 'bsf-pre-publish-checklist' ); ?></p>
+				<p class="ppc-empty-list"><?php esc_html_e( 'You do not have any items in the list please add items in the list.', 'pre-publish-checklist' ); ?></p>
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"> <p class="ppc-label"><?php esc_html_e( 'Add New Item in Checklist', 'bsf-pre-publish-checklist' ); ?></p> </th>
+			<th scope="row"> <p class="ppc-label"><?php esc_html_e( 'Add New Item in Checklist', 'pre-publish-checklist' ); ?></p> </th>
 			<td class="ppc-table">
 				<table id ="list_table">
 					<tr><div class="ppc_input_feild">
 						<input type="text" id="add_item_text_feild" class="ppc-item-input" name="ppc_checklist_item[]" minlength= 1 >
-						<button type="button" id="ppc-Savelist" name="submit" class="button button-primary ppc_data"   Value="Save List" /><?php esc_html_e( 'Add to List', 'bsf-pre-publish-checklist' ); ?></button><span class="spinner ppc-add-spinner"></span>
+						<button type="button" id="ppc-Savelist" name="submit" class="button button-primary ppc_data"   Value="Save List" /><?php esc_html_e( 'Add to List', 'pre-publish-checklist' ); ?></button><span class="spinner ppc-add-spinner"></span>
 						<br>
 						<div class="ppc-warning-div">
 							<div class="ppc-hide-empty-warning">
-							<p class="warning ppc-list-waring-description"><?php esc_html_e( 'List item cannot be blank', 'bsf-pre-publish-checklist' ); ?></p>
+							<p class="warning ppc-list-waring-description"><?php esc_html_e( 'List item cannot be blank', 'pre-publish-checklist' ); ?></p>
 							</div>
 						</div>
 					</div>

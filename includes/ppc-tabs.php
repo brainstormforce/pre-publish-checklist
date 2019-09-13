@@ -8,7 +8,7 @@
  */
 
 echo '<h1 class="ppc_main_title">';
-esc_attr_e( 'Pre-Publish Checklist', 'bsf-pre-publish-checklist' );
+esc_attr_e( 'Pre-Publish Checklist', 'pre-publish-checklist' );
 echo '</h1>';
 ?>
 
@@ -45,7 +45,7 @@ if ( isset( $_GET['tab'] ) ) {  //PHPCS:ignore:WordPress.Security.NonceVerificat
 		echo 'nav-tab-active ppc-active-tab';
 	}
 	?>
-	"><?php esc_attr_e( 'General Settings', 'bsf-pre-publish-checklist' ); ?></a>
+	"><?php esc_attr_e( 'General Settings', 'pre-publish-checklist' ); ?></a>
 
 
 		<a href="?page=ppc&tab=ppc-checklist" class="nav-tab tb 
@@ -54,7 +54,7 @@ if ( isset( $_GET['tab'] ) ) {  //PHPCS:ignore:WordPress.Security.NonceVerificat
 		echo 'nav-tab-active ppc-active-tab';
 	}
 	?>
-		"><?php esc_attr_e( 'Checklist', 'bsf-pre-publish-checklist' ); ?></a>
+		"><?php esc_attr_e( 'Checklist', 'pre-publish-checklist' ); ?></a>
 
 		<a href="?page=ppc&tab=ppc-user-manual" class="nav-tab tb 
 	<?php
@@ -62,7 +62,7 @@ if ( isset( $_GET['tab'] ) ) {  //PHPCS:ignore:WordPress.Security.NonceVerificat
 		echo 'nav-tab-active ppc-active-tab';
 	}
 	?>
-		"><?php esc_attr_e( 'Getting Started', 'bsf-pre-publish-checklist' ); ?></a>
+		"><?php esc_attr_e( 'Getting Started', 'pre-publish-checklist' ); ?></a>
 </h2>
 
 <?php

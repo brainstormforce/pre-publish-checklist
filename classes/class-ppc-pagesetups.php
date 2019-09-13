@@ -201,10 +201,11 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 * @since 1.0.0
 		 */
 		public function ppc_meta_box_ajax_add_handler() {
-			if ( isset( $_POST['ppc_field_value'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-				$ppcpost        = sanitize_text_field( $_POST['ppc_post_id'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-				$ppc_key        = sanitize_text_field( $_POST['ppc_key_value'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-				$ppc_value      = sanitize_text_field( $_POST['ppc_field_value'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
+			if ( isset( $_POST['ppc_field_value'] ) && isset( $_POST['ppc_post_id'] ) && isset( $_POST['ppc_key_value'] ) ) {
+				$ppcpost        = sanitize_text_field( wp_unslash( $_POST['ppc_post_id'] ) );
+				$ppc_key        = sanitize_text_field( wp_unslash( $_POST['ppc_key_value'] ) );
+				$ppc_value      = sanitize_text_field( wp_unslash( $_POST['ppc_field_value'] ) );
 				$ppc_check_data = array( $ppc_key => $ppc_value );
 				$pre_data       = get_post_meta( $ppcpost, '_ppc_meta_key', true );
 				if ( ! empty( $pre_data ) ) {
@@ -232,9 +233,10 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 * @since 1.0.0
 		 */
 		public function ppc_meta_box_ajax_delete_handler() {
-			if ( isset( $_POST['ppc_key_value'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-				$ppcpost        = sanitize_text_field( $_POST['ppc_post_id'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
-				$ppc_delete_key = sanitize_text_field( $_POST['ppc_key_value'] );//PHPCS:ignore:WordPress.Security.NonceVerification.Missing
+			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
+			if ( isset( $_POST['ppc_key_value'] ) && isset( $_POST['ppc_post_id'] ) ) {
+				$ppcpost        = sanitize_text_field( wp_unslash( $_POST['ppc_post_id'] ) );
+				$ppc_delete_key = sanitize_text_field( wp_unslash( $_POST['ppc_key_value'] ) );
 				$pre_data       = get_post_meta( $ppcpost, '_ppc_meta_key', true );
 				if ( ! empty( $pre_data ) ) {
 					unset( $pre_data[ $ppc_delete_key ] );

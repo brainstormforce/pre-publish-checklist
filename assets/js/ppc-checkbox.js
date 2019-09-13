@@ -80,8 +80,9 @@ jQuery(document).ready(
                             action: 'ppc_ajax_add_change',
                             ppc_key_value: jQuery(this).attr('value'),
                             ppc_post_id: ppc_post_id,
-                            ppc_field_value:jQuery(this).next().html()
-                        },
+                            ppc_field_value:jQuery(this).next().html(),
+                            ppc_security : ppc_radio_obj.security
+                        }
                     );
                 } else if (jQuery(this).prop("checked") == false) {
                     var ppc_post_id = jQuery("#post_ID").val()
@@ -89,8 +90,9 @@ jQuery(document).ready(
                         ppc_meta_box_obj.url, {
                             action: 'ppc_ajax_delete_change',
                             ppc_key_value: jQuery(this).attr('value'),
-                            ppc_post_id: ppc_post_id
-                        },
+                            ppc_post_id: ppc_post_id,
+                            ppc_security : ppc_radio_obj.security
+                        }
                     );
                 }
             }
