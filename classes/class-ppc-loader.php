@@ -197,7 +197,6 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		public function ppc_delete_item() {
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
 			if ( isset( $_POST['delete'] ) ) {
-				global $wpdb;
 				$ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
 				$ppc_checklist_item_data   = get_option( 'ppc_checklist_data' );
 				$ppc_delete_value          = sanitize_text_field( wp_unslash( $_POST['delete'] ) );
@@ -244,8 +243,6 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		public function ppc_edit_item() {
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
 			if ( isset( $_POST['ppc_edit_value'] ) && isset( $_POST['ppc_edit_key'] ) ) {
-				global $wpdb;
-
 				$ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
 				$ppc_checklist_item_data   = get_option( 'ppc_checklist_data' );
 				$ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
