@@ -1,16 +1,16 @@
 jQuery(document).ready(
     function() {
         var ppc_publish_flag = 0;
-        var ppc_checkboxes = jQuery('#checkbox[type="checkbox"]');
-        var ppc_checkboxes_length = jQuery('#checkbox[type="checkbox"]').length; 
+        var ppc_checkboxes = jQuery('.ppc_checkboxes[type="checkbox"]');
+        var ppc_checkboxes_length = jQuery('.ppc_checkboxes[type="checkbox"]').length; 
         var countCheckedppc_checkboxes = ppc_checkboxes.filter(':checked').length;
         var ppc_percentage_completed = (countCheckedppc_checkboxes / ppc_checkboxes_length)*100;
         jQuery('.ppc-percentage').attr('style', 'width:'+ppc_percentage_completed+'%'); 
         jQuery(".ppc-percentage-value").html(Math.round(ppc_percentage_completed)+"%");
         //function to be executed when the itemlist changes.
         var ppc_checkbox_function =  function() {
-                            var ppc_checkboxes = jQuery('#checkbox[type="checkbox"]');
-                            var ppc_checkboxes_length = jQuery('#checkbox[type="checkbox"]').length;
+                            var ppc_checkboxes = jQuery('.ppc_checkboxes[type="checkbox"]');
+                            var ppc_checkboxes_length = jQuery('.ppc_checkboxes[type="checkbox"]').length;
                             var countCheckedppc_checkboxes = ppc_checkboxes.filter(':checked').length;
                             if (ppc_checkboxes_length == countCheckedppc_checkboxes) {
                                 if (jQuery('.editor-post-publish-panel__toggle').length == 1) {
@@ -57,8 +57,8 @@ jQuery(document).ready(
         //Change the progress bar length with respect to checked item.
         ppc_checkboxes.change(
                         function() {
-                            var ppc_checkboxes = jQuery('#checkbox[type="checkbox"]');
-                            var ppc_checkboxes_length = jQuery('#checkbox[type="checkbox"]').length;
+                            var ppc_checkboxes = jQuery('.ppc_checkboxes[type="checkbox"]');
+                            var ppc_checkboxes_length = jQuery('.ppc_checkboxes[type="checkbox"]').length;
                             var countCheckedppc_checkboxes = ppc_checkboxes.filter(':checked').length;
                             var ppc_checked_checkboxes = ppc_checkboxes.filter(':checked');
                             ppc_percentage_completed = (countCheckedppc_checkboxes / ppc_checkboxes_length)*100;
@@ -121,7 +121,7 @@ jQuery(document).ready(
                 }
                 //Do nothing--------------
                 else if (ppc_radio_obj.option == 3) {
-                    var ppc_checkboxes = jQuery('#checkbox[type="checkbox"]');
+                    var ppc_checkboxes = jQuery('.ppc_checkboxes[type="checkbox"]');
                     var countCheckedppc_checkboxes = ppc_checkboxes.filter(':checked').length;
                     ppc_checkboxes.change(
                         function() {
@@ -149,7 +149,7 @@ jQuery(document).ready(
                 //Conditions for classic editor.
                    if (ppc_radio_obj.option == 1 || ppc_radio_obj.option == 2) {                   
                        jQuery(document).on('click', "#publish", function(e) {
-                        var ppc_checkboxes = jQuery('#checkbox[type="checkbox"]');
+                        var ppc_checkboxes = jQuery('.ppc_checkboxes[type="checkbox"]');
                         var countCheckedppc_checkboxes = ppc_checkboxes.filter(':checked').length;
                         if (ppc_checkboxes.length == countCheckedppc_checkboxes){
                             return true;
