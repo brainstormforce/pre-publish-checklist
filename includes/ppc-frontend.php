@@ -23,9 +23,7 @@ $ppc_args       = array(
 $ppc_exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 
 ?>
-<!DOCTYPE html>
-<html>
-<body>
+
 <form method ="POST" class="ppc-frontend-form">
 <table class="form-table ppc-form-table">
 	<tbody>
@@ -88,6 +86,4 @@ $ppc_exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates'
 		</tbody>
 	</table>
 	</form>
-</body>
-</html>
-<?php
+
