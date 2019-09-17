@@ -207,6 +207,7 @@ jQuery(document).ready(
                     }
                 });
                 jQuery(document).on('click', ".ppc-popup-option-dontpublish", function() {
+                     jQuery('.edit-post-sidebar__panel-tab').first().trigger('click', 'publish');
                      if( jQuery('#ppc_custom_meta_box').attr("class") == 'postbox closed' ){
                         jQuery('#ppc_custom_meta_box').attr('class','postbox');
                     }
@@ -224,6 +225,7 @@ jQuery(document).ready(
                         },1000)
                 });
                 jQuery(document).on('click', ".ppc-popup-option-okay", function() {
+                    jQuery('.edit-post-sidebar__panel-tab').first().trigger('click', 'publish');
                     if( jQuery('#ppc_custom_meta_box').attr("class") == 'postbox closed' ){
                         jQuery('#ppc_custom_meta_box').attr('class','postbox');
                     }
