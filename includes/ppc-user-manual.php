@@ -9,9 +9,7 @@
 
 wp_enqueue_style( 'ppc_backend_css' );
 ?>
-<!DOCTYPE html>
-<html>
-<body>
+
 <table class="form-table ppc-form-table">
 	<tbody>
 		<tr>
@@ -31,5 +29,4 @@ wp_enqueue_style( 'ppc_backend_css' );
 		</tr>
 	</tbody>
 </table>
-</body>
-</html>
+
