@@ -29,7 +29,7 @@ $ppc_exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates'
 <form method ="POST" class="ppc-frontend-form">
 <table class="form-table ppc-form-table">
 	<tbody>
-		<tr><th scope="row"><p class="ppc-setting-name">Publish Button Action If Checklist Is Incomplete</p></th>
+		<tr><th scope="row"><p class="ppc-setting-name"><?php esc_html_e( 'Publish Button Action If Checklist Is Incomplete', 'pre-publish-checklist' ); ?></p></th>
 			<td class="ppc-publish-attempt-options">
 				<input type="radio" name="ppc_radio_button_option" value="1" <?php checked( $ppc_radio_button, 1 ); ?> > <div class="ppc_radio_options"><?php esc_html_e( 'Prevent User from Publishing', 'pre-publish-checklist' ); ?></div>
 				<p class="description"><?php esc_html_e( 'User will not be able to publish until complete the checklist.', 'pre-publish-checklist' ); ?></p><br>

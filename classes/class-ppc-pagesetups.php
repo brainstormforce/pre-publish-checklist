@@ -76,20 +76,20 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 			?>
 			<div class = "ppc-modal-warn">
 				<div id="ppc_notifications" class="ppc-popup-warn">
-					<h2>Pre-Publish Checklist</h2>
-					<p class="ppc-popup-description">Your Pre-Publish Checklist is incomplete. What would you like to do?</p>
+					<h2><?php esc_html_e( 'Pre-Publish Checklist', 'pre-publish-checklist' ); ?></h2>
+					<p class="ppc-popup-description"><?php esc_html_e( 'Your Pre-Publish Checklist is incomplete. What would you like to do?', 'pre-publish-checklist' ); ?></p>
 					<div class="ppc-button-wrapper">
-						<div class="ppc-popup-option-dontpublish">Don't Publish</div>
-						<div class="ppc-popup-options-publishanyway">Publish Anyway</div>
+						<div class="ppc-popup-option-dontpublish"><?php esc_html_e( "Don't Publish", 'pre-publish-checklist' ); ?></div>
+						<div class="ppc-popup-options-publishanyway"><?php esc_html_e( 'Publish Anyway', 'pre-publish-checklist' ); ?></div>
 					</div>    
 				</div>
 			</div>
 			<div class = "ppc-modal-prevent">
 				<div id="ppc_notifications" class="ppc-popup-prevent">
-					<h2>Pre-Publish Checklist</h2>
-					<p class="ppc-popup-description"> Please check all the checklist items before publishing.</p>
+					<h2><?php esc_html_e( 'Pre-Publish Checklist', 'pre-publish-checklist' ); ?></h2>
+					<p class="ppc-popup-description"> <?php esc_html_e( 'Please check all the checklist items before publishing.', 'pre-publish-checklist' ); ?></p>
 					<div class="ppc-prevent-button-wrapper">
-						<div class="ppc-popup-option-okay">Okay, Take Me to the List!</div>
+						<div class="ppc-popup-option-okay"><?php esc_html_e( 'Okay, Take Me to the List!', 'pre-publish-checklist' ); ?></div>
 					</div>  	
 				</div>
 			</div>
