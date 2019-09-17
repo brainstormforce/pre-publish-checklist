@@ -55,7 +55,7 @@ $ppc_exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates'
 			if ( ! empty( $ppc_post_types ) ) {
 				if ( false !== $ppc_post_types ) {
 					if ( in_array( $ppc_post_type->name, $ppc_post_types, true ) ) {
-						echo '<label for="'.esc_attr( $ppc_post_type->name ) .'">
+						echo '<label for="' . esc_attr( $ppc_post_type->name ) . '">
 	                     <input type="checkbox" checked name="posts[]"  id="' . esc_attr( $ppc_post_type->name ) . '" value="' . esc_attr( $ppc_post_type->name ) . '" >
 	                     ' . esc_attr( $ppc_post_type->labels->name ) . '</label><br> ';
 					} else {
@@ -65,7 +65,7 @@ $ppc_exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates'
 					}
 				}
 			} else {
-				echo '<label for="'. esc_attr( $ppc_post_type->name ).'">
+				echo '<label for="' . esc_attr( $ppc_post_type->name ) . '">
 	                     <input type="checkbox"  name="posts[]" id="' . esc_attr( $ppc_post_type->name ) . '" value="' . esc_attr( $ppc_post_type->name ) . '">
 	                     ' . esc_attr( $ppc_post_type->labels->name ) . '</label><br> ';
 			}
@@ -75,7 +75,7 @@ $ppc_exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates'
 	                 <input type="checkbox" checked name="posts[]" id="' . esc_attr( $ppc_post_type->name ) . '" value="' . esc_attr( $ppc_post_type->name ) . '">
 	                 ' . esc_attr( $ppc_post_type->labels->name ) . '</label><br> ';
 			}
-			echo '<label for="'. esc_attr( $ppc_post_type->name ).'">
+			echo '<label for="' . esc_attr( $ppc_post_type->name ) . '">
 	                 <input type="checkbox"  name="posts[]" id="' . esc_attr( $ppc_post_type->name ) . '" value="' . esc_attr( $ppc_post_type->name ) . '">
 	                 ' . esc_attr( $ppc_post_type->labels->name ) . '</label><br> ';
 		}

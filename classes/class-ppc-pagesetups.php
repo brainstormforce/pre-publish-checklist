@@ -171,7 +171,6 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 			</div>
 			<?php
 			if ( ! empty( $ppc_checklist_item_data ) ) {
-
 				foreach ( $ppc_checklist_item_data as $ppc_key => $ppc_value ) {
 					?>
 					<label for="<?php echo esc_attr( $ppc_key ); ?>">
@@ -194,7 +193,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 			} else {
 				echo 'Please create a list to display here from Settings->Pre-Publish-Checklist';
 			}
-		}	
+		}
 
 		/**
 		 * Function for saving the meta box values
