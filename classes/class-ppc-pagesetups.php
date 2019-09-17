@@ -159,9 +159,8 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 			wp_enqueue_script( 'ppc_backend_checkbox_js' );
 			wp_enqueue_script( 'ppc_backend_tooltip_js' );
 			wp_enqueue_style( 'ppc_backend_css' );
-			global $post;
 			$ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
-			$value                   = get_post_meta( $post->ID, '_ppc_meta_key', true );
+			$value                   = get_post_meta( get_the_ID() , '_ppc_meta_key', true );
 			?>
 			<div class="ppc-percentage-wrapper">
 				<span class="ppc-percentage-value"></span>
