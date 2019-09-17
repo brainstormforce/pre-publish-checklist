@@ -13,7 +13,6 @@
 // Displaying the contents in the general tab in the plugin settings.
 $ppc_radio_button        = get_option( 'ppc_radio_button_option_data' );
 $ppc_radio_button        = ( ! empty( $ppc_radio_button ) ? $ppc_radio_button : 3 );
-$ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
 wp_enqueue_style( 'ppc_backend_css' );
 $ppc_post_types = get_option( 'ppc_post_types_to_display' );
 $ppc_args       = array(
@@ -76,7 +75,6 @@ $ppc_exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates'
 	                 ' . esc_attr( $ppc_post_type->labels->name ) . '</label><br> ';
 		}
 	}
-	$ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
 	?>
 				<br>
 				<p class="description"><?php esc_html_e( 'Select the post types where to display the Pre-Publish Checklist.', 'pre-publish-checklist' ); ?></p> <br>

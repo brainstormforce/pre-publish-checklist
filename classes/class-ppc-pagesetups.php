@@ -177,9 +177,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 						<input type="checkbox" name="checkbox[]" class="ppc_checkboxes" value= "<?php echo esc_attr( $ppc_key ); ?>"
 					<?php
 					if ( ! empty( $value ) ) {
-						foreach ( $value as $ppc_meta_key => $ppc_meta_value ) {
-							checked( $ppc_meta_key, $ppc_key );
-						}
+						checked( true, in_array( $ppc_value, $value ));
 					}
 					?>
 						>
