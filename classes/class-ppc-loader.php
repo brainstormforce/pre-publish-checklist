@@ -143,10 +143,9 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			if ( ! empty( $_POST['ppc_order'] ) ) {
 				$ppc_item_drag_contents = array_map( 'sanitize_text_field', wp_unslash( $_POST['ppc_order'] ) );
 				update_option( 'ppc_checklist_data', $ppc_item_drag_contents );
-				wp_send_json_success('sucess');
-			}
-			else {
-				wp_send_json_error('Failed');
+				wp_send_json_success( 'sucess' );
+			} else {
+				wp_send_json_error( 'Failed' );
 			}
 		}
 
@@ -179,16 +178,15 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 										<button type="button" id = "Delete" name="Delete" class="ppcdelete" value="<?php echo esc_attr( $ppc_value ); ?>"> <span class="dashicons dashicons-trash ppc-delete-dashicon"></span>Delete</button>
 								<?php
 					}
-				}
-				else{
+				} else {
 					esc_html_e( 'No items in the checklist', 'pre-publish-checklist' );
 				}
 				?>
 							</li>
 							<?php
 							wp_die();
-			}else{
-				wp_send_json_error('Failed');
+			} else {
+				wp_send_json_error( 'Failed' );
 			}
 		}
 
@@ -232,11 +230,10 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 						}
 					}
 				}
-				wp_send_json_success('sucess');
-			}else{
-				wp_send_json_error('Failed');
+				wp_send_json_success( 'sucess' );
+			} else {
+				wp_send_json_error( 'Failed' );
 			}
-			
 		}
 
 		/**
@@ -278,13 +275,11 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 							}
 						}
 					}
-					
 				}
-				wp_send_json_success('sucess');
-			}else{
-				wp_send_json_error('Failed');
+				wp_send_json_success( 'sucess' );
+			} else {
+				wp_send_json_error( 'Failed' );
 			}
-			
 		}
 
 		/**
