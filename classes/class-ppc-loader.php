@@ -207,27 +207,6 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 					echo 'sucess';
 				}
 				$ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
-				$ppc_all_post_ids        = get_posts(
-					array(
-						'posts_per_page' => -1,
-						'post_type'      => $ppc_post_types_to_display,
-						'post_status'    => array( 'publish', 'pending', 'draft' ),
-						'fields'         => 'ids',
-					)
-				);
-				if ( ! empty( $ppc_all_post_ids ) ) {
-					foreach ( $ppc_all_post_ids as $ppc_postid ) {
-						$ppc_pre_value = get_post_meta( $ppc_postid, '_ppc_meta_key', true );
-						if ( ! empty( $ppc_pre_value ) ) {
-								unset( $ppc_pre_value[ $ppc_delete_value ] );
-								update_post_meta(
-									$ppc_postid,
-									'_ppc_meta_key',
-									$ppc_pre_value
-								);
-						}
-					}
-				}
 				echo 'sucess';
 			}
 			wp_die();
@@ -252,27 +231,6 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 					$ppc_checklist_item_data[ $ppc_edit_key ] = $ppc_edit_value;
 					update_option( 'ppc_checklist_data', $ppc_checklist_item_data );
 					echo 'sucess';
-					$ppc_all_post_ids = get_posts(
-						array(
-							'posts_per_page' => -1,
-							'post_type'      => $ppc_post_types_to_display,
-							'post_status'    => array( 'publish', 'pending', 'draft' ),
-							'fields'         => 'ids',
-						)
-					);
-					if ( ! empty( $ppc_all_post_ids ) ) {
-						foreach ( $ppc_all_post_ids as $ppc_postid ) {
-							$ppc_pre_checklist_values = get_post_meta( $ppc_postid, '_ppc_meta_key', true );
-							if ( ! empty( $ppc_pre_checklist_values ) ) {
-								$ppc_pre_checklist_values[ $ppc_edit_key ] = $ppc_edit_value;
-									update_post_meta(
-										$ppc_postid,
-										'_ppc_meta_key',
-										$ppc_pre_checklist_values
-									);
-							}
-						}
-					}
 					echo 'sucess';
 				}
 				echo 'empty';
