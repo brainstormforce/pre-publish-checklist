@@ -55,9 +55,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 			add_action( 'add_meta_boxes', array( $this, 'ppc_add_custom_meta_box' ) );
 			add_action( 'admin_menu', array( $this, 'ppc_settings_page' ) );
 			add_action( 'wp_ajax_ppc_ajax_add_change', array( $this, 'ppc_meta_box_ajax_add_handler' ), 1 );
-			add_action( 'wp_ajax_nopriv_ppc_ajax_add_change', array( $this, 'ppc_meta_box_ajax_add_handler' ), 1 );
 			add_action( 'wp_ajax_ppc_ajax_delete_change', array( $this, 'ppc_meta_box_ajax_delete_handler' ), 1 );
-			add_action( 'wp_ajax_nopriv_ppc_ajax_delete_change', array( $this, 'ppc_meta_box_ajax_delete_handler' ), 1 );
 			add_action( 'admin_footer', array( $this, 'ppc_markup' ) );
 		}
 		/**
