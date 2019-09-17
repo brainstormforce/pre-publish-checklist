@@ -143,9 +143,11 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			if ( ! empty( $_POST['ppc_order'] ) ) {
 				$ppc_item_drag_contents = array_map( 'sanitize_text_field', wp_unslash( $_POST['ppc_order'] ) );
 				update_option( 'ppc_checklist_data', $ppc_item_drag_contents );
-				echo 'sucess';
+				wp_send_json_success('sucess');
 			}
-			wp_die();
+			else {
+				wp_send_json_error('Failed');
+			}
 		}
 
 		/**
@@ -177,13 +179,16 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 										<button type="button" id = "Delete" name="Delete" class="ppcdelete" value="<?php echo esc_attr( $ppc_value ); ?>"> <span class="dashicons dashicons-trash ppc-delete-dashicon"></span>Delete</button>
 								<?php
 					}
-				} else {
-					echo 'You have do not have any list please add items in the list';
+				}
+				else{
+					esc_html_e( 'No items in the checklist', 'pre-publish-checklist' );
 				}
 				?>
 							</li>
 							<?php
 							wp_die();
+			}else{
+				wp_send_json_error('Failed');
 			}
 		}
 
@@ -204,7 +209,6 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 				if ( false !== $ppc_checklist_item_data ) {
 					unset( $ppc_checklist_item_data[ $ppc_delete_value ] );
 					update_option( 'ppc_checklist_data', $ppc_checklist_item_data );
-					echo 'sucess';
 				}
 				$ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
 				$ppc_all_post_ids        = get_posts(
@@ -228,9 +232,11 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 						}
 					}
 				}
-				echo 'sucess';
+				wp_send_json_success('sucess');
+			}else{
+				wp_send_json_error('Failed');
 			}
-			wp_die();
+			
 		}
 
 		/**
@@ -251,7 +257,6 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 					$ppc_edit_key                             = sanitize_text_field( wp_unslash( $_POST['ppc_edit_key'] ) );
 					$ppc_checklist_item_data[ $ppc_edit_key ] = $ppc_edit_value;
 					update_option( 'ppc_checklist_data', $ppc_checklist_item_data );
-					echo 'sucess';
 					$ppc_all_post_ids = get_posts(
 						array(
 							'posts_per_page' => -1,
@@ -273,11 +278,13 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 							}
 						}
 					}
-					echo 'sucess';
+					
 				}
-				echo 'empty';
+				wp_send_json_success('sucess');
+			}else{
+				wp_send_json_error('Failed');
 			}
-			wp_die();
+			
 		}
 
 		/**
