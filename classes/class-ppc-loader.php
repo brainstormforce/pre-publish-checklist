@@ -140,12 +140,12 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 */
 		public function ppc_drag_item() {
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
-			if ( ! empty( $_POST['ppc_order'] ) ) {
+			if ( ! empty( $_POST['ppc_order'] ) && current_user_can( 'manage_options' ) ) {
 				$ppc_item_drag_contents = array_map( 'sanitize_text_field', wp_unslash( $_POST['ppc_order'] ) );
 				update_option( 'ppc_checklist_data', $ppc_item_drag_contents );
 				wp_send_json_success( 'sucess' );
 			} else {
-				wp_send_json_error( 'Failed' );
+				wp_send_json_error( 'Sorry, you are not allowed to perform this action' );
 			}
 		}
 
@@ -158,7 +158,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 */
 		public function ppc_add_item() {
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
-			if ( ! empty( $_POST['ppc_item_content'] ) ) {
+			if ( ! empty( $_POST['ppc_item_content'] )  && current_user_can( 'manage_options' )) {
 				$ppc_newitems            = sanitize_text_field( wp_unslash( $_POST['ppc_item_content'] ) );
 				$ppc_newitem_key         = uniqid( 'ppc_key' );
 				$ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
@@ -186,7 +186,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 							<?php
 							wp_die();
 			} else {
-				wp_send_json_error( 'Failed' );
+				wp_send_json_error( 'Sorry, you are not allowed to perform this action' );
 			}
 		}
 
@@ -199,7 +199,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 */
 		public function ppc_delete_item() {
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
-			if ( isset( $_POST['delete'] ) ) {
+			if ( isset( $_POST['delete'] )  && current_user_can( 'manage_options' )) {
 				$ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
 				$ppc_checklist_item_data   = get_option( 'ppc_checklist_data' );
 				$ppc_delete_value          = sanitize_text_field( wp_unslash( $_POST['delete'] ) );
@@ -232,7 +232,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 				}
 				wp_send_json_success( 'sucess' );
 			} else {
-				wp_send_json_error( 'Failed' );
+				wp_send_json_error( 'Sorry, you are not allowed to perform this action' );
 			}
 		}
 
@@ -245,7 +245,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 */
 		public function ppc_edit_item() {
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
-			if ( isset( $_POST['ppc_edit_value'] ) && isset( $_POST['ppc_edit_key'] ) ) {
+			if ( isset( $_POST['ppc_edit_value'] ) && isset( $_POST['ppc_edit_key'] ) && current_user_can( 'manage_options' ) ) {
 				$ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
 				$ppc_checklist_item_data   = get_option( 'ppc_checklist_data' );
 				$ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
@@ -278,7 +278,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 				}
 				wp_send_json_success( 'sucess' );
 			} else {
-				wp_send_json_error( 'Failed' );
+				wp_send_json_error( 'Sorry, you are not allowed to perform this action' );
 			}
 		}
 
