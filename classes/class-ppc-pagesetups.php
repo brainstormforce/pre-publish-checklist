@@ -163,22 +163,22 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 			$ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
 			$value                   = get_post_meta( $post->ID, '_ppc_meta_key', true );
 			?>
-			<div class="ppc-percentage-wrapper">
-				<span class="ppc-percentage-value"></span>
-				<div class="ppc-percentage-background">
-					<div class="ppc-percentage"></div>
-				</div>
-			</div>
 			<?php
 			if ( ! empty( $ppc_checklist_item_data ) ) {
+				?>
+				<div class="ppc-percentage-wrapper">
+					<span class="ppc-percentage-value"></span>
+					<div class="ppc-percentage-background">
+						<div class="ppc-percentage"></div>
+					</div>
+				</div>
+				<?php
 				foreach ( $ppc_checklist_item_data as $ppc_key => $ppc_value ) {
 					?>
 					<div class="ppc-checklist-item-wrapper">
 						<input type="checkbox" name="checkbox[]" class="ppc_checkboxes" value= "<?php echo esc_attr( $ppc_key ); ?>"
 					<?php
-					if ( ! empty( $value ) ) {
-						checked( true, in_array( $ppc_value, $value ));
-					}
+						checked( true, array_key_exists( $ppc_key, $value ) );
 					?>
 						>
 					<div class="ppc-checklist"><?php echo esc_attr( $ppc_value ); ?></div></div>

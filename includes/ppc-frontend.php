@@ -11,8 +11,8 @@
  */
 
 // Displaying the contents in the general tab in the plugin settings.
-$ppc_radio_button        = get_option( 'ppc_radio_button_option_data' );
-$ppc_radio_button        = ( ! empty( $ppc_radio_button ) ? $ppc_radio_button : 3 );
+$ppc_radio_button = get_option( 'ppc_radio_button_option_data' );
+$ppc_radio_button = ( ! empty( $ppc_radio_button ) ? $ppc_radio_button : 3 );
 wp_enqueue_style( 'ppc_backend_css' );
 $ppc_post_types = get_option( 'ppc_post_types_to_display' );
 $ppc_args       = array(
