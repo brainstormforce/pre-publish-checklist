@@ -158,7 +158,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 */
 		public function ppc_add_item() {
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
-			if ( ! empty( $_POST['ppc_item_content'] )  && current_user_can( 'manage_options' )) {
+			if ( ! empty( $_POST['ppc_item_content'] ) && current_user_can( 'manage_options' ) ) {
 				$ppc_newitems            = sanitize_text_field( wp_unslash( $_POST['ppc_item_content'] ) );
 				$ppc_newitem_key         = uniqid( 'ppc_key' );
 				$ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
@@ -199,7 +199,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 */
 		public function ppc_delete_item() {
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
-			if ( isset( $_POST['delete'] )  && current_user_can( 'manage_options' )) {
+			if ( isset( $_POST['delete'] ) && current_user_can( 'manage_options' ) ) {
 				$ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
 				$ppc_checklist_item_data   = get_option( 'ppc_checklist_data' );
 				$ppc_delete_value          = sanitize_text_field( wp_unslash( $_POST['delete'] ) );
