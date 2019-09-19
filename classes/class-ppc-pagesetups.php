@@ -217,9 +217,9 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 					'_ppc_meta_key',
 					$ppc_checklist_add_data
 				);
-				wp_send_json_success( 'sucess' );
+				wp_send_json_success( __('sucess','pre-publish-checklist') );
 			} else {
-				wp_send_json_error( 'Sorry, you are not allowed to perform this action' );
+				wp_send_json_error( __('Sorry, you are not allowed to perform this action','pre-publish-checklist') );
 			}
 		}
 
@@ -244,9 +244,9 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 					'_ppc_meta_key',
 					$pre_data
 				);
-				wp_send_json_success( 'sucess' );
+				wp_send_json_success( __('sucess','pre-publish-checklist') );
 			} else {
-				wp_send_json_error( 'Sorry, you are not allowed to perform this action' );
+				wp_send_json_error( __('Sorry, you are not allowed to perform this action','pre-publish-checklist') );
 			}
 		}
 	}
