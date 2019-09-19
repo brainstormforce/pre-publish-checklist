@@ -201,7 +201,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 */
 		public function ppc_meta_box_ajax_add_handler() {
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
-			if ( isset( $_POST['ppc_field_value'] ) && isset( $_POST['ppc_post_id'] ) && isset( $_POST['ppc_key_value'] ) ) {
+			if ( isset( $_POST['ppc_field_value'] ) && isset( $_POST['ppc_post_id'] ) && isset( $_POST['ppc_key_value'] ) && current_user_can( 'manage_options' ) ) {
 				$ppcpost        = sanitize_text_field( wp_unslash( $_POST['ppc_post_id'] ) );
 				$ppc_key        = sanitize_text_field( wp_unslash( $_POST['ppc_key_value'] ) );
 				$ppc_value      = sanitize_text_field( wp_unslash( $_POST['ppc_field_value'] ) );
@@ -217,9 +217,9 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 					'_ppc_meta_key',
 					$ppc_checklist_add_data
 				);
-				wp_send_json_success( 'sucess' );
+				wp_send_json_success( __( 'sucess', 'pre-publish-checklist' ) );
 			} else {
-				wp_send_json_error( 'Failed' );
+				wp_send_json_error( __( 'Sorry, you are not allowed to perform this action', 'pre-publish-checklist' ) );
 			}
 		}
 
@@ -232,7 +232,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 */
 		public function ppc_meta_box_ajax_delete_handler() {
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
-			if ( isset( $_POST['ppc_key_value'] ) && isset( $_POST['ppc_post_id'] ) ) {
+			if ( isset( $_POST['ppc_key_value'] ) && isset( $_POST['ppc_post_id'] ) && current_user_can( 'manage_options' ) ) {
 				$ppcpost        = sanitize_text_field( wp_unslash( $_POST['ppc_post_id'] ) );
 				$ppc_delete_key = sanitize_text_field( wp_unslash( $_POST['ppc_key_value'] ) );
 				$pre_data       = get_post_meta( $ppcpost, '_ppc_meta_key', true );
@@ -244,9 +244,9 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 					'_ppc_meta_key',
 					$pre_data
 				);
-				wp_send_json_success( 'sucess' );
+				wp_send_json_success( __( 'sucess', 'pre-publish-checklist' ) );
 			} else {
-				wp_send_json_error( 'Failed' );
+				wp_send_json_error( __( 'Sorry, you are not allowed to perform this action', 'pre-publish-checklist' ) );
 			}
 		}
 	}
