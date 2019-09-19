@@ -90,7 +90,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 * @return void
 		 */
 		public function ppc_plugin_backend_js() {
-			$ppc_radio_button        = get_option( 'ppc_radio_button_option_data' );
+			$ppc_radio_button        = get_option( 'ppc_error_level' );
 			$ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
 			wp_register_script( 'ppc_backend_checkbox_js', PPC_PLUGIN_URL . '/assets/js/ppc-checkbox.js', null, PPC_VERSION, false );
 			wp_register_script( 'ppc_backend_itemlist_js', PPC_PLUGIN_URL . '/assets/js/ppc-itemlist.js', null, PPC_VERSION, false );
@@ -98,7 +98,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			if ( false !== $ppc_radio_button && false !== $ppc_checklist_item_data ) {
 				wp_localize_script(
 					'ppc_backend_checkbox_js',
-					'ppc_radio_obj',
+					'ppc_error_level',
 					array(
 						'option'   => $ppc_radio_button,
 						'data'     => $ppc_checklist_item_data,
@@ -258,7 +258,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 					// saves the radio button option.
 					if ( ! empty( $_POST['ppc_radio_button_option'] ) ) {
 						$ppc_radio = sanitize_text_field( wp_unslash( $_POST['ppc_radio_button_option'] ) );
-						update_option( 'ppc_radio_button_option_data', $ppc_radio );
+						update_option( 'ppc_error_level', $ppc_radio );
 					}
 					// saves the posts types to have our meta box on.
 					$ppc_post_types = array();

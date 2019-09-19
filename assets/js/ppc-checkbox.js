@@ -81,7 +81,7 @@ jQuery(document).ready(
                             ppc_key_value: jQuery(this).attr('value'),
                             ppc_post_id: ppc_post_id,
                             ppc_field_value:jQuery(this).next().html(),
-                            ppc_security : ppc_radio_obj.security
+                            ppc_security : ppc_error_level.security
                         }
                     );
                 } else if (jQuery(this).prop("checked") == false) {
@@ -91,7 +91,7 @@ jQuery(document).ready(
                             action: 'ppc_ajax_delete_change',
                             ppc_key_value: jQuery(this).attr('value'),
                             ppc_post_id: ppc_post_id,
-                            ppc_security : ppc_radio_obj.security
+                            ppc_security : ppc_error_level.security
                         }
                     );
                 }
@@ -100,7 +100,7 @@ jQuery(document).ready(
     if(jQuery('#publish').length !== 1){
                 setTimeout(
                     function() {
-                        if(ppc_radio_obj.option != 3 && (ppc_checkboxes_length != countCheckedppc_checkboxes)) {
+                        if(ppc_error_level.option != 3 && (ppc_checkboxes_length != countCheckedppc_checkboxes)) {
                             if(jQuery('.editor-post-publish-panel__toggle').length == 1) {
                                 jQuery('.editor-post-publish-panel__toggle').attr('style', 'display:none');
                             } else if(jQuery('.editor-post-publish-button').length == 1) {
@@ -116,11 +116,11 @@ jQuery(document).ready(
                         }
                     }, 10
                 );
-                if (ppc_radio_obj.option == 1 || ppc_radio_obj.option == 2) {
+                if (ppc_error_level.option == 1 || ppc_error_level.option == 2) {
                     ppc_checkboxes.change(ppc_checkbox_function );
                 }
                 //Do nothing--------------
-                else if (ppc_radio_obj.option == 3) {
+                else if (ppc_error_level.option == 3) {
                     var ppc_checkboxes = jQuery('.ppc_checkboxes[type="checkbox"]');
                     var countCheckedppc_checkboxes = ppc_checkboxes.filter(':checked').length;
                     ppc_checkboxes.change(
@@ -147,7 +147,7 @@ jQuery(document).ready(
                 }
             }else{
                 //Conditions for classic editor.
-                   if (ppc_radio_obj.option == 1 || ppc_radio_obj.option == 2) {                   
+                   if (ppc_error_level.option == 1 || ppc_error_level.option == 2) {                   
                        jQuery(document).on('click', "#publish", function(e) {
                         var ppc_checkboxes = jQuery('.ppc_checkboxes[type="checkbox"]');
                         var countCheckedppc_checkboxes = ppc_checkboxes.filter(':checked').length;
@@ -157,10 +157,10 @@ jQuery(document).ready(
                         else{
                                if(ppc_publish_flag == 0){
                                 
-                                    if (ppc_radio_obj.option == 2 ) {
+                                    if (ppc_error_level.option == 2 ) {
                                         jQuery('.ppc-modal-warn').attr('style', 'display:block');
                                     }
-                                    else if(ppc_radio_obj.option == 1){
+                                    else if(ppc_error_level.option == 1){
                                          
                                          jQuery('.ppc-modal-prevent').attr('style', 'display:block');
                                     }
@@ -174,14 +174,14 @@ jQuery(document).ready(
                      });
                    }
             }             
-                    if (ppc_radio_obj.option == 2) {
+                    if (ppc_error_level.option == 2) {
                     jQuery(document).on('click', "#ppc-update", function() {
                         jQuery('.ppc-modal-warn').attr('style', 'display:block');
                     });
                     jQuery(document).on('click', "#ppc-publish", function() {
                         jQuery('.ppc-modal-warn').attr('style', 'display:block');
                     });
-                } else if (ppc_radio_obj.option == 1) {
+                } else if (ppc_error_level.option == 1) {
                     jQuery(document).on('click', "#ppc-update", function() {
                         jQuery('.ppc-modal-prevent').attr('style', 'display:inline-block');
                     });
