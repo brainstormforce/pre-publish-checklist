@@ -110,8 +110,10 @@ jQuery(document).ready(function() {
                     action: 'ppc_checklistitem_delete',
                     delete: jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").attr('$ppc_item_key'),
                     ppc_security : ppc_add_delete_obj.security
-                }, function(data) {
-                        jQuery('.ppc-spinner').removeClass("is-active");                    
+                }, function( response ) {
+                     if (response.success) {
+                        jQuery('.ppc-spinner').removeClass("is-active");
+                        }                    
                 });      
             } else {
                 ppc_txt = "You pressed Cancel!";

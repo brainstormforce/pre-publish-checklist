@@ -55,9 +55,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 			add_action( 'add_meta_boxes', array( $this, 'ppc_add_custom_meta_box' ) );
 			add_action( 'admin_menu', array( $this, 'ppc_settings_page' ) );
 			add_action( 'wp_ajax_ppc_ajax_add_change', array( $this, 'ppc_meta_box_ajax_add_handler' ), 1 );
-			add_action( 'wp_ajax_nopriv_ppc_ajax_add_change', array( $this, 'ppc_meta_box_ajax_add_handler' ), 1 );
 			add_action( 'wp_ajax_ppc_ajax_delete_change', array( $this, 'ppc_meta_box_ajax_delete_handler' ), 1 );
-			add_action( 'wp_ajax_nopriv_ppc_ajax_delete_change', array( $this, 'ppc_meta_box_ajax_delete_handler' ), 1 );
 			add_action( 'admin_footer', array( $this, 'ppc_markup' ) );
 		}
 		/**
@@ -78,20 +76,20 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 			?>
 			<div class = "ppc-modal-warn">
 				<div id="ppc_notifications" class="ppc-popup-warn">
-					<h2>Pre-Publish Checklist</h2>
-					<p class="ppc-popup-description">Your Pre-Publish Checklist is incomplete. What would you like to do?</p>
+					<h2><?php esc_html_e( 'Pre-Publish Checklist', 'pre-publish-checklist' ); ?></h2>
+					<p class="ppc-popup-description"><?php esc_html_e( 'Your Pre-Publish Checklist is incomplete. What would you like to do?', 'pre-publish-checklist' ); ?></p>
 					<div class="ppc-button-wrapper">
-						<div class="ppc-popup-option-dontpublish">Don't Publish</div>
-						<div class="ppc-popup-options-publishanyway">Publish Anyway</div>
+						<div class="ppc-popup-option-dontpublish"><?php esc_html_e( "Don't Publish", 'pre-publish-checklist' ); ?></div>
+						<div class="ppc-popup-options-publishanyway"><?php esc_html_e( 'Publish Anyway', 'pre-publish-checklist' ); ?></div>
 					</div>    
 				</div>
 			</div>
 			<div class = "ppc-modal-prevent">
 				<div id="ppc_notifications" class="ppc-popup-prevent">
-					<h2>Pre-Publish Checklist</h2>
-					<p class="ppc-popup-description"> Please check all the checklist items before publishing.</p>
+					<h2><?php esc_html_e( 'Pre-Publish Checklist', 'pre-publish-checklist' ); ?></h2>
+					<p class="ppc-popup-description"> <?php esc_html_e( 'Please check all the checklist items before publishing.', 'pre-publish-checklist' ); ?></p>
 					<div class="ppc-prevent-button-wrapper">
-						<div class="ppc-popup-option-okay">Okay, Take Me to the List!</div>
+						<div class="ppc-popup-option-okay"><?php esc_html_e( 'Okay, Take Me to the List!', 'pre-publish-checklist' ); ?></div>
 					</div>  	
 				</div>
 			</div>
@@ -159,9 +157,8 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 			wp_enqueue_script( 'ppc_backend_checkbox_js' );
 			wp_enqueue_script( 'ppc_backend_tooltip_js' );
 			wp_enqueue_style( 'ppc_backend_css' );
-			global $post;
 			$ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
-			$value                   = get_post_meta( $post->ID, '_ppc_meta_key', true );
+			$value                   = get_post_meta( get_the_ID(), '_ppc_meta_key', true );
 			?>
 			<?php
 			if ( ! empty( $ppc_checklist_item_data ) ) {
@@ -175,13 +172,15 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 				<?php
 				foreach ( $ppc_checklist_item_data as $ppc_key => $ppc_value ) {
 					?>
+					<label for="<?php echo esc_attr( $ppc_key ); ?>">
 					<div class="ppc-checklist-item-wrapper">
-						<input type="checkbox" name="checkbox[]" class="ppc_checkboxes" value= "<?php echo esc_attr( $ppc_key ); ?>"
+						<input type="checkbox" name="checkbox[]" id="<?php echo esc_attr( $ppc_key ); ?>" class="ppc_checkboxes" value= "<?php echo esc_attr( $ppc_key ); ?>"
 					<?php
 						checked( true, array_key_exists( $ppc_key, $value ) );
 					?>
 						>
 					<div class="ppc-checklist"><?php echo esc_attr( $ppc_value ); ?></div></div>
+				</label>
 					<?php
 				}
 				?>
@@ -200,7 +199,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 */
 		public function ppc_meta_box_ajax_add_handler() {
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
-			if ( isset( $_POST['ppc_field_value'] ) && isset( $_POST['ppc_post_id'] ) && isset( $_POST['ppc_key_value'] ) ) {
+			if ( isset( $_POST['ppc_field_value'] ) && isset( $_POST['ppc_post_id'] ) && isset( $_POST['ppc_key_value'] ) && current_user_can( 'manage_options' ) ) {
 				$ppcpost        = sanitize_text_field( wp_unslash( $_POST['ppc_post_id'] ) );
 				$ppc_key        = sanitize_text_field( wp_unslash( $_POST['ppc_key_value'] ) );
 				$ppc_value      = sanitize_text_field( wp_unslash( $_POST['ppc_field_value'] ) );
@@ -216,11 +215,10 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 					'_ppc_meta_key',
 					$ppc_checklist_add_data
 				);
-				echo 'sucess';
+				wp_send_json_success( __( 'sucess', 'pre-publish-checklist' ) );
 			} else {
-				echo 'failure';
+				wp_send_json_error( __( 'Sorry, you are not allowed to perform this action', 'pre-publish-checklist' ) );
 			}
-			wp_die();
 		}
 
 		/**
@@ -232,7 +230,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 */
 		public function ppc_meta_box_ajax_delete_handler() {
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
-			if ( isset( $_POST['ppc_key_value'] ) && isset( $_POST['ppc_post_id'] ) ) {
+			if ( isset( $_POST['ppc_key_value'] ) && isset( $_POST['ppc_post_id'] ) && current_user_can( 'manage_options' ) ) {
 				$ppcpost        = sanitize_text_field( wp_unslash( $_POST['ppc_post_id'] ) );
 				$ppc_delete_key = sanitize_text_field( wp_unslash( $_POST['ppc_key_value'] ) );
 				$pre_data       = get_post_meta( $ppcpost, '_ppc_meta_key', true );
@@ -244,12 +242,11 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 					'_ppc_meta_key',
 					$pre_data
 				);
+				wp_send_json_success( __( 'sucess', 'pre-publish-checklist' ) );
 			} else {
-				echo 'failure';
+				wp_send_json_error( __( 'Sorry, you are not allowed to perform this action', 'pre-publish-checklist' ) );
 			}
-			wp_die();
 		}
-
 	}
 	PPC_Pagesetups::get_instance();
 endif;

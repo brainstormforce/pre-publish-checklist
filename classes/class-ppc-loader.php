@@ -90,7 +90,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 * @return void
 		 */
 		public function ppc_plugin_backend_js() {
-			$ppc_radio_button        = get_option( 'ppc_radio_button_option_data' );
+			$ppc_radio_button        = get_option( 'ppc_error_level' );
 			$ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
 			wp_register_script( 'ppc_backend_checkbox_js', PPC_PLUGIN_URL . '/assets/js/ppc-checkbox.js', null, PPC_VERSION, false );
 			wp_register_script( 'ppc_backend_itemlist_js', PPC_PLUGIN_URL . '/assets/js/ppc-itemlist.js', null, PPC_VERSION, false );
@@ -98,7 +98,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			if ( false !== $ppc_radio_button && false !== $ppc_checklist_item_data ) {
 				wp_localize_script(
 					'ppc_backend_checkbox_js',
-					'ppc_radio_obj',
+					'ppc_error_level',
 					array(
 						'option'   => $ppc_radio_button,
 						'data'     => $ppc_checklist_item_data,
@@ -140,12 +140,13 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 */
 		public function ppc_drag_item() {
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
-			if ( ! empty( $_POST['ppc_order'] ) ) {
+			if ( ! empty( $_POST['ppc_order'] ) && current_user_can( 'manage_options' ) ) {
 				$ppc_item_drag_contents = array_map( 'sanitize_text_field', wp_unslash( $_POST['ppc_order'] ) );
 				update_option( 'ppc_checklist_data', $ppc_item_drag_contents );
-				echo 'sucess';
+				wp_send_json_success( __( 'sucess', 'pre-publish-checklist' ) );
+			} else {
+				wp_send_json_error( __( 'Sorry, you are not allowed to perform this action', 'pre-publish-checklist' ) );
 			}
-			wp_die();
 		}
 
 		/**
@@ -157,7 +158,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 */
 		public function ppc_add_item() {
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
-			if ( ! empty( $_POST['ppc_item_content'] ) ) {
+			if ( ! empty( $_POST['ppc_item_content'] ) && current_user_can( 'manage_options' ) ) {
 				$ppc_newitems            = sanitize_text_field( wp_unslash( $_POST['ppc_item_content'] ) );
 				$ppc_newitem_key         = uniqid( 'ppc_key' );
 				$ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
@@ -178,12 +179,14 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 								<?php
 					}
 				} else {
-					echo 'You have do not have any list please add items in the list';
+					esc_html_e( 'No items in the checklist', 'pre-publish-checklist' );
 				}
 				?>
 							</li>
 							<?php
 							wp_die();
+			} else {
+				wp_send_json_error( __( 'Sorry, you are not allowed to perform this action', 'pre-publish-checklist' ) );
 			}
 		}
 
@@ -196,7 +199,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 */
 		public function ppc_delete_item() {
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
-			if ( isset( $_POST['delete'] ) ) {
+			if ( isset( $_POST['delete'] ) && current_user_can( 'manage_options' ) ) {
 				$ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
 				$ppc_checklist_item_data   = get_option( 'ppc_checklist_data' );
 				$ppc_delete_value          = sanitize_text_field( wp_unslash( $_POST['delete'] ) );
@@ -204,33 +207,11 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 				if ( false !== $ppc_checklist_item_data ) {
 					unset( $ppc_checklist_item_data[ $ppc_delete_value ] );
 					update_option( 'ppc_checklist_data', $ppc_checklist_item_data );
-					echo 'sucess';
 				}
-				$ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
-				$ppc_all_post_ids        = get_posts(
-					array(
-						'posts_per_page' => -1,
-						'post_type'      => $ppc_post_types_to_display,
-						'post_status'    => array( 'publish', 'pending', 'draft' ),
-						'fields'         => 'ids',
-					)
-				);
-				if ( ! empty( $ppc_all_post_ids ) ) {
-					foreach ( $ppc_all_post_ids as $ppc_postid ) {
-						$ppc_pre_value = get_post_meta( $ppc_postid, '_ppc_meta_key', true );
-						if ( ! empty( $ppc_pre_value ) ) {
-								unset( $ppc_pre_value[ $ppc_delete_value ] );
-								update_post_meta(
-									$ppc_postid,
-									'_ppc_meta_key',
-									$ppc_pre_value
-								);
-						}
-					}
-				}
-				echo 'sucess';
+				wp_send_json_success( __( 'sucess', 'pre-publish-checklist' ) );
+			} else {
+				wp_send_json_error( __( 'Sorry, you are not allowed to perform this action', 'pre-publish-checklist' ) );
 			}
-			wp_die();
 		}
 
 		/**
@@ -242,7 +223,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 */
 		public function ppc_edit_item() {
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
-			if ( isset( $_POST['ppc_edit_value'] ) && isset( $_POST['ppc_edit_key'] ) ) {
+			if ( isset( $_POST['ppc_edit_value'] ) && isset( $_POST['ppc_edit_key'] ) && current_user_can( 'manage_options' ) ) {
 				$ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
 				$ppc_checklist_item_data   = get_option( 'ppc_checklist_data' );
 				$ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
@@ -251,33 +232,11 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 					$ppc_edit_key                             = sanitize_text_field( wp_unslash( $_POST['ppc_edit_key'] ) );
 					$ppc_checklist_item_data[ $ppc_edit_key ] = $ppc_edit_value;
 					update_option( 'ppc_checklist_data', $ppc_checklist_item_data );
-					echo 'sucess';
-					$ppc_all_post_ids = get_posts(
-						array(
-							'posts_per_page' => -1,
-							'post_type'      => $ppc_post_types_to_display,
-							'post_status'    => array( 'publish', 'pending', 'draft' ),
-							'fields'         => 'ids',
-						)
-					);
-					if ( ! empty( $ppc_all_post_ids ) ) {
-						foreach ( $ppc_all_post_ids as $ppc_postid ) {
-							$ppc_pre_checklist_values = get_post_meta( $ppc_postid, '_ppc_meta_key', true );
-							if ( ! empty( $ppc_pre_checklist_values ) ) {
-								$ppc_pre_checklist_values[ $ppc_edit_key ] = $ppc_edit_value;
-									update_post_meta(
-										$ppc_postid,
-										'_ppc_meta_key',
-										$ppc_pre_checklist_values
-									);
-							}
-						}
-					}
-					echo 'sucess';
 				}
-				echo 'empty';
+				wp_send_json_success( __( 'sucess', 'pre-publish-checklist' ) );
+			} else {
+				wp_send_json_error( __( 'Sorry, you are not allowed to perform this action', 'pre-publish-checklist' ) );
 			}
-			wp_die();
 		}
 
 		/**
@@ -299,7 +258,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 					// saves the radio button option.
 					if ( ! empty( $_POST['ppc_radio_button_option'] ) ) {
 						$ppc_radio = sanitize_text_field( wp_unslash( $_POST['ppc_radio_button_option'] ) );
-						update_option( 'ppc_radio_button_option_data', $ppc_radio );
+						update_option( 'ppc_error_level', $ppc_radio );
 					}
 					// saves the posts types to have our meta box on.
 					$ppc_post_types = array();
