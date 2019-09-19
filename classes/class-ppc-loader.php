@@ -143,9 +143,9 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			if ( ! empty( $_POST['ppc_order'] ) && current_user_can( 'manage_options' ) ) {
 				$ppc_item_drag_contents = array_map( 'sanitize_text_field', wp_unslash( $_POST['ppc_order'] ) );
 				update_option( 'ppc_checklist_data', $ppc_item_drag_contents );
-				wp_send_json_success( __('sucess','pre-publish-checklist') );
+				wp_send_json_success( __( 'sucess', 'pre-publish-checklist' ) );
 			} else {
-				wp_send_json_error( __('Sorry, you are not allowed to perform this action','pre-publish-checklist') );
+				wp_send_json_error( __( 'Sorry, you are not allowed to perform this action', 'pre-publish-checklist' ) );
 			}
 		}
 
@@ -186,7 +186,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 							<?php
 							wp_die();
 			} else {
-				wp_send_json_error( __('Sorry, you are not allowed to perform this action','pre-publish-checklist') );
+				wp_send_json_error( __( 'Sorry, you are not allowed to perform this action', 'pre-publish-checklist' ) );
 			}
 		}
 
@@ -230,9 +230,9 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 						}
 					}
 				}
-				wp_send_json_success( __('sucess','pre-publish-checklist') );
+				wp_send_json_success( __( 'sucess', 'pre-publish-checklist' ) );
 			} else {
-				wp_send_json_error( __('Sorry, you are not allowed to perform this action','pre-publish-checklist') );
+				wp_send_json_error( __( 'Sorry, you are not allowed to perform this action', 'pre-publish-checklist' ) );
 			}
 		}
 
@@ -276,9 +276,9 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 						}
 					}
 				}
-				wp_send_json_success( __('sucess','pre-publish-checklist') );
+				wp_send_json_success( __( 'sucess', 'pre-publish-checklist' ) );
 			} else {
-				wp_send_json_error( __('Sorry, you are not allowed to perform this action','pre-publish-checklist') );
+				wp_send_json_error( __( 'Sorry, you are not allowed to perform this action', 'pre-publish-checklist' ) );
 			}
 		}
 
