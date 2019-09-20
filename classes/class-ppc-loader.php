@@ -252,7 +252,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 				return;
 			}
 
-			if ( ! empty( $_POST['ppc-form'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['ppc-form'] ) ), 'ppc-form-nonce' ) ) {
+			if ( ! empty( $_POST['ppc-form'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['ppc-form'] ) ), 'ppc-form-nonce' ) && current_user_can( 'manage_options' ) ) {
 				if ( isset( $_POST['submit_radio'] ) ) {
 
 					// saves the radio button option.
