@@ -174,11 +174,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 					?>
 					<label for="<?php echo esc_attr( $ppc_key ); ?>">
 					<div class="ppc-checklist-item-wrapper">
-						<input type="checkbox" name="checkbox[]" id="<?php echo esc_attr( $ppc_key ); ?>" class="ppc_checkboxes" value= "<?php echo esc_attr( $ppc_key ); ?>"
-					<?php
-						checked( true, array_key_exists( $ppc_key, $value ) );
-					?>
-						>
+						<input type="checkbox" name="checkbox[]" id="<?php echo esc_attr( $ppc_key ); ?>" class="ppc_checkboxes" value= "<?php echo esc_attr( $ppc_key ); ?>" <?php checked( true, array_key_exists( $ppc_key, $value ) ); ?> >
 					<div class="ppc-checklist"><?php echo esc_attr( $ppc_value ); ?></div></div>
 				</label>
 					<?php
