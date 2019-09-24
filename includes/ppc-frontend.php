@@ -28,14 +28,22 @@ $ppc_exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates'
 		<tr><th scope="row"><p class="ppc-setting-name"><?php esc_html_e( 'Publish Button Action If Checklist Is Incomplete', 'pre-publish-checklist' ); ?></p></th>
 			<td class="ppc-publish-attempt-options">
 				<label for="ppc_prevent_user">
-				<input type="radio" id="ppc_prevent_user" name="ppc_radio_button_option" value="1" <?php checked( $ppc_radio_button, 1 ); ?> > <div class="ppc_radio_options"><?php esc_html_e( 'Prevent User from Publishing', 'pre-publish-checklist' ); ?></div>
-				<p class="description"><?php esc_html_e( 'User will not be able to publish until complete the checklist.', 'pre-publish-checklist' ); ?></p><br></label>
+				<input type="radio" id="ppc_prevent_user" name="ppc_radio_button_option" value="1" <?php checked( $ppc_radio_button, 1 ); ?> > <div class="ppc_radio_options"><?php esc_html_e( 'Prevent User from Publishing Page/Post', 'pre-publish-checklist' ); ?></div>
+				<p class="description"><?php esc_html_e( 'User will not be able to publish the page or post until all the points in the checklist are covered.', 'pre-publish-checklist' ); ?></p><br></label>
 				<label for="ppc_warn_user">
 				<input type="radio" id="ppc_warn_user" name="ppc_radio_button_option" value="2" <?php checked( $ppc_radio_button, 2 ); ?> > <div class="ppc_radio_options"><?php esc_html_e( 'Warn User Before Publishing', 'pre-publish-checklist' ); ?></div>
-				<p class="description"><?php esc_html_e( 'A warning message will display on click of the publish button.', 'pre-publish-checklist' ); ?></p><br></label>
+				<p class="description">
+				<?php
+				esc_html_e(
+					'A warning message will be displayed when the user clicks on the publish button.
+',
+					'pre-publish-checklist'
+				);
+				?>
+				</p><br></label>
 				<label for="ppc_do_nothing">
-				<input type="radio" id="ppc_do_nothing" name="ppc_radio_button_option" value="3" <?php checked( $ppc_radio_button, 3 ); ?> > <div class="ppc_radio_options"><?php esc_html_e( 'Do Nothing', 'pre-publish-checklist' ); ?></div>
-				<p class="description"><?php esc_html_e( 'User will be allowed to publish without any warning.', 'pre-publish-checklist' ); ?></p>
+				<input type="radio" id="ppc_do_nothing" name="ppc_radio_button_option" value="3" <?php checked( $ppc_radio_button, 3 ); ?> > <div class="ppc_radio_options"><?php esc_html_e( 'Do Nothing and Publish', 'pre-publish-checklist' ); ?></div>
+				<p class="description"><?php esc_html_e( 'The user will be allowed to publish the page or post without a warning.', 'pre-publish-checklist' ); ?></p>
 			</label>
 		</td>
 		</tr>
@@ -78,7 +86,7 @@ $ppc_exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates'
 	}
 	?>
 				<br>
-				<p class="description"><?php esc_html_e( 'Select the post types where to display the Pre-Publish Checklist.', 'pre-publish-checklist' ); ?></p> <br>
+				<p class="description"><?php esc_html_e( 'Select the post types where you wish to display the Pre-Publish Checklist.', 'pre-publish-checklist' ); ?></p> <br>
 
 				<?php wp_nonce_field( 'ppc-form-nonce', 'ppc-form' ); ?>
 			<br><input type="submit" class="button button-primary ppc-savesetting"  name="submit_radio" Value="Save Settings"/>		
