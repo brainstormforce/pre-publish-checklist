@@ -26,15 +26,15 @@ Why worry about the things to do when the plugin will do that for you!
 	
 The Pre-Publish Checklist plugin lets you create a checklist and enable on the specific post types you wish to have it applied to.
 
-You can select the message you wish to display to users when they click on the publish button without completing everything mentioned in the checklist.
+You can select the message that should be displayed to users when they click on the publish button without completing everything mentioned in the checklist.
 
-A pre-publish meta box gets added to the post types that you’ve selected and the plugin does its job every time you click the publish button without completing the checklist.
+A pre-publish meta box gets added to the post types that you've selected and the plugin does its job every time you click the publish button without completing the checklist.
 
 Here are the points in brief -
 
 1. Under the General settings tab, select the action you wish to trigger when user clicks on the publish button.
 2. Select the post types you wish to get this applicable to.
-3. Create a checklist and save
+3. Create a checklist under the Checklist tab and save!
 
 
 
@@ -47,8 +47,7 @@ Open settings in the WordPress dashboard and then click on Pre-Publish checklist
 The checklist will appear within a metabox on the post/page edit page.
 
 = Is there a default pre-publish checklist available? =
-Yes, there is a short list that we’ve entered into the plugin. However, we recommend you to modify it as per your needs.
-
+Yes, there is a short list that we've provided within the plugin. However, we recommend you to modify it as per your needs.
 
 
 == Changelog ==
