@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:  Pre-Publish Checklist
- * Description:  Pre-Publish Checklist ensures that you don't skip anything from the essential list of things before you publish a post.
+ * Description:  The Pre-Publish Checklist plugin is a handy plugin that will help you finalize all posts and pages on your website before you click on the publish button.
  * Version:     1.0.0
  * Author:      Brainstorm Force
  * Author URI:  https://brainstormforce.com

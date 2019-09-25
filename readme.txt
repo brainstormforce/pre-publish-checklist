@@ -1,59 +1,53 @@
 === Pre-Publish Checklist ===
 Contributors: brainstormforce
 Donate link: https://www.paypal.me/BrainstormForce
-Tags: publish list, quality list, pre-publish checklist, checklist, confirm publish, on publish, prevent publish
-Requires at least: 4.2
-Requires PHP: 5.2
+Tags: Pre-publish checklist, Post publish checklist, Editorial checklist, Blog publish checklist, Cross check post or page
+Requires at least: 4.7
+Requires PHP: 5.6
 Tested up to: 5.2
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
-This plugin lets you create checklist lists for your WordPress posts.
-Got a lot of subscribers? Worried about an accidental publish? Want something to remind you about things to check before a publish or an update? 
-Don't worry we have got your back, With Pre-Publish Checklist never be worried about this stuff.
-Create your own list of remainder or things to be checked before publishing for posts, pages as well as your custom post types too. 
-This plugin is compatible with the Gutenberg block editor as well as the Classic editor.
+==Easiest way to make sure your page or post is ready to go live!==
 
-+ Select options for what you want to do on a publish/update button click
-	-You can prevent a user from publishing if he has not completed the checklist.
-	-You can warn a user from publishing if he has not completed the checklist,He can then complete the checklist or publish/update on his will.
-	-You can prevent a user from publishing if he has not completed the checklist.
-+ Display your checklist on custom post types as well.
-+ Change the order of checklist, edit or delete items at your will.
+Is the fear of publishing an incomplete post haunting you already? Do you get worried about tasks like adding a featured image, updating the permalink, etc. just when you are about to click the publish button?
 
-== Installation ==
+All of this is handled with an easy to use Pre-Publish Checklist plugin that lets you create a checklist you wish to maintain for every post type on your website. You can build a checklist with necessary tasks and prioritize them by placing them in the required order.
+
+This will make sure that you are reminded of the remaining tasks before the post goes live.
+
+Why worry about the things to do when the plugin will do that for you!
+
+
+
+== How does it work? ==
 	
-This section describes how to install the plugin and get it working.
-1. Upload the zip file to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Go to "Settings" -> "Pre-Publish Checklist" to get started
+The Pre-Publish Checklist plugin lets you create a checklist and enable on the specific post types you wish to have it applied to.
 
-== How To Use This Plugin? ==
+You can select the message you wish to display to users when they click on the publish button without completing everything mentioned in the checklist.
 
-Once this plugin is installed, you can customize it under Settings > Pre-Publish Checklist.
+A pre-publish meta box gets added to the post types that you’ve selected and the plugin does its job every time you click the publish button without completing the checklist.
 
-Step 1: Under the General Settings tab, select the appropriate option to decide what to do on the publishing attempt.
+Here are the points in brief -
 
-Step 2: Select the Post Types on which you want to display the meta box having the Pre-Publish checklist.
+1. Under the General settings tab, select the action you wish to trigger when user clicks on the publish button.
+2. Select the post types you wish to get this applicable to.
+3. Create a checklist and save
 
-Step 3: Go to the Checklist tab, Add the required items in the list that you want to check while publishing or updating a post.
-
-Step 4: Go to the Edit Post or Add new Post/Page. You will see a meta box in the meta settings.
-
-Step 5: That's it! Edit your pages and post without being feared about an accidental publish or update.
 
 
 == Frequently Asked Questions ==
-= Can I add my own checklist items? =
-Yes, you can add items that are related to your blog.
 
-= Can I use the checklist feature without disabling the ability to publish or update? =
-Yes. While you can choose to warn or stop the user who's trying to publish, you can also choose to do nothing and let them publish.
+= Where will I find the pre-publish checklist settings? =
+Open settings in the WordPress dashboard and then click on Pre-Publish checklist to see the settings.
 
-= Can I display a checklist on posts only? =
-Yes, In the general settings tab you will find a setting for post types select the post types on which you want to display your checklist to check.
+= Where will the checklist appear? =
+The checklist will appear within a metabox on the post/page edit page.
+
+= Is there a default pre-publish checklist available? =
+Yes, there is a short list that we’ve entered into the plugin. However, we recommend you to modify it as per your needs.
 
 
 
