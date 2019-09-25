@@ -33,13 +33,7 @@ $ppc_exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates'
 				<label for="ppc_warn_user">
 				<input type="radio" id="ppc_warn_user" name="ppc_radio_button_option" value="2" <?php checked( $ppc_radio_button, 2 ); ?> > <div class="ppc_radio_options"><?php esc_html_e( 'Warn User Before Publishing', 'pre-publish-checklist' ); ?></div>
 				<p class="description">
-				<?php
-				esc_html_e(
-					'A warning message will be displayed when the user clicks on the publish button.
-',
-					'pre-publish-checklist'
-				);
-				?>
+				<?php esc_html_e( 'A warning message will be displayed when the user clicks on the publish button.', 'pre-publish-checklist' ); ?>
 				</p><br></label>
 				<label for="ppc_do_nothing">
 				<input type="radio" id="ppc_do_nothing" name="ppc_radio_button_option" value="3" <?php checked( $ppc_radio_button, 3 ); ?> > <div class="ppc_radio_options"><?php esc_html_e( 'Do Nothing and Publish', 'pre-publish-checklist' ); ?></div>

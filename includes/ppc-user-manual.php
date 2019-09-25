@@ -16,13 +16,7 @@ wp_enqueue_style( 'ppc_backend_css' );
 			<td>
 		<div class="ppc_user_manual">	
 		<p>
-		<?php
-		esc_html_e(
-			'The Pre-Publish Checklist plugin allows you to manage the way your posts and pages are published on your website.
-',
-			'pre-publish-checklist'
-		);
-		?>
+		<?php esc_html_e( 'The Pre-Publish Checklist plugin allows you to manage the way your posts and pages are published on your website.', 'pre-publish-checklist' ); ?>
 		</p>
 		<p><?php esc_html_e( 'Have some prerequisites that you wish to fulfill before publishing anything? The Pre-Publish Checklist plugin reminds you of those just when you mistakenly click the publish button.', 'pre-publish-checklist' ); ?></p>
 		<h4><label class="ppc_page_title" for="howtouse"> 
