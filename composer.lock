@@ -9,16 +9,16 @@
     "packages-dev": [
         {
             "name": "brainmaestro/composer-git-hooks",
-            "version": "v2.8.0",
+            "version": "v2.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BrainMaestro/composer-git-hooks.git",
-                "reference": "02f95c83bf87a593899789c6ad5bb12bb66f67b2"
+                "reference": "b2905bcaf9526f939f5086e263d901531c9948c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BrainMaestro/composer-git-hooks/zipball/02f95c83bf87a593899789c6ad5bb12bb66f67b2",
-                "reference": "02f95c83bf87a593899789c6ad5bb12bb66f67b2",
+                "url": "https://api.github.com/repos/BrainMaestro/composer-git-hooks/zipball/b2905bcaf9526f939f5086e263d901531c9948c2",
+                "reference": "b2905bcaf9526f939f5086e263d901531c9948c2",
                 "shasum": ""
             },
             "require": {
@@ -74,7 +74,7 @@
                 "composer",
                 "git"
             ],
-            "time": "2019-09-02T15:42:37+00:00"
+            "time": "2019-09-13T10:32:54+00:00"
         },
         {
             "name": "dealerdirect/phpcodesniffer-composer-installer",

@@ -1,16 +1,16 @@
-# Pre-Publish Checklist #
-**Contributors:** [brainstormforce](https://profiles.wordpress.org/brainstormforce)  
-**Donate link:** https://www.paypal.me/BrainstormForce  
-**Tags:** Pre-publish checklist, Post publish checklist, Editorial checklist, Blog publish checklist, Cross check post or page  
-**Requires at least:** 4.7  
-**Requires PHP:** 5.6  
-**Tested up to:** 5.2  
-**Stable tag:** 1.0.0  
-**License:** GPLv2 or later  
-**License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
+=== Pre-Publish Checklist ===
+Contributors: brainstormforce
+Donate link: https://www.paypal.me/BrainstormForce
+Tags: Pre-publish checklist, Post publish checklist, Editorial checklist, Blog publish checklist, Cross check post or page
+Requires at least: 4.7
+Requires PHP: 5.6
+Tested up to: 5.2
+Stable tag: 1.0.0
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-## Description ##
-### Easiest way to make sure your page or post is ready to go live ###
+== Description ==
+= Easiest way to make sure your page or post is ready to go live =
 
 Is the fear of publishing an incomplete post haunting you already? Do you get worried about tasks like adding a featured image, updating the permalink, etc. just when you are about to click the publish button?
 
@@ -20,7 +20,7 @@ This will make sure that you are reminded of the remaining tasks before the post
 
 Why worry about the things to do when the plugin will do that for you!
 
-## How does it work? ##
+== How does it work? ==
 	
 The Pre-Publish Checklist plugin lets you create a checklist and enable on the specific post types you wish to have it applied to.
 
@@ -34,18 +34,18 @@ Here are the points in brief -
 2. Select the post types you wish to get this applicable to.
 3. Create a checklist and save
 
-## Frequently Asked Questions ##
+== Frequently Asked Questions ==
 
-### Where will I find the pre-publish checklist settings? ###
+= Where will I find the pre-publish checklist settings? =
 Open settings in the WordPress dashboard and then click on Pre-Publish checklist to see the settings.
 
-### Where will the checklist appear? ###
+= Where will the checklist appear? =
 The checklist will appear within a metabox on the post/page edit page.
 
-### Is there a default pre-publish checklist available? ###
+= Is there a default pre-publish checklist available? =
 Yes, there is a short list that we�ve entered into the plugin. However, we recommend you to modify it as per your needs.
 
-## Changelog ##
+== Changelog ==
 
-### 1.0.0 ###
+= 1.0.0 =
 - Initial release.
