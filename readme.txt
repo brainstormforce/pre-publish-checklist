@@ -10,7 +10,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
-==Easiest way to make sure your page or post is ready to go live!==
+= Easiest way to make sure your page or post is ready to go live =
 
 Is the fear of publishing an incomplete post haunting you already? Do you get worried about tasks like adding a featured image, updating the permalink, etc. just when you are about to click the publish button?
 
@@ -20,23 +20,19 @@ This will make sure that you are reminded of the remaining tasks before the post
 
 Why worry about the things to do when the plugin will do that for you!
 
-
-
 == How does it work? ==
 	
 The Pre-Publish Checklist plugin lets you create a checklist and enable on the specific post types you wish to have it applied to.
 
 You can select the message you wish to display to users when they click on the publish button without completing everything mentioned in the checklist.
 
-A pre-publish meta box gets added to the post types that you’ve selected and the plugin does its job every time you click the publish button without completing the checklist.
+A pre-publish meta box gets added to the post types that you've selected and the plugin does its job every time you click the publish button without completing the checklist.
 
 Here are the points in brief -
 
 1. Under the General settings tab, select the action you wish to trigger when user clicks on the publish button.
 2. Select the post types you wish to get this applicable to.
 3. Create a checklist and save
-
-
 
 == Frequently Asked Questions ==
 
@@ -47,13 +43,9 @@ Open settings in the WordPress dashboard and then click on Pre-Publish checklist
 The checklist will appear within a metabox on the post/page edit page.
 
 = Is there a default pre-publish checklist available? =
-Yes, there is a short list that we’ve entered into the plugin. However, we recommend you to modify it as per your needs.
-
-
+Yes, there is a short list that weï¿½ve entered into the plugin. However, we recommend you to modify it as per your needs.
 
 == Changelog ==
 
-= 0.1 =
-* Initial release.
-
-
+= 1.0.0 =
+- Initial release.
