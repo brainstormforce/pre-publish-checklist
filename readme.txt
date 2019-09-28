@@ -47,5 +47,8 @@ Yes, there is a short list that we've provided within the plugin. However, we re
 
 == Changelog ==
 
+= 1.0.1 =
+- Fixed: Publish/Update button position changes on changing the post status.
+
 = 1.0.0 =
 - Initial release.
