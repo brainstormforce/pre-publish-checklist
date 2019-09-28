@@ -10,7 +10,7 @@
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 
 ## Description ##
-##Easiest way to make sure your page or post is ready to go live!##
+### Easiest way to make sure your page or post is ready to go live ###
 
 Is the fear of publishing an incomplete post haunting you already? Do you get worried about tasks like adding a featured image, updating the permalink, etc. just when you are about to click the publish button?
 
@@ -19,8 +19,6 @@ All of this is handled with an easy to use Pre-Publish Checklist plugin that let
 This will make sure that you are reminded of the remaining tasks before the post goes live.
 
 Why worry about the things to do when the plugin will do that for you!
-
-
 
 ## How does it work? ##
 	
@@ -36,8 +34,6 @@ Here are the points in brief -
 2. Select the post types you wish to get this applicable to.
 3. Create a checklist under the Checklist tab and save!
 
-
-
 ## Frequently Asked Questions ##
 
 ### Where will I find the pre-publish checklist settings? ###
@@ -49,10 +45,7 @@ The checklist will appear within a metabox on the post/page edit page.
 ### Is there a default pre-publish checklist available? ###
 Yes, there is a short list that we've provided within the plugin. However, we recommend you to modify it as per your needs.
 
-
 ## Changelog ##
 
-### 0.1 ###
-* Initial release.
-
-
+### 1.0.0 ###
+- Initial release.
