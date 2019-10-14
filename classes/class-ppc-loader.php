@@ -30,13 +30,13 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 *
 		 * @var instance
 		 */
-		private static $instance;
+		private static $instance;						// r_class instance
 		/**
 		 *  Initiator
 		 */
-		public static function get_instance() {
+		public static function get_instance() {			
 			if ( ! isset( self::$instance ) ) {
-				self::$instance = new self();
+				self::$instance = new self();			//new classname shoule be there.
 			}
 			return self::$instance;
 		}
@@ -44,7 +44,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		/**
 		 * Constructor
 		 */
-		public function __construct() {
+		public function __construct() {					// private constructor
 			$this->ppc_default_list_data();
 			$this->ppc_load();
 			add_action( 'admin_enqueue_scripts', array( $this, 'ppc_plugin_backend_js' ) );
@@ -69,10 +69,12 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 				'ppc_key6' => 'Social Images Assigned',
 				'ppc_key7' => 'Done SEO',
 				'ppc_key8' => 'Spelling and Grammar Checked',
+				// 'ppc_key9' => 'Content length',
 			);
 			$ppc_default_post_types     = array( 'post', 'page' );
-			add_option( 'ppc_checklist_data', $ppc_default_checklist_data );
-			add_option( 'ppc_post_types_to_display', $ppc_default_post_types );
+			//add_option( $option, $value, $deprecated, $autoload );
+			add_option( 'ppc_checklist_data', $ppc_default_checklist_data );		//update_option
+			add_option( 'ppc_post_types_to_display', $ppc_default_post_types );		//update_option
 		}
 		/**
 		 * Loads classes and includes.
@@ -81,6 +83,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 * @return void
 		 */
 		public function ppc_load() {
+			
 			require_once PPC_ABSPATH . 'classes/class-ppc-pagesetups.php';
 		}
 		/**
@@ -97,7 +100,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			wp_register_style( 'ppc_backend_css', PPC_PLUGIN_URL . '/assets/css/ppc-css.css', null, PPC_VERSION, false );
 			if ( false !== $ppc_radio_button && false !== $ppc_checklist_item_data ) {
 				wp_localize_script(
-					'ppc_backend_checkbox_js',
+					'ppc_backend_checkbox_js', 
 					'ppc_error_level',
 					array(
 						'option'   => $ppc_radio_button,

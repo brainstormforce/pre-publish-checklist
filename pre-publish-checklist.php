@@ -16,6 +16,7 @@
  * @license  https://brainstormforce.com
  * @link     https://brainstormforce.com
  */
+define( 'PPC_PATH ', __FILE__);
 
 define( 'PPC_ABSPATH', plugin_dir_path( __FILE__ ) );
 
@@ -24,6 +25,7 @@ define( 'PPC_PLUGIN_URL', untrailingslashit( plugins_url( '', __FILE__ ) ) );
 define( 'PPC_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 
 define( 'PPC_VERSION', '1.0.1' );
+
 
 require_once 'classes/class-ppc-loader.php';
 

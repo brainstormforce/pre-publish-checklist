@@ -105,7 +105,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 */
 		public function ppc_settings_page() {
 			add_submenu_page(
-				'options-general.php',
+				'options-general.php',  
 				'Pre-Publish Checklist',
 				'Pre-Publish Checklist',
 				'manage_options',
