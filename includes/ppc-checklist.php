@@ -33,19 +33,11 @@ wp_enqueue_script( 'jQuery-ui-droppable' );
 				<select>
 				<?php
 				foreach ($ppc_post_types as $ppc_post ) {
-					?><option value= <?php echo $ppc_post; ?>> <?php echo $ppc_post; ?> <?php
-					# code...
+					?><option value= "<?php echo $ppc_post;?>"><?php echo $ppc_post; ?></option> <?php
 				}
 				?>	
 				</select>
 
-				
-
-				<!-- <select name="options[foo]">
-		    		<option value="1" <?php selected( $options['foo'], 1 ); ?>>Post</option>
-			    	<option value="2" <?php selected( $options['foo'], 2 ); ?>>Page</option>
-			    	<option value="3" <?php selected( $options['foo'], 3 ); ?>>CPT</option>
-				</select> -->
 			</td>
 		</tr>
 		<tr>
