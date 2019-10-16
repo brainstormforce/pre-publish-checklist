@@ -13,7 +13,7 @@
 // Displaying the contents in the general tab in the plugin settings.
 $ppc_radio_button = get_option( 'ppc_error_level', 3 );
 wp_enqueue_style( 'ppc_backend_css' );
-$ppc_post_types = get_option( 'ppc_post_types_to_display' );
+$ppc_post_types = get_option( 'ppc_post_types_to_display' ); //ppc_post_types_to_display = array(post, page)
 $ppc_args       = array(
 	'public' => true,
 );

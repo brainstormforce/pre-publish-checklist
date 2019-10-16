@@ -60,29 +60,14 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 * @since 1.0
 		 * @return void
 		 */
+
 		public function ppc_default_list_data() {
 
 			//  collect all selected post types
 			$ppc_default_post_types     = array( 'post', 'page' );
 			add_option( 'ppc_post_types_to_display', $ppc_default_post_types );		//update_option
 			// foreach postyypes store below array
-			foreach ($ppc_default_post_types as $post_type_values) {
-
-			// $post_type_values = array( $post_type_value );
-			$demo[$post_type_values] = array( 
-								'ppc_key2' => 'Featured Image Assigned',
-								'ppc_key3' => 'Category Selected',
-								'ppc_key4' => 'Formatting Done',
-								'ppc_key5' => 'Title is Catchy',
-								'ppc_key6' => 'Social Images Assigned',
-								'ppc_key7' => 'Done SEO',
-								'ppc_key8' => 'Spelling and Grammar Checked',
-								);						
-			}
-		
-		// print_r($demo);
-			// wp_die();
-/*			$ppc_default_checklist_data = array(
+				$ppc_default_checklist_data = array(
 				'ppc_key2' => 'Featured Image Assigned',
 				'ppc_key3' => 'Category Selected',
 				'ppc_key4' => 'Formatting Done',
@@ -92,10 +77,26 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 				'ppc_key8' => 'Spelling and Grammar Checked',
 				// 'ppc_key9' => 'Content length',
 			);
-			*/
-			//add_option( $option, $value, $deprecated, $autoload );
-			update_option( 'ppc_checklist_data', $demo );		//update_option
+			update_option( 'ppc_checklist_data', $ppc_default_checklist_data );		//update_option
 			
+			foreach ($ppc_default_post_types as $post_type_values) {
+
+			// $post_type_values = array( $post_type_value );
+		/*	$demo[$post_type_values] = array( 
+								'ppc_key2' => 'Featured Image Assigned',
+								'ppc_key3' => 'Category Selected',
+								'ppc_key4' => 'Formatting Done',
+								'ppc_key5' => 'Title is Catchy',
+								'ppc_key6' => 'Social Images Assigned',
+								'ppc_key7' => 'Done SEO',
+								'ppc_key8' => 'Spelling and Grammar Checked',
+								);						
+			}*/
+		
+
+			//add_option( $option, $value, $deprecated, $autoload );
+			
+				}	
 		}
 		/**
 		 * Loads classes and includes.
@@ -290,11 +291,35 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 						$ppc_post_types = array_map( 'sanitize_text_field', wp_unslash( $_POST['posts'] ) );
 					}
 					update_option( 'ppc_post_types_to_display', $ppc_post_types );
+					
+					var_dump($ppc_post_types);
+
+					$default_demo = get_option('ppc_checklist_data');
+					// print_r($default_demo);
+					$temp = array();
+					foreach( $ppc_post_types as $post_type_updated_value ){
+
+						if('post' == $post_type_updated_value || 'page' == $post_type_updated_value){
+						
+							$temp[$post_type_updated_value] = $default_demo;	//page => 7, post=> 7, movie=> 7
+						} else{
+						
+							$temp[$post_type_updated_value] = array();	//only for cpt
+						}
+				
+					}
+					var_dump($temp);
+
+					update_option( 'ppc_cpt_checklist_data', $temp );
+
 				}
 			}
 		}
 	}
 	PPC_Loader::get_instance();
 endif;
+
+
+	
 
 
