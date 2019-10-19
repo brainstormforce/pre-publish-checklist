@@ -13,12 +13,29 @@
 // Displaying the contents in the general tab in the plugin settings.
 $ppc_radio_button = get_option( 'ppc_error_level', 3 );
 wp_enqueue_style( 'ppc_backend_css' );
+$temp = get_option('ppc_cpt_checklist_data');
+$default_demo = get_option('ppc_checklist_data');
 $ppc_post_types = get_option( 'ppc_post_types_to_display' ); //ppc_post_types_to_display = array(post, page)
 $ppc_args       = array(
 	'public' => true,
 );
 
 $ppc_exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
+// $ppc_post_types_supported =  get_post_types( $ppc_args, 'objects' );
+// foreach( $ppc_post_types_supported as $post_type_updated_value ){
+
+// 		if ( 'post' !== $ppc_post_types && post_type_supports( '' . $post_type_updated_value->name . '', 'editor' ) === true ) {
+// 						if('post' == $post_type_updated_value || 'page' == $post_type_updated_value){
+						
+// 							$temp[$post_type_updated_value] = $default_demo;	//page => 7, post=> 7, movie=> 7
+// 						} else{
+						
+// 							$temp[$post_type_updated_value] = array();	//only for cpt
+// 						}
+				
+// 					}
+// 				}
+// 		update_option( 'ppc_cpt_checklist_data', $temp );
 
 ?>
 

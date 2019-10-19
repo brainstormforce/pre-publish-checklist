@@ -53,6 +53,15 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			add_action( 'wp_ajax_ppc_checklistitem_delete', array( $this, 'ppc_delete_item' ), 1 );
 			add_action( 'wp_ajax_ppc_checklistitem_drag', array( $this, 'ppc_drag_item' ), 1 );
 			add_action( 'wp_ajax_ppc_checklistitem_edit', array( $this, 'ppc_edit_item' ), 1 );
+			add_action( 'wp_ajax_get_data', array( $this, 'get_data' ), 1 );
+		}
+
+		public function get_data(){
+			$selected_value = $_POST['selected_data'];
+			$temp = get_option('ppc_cpt_checklist_data');
+
+			$show = $temp[$selected_value];
+			wp_send_json_success( $show );
 		}
 		/**
 		 * Stores default list in the database.
@@ -167,7 +176,9 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
 			if ( ! empty( $_POST['ppc_order'] ) && current_user_can( 'manage_options' ) ) {
 				$ppc_item_drag_contents = array_map( 'sanitize_text_field', wp_unslash( $_POST['ppc_order'] ) );
-				update_option( 'ppc_checklist_data', $ppc_item_drag_contents );
+					$ppc_checklist_item_data = get_option( 'ppc_cpt_checklist_data' );
+					$ppc_checklist_item_data[$_POST['ppc_current_type']]= $ppc_item_drag_contents;
+				update_option( 'ppc_cpt_checklist_data', $ppc_checklist_item_data );
 				wp_send_json_success( __( 'sucess', 'pre-publish-checklist' ) );
 			} else {
 				wp_send_json_error( __( 'Sorry, you are not allowed to perform this action', 'pre-publish-checklist' ) );
@@ -186,21 +197,24 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			if ( ! empty( $_POST['ppc_item_content'] ) && current_user_can( 'manage_options' ) ) {
 				$ppc_newitems            = sanitize_text_field( wp_unslash( $_POST['ppc_item_content'] ) );
 				$ppc_newitem_key         = uniqid( 'ppc_key' );
-				$ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
+				$ppc_checklist_item_data = get_option( 'ppc_cpt_checklist_data' );
+
 				if ( empty( $ppc_checklist_item_data ) || false === $ppc_checklist_item_data ) {
 					$ppc_checklist_item_data = array();
 				}
-				$ppc_checklist_item_data[ $ppc_newitem_key ] = $ppc_newitems;
-				update_option( 'ppc_checklist_data', $ppc_checklist_item_data );
+				$ppc_checklist_item_data[$_POST['ppc_current_type']][ $ppc_newitem_key ] = $ppc_newitems;
+				var_dump($ppc_newitems);
+				// $new_temp = array_push($ppc_checklist_item_data, var);
+				update_option( 'ppc_cpt_checklist_data', $ppc_checklist_item_data );
 				?>
 				<?php
 				if ( ! empty( $ppc_checklist_item_data ) ) {
-					foreach ( $ppc_checklist_item_data as $ppc_key => $ppc_value ) {
+					foreach ( $ppc_checklist_item_data[$_POST['ppc_current_type']] as $ppc_key => $ppc_value ) {
 						?>
 								<li class="ppc-li">
 								<span class="dashicons dashicons-menu-alt2 ppc-move-dashicon"></span> <input type="text" readonly="true" class="ppc-drag-feilds" $ppc_item_key ="<?php echo esc_attr( $ppc_key ); ?>" value="<?php echo esc_attr( $ppc_value ); ?>" name="ppc_checklist_item[]" >
 								<button type="button" id = "edit" name="Delete" class="ppcedit" value="<?php echo esc_attr( $ppc_key ); ?>"> <span class="dashicons dashicons-edit"></span>Edit</button>
-										<button type="button" id = "Delete" name="Delete" class="ppcdelete" value="<?php echo esc_attr( $ppc_value ); ?>"> <span class="dashicons dashicons-trash ppc-delete-dashicon"></span>Delete</button>
+										<button type="button" id = "Delete" name="Delete" class="ppcdelete" value="<?php echo esc_attr( $ppc_backend_itemlist_js ); ?>"> <span class="dashicons dashicons-trash ppc-delete-dashicon"></span>Delete</button>
 								<?php
 					}
 				} else {
@@ -250,13 +264,13 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
 			if ( isset( $_POST['ppc_edit_value'] ) && isset( $_POST['ppc_edit_key'] ) && current_user_can( 'manage_options' ) ) {
 				$ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
-				$ppc_checklist_item_data   = get_option( 'ppc_checklist_data' );
+				$ppc_checklist_item_data   = get_option( 'ppc_cpt_checklist_data' );
 				$ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
 				if ( ! empty( $ppc_checklist_item_data ) ) {
 					$ppc_edit_value                           = sanitize_text_field( wp_unslash( $_POST['ppc_edit_value'] ) );
 					$ppc_edit_key                             = sanitize_text_field( wp_unslash( $_POST['ppc_edit_key'] ) );
-					$ppc_checklist_item_data[ $ppc_edit_key ] = $ppc_edit_value;
-					update_option( 'ppc_checklist_data', $ppc_checklist_item_data );
+					$ppc_checklist_item_data[$_POST['ppc_current_type']][ $ppc_edit_key ] = $ppc_edit_value;
+					update_option( 'ppc_cpt_checklist_data', $ppc_checklist_item_data );
 				}
 				wp_send_json_success( __( 'sucess', 'pre-publish-checklist' ) );
 			} else {
@@ -291,12 +305,13 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 						$ppc_post_types = array_map( 'sanitize_text_field', wp_unslash( $_POST['posts'] ) );
 					}
 					update_option( 'ppc_post_types_to_display', $ppc_post_types );
-					
+/*					
 					var_dump($ppc_post_types);
 
 					$default_demo = get_option('ppc_checklist_data');
 					// print_r($default_demo);
 					$temp = array();
+
 					foreach( $ppc_post_types as $post_type_updated_value ){
 
 						if('post' == $post_type_updated_value || 'page' == $post_type_updated_value){
@@ -308,10 +323,10 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 						}
 				
 					}
-					var_dump($temp);
+					
 
 					update_option( 'ppc_cpt_checklist_data', $temp );
-
+					var_dump($temp);*/
 				}
 			}
 		}

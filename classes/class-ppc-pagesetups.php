@@ -154,10 +154,12 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 * @since 1.0.0
 		 */
 		public function ppc_custom_box_html() {
+			$ppc_screen = get_current_screen()->post_type;
 			wp_enqueue_script( 'ppc_backend_checkbox_js' );
 			wp_enqueue_script( 'ppc_backend_tooltip_js' );
 			wp_enqueue_style( 'ppc_backend_css' );
-			$ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
+			$ppc_checklist_item_data = get_option( 'ppc_cpt_checklist_data' );
+			// var_dump($ppc_checklist_item_data[$ppc_current_metabox_post_type]);
 			$value                   = get_post_meta( get_the_ID(), '_ppc_meta_key', true );
 			?>
 			<?php
@@ -170,7 +172,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 					</div>
 				</div>
 				<?php
-				foreach ( $ppc_checklist_item_data as $ppc_key => $ppc_value ) {
+				foreach ( $ppc_checklist_item_data[$ppc_screen] as $ppc_key => $ppc_value  ) {
 					?>
 					<label for="<?php echo esc_attr( $ppc_key ); ?>">
 					<div class="ppc-checklist-item-wrapper">
@@ -180,6 +182,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 				</label>
 					<?php
 				}
+			
 				?>
 				<?php
 			} else {

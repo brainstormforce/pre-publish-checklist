@@ -11,7 +11,8 @@
  * @link     http://brainstormforce.com
  */
 
-$ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
+// $ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
+$ppc_checklist_item_data = get_option( 'ppc_cpt_checklist_data' );		//page, post, movie
 wp_enqueue_script( 'ppc_backend_itemlist_js' );
 wp_enqueue_style( 'ppc_backend_css' );
 wp_enqueue_script( 'jquery' );
@@ -19,45 +20,58 @@ wp_enqueue_script( 'jquery-ui-core' );
 wp_enqueue_script( 'jquery-ui-sortable' );
 wp_enqueue_script( 'jQuery-ui-droppable' );
 ?>
+<div>
+	<?php
+		$ppc_post_types = get_option( 'ppc_post_types_to_display' );
+	?>	
+	<ul id="pts" class="pts" name ="post-type-selected">
+		<?php
+			foreach ($ppc_post_types as $ppc_post ) {
+		?>
+		<li><a href="?page=ppc&tab=ppc-checklist&type=<?php echo $ppc_post;?>"><?php echo $ppc_post; ?> </a><span>  </span></li><?php
+					}
+				?>	
 
+	</ul>
+</div>
 <div class="ppc-table-wrapper">
 <table class="form-table ppc-form-table">
 	<tbody>
-		<tr>
+		<!-- <tr>
 			<th scope="row"><p class="ppc-list-label"><span class=""></span><?php esc_html_e( 'Set a checklist for', 'pre-publish-checklist' ); ?></p> </th>
 			<td class="">
 				<?php
 				$ppc_post_types = get_option( 'ppc_post_types_to_display' );
 				// var_dump($ppc_post_types);
 				?>
-				<select>
+				<select id="pts" name="post-type-selected">
+					<option value= "default">--Select one--</option>
 				<?php
 				foreach ($ppc_post_types as $ppc_post ) {
 					?><option value= "<?php echo $ppc_post;?>"><?php echo $ppc_post; ?></option> <?php
-				}
+					}
 				?>	
 				</select>
-
 			</td>
-		</tr>
+		</tr> -->
 		<tr>
 			<th scope="row"><p class="ppc-list-label"><span class="spinner ppc-spinner"></span><?php esc_html_e( 'Pre-Publish Checklist', 'pre-publish-checklist' ); ?></p> </th>
 			<td class="ppc-list-table">
 
 				<div id="columns" class="ppcdragdrop">
+				<!-- <div id="<?php echo $ppc_post;?>" class="ppcdragdrop">	 -->
 		<?php
-		if ( ! empty( $ppc_checklist_item_data ) ) {
+		if ( ! empty( $ppc_checklist_item_data ) && isset($_GET['type'])) {
 			?>
 						<ul id="ppc-ul" class="ppc-ul"> 
 			<?php
 			// print_r($ppc_checklist_item_data);
-			foreach ( $ppc_checklist_item_data['post'] as $ppc_key  ) {
+			foreach ( $ppc_checklist_item_data[$_GET['type']] as $ppc_key  ) {
 				?>
 									<li class="ppc-li">
 										<span class="dashicons dashicons-menu-alt2 ppc-move-dashicon"></span> <input type="text" readonly="true" class="ppc-drag-feilds" $ppc_item_key ="<?php echo esc_attr( $ppc_key ); ?>" value="<?php echo esc_attr( $ppc_key ); ?>" name="ppc_checklist_item[]" >
 										<button type="button" id = "edit" name="Delete" class="ppcedit" value="<?php echo esc_attr( $ppc_key ); ?>"> <span class="dashicons dashicons-edit"></span>Edit</button>
 										<button type="button" id = "Delete" name="Delete" class="ppcdelete" value="<?php echo esc_attr( $ppc_value ); ?>"> <span class="dashicons dashicons-trash ppc-delete-dashicon"></span>Delete</button>
-
 									</li>
 				<?php
 		}
