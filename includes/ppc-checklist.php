@@ -28,7 +28,7 @@ wp_enqueue_script( 'jQuery-ui-droppable' );
 		<?php
 			foreach ($ppc_post_types as $ppc_post ) {
 		?>
-		<li><a href="?page=ppc&tab=ppc-checklist&type=<?php echo $ppc_post;?>"><?php echo $ppc_post; ?> </a><span>  </span></li><?php
+		<li><a href="?page=ppc&tab=ppc-checklist&type=<?php echo $ppc_post;?>" class=""><?php echo $ppc_post; ?> </a></li><?php
 					}
 				?>	
 
@@ -71,7 +71,7 @@ wp_enqueue_script( 'jQuery-ui-droppable' );
 									<li class="ppc-li">
 										<span class="dashicons dashicons-menu-alt2 ppc-move-dashicon"></span> <input type="text" readonly="true" class="ppc-drag-feilds" $ppc_item_key ="<?php echo esc_attr( $ppc_key ); ?>" value="<?php echo esc_attr( $ppc_key ); ?>" name="ppc_checklist_item[]" >
 										<button type="button" id = "edit" name="Delete" class="ppcedit" value="<?php echo esc_attr( $ppc_key ); ?>"> <span class="dashicons dashicons-edit"></span>Edit</button>
-										<button type="button" id = "Delete" name="Delete" class="ppcdelete" value="<?php echo esc_attr( $ppc_value ); ?>"> <span class="dashicons dashicons-trash ppc-delete-dashicon"></span>Delete</button>
+										<button type="button" id ="Delete" name="Delete" class="ppcdelete" value="<?php echo esc_attr( $ppc_key ); ?>"> <span class="dashicons dashicons-trash ppc-delete-dashicon"></span>Delete</button>
 									</li>
 				<?php
 		}

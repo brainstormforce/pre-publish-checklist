@@ -49,10 +49,10 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			$this->ppc_load();
 			add_action( 'admin_enqueue_scripts', array( $this, 'ppc_plugin_backend_js' ) );
 			add_action( 'init', array( $this, 'ppc_save_data' ) );
-			add_action( 'wp_ajax_ppc_checklistitem_add', array( $this, 'ppc_add_item' ), 1 );
-			add_action( 'wp_ajax_ppc_checklistitem_delete', array( $this, 'ppc_delete_item' ), 1 );
-			add_action( 'wp_ajax_ppc_checklistitem_drag', array( $this, 'ppc_drag_item' ), 1 );
-			add_action( 'wp_ajax_ppc_checklistitem_edit', array( $this, 'ppc_edit_item' ), 1 );
+			add_action( 'wp_ajax_ppc_checklistitem_add', array( $this, 'ppc_add_item' ), 1 );			//written, both
+			add_action( 'wp_ajax_ppc_checklistitem_delete', array( $this, 'ppc_delete_item' ), 1 );		//written
+			add_action( 'wp_ajax_ppc_checklistitem_drag', array( $this, 'ppc_drag_item' ), 1 );			//written
+			add_action( 'wp_ajax_ppc_checklistitem_edit', array( $this, 'ppc_edit_item' ), 1 );			//written
 			add_action( 'wp_ajax_get_data', array( $this, 'get_data' ), 1 );
 		}
 
@@ -198,8 +198,9 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 				$ppc_newitems            = sanitize_text_field( wp_unslash( $_POST['ppc_item_content'] ) );
 				$ppc_newitem_key         = uniqid( 'ppc_key' );
 				$ppc_checklist_item_data = get_option( 'ppc_cpt_checklist_data' );
-
+				echo "i m back";
 				if ( empty( $ppc_checklist_item_data ) || false === $ppc_checklist_item_data ) {
+					
 					$ppc_checklist_item_data = array();
 				}
 				$ppc_checklist_item_data[$_POST['ppc_current_type']][ $ppc_newitem_key ] = $ppc_newitems;
@@ -240,8 +241,12 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
 			if ( isset( $_POST['delete'] ) && current_user_can( 'manage_options' ) ) {
 				$ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
-				$ppc_checklist_item_data   = get_option( 'ppc_checklist_data' );
+				$ppc_checklist_item_data   = get_option( 'ppc_cpt_checklist_data' );
 				$ppc_delete_value          = sanitize_text_field( wp_unslash( $_POST['delete'] ) );
+				var_dump($ppc_checklist_item_data);
+				echo "i m back";
+				wp_die();
+
 
 				if ( false !== $ppc_checklist_item_data ) {
 					unset( $ppc_checklist_item_data[ $ppc_delete_value ] );

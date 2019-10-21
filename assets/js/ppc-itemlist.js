@@ -1,7 +1,7 @@
 jQuery(document).ready(function() {
     var add_button = jQuery('.add_field_button ');
     var ppc_drag_contents = [];
-     var ppc_spinner = jQuery('.ppc-add-spinner');
+    var ppc_spinner = jQuery('.ppc-add-spinner');
     var input_feilds = jQuery('#add_item_text_feild[type="text"]');
     
     function ppc_sortable(){ 
@@ -43,11 +43,11 @@ jQuery(document).ready(function() {
     jQuery(document).on('click', "#ppc-Savelist", function() {
 
 
-var url_string = window.location.href; //window.location.href
-var url = new URL(url_string);
-var c = url.searchParams.get("type");
+        var url_string = window.location.href; //window.location.href
+        var url = new URL(url_string);
+        var c = url.searchParams.get("type");
 
-console.log(c);
+        // console.log(c);
 
         ppc_sortable( jQuery('#ppc-ul') );
         ppc_spinner.addClass("is-active");
@@ -117,6 +117,7 @@ console.log(c);
         var url_string = window.location.href; //window.location.href
             var url = new URL(url_string);
             var c = url.searchParams.get("type");
+            console.log(c);
         if (jQuery(this).prop("name") == 'Delete') {        
             var ppc_txt;
             var ppc_delete_flag = confirm("Are you sure to delete this checklist item?");
@@ -126,6 +127,7 @@ console.log(c);
                 jQuery.post(ppc_add_delete_obj.url, {
                     action: 'ppc_checklistitem_delete',
                     delete: jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").attr('$ppc_item_key'),
+                    ppc_current_type: c,
                     ppc_security : ppc_add_delete_obj.security
                 }, function( response ) {
                      if (response.success) {
@@ -191,7 +193,7 @@ console.log(c);
     jQuery(document).on('change', "#pts", function() {
         var temp = jQuery( "#pts" ).val();
         console.log(temp);
-console.log(ppc_add_delete_obj.url);
+        console.log(ppc_add_delete_obj.url);
         jQuery.ajax({
              type : "POST",
              dataType : "json",
