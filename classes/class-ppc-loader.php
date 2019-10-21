@@ -175,7 +175,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		public function ppc_drag_item() {
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
 			if ( ! empty( $_POST['ppc_order'] ) && current_user_can( 'manage_options' ) ) {
-				$ppc_item_drag_contents = array_map( 'sanitize_text_field', wp_unslash( $_POST['ppc_order'] ) );
+					$ppc_item_drag_contents = array_map( 'sanitize_text_field', wp_unslash( $_POST['ppc_order'] ) );
 					$ppc_checklist_item_data = get_option( 'ppc_cpt_checklist_data' );
 					$ppc_checklist_item_data[$_POST['ppc_current_type']]= $ppc_item_drag_contents;
 				update_option( 'ppc_cpt_checklist_data', $ppc_checklist_item_data );
@@ -204,7 +204,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 					$ppc_checklist_item_data = array();
 				}
 				$ppc_checklist_item_data[$_POST['ppc_current_type']][ $ppc_newitem_key ] = $ppc_newitems;
-				var_dump($ppc_newitems);
+				// var_dump($ppc_newitems);
 				// $new_temp = array_push($ppc_checklist_item_data, var);
 				update_option( 'ppc_cpt_checklist_data', $ppc_checklist_item_data );
 				?>
@@ -214,8 +214,8 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 						?>
 								<li class="ppc-li">
 								<span class="dashicons dashicons-menu-alt2 ppc-move-dashicon"></span> <input type="text" readonly="true" class="ppc-drag-feilds" $ppc_item_key ="<?php echo esc_attr( $ppc_key ); ?>" value="<?php echo esc_attr( $ppc_value ); ?>" name="ppc_checklist_item[]" >
-								<button type="button" id = "edit" name="Delete" class="ppcedit" value="<?php echo esc_attr( $ppc_key ); ?>"> <span class="dashicons dashicons-edit"></span>Edit</button>
-										<button type="button" id = "Delete" name="Delete" class="ppcdelete" value="<?php echo esc_attr( $ppc_backend_itemlist_js ); ?>"> <span class="dashicons dashicons-trash ppc-delete-dashicon"></span>Delete</button>
+								<button type="button" id = "edit" name="Edit" class="ppcedit" value="<?php echo esc_attr( $ppc_key ); ?>"> <span class="dashicons dashicons-edit"></span>Edit</button>
+										<button type="button" id = "Delete" name="Delete" class="ppcdelete" value="<?php echo esc_attr( $ppc_key ); ?>"> <span class="dashicons dashicons-trash ppc-delete-dashicon"></span>Delete</button>
 								<?php
 					}
 				} else {
@@ -243,14 +243,10 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 				$ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
 				$ppc_checklist_item_data   = get_option( 'ppc_cpt_checklist_data' );
 				$ppc_delete_value          = sanitize_text_field( wp_unslash( $_POST['delete'] ) );
-				var_dump($ppc_checklist_item_data);
-				echo "i m back";
-				wp_die();
-
 
 				if ( false !== $ppc_checklist_item_data ) {
-					unset( $ppc_checklist_item_data[ $ppc_delete_value ] );
-					update_option( 'ppc_checklist_data', $ppc_checklist_item_data );
+					unset( $ppc_checklist_item_data[$_POST['ppc_current_type']][ $ppc_delete_value ] );
+					update_option( 'ppc_cpt_checklist_data', $ppc_checklist_item_data );
 				}
 				wp_send_json_success( __( 'sucess', 'pre-publish-checklist' ) );
 			} else {
@@ -270,12 +266,15 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			if ( isset( $_POST['ppc_edit_value'] ) && isset( $_POST['ppc_edit_key'] ) && current_user_can( 'manage_options' ) ) {
 				$ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
 				$ppc_checklist_item_data   = get_option( 'ppc_cpt_checklist_data' );
-				$ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
+				
+				// $ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
 				if ( ! empty( $ppc_checklist_item_data ) ) {
 					$ppc_edit_value                           = sanitize_text_field( wp_unslash( $_POST['ppc_edit_value'] ) );
 					$ppc_edit_key                             = sanitize_text_field( wp_unslash( $_POST['ppc_edit_key'] ) );
+		// var_dump($ppc_edit_key);
 					$ppc_checklist_item_data[$_POST['ppc_current_type']][ $ppc_edit_key ] = $ppc_edit_value;
 					update_option( 'ppc_cpt_checklist_data', $ppc_checklist_item_data );
+					// var_dump($ppc_checklist_item_data);
 				}
 				wp_send_json_success( __( 'sucess', 'pre-publish-checklist' ) );
 			} else {

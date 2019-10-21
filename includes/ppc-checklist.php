@@ -66,11 +66,11 @@ wp_enqueue_script( 'jQuery-ui-droppable' );
 						<ul id="ppc-ul" class="ppc-ul"> 
 			<?php
 			// print_r($ppc_checklist_item_data);
-			foreach ( $ppc_checklist_item_data[$_GET['type']] as $ppc_key  ) {
+			foreach ( $ppc_checklist_item_data[$_GET['type']] as $ppc_key => $ppc_value  ) {
 				?>
 									<li class="ppc-li">
-										<span class="dashicons dashicons-menu-alt2 ppc-move-dashicon"></span> <input type="text" readonly="true" class="ppc-drag-feilds" $ppc_item_key ="<?php echo esc_attr( $ppc_key ); ?>" value="<?php echo esc_attr( $ppc_key ); ?>" name="ppc_checklist_item[]" >
-										<button type="button" id = "edit" name="Delete" class="ppcedit" value="<?php echo esc_attr( $ppc_key ); ?>"> <span class="dashicons dashicons-edit"></span>Edit</button>
+										<span class="dashicons dashicons-menu-alt2 ppc-move-dashicon"></span> <input type="text" readonly="true" class="ppc-drag-feilds" $ppc_item_key ="<?php echo esc_attr( $ppc_key ); ?>" value="<?php echo esc_attr( $ppc_value ); ?>" name="ppc_checklist_item[]" >
+										<button type="button" id = "edit" name="Edit" class="ppcedit" value="<?php echo esc_attr( $ppc_key ); ?>"> <span class="dashicons dashicons-edit"></span>Edit</button>
 										<button type="button" id ="Delete" name="Delete" class="ppcdelete" value="<?php echo esc_attr( $ppc_key ); ?>"> <span class="dashicons dashicons-trash ppc-delete-dashicon"></span>Delete</button>
 									</li>
 				<?php

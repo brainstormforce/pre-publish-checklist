@@ -9,8 +9,8 @@ jQuery(document).ready(function() {
             var url_string = window.location.href; //window.location.href
             var url = new URL(url_string);
             var c = url.searchParams.get("type");
-
             console.log(c);
+
             jQuery('#ppc-ul').sortable({
             update: function() {
                 jQuery('.ppc-spinner').addClass("is-active");
@@ -124,6 +124,7 @@ jQuery(document).ready(function() {
             if (ppc_delete_flag == true) {
                 jQuery('.ppc-spinner').addClass("is-active");
                 jQuery(this).parents('li:first').remove();
+                console.log(jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").attr('$ppc_item_key'));
                 jQuery.post(ppc_add_delete_obj.url, {
                     action: 'ppc_checklistitem_delete',
                     delete: jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").attr('$ppc_item_key'),
@@ -149,6 +150,7 @@ jQuery(document).ready(function() {
                 if (jQuery(this).val() != jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").val()) {
                     jQuery(this).attr("value", jQuery(this).prev().val());
                     jQuery('.ppc-spinner').addClass("is-active");
+                    console.log(jQuery(this).prevUntil(".dashicons-menu-alt2", ".ppc-drag-feilds").attr('$ppc_item_key'));
                     jQuery.post(ppc_add_delete_obj.url, {               //url
                         action: 'ppc_checklistitem_edit',       
                         ppc_current_type: c,
@@ -200,9 +202,6 @@ jQuery(document).ready(function() {
              url : ppc_add_delete_obj.url,
              data : {action: "get_data",selected_data:temp},
              success: function(response) {
-
-                   //alert("Your vote could not be added");
-                   //alert(response);
                    console.log(response);
                 }
         });  
