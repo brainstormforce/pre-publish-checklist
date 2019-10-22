@@ -13,12 +13,24 @@
 
 $cpt_checklist = PPC_Loader::get_instance()->get_list();
 
+// function get_current_post_type_list( $post_type ) {
+// 	$cpt_checklist = PPC_Loader::get_instance()->get_list();
+
+// 	if( isset( $cpt_checklist[$post_type ] ) ) {
+// 		return $cpt_checklist[$post_type ];
+// 	}
+
+// 	return array();
+	
+// }
+
 // delete_option( 'ppc_checklist_data' );
 // delete_option( 'ppc_cpt_checklist_data' );
 // var_dump(get_option( 'ppc_cpt_checklist_data', array() ));
 // var_dump($cpt_checklist);
 // wp_die();
 
+$ppc_checklist_item_data = array();
 if( ! empty( $cpt_checklist ) && ( isset( $_GET['type'] ) && array_key_exists($_GET['type'], $cpt_checklist) ) ) {
 	$ppc_checklist_item_data = $cpt_checklist[$_GET['type']];
 }
