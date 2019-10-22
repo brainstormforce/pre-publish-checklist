@@ -198,7 +198,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 				$ppc_newitems            = sanitize_text_field( wp_unslash( $_POST['ppc_item_content'] ) );
 				$ppc_newitem_key         = uniqid( 'ppc_key' );
 				$ppc_checklist_item_data = get_option( 'ppc_cpt_checklist_data' );
-				echo "i m back";
+				// echo "i m back";
 				if ( empty( $ppc_checklist_item_data ) || false === $ppc_checklist_item_data ) {
 					
 					$ppc_checklist_item_data = array();

@@ -28,7 +28,7 @@ wp_enqueue_script( 'jQuery-ui-droppable' );
 		<?php
 			foreach ($ppc_post_types as $ppc_post ) {
 		?>
-		<li><a href="?page=ppc&tab=ppc-checklist&type=<?php echo $ppc_post;?>" class=""><?php echo $ppc_post; ?> </a></li><?php
+		<li><a href="?page=ppc&tab=ppc-checklist&type=<?php echo $ppc_post;?>" class=""><?php echo  $val = ucfirst($ppc_post); ?> </a></li><?php
 					}
 				?>	
 
