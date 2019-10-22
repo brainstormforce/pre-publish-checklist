@@ -36,7 +36,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 */
 		public static function get_instance() {			
 			if ( ! isset( self::$instance ) ) {
-				self::$instance = new self();			//new classname shoule be there.
+				self::$instance = new self();			
 			}
 			return self::$instance;
 		}
@@ -88,24 +88,6 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			);
 			update_option( 'ppc_checklist_data', $ppc_default_checklist_data );		//update_option
 			
-			foreach ($ppc_default_post_types as $post_type_values) {
-
-			// $post_type_values = array( $post_type_value );
-		/*	$demo[$post_type_values] = array( 
-								'ppc_key2' => 'Featured Image Assigned',
-								'ppc_key3' => 'Category Selected',
-								'ppc_key4' => 'Formatting Done',
-								'ppc_key5' => 'Title is Catchy',
-								'ppc_key6' => 'Social Images Assigned',
-								'ppc_key7' => 'Done SEO',
-								'ppc_key8' => 'Spelling and Grammar Checked',
-								);						
-			}*/
-		
-
-			//add_option( $option, $value, $deprecated, $autoload );
-			
-				}	
 		}
 		/**
 		 * Loads classes and includes.

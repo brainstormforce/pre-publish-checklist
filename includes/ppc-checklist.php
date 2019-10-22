@@ -28,10 +28,9 @@ wp_enqueue_script( 'jQuery-ui-droppable' );
 		<?php
 			foreach ($ppc_post_types as $ppc_post ) {
 		?>
-		<li><a href="?page=ppc&tab=ppc-checklist&type=<?php echo $ppc_post;?>" class=""><?php echo  $val = ucfirst($ppc_post); ?> </a></li><?php
+		<li><a href="?page=ppc&tab=ppc-checklist&type=<?php echo $ppc_post;?>" class=""><?php echo $ppc_post = ucfirst($ppc_post); ?> </a></li><?php
 					}
 				?>	
-
 	</ul>
 </div>
 <div class="ppc-table-wrapper">
@@ -57,15 +56,15 @@ wp_enqueue_script( 'jQuery-ui-droppable' );
 		<tr>
 			<th scope="row"><p class="ppc-list-label"><span class="spinner ppc-spinner"></span><?php esc_html_e( 'Pre-Publish Checklist', 'pre-publish-checklist' ); ?></p> </th>
 			<td class="ppc-list-table">
-
 				<div id="columns" class="ppcdragdrop">
-				<!-- <div id="<?php echo $ppc_post;?>" class="ppcdragdrop">	 -->
-		<?php
-		if ( ! empty( $ppc_checklist_item_data ) && isset($_GET['type'])) {
-			?>
-						<ul id="ppc-ul" class="ppc-ul"> 
+				
 			<?php
-			// print_r($ppc_checklist_item_data);
+			if ( ! empty( $ppc_checklist_item_data ) && isset($_GET['type'])) {
+			?>
+				<ul id="ppc-ul" class="ppc-ul"> 
+			<?php
+			// if(is_array($ppc_checklist_item_data[$_GET['type']]))
+			if(array_key_exists($_GET['type'], $ppc_checklist_item_data)){
 			foreach ( $ppc_checklist_item_data[$_GET['type']] as $ppc_key => $ppc_value  ) {
 				?>
 									<li class="ppc-li">
@@ -74,12 +73,13 @@ wp_enqueue_script( 'jQuery-ui-droppable' );
 										<button type="button" id ="Delete" name="Delete" class="ppcdelete" value="<?php echo esc_attr( $ppc_key ); ?>"> <span class="dashicons dashicons-trash ppc-delete-dashicon"></span>Delete</button>
 									</li>
 				<?php
-		}
+			}
+			}
 		}
 		?>
 						</ul>
 				</div>
-				<p class="ppc-empty-list"><?php esc_html_e( 'You do not have any items in the list please add items in the list.', 'pre-publish-checklist' ); ?></p>
+				<p class="ppc-empty-list"><?php esc_html_e( 'You do not have any items in the list. Please add items in the list.', 'pre-publish-checklist' ); ?></p>
 			</td>
 		</tr>
 		<tr>
