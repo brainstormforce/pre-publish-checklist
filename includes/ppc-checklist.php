@@ -11,8 +11,20 @@
  * @link     http://brainstormforce.com
  */
 
-// $ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
-$ppc_checklist_item_data = get_option( 'ppc_cpt_checklist_data' );		//page, post, movie
+$cpt_checklist = PPC_Loader::get_instance()->get_list();
+
+// delete_option( 'ppc_checklist_data' );
+// delete_option( 'ppc_cpt_checklist_data' );
+// var_dump(get_option( 'ppc_cpt_checklist_data', array() ));
+// var_dump($cpt_checklist);
+// wp_die();
+
+if( ! empty( $cpt_checklist ) && ( isset( $_GET['type'] ) && array_key_exists($_GET['type'], $cpt_checklist) ) ) {
+	$ppc_checklist_item_data = $cpt_checklist[$_GET['type']];
+}
+
+
+
 wp_enqueue_script( 'ppc_backend_itemlist_js' );
 wp_enqueue_style( 'ppc_backend_css' );
 wp_enqueue_script( 'jquery' );
@@ -20,6 +32,7 @@ wp_enqueue_script( 'jquery-ui-core' );
 wp_enqueue_script( 'jquery-ui-sortable' );
 wp_enqueue_script( 'jQuery-ui-droppable' );
 ?>
+
 <div>
 	<?php
 		$ppc_post_types = get_option( 'ppc_post_types_to_display' );
@@ -59,13 +72,11 @@ wp_enqueue_script( 'jQuery-ui-droppable' );
 				<div id="columns" class="ppcdragdrop">
 				
 			<?php
-			if ( ! empty( $ppc_checklist_item_data ) && isset($_GET['type'])) {
+			if ( ! empty( $ppc_checklist_item_data ) ) {
 			?>
 				<ul id="ppc-ul" class="ppc-ul"> 
 			<?php
-			// if(is_array($ppc_checklist_item_data[$_GET['type']]))
-			if(array_key_exists($_GET['type'], $ppc_checklist_item_data)){
-			foreach ( $ppc_checklist_item_data[$_GET['type']] as $ppc_key => $ppc_value  ) {
+			foreach ( $ppc_checklist_item_data as $ppc_key => $ppc_value  ) {
 				?>
 									<li class="ppc-li">
 										<span class="dashicons dashicons-menu-alt2 ppc-move-dashicon"></span> <input type="text" readonly="true" class="ppc-drag-feilds" $ppc_item_key ="<?php echo esc_attr( $ppc_key ); ?>" value="<?php echo esc_attr( $ppc_value ); ?>" name="ppc_checklist_item[]" >
@@ -73,7 +84,6 @@ wp_enqueue_script( 'jQuery-ui-droppable' );
 										<button type="button" id ="Delete" name="Delete" class="ppcdelete" value="<?php echo esc_attr( $ppc_key ); ?>"> <span class="dashicons dashicons-trash ppc-delete-dashicon"></span>Delete</button>
 									</li>
 				<?php
-			}
 			}
 		}
 		?>

@@ -63,20 +63,9 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			$show = $temp[$selected_value];
 			wp_send_json_success( $show );
 		}
-		/**
-		 * Stores default list in the database.
-		 *
-		 * @since 1.0
-		 * @return void
-		 */
 
-		public function ppc_default_list_data() {
-
-			//  collect all selected post types
-			$ppc_default_post_types     = array( 'post', 'page' );
-			add_option( 'ppc_post_types_to_display', $ppc_default_post_types );		//update_option
-			// foreach postyypes store below array
-				$ppc_default_checklist_data = array(
+		function get_list() {
+			$ppc_default_checklist_data = array(
 				'ppc_key2' => 'Featured Image Assigned',
 				'ppc_key3' => 'Category Selected',
 				'ppc_key4' => 'Formatting Done',
@@ -86,9 +75,43 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 				'ppc_key8' => 'Spelling and Grammar Checked',
 				// 'ppc_key9' => 'Content length',
 			);
-			update_option( 'ppc_checklist_data', $ppc_default_checklist_data );		//update_option
+
+			$ppc_checklist_item_data = get_option( 'ppc_checklist_data', $ppc_default_checklist_data );
+
+			$default_list = array(
+				'page' => $ppc_checklist_item_data,
+				'post' => $ppc_checklist_item_data,
+			);
+
+			return get_option( 'ppc_cpt_checklist_data', $default_list );		//page, post, movie
+		}
+
+		/**
+		 * Stores default list in the database.
+		 *
+		 * @since 1.0
+		 * @return void
+		 */
+
+		public function ppc_default_list_data() {
+		 	//  collect all selected post types
+			$ppc_default_post_types     = array( 'post', 'page' );
+			add_option( 'ppc_post_types_to_display', $ppc_default_post_types );		//update_option
+			// 	// foreach postyypes store below array
+			// 		$ppc_default_checklist_data = array(
+			// 		'ppc_key2' => 'Featured Image Assigned',
+			// 		'ppc_key3' => 'Category Selected',
+			// 		'ppc_key4' => 'Formatting Done',
+			// 		'ppc_key5' => 'Title is Catchy',
+			// 		'ppc_key6' => 'Social Images Assigned',
+			// 		'ppc_key7' => 'Done SEO',
+			// 		'ppc_key8' => 'Spelling and Grammar Checked',
+			// 		// 'ppc_key9' => 'Content length',
+			// 	);
+			// 	update_option( 'ppc_checklist_data', $ppc_default_checklist_data );		//update_option
 			
 		}
+
 		/**
 		 * Loads classes and includes.
 		 *
@@ -179,14 +202,16 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			if ( ! empty( $_POST['ppc_item_content'] ) && current_user_can( 'manage_options' ) ) {
 				$ppc_newitems            = sanitize_text_field( wp_unslash( $_POST['ppc_item_content'] ) );
 				$ppc_newitem_key         = uniqid( 'ppc_key' );
-				$ppc_checklist_item_data = get_option( 'ppc_cpt_checklist_data' );
+				$ppc_checklist_item_data = $this->get_list();
 				// echo "i m back";
 				if ( empty( $ppc_checklist_item_data ) || false === $ppc_checklist_item_data ) {
 					
 					$ppc_checklist_item_data = array();
 				}
-				$ppc_checklist_item_data[$_POST['ppc_current_type']][ $ppc_newitem_key ] = $ppc_newitems;
+
+				$ppc_checklist_item_data[ $_POST['ppc_current_type'] ][ $ppc_newitem_key ] = $ppc_newitems;
 				// var_dump($ppc_newitems);
+
 				// $new_temp = array_push($ppc_checklist_item_data, var);
 				update_option( 'ppc_cpt_checklist_data', $ppc_checklist_item_data );
 				?>
@@ -291,6 +316,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 						$ppc_post_types = array_map( 'sanitize_text_field', wp_unslash( $_POST['posts'] ) );
 					}
 					update_option( 'ppc_post_types_to_display', $ppc_post_types );
+					// var_dump($ppc_post_types);
 /*					
 					var_dump($ppc_post_types);
 
@@ -324,3 +350,18 @@ endif;
 	
 
 
+// add_action('admin_head', function() {
+
+// 	$defaults = array( 'one', 'two', 'three' );
+// 	$ppc_checklist_item_data = array(
+// 		'page' => array( 'one', 'two' ),
+// 		'post' => array( 'one', 'two' ),
+// 	);
+
+// 	// $ppc_checklist_item_data[ 'new' ] = $defaults;
+// 	$ppc_checklist_item_data[ 'new' ][ 'asdfsdfdsf' ] = 'avsadfsdfsdf';
+
+// 	echo "<pre>";
+// 	print_r( $ppc_checklist_item_data );
+// 	wp_die();
+// } );
