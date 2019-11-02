@@ -548,3 +548,8 @@ input.ppc_checkboxes{
   text-decoration: none;
 }
 
+.ppc-active a{
+   color: #000;
+   font-weight: 600;
+   transition-duration: .05s;
+}

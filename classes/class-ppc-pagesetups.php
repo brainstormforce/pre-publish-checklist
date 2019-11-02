@@ -105,7 +105,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 */
 		public function ppc_settings_page() {
 			add_submenu_page(
-				'options-general.php',  
+				'options-general.php',
 				'Pre-Publish Checklist',
 				'Pre-Publish Checklist',
 				'manage_options',
@@ -159,7 +159,6 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 			wp_enqueue_script( 'ppc_backend_tooltip_js' );
 			wp_enqueue_style( 'ppc_backend_css' );
 			$ppc_checklist_item_data = get_option( 'ppc_cpt_checklist_data' );
-			// var_dump($ppc_checklist_item_data[$ppc_current_metabox_post_type]);
 			$value                   = get_post_meta( get_the_ID(), '_ppc_meta_key', true );
 			?>
 			<?php
@@ -172,18 +171,20 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 					</div>
 				</div>
 				<?php
-				foreach ( $ppc_checklist_item_data[$ppc_screen] as $ppc_key => $ppc_value  ) {
+				foreach ( $ppc_checklist_item_data[ $ppc_screen ] as $ppc_key => $ppc_value ) {
 					?>
 					<label for="<?php echo esc_attr( $ppc_key ); ?>">
 					<div class="ppc-checklist-item-wrapper">
-						<input type="checkbox" name="checkbox[]" id="<?php echo esc_attr( $ppc_key ); ?>" class="ppc_checkboxes" value= "<?php echo esc_attr( $ppc_key ); ?>" <?php empty( $value ) ? '' : checked( true, array_key_exists( $ppc_key, $value ) ); 	
-						 ?>
+						<input type="checkbox" name="checkbox[]" id="<?php echo esc_attr( $ppc_key ); ?>" class="ppc_checkboxes" value= "<?php echo esc_attr( $ppc_key ); ?>" 
+																				<?php
+																				empty( $value ) ? '' : checked( true, array_key_exists( $ppc_key, $value ) );
+																				?>
 						>
 					<div class="ppc-checklist"><?php echo esc_attr( $ppc_value ); ?></div></div>
 				</label>
 					<?php
 				}
-			
+
 				?>
 				<?php
 			} else {
@@ -205,7 +206,8 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 				$ppc_key        = sanitize_text_field( wp_unslash( $_POST['ppc_key_value'] ) );
 				$ppc_value      = sanitize_text_field( wp_unslash( $_POST['ppc_field_value'] ) );
 				$ppc_check_data = array( $ppc_key => $ppc_value );
-				$pre_data       = get_post_meta( $ppcpost, '_ppc_meta_key', true );
+				var_dump( $ppc_check_data );
+				$pre_data = get_post_meta( $ppcpost, '_ppc_meta_key', true );
 				if ( ! empty( $pre_data ) ) {
 					$ppc_checklist_add_data = array_merge( $pre_data, $ppc_check_data );
 				} else {

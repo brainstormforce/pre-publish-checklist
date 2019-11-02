@@ -6,12 +6,12 @@ jQuery(document).ready(function() {
     
     function ppc_sortable(){ 
 
-            var url_string = window.location.href; //window.location.href
+            var url_string = window.location.href; //window.location.href.
             var url = new URL(url_string);
             var c = url.searchParams.get("type");
             console.log(c);
 
-            jQuery('#ppc-ul').sortable({
+         jQuery('#ppc-ul').sortable({
             update: function() {
                 jQuery('.ppc-spinner').addClass("is-active");
                 jQuery(this).sortable("disable");
@@ -192,21 +192,6 @@ jQuery(document).ready(function() {
         jQuery(this).parent('.ppc-li').find(".ppcdelete").attr("name", "Save");
     });
 
-    jQuery(document).on('change', "#pts", function() {
-        var temp = jQuery( "#pts" ).val();
-        console.log(temp);
-        console.log(ppc_add_delete_obj.url);
-        jQuery.ajax({
-             type : "POST",
-             dataType : "json",
-             url : ppc_add_delete_obj.url,
-             data : {action: "get_data",selected_data:temp},
-             success: function(response) {
-                   console.log(response);
-                }
-        });  
-
-      });  
     if (jQuery(".ppc-drag-feilds").length == 0) {
         jQuery('.ppc-empty-list').attr('style', 'display:block');
     } else if (jQuery(".ppc-drag-feilds").length !== 0) {

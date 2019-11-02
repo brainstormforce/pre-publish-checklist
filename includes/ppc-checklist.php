@@ -11,31 +11,22 @@
  * @link     http://brainstormforce.com
  */
 
+$ppc_cpt_checklist = PPC_Loader::get_instance()->get_list();
+
+/*
+function get_current_post_type_list( $post_type ) {
 $cpt_checklist = PPC_Loader::get_instance()->get_list();
-
-// function get_current_post_type_list( $post_type ) {
-// 	$cpt_checklist = PPC_Loader::get_instance()->get_list();
-
-// 	if( isset( $cpt_checklist[$post_type ] ) ) {
-// 		return $cpt_checklist[$post_type ];
-// 	}
-
-// 	return array();
-	
-// }
-
-// delete_option( 'ppc_checklist_data' );
-// delete_option( 'ppc_cpt_checklist_data' );
-// var_dump(get_option( 'ppc_cpt_checklist_data', array() ));
-// var_dump($cpt_checklist);
-// wp_die();
+if( isset( $cpt_checklist[$post_type ] ) ) {
+return $cpt_checklist[$post_type ];
+}
+return array();
+}
+*/
 
 $ppc_checklist_item_data = array();
-if( ! empty( $cpt_checklist ) && ( isset( $_GET['type'] ) && array_key_exists($_GET['type'], $cpt_checklist) ) ) {
-	$ppc_checklist_item_data = $cpt_checklist[$_GET['type']];
+if ( ! empty( $ppc_cpt_checklist ) && ( isset( $_GET['type'] ) && array_key_exists( $_GET['type'], $ppc_cpt_checklist ) ) ) {
+	$ppc_checklist_item_data = $ppc_cpt_checklist[ $_GET['type'] ];
 }
-
-
 
 wp_enqueue_script( 'ppc_backend_itemlist_js' );
 wp_enqueue_style( 'ppc_backend_css' );
@@ -48,16 +39,27 @@ wp_enqueue_script( 'jQuery-ui-droppable' );
 <div>
 	<?php
 		$ppc_post_types = get_option( 'ppc_post_types_to_display' );
-	?>	
+	?>		
 	<ul id="pts" class="pts" name ="post-type-selected">
 		<?php
-			foreach ($ppc_post_types as $ppc_post ) {
+		foreach ( $ppc_post_types as $ppc_post ) {
+			
+			$ppc_active_class = ($_GET['type'] == $ppc_post) ? 'ppc-active': '';		
+				echo '<li class="'.$ppc_active_class.'"><a href="?page=ppc&tab=ppc-checklist&type=' .$ppc_post. ' "> '. ucfirst($ppc_post) .'  </a></li>';
 		?>
-		<li><a href="?page=ppc&tab=ppc-checklist&type=<?php echo $ppc_post;?>" class=""><?php echo $ppc_post = ucfirst($ppc_post); ?> </a></li><?php
-					}
-				?>	
+		<?php
+		}
+		?>		
 	</ul>
 </div>
+
+		<script>
+		jQuery("#pts li a").click(function() {
+			console.log("yu");
+	    jQuery(this).parent().addClass('selected').siblings().removeClass('selected');
+    	});				
+		</script>
+
 <div class="ppc-table-wrapper">
 <table class="form-table ppc-form-table">
 	<tbody>
@@ -71,10 +73,13 @@ wp_enqueue_script( 'jQuery-ui-droppable' );
 				<select id="pts" name="post-type-selected">
 					<option value= "default">--Select one--</option>
 				<?php
-				foreach ($ppc_post_types as $ppc_post ) {
-					?><option value= "<?php echo $ppc_post;?>"><?php echo $ppc_post; ?></option> <?php
-					}
-				?>	
+				foreach ( $ppc_post_types as $ppc_post ) {
+					?>
+					<option value= "<?php echo $ppc_post; ?>"><?php echo $ppc_post; ?></option> 
+					<?php
+				}
+				?>
+					
 				</select>
 			</td>
 		</tr> -->
@@ -85,20 +90,20 @@ wp_enqueue_script( 'jQuery-ui-droppable' );
 				
 			<?php
 			if ( ! empty( $ppc_checklist_item_data ) ) {
-			?>
-				<ul id="ppc-ul" class="ppc-ul"> 
-			<?php
-			foreach ( $ppc_checklist_item_data as $ppc_key => $ppc_value  ) {
 				?>
+				<ul id="ppc-ul" class="ppc-ul"> 
+				<?php
+				foreach ( $ppc_checklist_item_data as $ppc_key => $ppc_value ) {
+					?>
 									<li class="ppc-li">
 										<span class="dashicons dashicons-menu-alt2 ppc-move-dashicon"></span> <input type="text" readonly="true" class="ppc-drag-feilds" $ppc_item_key ="<?php echo esc_attr( $ppc_key ); ?>" value="<?php echo esc_attr( $ppc_value ); ?>" name="ppc_checklist_item[]" >
 										<button type="button" id = "edit" name="Edit" class="ppcedit" value="<?php echo esc_attr( $ppc_key ); ?>"> <span class="dashicons dashicons-edit"></span>Edit</button>
 										<button type="button" id ="Delete" name="Delete" class="ppcdelete" value="<?php echo esc_attr( $ppc_key ); ?>"> <span class="dashicons dashicons-trash ppc-delete-dashicon"></span>Delete</button>
 									</li>
-				<?php
+					<?php
+				}
 			}
-		}
-		?>
+			?>
 						</ul>
 				</div>
 				<p class="ppc-empty-list"><?php esc_html_e( 'You do not have any items in the list. Please add items in the list.', 'pre-publish-checklist' ); ?></p>
