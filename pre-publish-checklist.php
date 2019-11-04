@@ -16,6 +16,7 @@
  * @license  https://brainstormforce.com
  * @link     https://brainstormforce.com
  */
+
 define( 'PPC_PATH ', __FILE__ );
 
 define( 'PPC_ABSPATH', plugin_dir_path( __FILE__ ) );

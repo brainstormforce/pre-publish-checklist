@@ -37,57 +37,24 @@ wp_enqueue_script( 'jQuery-ui-droppable' );
 ?>
 
 <div>
-	<?php
-		$ppc_post_types = get_option( 'ppc_post_types_to_display' );
-	?>		
+	<?php $ppc_post_types = get_option( 'ppc_post_types_to_display' ); ?>		
 	<ul id="pts" class="pts" name ="post-type-selected">
 		<?php
 		foreach ( $ppc_post_types as $ppc_post ) {
-			
-			$ppc_active_class = ($_GET['type'] == $ppc_post) ? 'ppc-active': '';		
-				echo '<li class="'.$ppc_active_class.'"><a href="?page=ppc&tab=ppc-checklist&type=' .$ppc_post. ' "> '. ucfirst($ppc_post) .'  </a></li>';
-		?>
-		<?php
+			$ppc_active_class = wp_unslash( ( $_GET['type'] == $ppc_post ) ) ? 'ppc-active' : '';
+				echo '<li class="' . $ppc_active_class . '"><a href="?page=ppc&tab=ppc-checklist&type=' . $ppc_post . ' "> ' . ucfirst( $ppc_post ) . '  </a></li>';
 		}
-		?>		
+		?>
+
 	</ul>
 </div>
-
-		<script>
-		jQuery("#pts li a").click(function() {
-			console.log("yu");
-	    jQuery(this).parent().addClass('selected').siblings().removeClass('selected');
-    	});				
-		</script>
-
 <div class="ppc-table-wrapper">
 <table class="form-table ppc-form-table">
 	<tbody>
-		<!-- <tr>
-			<th scope="row"><p class="ppc-list-label"><span class=""></span><?php esc_html_e( 'Set a checklist for', 'pre-publish-checklist' ); ?></p> </th>
-			<td class="">
-				<?php
-				$ppc_post_types = get_option( 'ppc_post_types_to_display' );
-				// var_dump($ppc_post_types);
-				?>
-				<select id="pts" name="post-type-selected">
-					<option value= "default">--Select one--</option>
-				<?php
-				foreach ( $ppc_post_types as $ppc_post ) {
-					?>
-					<option value= "<?php echo $ppc_post; ?>"><?php echo $ppc_post; ?></option> 
-					<?php
-				}
-				?>
-					
-				</select>
-			</td>
-		</tr> -->
 		<tr>
 			<th scope="row"><p class="ppc-list-label"><span class="spinner ppc-spinner"></span><?php esc_html_e( 'Pre-Publish Checklist', 'pre-publish-checklist' ); ?></p> </th>
 			<td class="ppc-list-table">
 				<div id="columns" class="ppcdragdrop">
-				
 			<?php
 			if ( ! empty( $ppc_checklist_item_data ) ) {
 				?>

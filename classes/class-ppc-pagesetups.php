@@ -206,8 +206,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 				$ppc_key        = sanitize_text_field( wp_unslash( $_POST['ppc_key_value'] ) );
 				$ppc_value      = sanitize_text_field( wp_unslash( $_POST['ppc_field_value'] ) );
 				$ppc_check_data = array( $ppc_key => $ppc_value );
-				var_dump( $ppc_check_data );
-				$pre_data = get_post_meta( $ppcpost, '_ppc_meta_key', true );
+				$pre_data       = get_post_meta( $ppcpost, '_ppc_meta_key', true );
 				if ( ! empty( $pre_data ) ) {
 					$ppc_checklist_add_data = array_merge( $pre_data, $ppc_check_data );
 				} else {
