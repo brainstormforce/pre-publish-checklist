@@ -55,7 +55,11 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			add_action( 'wp_ajax_ppc_checklistitem_edit', array( $this, 'ppc_edit_item' ), 1 );
 		}
 
-		function get_list_by_post_type( $post_type = '' ) {
+		/**
+		 * Check for default list if present.
+		 */
+
+		public function get_list_by_post_type( $post_type = '' ) {
 			$ppc_cpt_checklist       = self::get_instance()->get_list();
 			$ppc_checklist_item_data = array();
 
@@ -66,7 +70,11 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			return $ppc_checklist_item_data;
 		}
 
-		function get_list() {
+		/**
+		 * Stores default checklist in the database.
+		 */
+
+		public function get_list() {
 			$ppc_default_checklist_data = array(
 				'ppc_key2' => 'Featured Image Assigned',
 				'ppc_key3' => 'Category Selected',
@@ -95,7 +103,6 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 */
 
 		public function ppc_default_list_data() {
-			// collect all selected post types
 			$ppc_default_post_types = array( 'post', 'page' );
 			add_option( 'ppc_post_types_to_display', $ppc_default_post_types );
 		}
@@ -190,19 +197,20 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
 			if ( ! empty( $_POST['ppc_item_content'] ) && current_user_can( 'manage_options' ) ) {
 				$ppc_newitems            = sanitize_text_field( wp_unslash( $_POST['ppc_item_content'] ) );
+				$ppc_current_type        = sanitize_text_field( wp_unslash( $_POST['ppc_current_type'] ) );
 				$ppc_newitem_key         = uniqid( 'ppc_key' );
 				$ppc_checklist_item_data = $this->get_list();
 				if ( empty( $ppc_checklist_item_data ) || false === $ppc_checklist_item_data ) {
 					$ppc_checklist_item_data = array();
 				}
 
-				$ppc_checklist_item_data[ $_POST['ppc_current_type'] ][ $ppc_newitem_key ] = $ppc_newitems;
+				$ppc_checklist_item_data[ $ppc_current_type ][ $ppc_newitem_key ] = $ppc_newitems;
 
 				update_option( 'ppc_cpt_checklist_data', $ppc_checklist_item_data );
 				?>
 				<?php
 				if ( ! empty( $ppc_checklist_item_data ) ) {
-					foreach ( $ppc_checklist_item_data[ $_POST['ppc_current_type'] ] as $ppc_key => $ppc_value ) {
+					foreach ( $ppc_checklist_item_data[ $ppc_current_type ] as $ppc_key => $ppc_value ) {
 						?>
 								<li class="ppc-li">
 								<span class="dashicons dashicons-menu-alt2 ppc-move-dashicon"></span> <input type="text" readonly="true" class="ppc-drag-feilds" $ppc_item_key ="<?php echo esc_attr( $ppc_key ); ?>" value="<?php echo esc_attr( $ppc_value ); ?>" name="ppc_checklist_item[]" >
