@@ -162,7 +162,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 			$value                   = get_post_meta( get_the_ID(), '_ppc_meta_key', true );
 			?>
 			<?php
-			if ( ! empty( $ppc_checklist_item_data ) ) {
+			if ( ! empty( $ppc_checklist_item_data[ $ppc_screen ] ) ) {
 				?>
 				<div class="ppc-percentage-wrapper">
 					<span class="ppc-percentage-value"></span>
@@ -171,6 +171,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 					</div>
 				</div>
 				<?php
+				// if(is_array($ppc_checklist_item_data)){
 				foreach ( $ppc_checklist_item_data[ $ppc_screen ] as $ppc_key => $ppc_value ) {
 					?>
 					<label for="<?php echo esc_attr( $ppc_key ); ?>">
@@ -184,7 +185,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 				</label>
 					<?php
 				}
-
+			// }
 				?>
 				<?php
 			} else {

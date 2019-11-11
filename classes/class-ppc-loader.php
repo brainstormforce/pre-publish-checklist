@@ -197,20 +197,20 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
 			if ( ! empty( $_POST['ppc_item_content'] ) && current_user_can( 'manage_options' ) ) {
 				$ppc_newitems            = sanitize_text_field( wp_unslash( $_POST['ppc_item_content'] ) );
-				$ppc_current_type        = sanitize_text_field( wp_unslash( $_POST['ppc_current_type'] ) );
+				// $ppc_current_type        = sanitize_text_field( wp_unslash( $_POST['ppc_current_type'] ) );
 				$ppc_newitem_key         = uniqid( 'ppc_key' );
 				$ppc_checklist_item_data = $this->get_list();
 				if ( empty( $ppc_checklist_item_data ) || false === $ppc_checklist_item_data ) {
 					$ppc_checklist_item_data = array();
 				}
 
-				$ppc_checklist_item_data[ $ppc_current_type ][ $ppc_newitem_key ] = $ppc_newitems;
+				$ppc_checklist_item_data[ $_POST['ppc_current_type'] ][ $ppc_newitem_key ] = $ppc_newitems;
 
 				update_option( 'ppc_cpt_checklist_data', $ppc_checklist_item_data );
 				?>
 				<?php
 				if ( ! empty( $ppc_checklist_item_data ) ) {
-					foreach ( $ppc_checklist_item_data[ $ppc_current_type ] as $ppc_key => $ppc_value ) {
+					foreach ( $ppc_checklist_item_data[ $_POST['ppc_current_type'] ] as $ppc_key => $ppc_value ) {
 						?>
 								<li class="ppc-li">
 								<span class="dashicons dashicons-menu-alt2 ppc-move-dashicon"></span> <input type="text" readonly="true" class="ppc-drag-feilds" $ppc_item_key ="<?php echo esc_attr( $ppc_key ); ?>" value="<?php echo esc_attr( $ppc_value ); ?>" name="ppc_checklist_item[]" >
