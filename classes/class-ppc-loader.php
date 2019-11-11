@@ -55,6 +55,17 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			add_action( 'wp_ajax_ppc_checklistitem_edit', array( $this, 'ppc_edit_item' ), 1 );
 		}
 
+		function get_list_by_post_type( $post_type = '' ) {
+			$ppc_cpt_checklist       = self::get_instance()->get_list();
+			$ppc_checklist_item_data = array();
+
+			if ( ! empty( $ppc_cpt_checklist ) && ! empty( $post_type ) && isset( $ppc_cpt_checklist[ $post_type ] ) ) {
+				$ppc_checklist_item_data = $ppc_cpt_checklist[ $post_type ];
+			}
+
+			return $ppc_checklist_item_data;
+		}
+
 		function get_list() {
 			$ppc_default_checklist_data = array(
 				'ppc_key2' => 'Featured Image Assigned',
@@ -158,9 +169,9 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		public function ppc_drag_item() {
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
 			if ( ! empty( $_POST['ppc_order'] ) && current_user_can( 'manage_options' ) ) {
-					$ppc_item_drag_contents                                = array_map( 'sanitize_text_field', wp_unslash( $_POST['ppc_order'] ) );
-					$ppc_checklist_item_data                               = get_option( 'ppc_cpt_checklist_data' );
-					$ppc_checklist_item_data[ $_POST['ppc_current_type'] ] = $ppc_item_drag_contents;
+					$ppc_item_drag_contents  = array_map( 'sanitize_text_field', wp_unslash( $_POST['ppc_order'] ) );
+					$ppc_checklist_item_data = get_option( 'ppc_cpt_checklist_data' );
+					$ppc_checklist_item_data[ wp_unslash( $_POST['ppc_current_type'] ) ] = $ppc_item_drag_contents;
 				update_option( 'ppc_cpt_checklist_data', $ppc_checklist_item_data );
 				wp_send_json_success( __( 'sucess', 'pre-publish-checklist' ) );
 			} else {

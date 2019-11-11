@@ -84,7 +84,8 @@ $ppc_exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates'
 				<p class="description"><?php esc_html_e( 'Select the post types where you wish to display the Pre-Publish Checklist.', 'pre-publish-checklist' ); ?></p> <br>
 
 				<?php wp_nonce_field( 'ppc-form-nonce', 'ppc-form' ); ?>
-			<br><input type="submit" class="button button-primary ppc-savesetting"  name="submit_radio" Value="Save Settings"/>		
+			<br>
+			<input type="submit" class="button button-primary ppc-savesetting"  name="submit_radio" Value="Save Settings"/>		
 			</td>
 		</tr>
 		</tbody>

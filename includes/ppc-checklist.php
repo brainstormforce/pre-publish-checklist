@@ -11,22 +11,9 @@
  * @link     http://brainstormforce.com
  */
 
-$ppc_cpt_checklist = PPC_Loader::get_instance()->get_list();
-
-/*
-function get_current_post_type_list( $post_type ) {
-$cpt_checklist = PPC_Loader::get_instance()->get_list();
-if( isset( $cpt_checklist[$post_type ] ) ) {
-return $cpt_checklist[$post_type ];
-}
-return array();
-}
-*/
-
-$ppc_checklist_item_data = array();
-if ( ! empty( $ppc_cpt_checklist ) && ( isset( $_GET['type'] ) && array_key_exists( $_GET['type'], $ppc_cpt_checklist ) ) ) {
-	$ppc_checklist_item_data = $ppc_cpt_checklist[ $_GET['type'] ];
-}
+// phpcs:ignore WordPress.Security.NonceVerification
+$ppc_type                = isset( $_GET['type'] ) ? sanitize_key( $_GET['type'] ) : '';
+$ppc_checklist_item_data = PPC_Loader::get_instance()->get_list_by_post_type( $ppc_type );
 
 wp_enqueue_script( 'ppc_backend_itemlist_js' );
 wp_enqueue_style( 'ppc_backend_css' );
@@ -41,8 +28,8 @@ wp_enqueue_script( 'jQuery-ui-droppable' );
 	<ul id="pts" class="pts" name ="post-type-selected">
 		<?php
 		foreach ( $ppc_post_types as $ppc_post ) {
-			$ppc_active_class = wp_unslash( ( $_GET['type'] == $ppc_post ) ) ? 'ppc-active' : '';
-				echo '<li class="' . $ppc_active_class . '"><a href="?page=ppc&tab=ppc-checklist&type=' . $ppc_post . ' "> ' . ucfirst( $ppc_post ) . '  </a></li>';
+			$ppc_active_class = ( $ppc_type == $ppc_post ) ? 'ppc-active' : '';
+				echo '<li class="' . esc_attr( $ppc_active_class ) . '"><a href="?page=ppc&tab=ppc-checklist&type=' . esc_attr( $ppc_post ) . ' "> ' . esc_attr( ucfirst( $ppc_post ) ) . '  </a></li>';
 		}
 		?>
 
