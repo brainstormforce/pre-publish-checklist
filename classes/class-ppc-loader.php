@@ -239,7 +239,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
 			if ( isset( $_POST['delete'] ) && current_user_can( 'manage_options' ) ) {
 				$ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
-				$ppc_checklist_item_data   = get_option( 'ppc_cpt_checklist_data' );
+				$ppc_checklist_item_data   = $this->get_list();
 				$ppc_delete_value          = sanitize_text_field( wp_unslash( $_POST['delete'] ) );
 				$ppc_current_type          = isset( $_POST['ppc_current_type'] ) ? sanitize_text_field( wp_unslash( $_POST['ppc_current_type'] ) ) : '';
 
@@ -264,7 +264,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
 			if ( isset( $_POST['ppc_edit_value'] ) && isset( $_POST['ppc_edit_key'] ) && current_user_can( 'manage_options' ) ) {
 				$ppc_post_types_to_display = get_option( 'ppc_post_types_to_display' );
-				$ppc_checklist_item_data   = get_option( 'ppc_cpt_checklist_data' );
+				$ppc_checklist_item_data   = $this->get_list();
 				$ppc_current_type          = isset( $_POST['ppc_current_type'] ) ? sanitize_text_field( wp_unslash( $_POST['ppc_current_type'] ) ) : '';
 
 				if ( ! empty( $ppc_checklist_item_data ) ) {
