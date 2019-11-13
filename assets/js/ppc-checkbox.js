@@ -26,13 +26,13 @@ jQuery(document).ready(
                 if (jQuery('.editor-post-publish-panel__toggle').length == 1) {
                     jQuery('#ppc-update').attr('style', 'display:none');
                     jQuery('.editor-post-publish-panel__toggle').attr('style', 'display:none');
-                    jQuery('.edit-post-header__settings').children(':eq(2)').after(jQuery('#ppc-publish').attr('style', 'display:inline-flex'));
+                    jQuery('.edit-post-header__settings').find('.editor-post-publish-panel__toggle').after(jQuery('#ppc-publish').attr('style', 'display:inline-flex'));
                     if (jQuery('#ppc-publish').length == 0) {
-                        jQuery('.edit-post-header__settings').children('.editor-post-publish-panel__toggle').after('<button type="button" class="components-button  is-button is-primary ppc-publish" id="ppc-publish">Publish...</button>');
+                        jQuery('.edit-post-header__settings').find('.editor-post-publish-panel__toggle').after('<button type="button" class="components-button  is-button is-primary ppc-publish" id="ppc-publish">Publish...</button>');
                     }
                 } else if (jQuery('.editor-post-publish-button').length == 1) {
                     jQuery('.editor-post-publish-button').attr('style', 'display:none');
-                    jQuery('.edit-post-header__settings').children('.editor-post-publish-button').after(jQuery('#ppc-update').attr('style', 'display:inline-flex'));
+                    jQuery('.edit-post-header__settings').find('.editor-post-publish-button').after(jQuery('#ppc-update').attr('style', 'display:inline-flex'));
                     if (jQuery('#ppc-update').length == 0) {
                         jQuery('.edit-post-header__settings').children(':eq(2)').after('<button type="button" class="components-button  is-button is-primary ppc-publish" id="ppc-update">Update</button>');
                     }
@@ -109,12 +109,12 @@ jQuery(document).ready(
                         } else if (jQuery('.editor-post-publish-button').length == 1) {
                             jQuery('.editor-post-publish-button').attr('style', 'display:none');
                         }
-                        if (jQuery('.edit-post-header__settings').children('.editor-post-save-draft').length != 0) {
-                            jQuery('.edit-post-header__settings').children('.editor-post-publish-panel__toggle').after('<button type="button" class="components-button  is-button is-primary ppc-publish" id="ppc-publish">Publish...</button>');
-                        } else if (jQuery('.edit-post-header__settings').children('.editor-post-switch-to-draft').length == 1) {
-                            jQuery('.edit-post-header__settings').children('.editor-post-publish-button').after('<button type="button" class="components-button  is-button is-primary ppc-publish" id="ppc-update">Update</button>');
-                        } else if (jQuery('.edit-post-header__settings').children('.editor-post-switch-to-draft').length == 0) {
-                            jQuery('.edit-post-header__settings').children('.editor-post-publish-panel__toggle').after('<button type="button" class="components-button  is-button is-primary ppc-publish" id="ppc-publish">Publish...</button>');
+                        if (jQuery('.edit-post-header__settings').find('.editor-post-save-draft').length != 0) {
+                            jQuery('.edit-post-header__settings').find('.editor-post-publish-panel__toggle').after('<button type="button" class="components-button  is-button is-primary ppc-publish" id="ppc-publish">Publish...</button>');
+                        } else if (jQuery('.edit-post-header__settings').find('.editor-post-switch-to-draft').length == 1) {
+                            jQuery('.edit-post-header__settings').find('.editor-post-publish-button').after('<button type="button" class="components-button  is-button is-primary ppc-publish" id="ppc-update">Update</button>');
+                        } else if (jQuery('.edit-post-header__settings').find('.editor-post-switch-to-draft').length == 0) {
+                            jQuery('.edit-post-header__settings').find('.editor-post-publish-panel__toggle').after('<button type="button" class="components-button  is-button is-primary ppc-publish" id="ppc-publish">Publish...</button>');
                         }
                     }
                 }, 10
