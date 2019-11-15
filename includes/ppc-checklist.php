@@ -24,15 +24,16 @@ wp_enqueue_script( 'jQuery-ui-droppable' );
 ?>
 
 <div>
-	<?php $ppc_post_types = get_option( 'ppc_post_types_to_display' ); ?>		
 	<ul id="pts" class="pts" name ="post-type-selected">
 		<?php
-		foreach ( $ppc_post_types as $ppc_post ) {
-			$ppc_active_class = ( $ppc_type == $ppc_post ) ? 'ppc-active' : '';
-				echo '<li class="' . esc_attr( $ppc_active_class ) . '"><a href="?page=ppc&tab=ppc-checklist&type=' . esc_attr( $ppc_post ) . ' "> ' . esc_attr( ucfirst( $ppc_post ) ) . '  </a></li>';
+		$ppc_post_types = get_option( 'ppc_post_types_to_display' );
+		foreach ( get_post_types( array( 'public' => true ), 'objects' ) as $post_type_slug => $post_type_object) {
+			if( in_array($post_type_slug, $ppc_post_types) ) {
+				$ppc_active_class = ( $ppc_type == $post_type_slug ) ? 'ppc-active' : '';
+				echo '<li class="' . esc_attr( $ppc_active_class ) . '"><a href="' . esc_url( admin_url( 'options-general.php?page=ppc&tab=ppc-checklist&type=' ) . $post_type_slug ) . ' "> ' . esc_attr( $post_type_object->label ) . '  </a></li>';
+			}
 		}
 		?>
-
 	</ul>
 </div>
 <div class="ppc-table-wrapper">

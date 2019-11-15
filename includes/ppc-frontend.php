@@ -15,7 +15,8 @@ $ppc_radio_button = get_option( 'ppc_error_level', 3 );
 wp_enqueue_style( 'ppc_backend_css' );
 $ppc_checklist_item_data = get_option( 'ppc_cpt_checklist_data' );
 $ppc_post_types          = get_option( 'ppc_post_types_to_display' );
-$ppc_args                = array(
+
+$ppc_args = array(
 	'public' => true,
 );
 

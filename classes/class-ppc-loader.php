@@ -57,6 +57,8 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 
 		/**
 		 * Check for default list if present with a default parameter.
+		 *
+		 * @param string $post_type Post type.
 		 */
 		public function get_list_by_post_type( $post_type = '' ) {
 			$ppc_cpt_checklist       = self::get_instance()->get_list();
