@@ -158,7 +158,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 			wp_enqueue_script( 'ppc_backend_checkbox_js' );
 			wp_enqueue_script( 'ppc_backend_tooltip_js' );
 			wp_enqueue_style( 'ppc_backend_css' );
-			$ppc_checklist_item_data = get_option( 'ppc_cpt_checklist_data' );
+			$ppc_checklist_item_data = PPC_Loader::get_instance()->get_list();
 			$value                   = get_post_meta( get_the_ID(), '_ppc_meta_key', true );
 			?>
 			<?php

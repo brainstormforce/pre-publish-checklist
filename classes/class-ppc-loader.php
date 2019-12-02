@@ -124,7 +124,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		public function ppc_plugin_backend_js() {
 			$ppc_radio_button = get_option( 'ppc_error_level', 3 );
 
-			$ppc_checklist_item_data = get_option( 'ppc_cpt_checklist_data' );
+			$ppc_checklist_item_data = $this->get_list();
 
 			wp_register_script( 'ppc_backend_checkbox_js', PPC_PLUGIN_URL . '/assets/js/ppc-checkbox.js', null, PPC_VERSION, false );
 			wp_register_script( 'ppc_backend_itemlist_js', PPC_PLUGIN_URL . '/assets/js/ppc-itemlist.js', null, PPC_VERSION, false );
@@ -177,7 +177,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			if ( ! empty( $_POST['ppc_order'] ) && current_user_can( 'manage_options' ) ) {
 					$ppc_current_type                             = isset( $_POST['ppc_current_type'] ) ? sanitize_text_field( wp_unslash( $_POST['ppc_current_type'] ) ) : '';
 					$ppc_item_drag_contents                       = array_map( 'sanitize_text_field', wp_unslash( $_POST['ppc_order'] ) );
-					$ppc_checklist_item_data                      = get_option( 'ppc_cpt_checklist_data' );
+					$ppc_checklist_item_data                      = $this->get_list();
 					$ppc_checklist_item_data[ $ppc_current_type ] = $ppc_item_drag_contents;
 				update_option( 'ppc_cpt_checklist_data', $ppc_checklist_item_data );
 				wp_send_json_success( __( 'sucess', 'pre-publish-checklist' ) );
