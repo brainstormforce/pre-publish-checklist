@@ -40,12 +40,9 @@ jQuery(document).ready(function() {
     ppc_sortable( jQuery('#ppc-ul') );
     //Ajax trigger for adding an element in the array of checklist.
     jQuery(document).on('click', "#ppc-Savelist", function() {
-
-
         var url_string = window.location.href; //window.location.href
         var url = new URL(url_string);
         var get_type = url.searchParams.get("type");
-
         ppc_sortable( jQuery('#ppc-ul') );
         ppc_spinner.addClass("is-active");
         var ppc_input_item = jQuery('.ppc-item-input').val();

@@ -553,3 +553,7 @@ input.ppc_checkboxes{
    font-weight: 600;
    transition-duration: .05s;
 }
+
+td.column-ppc_checklist{
+  font-style: italic;
+}
