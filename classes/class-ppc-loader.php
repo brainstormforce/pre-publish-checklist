@@ -85,13 +85,14 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 				'ppc_key8' => 'Spelling and Grammar Checked',
 			);
 
+			add_option( 'ppc_checklist_data', $ppc_default_checklist_data );
 			$ppc_checklist_item_data = get_option( 'ppc_checklist_data', $ppc_default_checklist_data );
 
 			$default_list = array(
 				'page' => $ppc_checklist_item_data,
 				'post' => $ppc_checklist_item_data,
 			);
-
+			add_option( 'ppc_cpt_checklist_data', $default_list );
 			return get_option( 'ppc_cpt_checklist_data', $default_list );       // page, post, movie.
 		}
 

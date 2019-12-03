@@ -44,6 +44,7 @@ jQuery(document).ready(function() {
 
         var url_string = window.location.href; //window.location.href
         var url = new URL(url_string);
+        // console.log(url);
         var get_type = url.searchParams.get("type");
 
         ppc_sortable( jQuery('#ppc-ul') );
