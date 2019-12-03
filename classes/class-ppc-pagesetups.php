@@ -50,7 +50,6 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		}
 		/**
 		 * Constructor
-		+
 		 */
 		public function __construct() {
 			$pst_typ = get_option( 'ppc_post_types_to_display' );
@@ -87,10 +86,10 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 */
 		public function column_data( $columns, $post_id ) {
 			wp_enqueue_style( 'ppc_backend_css' );
-			$total          = get_option( 'ppc_cpt_checklist_data' );
-			$checked        = get_post_meta( get_the_ID(), '_ppc_meta_key', true );
-			$a              = get_current_screen();
-			$post_val_array = isset( $total[ $a->post_type ] ) ? $total[ $a->post_type ] : '';
+			$total                    = get_option( 'ppc_cpt_checklist_data' );
+			$checked                  = get_post_meta( get_the_ID(), '_ppc_meta_key', true );
+			$current_screen_post_type = get_current_screen();
+			$post_val_array           = isset( $total[ $current_screen_post_type->post_type ] ) ? $total[ $current_screen_post_type->post_type ] : '';
 			switch ( $columns ) {
 				case 'ppc_checklist':
 					if ( ! isset( $post_val_array ) || empty( $post_val_array ) && ! isset( $checked ) || empty( $checked ) ) {
