@@ -86,6 +86,10 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 			);
 			$ppc_checklist_item_data    = get_option( 'ppc_checklist_data', $ppc_default_checklist_data );
 
+			$default_list = array();
+
+			$ppc_post_types = get_option( 'ppc_post_types_to_display', array('page', 'post' ) );
+
 			$default_list = array(
 				'page' => $ppc_checklist_item_data,
 				'post' => $ppc_checklist_item_data,
