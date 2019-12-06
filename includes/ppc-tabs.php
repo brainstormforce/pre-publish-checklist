@@ -45,9 +45,9 @@ if ( isset( $_GET['tab'] ) ) {  //PHPCS:ignore:WordPress.Security.NonceVerificat
 		echo 'nav-tab-active ppc-active-tab';
 	}
 	?>
-	">
-	<?php esc_attr_e( 'General Settings', 'pre-publish-checklist' ); ?></a>
-		
+	"><?php esc_attr_e( 'General Settings', 'pre-publish-checklist' ); ?></a>
+
+
 		<a href="?page=ppc&tab=ppc-checklist&type=post" class="nav-tab tb 
 	<?php
 	if ( 'ppc-checklist' === $ppc_active_tab ) {
