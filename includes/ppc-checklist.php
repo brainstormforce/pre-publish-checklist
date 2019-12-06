@@ -30,7 +30,7 @@ wp_enqueue_script( 'jQuery-ui-droppable' );
 		foreach ( get_post_types( array( 'public' => true ), 'objects' ) as $ppc_post_type_slug => $ppc_post_type_obj ) {
 			if ( in_array( $ppc_post_type_slug, $ppc_post_types, true ) ) {
 				$ppc_active_class = ( $ppc_type === $ppc_post_type_slug ) ? 'ppc-active' : '';
-				echo '<li class="' . esc_attr( $ppc_active_class ) . '"><a href="' . esc_url( admin_url( 'options-general.php?page=ppc&tab=ppc-checklist&type=' ) . $ppc_post_type_slug ) . ' "> ' . esc_attr( $ppc_post_type_obj->label ) . '  </a></li>';
+				echo '<li class="' . esc_attr( $ppc_active_class ) . '"><a href="' . esc_url( admin_url( 'options-general.php?page=ppc&tab=ppc-checklist&type=' ) . $ppc_post_type_slug ) . ' "> ' . esc_attr( ucfirst( $ppc_post_type_obj->label ) ) . '  </a></li>';
 			}
 		}
 		?>

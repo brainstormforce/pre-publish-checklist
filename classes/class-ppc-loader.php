@@ -94,10 +94,6 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 				$default_list[$post_type] = $ppc_checklist_item_data;
 			} 
 
-			/*$default_list = array(
-				'page' => $ppc_checklist_item_data,
-				'post' => $ppc_checklist_item_data,
-			);*/
 			return get_option( 'ppc_cpt_checklist_data', $default_list );       // page, post, movie.
 		}
 
