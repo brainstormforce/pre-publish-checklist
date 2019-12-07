@@ -53,6 +53,5 @@ Yes, there is a short list that we've provided within the plugin. However, we re
 ### 1.0.1 ###
 - Fixed: Publish/Update button position changes on changing the post status.
 
->>>>>>> 985b810e2dad5552855527329a4b585dc3f81ea3
 ### 1.0.0 ###
 - Initial release.
