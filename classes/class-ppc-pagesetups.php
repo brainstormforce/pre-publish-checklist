@@ -104,7 +104,6 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 */
 		public function ppc_column_data_func( $columns, $post_id ) {
 			wp_enqueue_style( 'ppc_backend_css' );
-			// $ppc_total_checklist_data                    = get_option( 'ppc_cpt_checklist_data' );
 			$ppc_total_checklist_data = PPC_Loader::get_instance()->get_list();
 			$ppc_checked_data         = get_post_meta( get_the_ID(), '_ppc_meta_key', true );
 			$current_screen_post_type = get_current_screen();
@@ -161,7 +160,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 * @since 1.0.0
 		 */
 		public function add_dropdown() {
-			$ppc_pst_type = get_option( 'ppc_post_types_to_display' );
+			$ppc_pst_type       = get_option( 'ppc_post_types_to_display' );
 			$ppc_checklist_data = PPC_Loader::get_instance()->get_list();
 			if ( isset( $ppc_pst_type ) && isset( $ppc_checklist_data ) ) {
 				foreach ( $ppc_pst_type as $key ) {
