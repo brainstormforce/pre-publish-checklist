@@ -4,8 +4,8 @@
 **Tags:** Pre-publish checklist, Post publish checklist, Editorial checklist, Blog publish checklist, Cross check post or page  
 **Requires at least:** 4.7  
 **Requires PHP:** 5.6  
-**Tested up to:** 5.2  
-**Stable tag:** 1.0.0  
+**Tested up to:** 5.3  
+**Stable tag:** 1.0.2  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -47,5 +47,12 @@ Yes, there is a short list that we've provided within the plugin. However, we re
 
 ## Changelog ##
 
+### 1.0.2 ###
+- Fixed: Compatibility issues with Wordpress 5.3.
+
+### 1.0.1 ###
+- Fixed: Publish/Update button position changes on changing the post status.
+
+>>>>>>> 985b810e2dad5552855527329a4b585dc3f81ea3
 ### 1.0.0 ###
 - Initial release.
