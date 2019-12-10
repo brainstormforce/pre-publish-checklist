@@ -30,12 +30,14 @@ if ( ! class_exists( 'PPC_Update' ) ) :
 		 * @var instance
 		 */
 		private static $instance;
-		
+
 		/**
 		 * Option key for stored version number.
+		 *
+		 * @var instance
 		 */
 		private $db_version_key = '_ppc_db_version';
-		
+
 		/**
 		 *  Initiator
 		 */
@@ -51,7 +53,7 @@ if ( ! class_exists( 'PPC_Update' ) ) :
 		 */
 		public function __construct() {
 
-			//Plugin updates.
+			// Plugin updates.
 			if ( is_admin() ) {
 				add_action( 'admin_init', array( $this, 'init' ), 5 );
 			} else {
@@ -64,7 +66,7 @@ if ( ! class_exists( 'PPC_Update' ) ) :
 		 *
 		 * @since 1.1.4
 		 */
-		public function init(){
+		public function init() {
 			do_action( 'ppc_update_before' );
 
 			if ( ! $this->needs_db_update() ) {
@@ -80,15 +82,12 @@ if ( ! class_exists( 'PPC_Update' ) ) :
 			$this->update_db_version();
 
 			do_action( 'ppc_update_after' );
-
 		}
 
 		/**
 		 * Moves the option values from ppc_checklist_data to ppc_cpt_checklist_data.
-		 *
 		 */
-		public function update_options_table(){
-			echo "insider";
+		public function update_options_table() {
 			$ppc_default_checklist_data = array(
 				'ppc_key2' => 'Featured Image Assigned',
 				'ppc_key3' => 'Category Selected',
@@ -99,9 +98,7 @@ if ( ! class_exists( 'PPC_Update' ) ) :
 				'ppc_key8' => 'Spelling and Grammar Checked',
 			);
 
-			$ppc_checklist_item_data    = get_option( 'ppc_checklist_data', $ppc_default_checklist_data);
-			var_dump($ppc_checklist_item_data);
-			update_option( 'ppc_cpt_checklist_data', $ppc_checklist_item_data );
+			$ppc_checklist_item_data = get_option( 'ppc_checklist_data', $ppc_default_checklist_data );
 
 			$default_list = array();
 
@@ -111,8 +108,10 @@ if ( ! class_exists( 'PPC_Update' ) ) :
 				$default_list[ $post_type ] = $ppc_checklist_item_data;
 			}
 
-			return get_option( 'ppc_cpt_checklist_data', $ppc_checklist_item_data );
+			update_option( 'ppc_cpt_checklist_data', $default_list );
 
+			// deleted old option.
+			delete_option( 'ppc_checklist_data' );
 		}
 
 		/**
@@ -122,7 +121,6 @@ if ( ! class_exists( 'PPC_Update' ) ) :
 		 * @return true|false True if stored database version is lower than constant; false if otherwise.
 		 */
 		private function needs_db_update() {
-			
 			$db_version = get_option( $this->db_version_key, false );
 
 			if ( false === $db_version || version_compare( $db_version, PPC_VERSION ) ) {
@@ -140,7 +138,6 @@ if ( ! class_exists( 'PPC_Update' ) ) :
 		 */
 		private function update_db_version() {
 			update_option( '_ppc_db_version', PPC_VERSION );
-			// update_option( $this->$db_version_key, PPC_VERSION );
 		}
 
 	}

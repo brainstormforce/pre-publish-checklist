@@ -64,11 +64,9 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		public function get_list_by_post_type( $post_type = '' ) {
 			$ppc_cpt_checklist       = self::get_instance()->get_list();
 			$ppc_checklist_item_data = array();
-			// var_dump($ppc_cpt_checklist);
 			if ( ! empty( $ppc_cpt_checklist ) && ! empty( $post_type ) && isset( $ppc_cpt_checklist[ $post_type ] ) ) {
 				$ppc_checklist_item_data = $ppc_cpt_checklist[ $post_type ];
 			}
-			var_dump(( $ppc_cpt_checklist[ $post_type ]));
 			return $ppc_checklist_item_data;
 		}
 
@@ -76,32 +74,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 * Stores default checklist in the database.
 		 */
 		public function get_list() {
-/*			$ppc_default_checklist_data = array(
-				'ppc_key2' => 'Featured Image Assigned',
-				'ppc_key3' => 'Category Selected',
-				'ppc_key4' => 'Formatting Done',
-				'ppc_key5' => 'Title is Catchy',
-				'ppc_key6' => 'Social Images Assigned',
-				'ppc_key7' => 'Done SEO',
-				'ppc_key8' => 'Spelling and Grammar Checked',
-			);
-			$ppc_checklist_item_data    = get_option( 'ppc_checklist_data', $ppc_default_checklist_data );
-*/
-			// $default_list = array();
-
-/*			$ppc_post_types = get_option( 'ppc_post_types_to_display', array( 'page', 'post' ) );
-
-			foreach ( $ppc_post_types as $key => $post_type ) {
-				$default_list[ $post_type ] = $ppc_checklist_item_data;
-			}
-*/		
-			$x = get_option( 'ppc_cpt_checklist_data');
-
-			// return get_option( 'ppc_cpt_checklist_data', $default_list );       // page, post, movie.
-			return $x;
-			// get_option( 'ppc_cpt_checklist_data');       // page, post, movie.
-			
-			wp_die();
+			return get_option( 'ppc_cpt_checklist_data', array() );
 		}
 
 		/**
@@ -111,8 +84,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 * @return void
 		 */
 		public function ppc_default_list_data() {
-			$ppc_default_post_types = array( 'post', 'page' );
-			add_option( 'ppc_post_types_to_display', $ppc_default_post_types );
+			add_option( 'ppc_post_types_to_display', array( 'post', 'page' ) );
 		}
 
 		/**
@@ -131,7 +103,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 * @since 1.2.0
 		 * @return void
 		 */
-		public function ppc_update(){
+		public function ppc_update() {
 			require_once PPC_ABSPATH . 'classes/class-ppc-update.php';
 		}
 		/**
