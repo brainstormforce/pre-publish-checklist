@@ -49,7 +49,7 @@ if ( isset( $_GET['tab'] ) ) {  //PHPCS:ignore:WordPress.Security.NonceVerificat
 	<?php esc_attr_e( 'General Settings', 'pre-publish-checklist' ); ?></a>
 		<?php
 		$ppc_post_types       = get_option( 'ppc_post_types_to_display' );
-		$ppc_type             = $ppc_post_types[0];
+		$ppc_type             = isset( $ppc_post_types[0] ) ? $ppc_post_types[0] : '';
 		$ppc_active_checkpost = ! empty( $ppc_post_types ) ? $ppc_type : 'post';
 		?>
 		<a href="?page=ppc&tab=ppc-checklist&type=<?php echo esc_attr( $ppc_active_checkpost ); ?>" class="nav-tab tb 

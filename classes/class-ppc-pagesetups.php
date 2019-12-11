@@ -349,7 +349,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 				?>
 					<?php
 			} else {
-				echo 'Please create a list to display here from Settings->Pre-Publish-Checklist';
+				echo 'Please create a list to display. Click <a href="options-general.php?page=ppc&tab=ppc_general_settings" >here</a>';
 			}
 		}
 		/**
