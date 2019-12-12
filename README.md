@@ -47,6 +47,11 @@ Yes, there is a short list that we've provided within the plugin. However, we re
 
 ## Changelog ##
 
+### 1.1.0 ###
+- New: Introduced support for creating an individual checklist for custom post types.
+- New: Added a list column to display the checklist status.
+- New: Added a search bar to filter posts according to pending item.
+
 ### 1.0.2 ###
 - Fixed: Compatibility issues with Wordpress 5.3.
 
