@@ -6,7 +6,7 @@
  *
  * @category PHP
  * @package  Pre-Publish Checklist.
- * @author   Display Name <username@ShubhamW.com>
+ * @author   Display Name <username@brainstormforce.com>
  * @license  http://brainstormforce.com
  * @link     http://brainstormforce.com
  */
@@ -22,7 +22,7 @@ wp_enqueue_script( 'jquery-ui-core' );
 wp_enqueue_script( 'jquery-ui-sortable' );
 wp_enqueue_script( 'jQuery-ui-droppable' );
 ?>
-
+<!-- For displaying checked post types -->
 <div>
 	<ul id="pts" class="pts" name ="post-type-selected">
 		<?php

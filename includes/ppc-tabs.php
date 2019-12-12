@@ -84,4 +84,3 @@ if ( isset( $_GET['tab'] ) ) { //PHPCS:ignore:WordPress.Security.NonceVerificati
 } else {
 	require_once 'ppc-frontend.php';
 }
-

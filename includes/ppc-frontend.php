@@ -5,7 +5,7 @@
  *
  * @category PHP
  * @package  Pre-Publish Checklist.
- * @author   Display Name <username@ShubhamW.com>
+ * @author   Display Name <username@brainstormforce.com>
  * @license  http://brainstormforce.com
  * @link     http://brainstormforce.com
  */

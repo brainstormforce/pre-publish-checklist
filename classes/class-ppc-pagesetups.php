@@ -6,7 +6,7 @@
  *
  * @category PHP
  * @package  Pre-Publish Checklist.
- * @author   Display Name <username@BrainstormForce.com>
+ * @author   Display Name <username@brainstormForce.com>
  * @license  http://brainstormforce.com
  * @link     http://brainstormforce.com
  */
@@ -26,7 +26,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 	 *
 	 * @category PHP
 	 * @package  Pre Publish Check-list
-	 * @author   Display Name <username@BrainstormForce.com>
+	 * @author   Display Name <username@brainstormForce.com>
 	 * @license  http://brainstormforce.com
 	 * @link     http://brainstormforce.com
 	 */
@@ -66,7 +66,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		/**
 		 * Add column name hook loop.
 		 *
-		 * @since 1.0.0
+		 * @since 1.1.0
 		 */
 		public function ppc_addition_column_name() {
 			$pst_typ_column_name = get_option( 'ppc_post_types_to_display' );
@@ -81,7 +81,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		/**
 		 * Add column data hook loop.
 		 *
-		 * @since 1.0.0
+		 * @since 1.1.0
 		 */
 		public function ppc_addition_column_data() {
 			$pst_typ_column_data = get_option( 'ppc_post_types_to_display' );
@@ -100,7 +100,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 *
 		 * @param string $columns for column.
 		 * @param string $post_id for post id.
-		 * @since 1.0.0
+		 * @since 1.1.0
 		 */
 		public function ppc_column_data_func( $columns, $post_id ) {
 			wp_enqueue_style( 'ppc_backend_css' );
@@ -139,7 +139,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 *
 		 * @param string $columns for column.
 		 *
-		 * @since 1.0.0
+		 * @since 1.1.0
 		 */
 		public function ppc_add_column_name_func( $columns ) {
 			$columns = array(
@@ -157,7 +157,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		/**
 		 * Dropdown for page.
 		 *
-		 * @since 1.0.0
+		 * @since 1.1.0
 		 */
 		public function add_dropdown() {
 			$ppc_pst_type       = get_option( 'ppc_post_types_to_display' );
@@ -197,7 +197,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 *
 		 * @param string $query for querying.
 		 *
-		 * @since 1.0.0
+		 * @since 1.1.0
 		 */
 		public function posts_filter( $query ) {
 			if ( isset( $_GET['slect_opt'] ) && ! empty( $_GET['slect_opt'] ) ) {

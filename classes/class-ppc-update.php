@@ -6,7 +6,7 @@
  *
  * @category PHP
  * @package  Pre-Publish Checklist.
- * @author   Display Name <username@ShubhamW.com>
+ * @author   Display Name <username@brainstormforce.com>
  * @license  http://brainstormforce.com
  * @link     http://brainstormforce.com
  */
@@ -17,9 +17,10 @@ if ( ! class_exists( 'PPC_Update' ) ) :
 	 *
 	 * PHP version 7
 	 *
+	 * @since 1.1.0
 	 * @category PHP
 	 * @package  Pre-Publish Checklist.
-	 * @author   Display Name <username@ShubhamW.com>
+	 * @author   Display Name <username@brainstormforce.com>
 	 * @license  http://brainstormforce.com
 	 * @link     http://brainstormforce.com
 	 */
@@ -64,7 +65,7 @@ if ( ! class_exists( 'PPC_Update' ) ) :
 		/**
 		 * Implement theme update logic.
 		 *
-		 * @since 1.1.4
+		 * @since 1.1.0
 		 */
 		public function init() {
 			do_action( 'ppc_update_before' );
@@ -86,6 +87,8 @@ if ( ! class_exists( 'PPC_Update' ) ) :
 
 		/**
 		 * Moves the option values from ppc_checklist_data to ppc_cpt_checklist_data.
+		 *
+		 * @since 1.1.0
 		 */
 		public function update_options_table() {
 			$ppc_default_checklist_data = array(
@@ -109,15 +112,12 @@ if ( ! class_exists( 'PPC_Update' ) ) :
 			}
 
 			update_option( 'ppc_cpt_checklist_data', $default_list );
-
-			// deleted old option.
-			delete_option( 'ppc_checklist_data' );
 		}
 
 		/**
 		 * Check if db upgrade is required.
 		 *
-		 * @since 1.1.4
+		 * @since 1.1.0
 		 * @return true|false True if stored database version is lower than constant; false if otherwise.
 		 */
 		private function needs_db_update() {
@@ -133,7 +133,7 @@ if ( ! class_exists( 'PPC_Update' ) ) :
 		/**
 		 * Update DB version.
 		 *
-		 * @since 1.1.4
+		 * @since 1.1.0
 		 * @return void
 		 */
 		private function update_db_version() {

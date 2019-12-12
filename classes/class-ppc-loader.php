@@ -6,7 +6,7 @@
  *
  * @category PHP
  * @package  Pre-Publish Checklist.
- * @author   Display Name <username@ShubhamW.com>
+ * @author   Display Name <username@brainstormforce.com>
  * @license  http://brainstormforce.com
  * @link     http://brainstormforce.com
  */
@@ -19,7 +19,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 	 *
 	 * @category PHP
 	 * @package  Pre-Publish Checklist.
-	 * @author   Display Name <username@ShubhamW.com>
+	 * @author   Display Name <username@brainstormforce.com>
 	 * @license  http://brainstormforce.com
 	 * @link     http://brainstormforce.com
 	 */
@@ -100,7 +100,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		/**
 		 * Loads classes and includes.
 		 *
-		 * @since 1.2.0
+		 * @since 1.1.0
 		 * @return void
 		 */
 		public function ppc_update() {
@@ -113,8 +113,7 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 * @return void
 		 */
 		public function ppc_plugin_backend_js() {
-			$ppc_radio_button = get_option( 'ppc_error_level', 3 );
-
+			$ppc_radio_button        = get_option( 'ppc_error_level', 3 );
 			$ppc_checklist_item_data = $this->get_list();
 
 			wp_register_script( 'ppc_backend_checkbox_js', PPC_PLUGIN_URL . '/assets/js/ppc-checkbox.js', null, PPC_VERSION, false );
