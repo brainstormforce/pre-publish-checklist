@@ -24,7 +24,7 @@ wp_enqueue_script( 'jQuery-ui-droppable' );
 ?>
 <!-- For displaying checked post types -->
 <div>
-	<ul id="pts" class="pts" name ="post-type-selected">
+	<ul id="ppc-pts" class="ppc-pts" name ="post-type-selected">
 		<?php
 		$ppc_post_types = get_option( 'ppc_post_types_to_display' );
 		foreach ( get_post_types( array( 'public' => true ), 'objects' ) as $ppc_post_type_slug => $ppc_post_type_obj ) {

@@ -530,21 +530,21 @@ input.ppc_checkboxes{
   margin-top: 2px;
 }
 
-.pts{
+.ppc-pts{
   list-style: none;
   display: inline-flex;
 }
 
-.pts li{
+.ppc-pts li{
   border-right: 1px solid #666;
   padding: 0 7px;
 }
 
-.pts li:last-child {
+.ppc-pts li:last-child {
   border-right: none;
 }
 
-.pts li a{
+.ppc-pts li a{
   text-decoration: none;
 }
 
