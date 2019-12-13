@@ -4,8 +4,8 @@
 **Tags:** Pre-publish checklist, Post publish checklist, Editorial checklist, Blog publish checklist, Cross check post or page  
 **Requires at least:** 4.7  
 **Requires PHP:** 5.6  
-**Tested up to:** 5.2  
-**Stable tag:** 1.0.0  
+**Tested up to:** 5.3  
+**Stable tag:** 1.0.2  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -46,6 +46,12 @@ The checklist will appear within a metabox on the post/page edit page.
 Yes, there is a short list that we've provided within the plugin. However, we recommend you to modify it as per your needs.
 
 ## Changelog ##
+
+### 1.0.2 ###
+- Fixed: Compatibility issues with Wordpress 5.3.
+
+### 1.0.1 ###
+- Fixed: Publish/Update button position changes on changing the post status.
 
 ### 1.0.0 ###
 - Initial release.
