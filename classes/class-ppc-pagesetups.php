@@ -169,7 +169,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 					if ( $current_post_type->post_type === $key ) {
 						?>
 						<select class="select_multiple" name="slect_opt" id="slect_opt">
-							<option value="">Filter Unchecked...</option>
+							<option value=""><?php esc_html_e( 'Filter Unchecked...', 'pre-publish-checklist' ); ?></option>
 							<?php
 							if ( isset( $ppc_page_data ) && is_array( $ppc_page_data ) ) {
 								foreach ( $ppc_page_data as $ppc_key => $val ) {

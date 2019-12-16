@@ -11,6 +11,10 @@
  * @link     http://brainstormforce.com
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 // phpcs:ignore WordPress.Security.NonceVerification
 $ppc_type                = isset( $_GET['type'] ) ? sanitize_key( $_GET['type'] ) : '';
 $ppc_checklist_item_data = PPC_Loader::get_instance()->get_list_by_post_type( $ppc_type );

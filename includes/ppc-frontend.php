@@ -10,6 +10,10 @@
  * @link     http://brainstormforce.com
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 // Displaying the contents in the general tab in the plugin settings.
 $ppc_radio_button = get_option( 'ppc_error_level', 3 );
 wp_enqueue_style( 'ppc_backend_css' );

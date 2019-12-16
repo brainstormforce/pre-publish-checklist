@@ -9,20 +9,16 @@
  * @author   Display Name <username@brainstormforce.com>
  * @license  http://brainstormforce.com
  * @link     http://brainstormforce.com
+ * @since    1.1.0
  */
 
-if ( ! class_exists( 'PPC_Update' ) ) :
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 	/**
-	 * Pre-Publish Checklist doc comment.
-	 *
-	 * PHP version 7
+	 * PPC_Update initial setup
 	 *
 	 * @since 1.1.0
-	 * @category PHP
-	 * @package  Pre-Publish Checklist.
-	 * @author   Display Name <username@brainstormforce.com>
-	 * @license  http://brainstormforce.com
-	 * @link     http://brainstormforce.com
 	 */
 	class PPC_Update {
 		/**
@@ -92,13 +88,13 @@ if ( ! class_exists( 'PPC_Update' ) ) :
 		 */
 		public function update_options_table() {
 			$ppc_default_checklist_data = array(
-				'ppc_key2' => 'Featured Image Assigned',
-				'ppc_key3' => 'Category Selected',
-				'ppc_key4' => 'Formatting Done',
-				'ppc_key5' => 'Title is Catchy',
-				'ppc_key6' => 'Social Images Assigned',
-				'ppc_key7' => 'Done SEO',
-				'ppc_key8' => 'Spelling and Grammar Checked',
+				'ppc_key2' => __('Featured Image Assigned', 'pre-publish-checklist' ),
+				'ppc_key3' => __('Category Selected', 'pre-publish-checklist' ),
+				'ppc_key4' => __('Formatting Done', 'pre-publish-checklist' ),
+				'ppc_key5' => __('Title is Catchy', 'pre-publish-checklist' ),
+				'ppc_key6' => __('Social Images Assigned', 'pre-publish-checklist' ),
+				'ppc_key7' => __('Done SEO', 'pre-publish-checklist' ),
+				'ppc_key8' => __('Spelling and Grammar Checked', 'pre-publish-checklist' ),
 			);
 
 			$ppc_checklist_item_data = get_option( 'ppc_checklist_data', $ppc_default_checklist_data );
@@ -142,4 +138,3 @@ if ( ! class_exists( 'PPC_Update' ) ) :
 
 	}
 	PPC_Update::get_instance();
-endif;
