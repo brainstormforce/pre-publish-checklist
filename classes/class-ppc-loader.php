@@ -47,7 +47,6 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		public function __construct() {
 			// Activation hook.
 			register_activation_hook( PPC_PATH, array( $this, 'ppc_default_list_data_install' ) );
-			// $this->ppc_default_list_data();
 			$this->ppc_load();
 			$this->ppc_update();
 			add_action( 'admin_enqueue_scripts', array( $this, 'ppc_plugin_backend_js' ) );
@@ -86,9 +85,9 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 		 * @return void
 		 */
 		public function ppc_default_list_data_install() {
-			if( ! get_option( 'ppc_post_types_to_display', false ) ) {
+			if ( ! get_option( 'ppc_post_types_to_display', false ) ) {
 				$default_post_types = array( 'post', 'page' );
-				add_option( 'ppc_post_types_to_display', $default_post_types );	
+				add_option( 'ppc_post_types_to_display', $default_post_types );
 			}
 		}
 
