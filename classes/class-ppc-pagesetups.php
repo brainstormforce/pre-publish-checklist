@@ -121,13 +121,13 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 							echo esc_html( sprintf( __( '%1$d items completed out of %2$d', 'pre-publish-checklist' ), count( $ppc_result ), count( $ppc_post_val_array ) ) );
 							echo '<br>';
 							?>
-						<progress value="<?php echo (int) count( $ppc_result ); ?>" max="<?php echo (int) count( $ppc_post_val_array ); ?>"></progress>
+						<progress value="<?php echo count( $ppc_result ); ?>" max="<?php echo count( $ppc_post_val_array ); ?>"></progress>
 							<?php
 						} elseif ( count( $ppc_post_val_array ) === count( $ppc_result ) ) {
 							echo esc_html( sprintf( __( 'Checklist is complete', 'pre-publish-checklist' ) ) );
 							echo '<br>';
 							?>
-						<progress value="<?php echo (int) count( $ppc_result ); ?>" max="<?php echo (int) count( $ppc_post_val_array ); ?>"></progress>
+						<progress value="<?php echo count( $ppc_result ); ?>" max="<?php echo count( $ppc_post_val_array ); ?>"></progress>
 							<?php
 						}
 					}
