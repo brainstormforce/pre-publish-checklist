@@ -17,7 +17,7 @@
  * @link     https://brainstormforce.com
  */
 
-define( 'PPC_PATH ', __FILE__ );
+define( 'PPC_PATH', __FILE__ );
 define( 'PPC_ABSPATH', plugin_dir_path( __FILE__ ) );
 define( 'PPC_PLUGIN_URL', untrailingslashit( plugins_url( '', __FILE__ ) ) );
 define( 'PPC_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );

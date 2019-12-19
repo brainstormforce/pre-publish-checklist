@@ -20,6 +20,18 @@ This will make sure that you are reminded of the remaining tasks before the post
 
 Why worry about the things to do when the plugin will do that for you!
 
+== Key Features of Pre-Publish Checklist: ==
+
+The Pre-Publish Checklist is a useful plugin that lets you monitor whether the posts, pages and custom post types on your website are complete.
+
+With this plugin you can -
+
+- `Manage a checklist for your pages, posts, custom post types, etc.` - The plugin fetches all of them in the settings and you can select where you wish to add the checklist.
+
+- `Create dedicated and personalized checklists for each of them` - You can choose to create different checklists for pages, posts, etc. depending on the design and needs.
+
+- `Overview the progress of posts and pages` - You no longer need to open the post or page editor to see whether a checklist is completed. We have added a column that can be seen alongside the list of posts and pages that will tell you whether a checklist is completed, how many items left or if a checklist isn’t added for a particular post type.
+
 == How does it work? ==
 	
 The Pre-Publish Checklist plugin lets you create a checklist and enable on the specific post types you wish to have it applied to.
