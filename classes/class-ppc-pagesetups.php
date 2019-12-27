@@ -331,7 +331,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 						<div class="ppc-checklist-item-wrapper">
 							<input type="checkbox" name="checkbox[]" id="<?php echo esc_attr( $ppc_item_key ); ?>" class="ppc_checkboxes" value= "<?php echo esc_attr( $ppc_item_key ); ?>" 
 							<?php
-							empty( $value ) ? '' : checked( true, array_key_exists( $ppc_item_key, $post_type_array_items ) );
+							empty( $post_type_array_items ) ? '' : checked( true, array_key_exists( $ppc_item_key, $post_type_array_items ) );
 							?>
 							>
 							<div class="ppc-checklist"><?php echo esc_attr( $ppc_item_value ); ?></div></div>
