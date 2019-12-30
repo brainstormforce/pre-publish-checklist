@@ -15,12 +15,13 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-	/**
-	 * PPC_Update initial setup
-	 *
-	 * @since 1.1.0
-	 */
+/**
+ * PPC_Update initial setup
+ *
+ * @since 1.1.0
+ */
 class PPC_Update {
+
 	/**
 	 * Member Variable
 	 *
@@ -73,7 +74,7 @@ class PPC_Update {
 		$db_version = get_option( $this->db_version_key, false );
 
 		if ( version_compare( $db_version, '1.0.2', '<' ) ) {
-			$this->update_options_table();
+			$this->migrate_data_to_new_option();
 		}
 
 		$this->update_db_version();
@@ -86,7 +87,7 @@ class PPC_Update {
 	 *
 	 * @since 1.1.0
 	 */
-	public function update_options_table() {
+	public function migrate_data_to_new_option() {
 		$ppc_default_checklist_data = array(
 			'ppc_key2' => __( 'Featured Image Assigned', 'pre-publish-checklist' ),
 			'ppc_key3' => __( 'Category Selected', 'pre-publish-checklist' ),

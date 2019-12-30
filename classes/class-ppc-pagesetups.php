@@ -142,16 +142,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 * @since 1.1.0
 		 */
 		public function ppc_add_column_name_func( $columns ) {
-			$columns = array(
-				'cb'            => '<input type="checkbox"/)',
-				'title'         => 'Title',
-				'author'        => 'Author',
-				'categories'    => 'Categories',
-				'tags'          => 'Tags',
-				'comments'      => '<span class="vers comment-grey-bubble" title="Comments"><span class="screen-reader-text">Comments</span></span>',
-				'date'          => 'Date',
-				'ppc_checklist' => 'Checklist Status',
-			);
+			$columns['ppc_checklist'] = __( 'Checklist Status', 'pre-publish-checklist' );
 			return $columns;
 		}
 		/**
@@ -163,32 +154,33 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 			$ppc_pst_type       = get_option( 'ppc_post_types_to_display' );
 			$ppc_checklist_data = PPC_Loader::get_instance()->get_list();
 			if ( isset( $ppc_pst_type ) && isset( $ppc_checklist_data ) ) {
-				foreach ( $ppc_pst_type as $key ) {
-					$ppc_page_data     = isset( $ppc_checklist_data[ $key ] ) ? $ppc_checklist_data[ $key ] : '';
-					$current_post_type = get_current_screen();
-					if ( $current_post_type->post_type === $key ) {
-						?>
-						<select class="select_multiple" name="slect_opt" id="slect_opt">
-							<option value=""><?php esc_html_e( 'Filter Unchecked...', 'pre-publish-checklist' ); ?></option>
-							<?php
-							if ( isset( $ppc_page_data ) && is_array( $ppc_page_data ) ) {
-								foreach ( $ppc_page_data as $ppc_key => $val ) {
-									?>
-									<option value="<?php echo esc_attr( $ppc_key ); ?>" class="test"
-										<?php if ( isset( $_GET['slect_opt'] ) && wp_verify_nonce( sanitize_key( $_GET['slect_opt'] ) ) ) { ?>
-											<?php $type = wp_verify_nonce( sanitize_key( $_GET['slect_opt'] ) ); ?>
-										<?php } ?>
-										<?php if ( isset( $_GET['slect_opt'] ) ) { ?>
-											<?php echo $_GET['slect_opt'] === $ppc_key ? 'selected' : ''; ?>
-											<?php } ?>>
-											<?php echo esc_attr( wp_unslash( $val ) ); ?>
-										</option>
+				$current_post_type = get_current_screen();
+				if ( in_array( $current_post_type->post_type, $ppc_pst_type, true ) ) {
+					$ppc_page_data = isset( $ppc_checklist_data[ $current_post_type->post_type ] ) ? $ppc_checklist_data[ $current_post_type->post_type ] : '';
+					?>
+					<?php wp_nonce_field( 'ppc-select-nonce', 'ppc-select' ); ?>
+					<select class="select_multiple" name="slect_opt" id="slect_opt">
+						<option value=""><?php esc_html_e( 'Filter Unchecked...', 'pre-publish-checklist' ); ?></option>
+						<?php
+						if ( isset( $ppc_page_data ) && is_array( $ppc_page_data ) ) {
+							foreach ( $ppc_page_data as $ppc_key => $ppc_dropdown_value ) {
+								?>
+								<option value="<?php echo esc_attr( $ppc_key ); ?>" 
+									<?php
+									$selected_value = isset( $_GET['slect_opt'] ) ? sanitize_key( wp_unslash( $_GET['slect_opt'] ) ) : '';
+									if ( isset( $_GET['ppc-select'] ) && ( 1 === ( wp_verify_nonce( sanitize_key( wp_unslash( $_GET['ppc-select'] ) ), 'ppc-select-nonce' ) ) ) ) {
+										$drop_selected_value = sanitize_key( wp_unslash( $selected_value ) );
+										selected( $drop_selected_value, $ppc_key );
+										?>
 									<?php } ?>
-								}	
-							</select>
-								<?php
-							}
-					}
+									>
+									<?php echo esc_attr( wp_unslash( $ppc_dropdown_value ) ); ?>
+								</option>
+							<?php } ?>
+						}	
+					</select>
+							<?php
+						}
 				}
 			}
 		}
@@ -200,7 +192,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 * @since 1.1.0
 		 */
 		public function posts_filter( $query ) {
-			if ( isset( $_GET['slect_opt'] ) && ! empty( $_GET['slect_opt'] ) ) {
+			if ( isset( $_GET['slect_opt'] ) && ! empty( $_GET['slect_opt'] ) && is_admin() ) {
 				$fil                             = wp_verify_nonce( sanitize_key( $_GET['slect_opt'] ) );
 				$value                           = sanitize_key( wp_unslash( $_GET['slect_opt'] ) );
 				$meta_query                      = array(
@@ -321,7 +313,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 			wp_enqueue_script( 'ppc_backend_tooltip_js' );
 			wp_enqueue_style( 'ppc_backend_css' );
 			$ppc_checklist_item_data = PPC_Loader::get_instance()->get_list();
-			$value                   = get_post_meta( get_the_ID(), '_ppc_meta_key', true );
+			$post_type_array_items   = get_post_meta( get_the_ID(), '_ppc_meta_key', true );
 			?>
 			<?php
 			if ( ! empty( $ppc_checklist_item_data[ $ppc_screen ] ) ) {
@@ -333,23 +325,27 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 					</div>
 				</div>
 				<?php
-				foreach ( $ppc_checklist_item_data[ $ppc_screen ] as $ppc_key => $ppc_value ) {
+				foreach ( $ppc_checklist_item_data[ $ppc_screen ] as $ppc_item_key => $ppc_item_value ) {
 					?>
-					<label for="<?php echo esc_attr( $ppc_key ); ?>">
+					<label for="<?php echo esc_attr( $ppc_item_key ); ?>">
 						<div class="ppc-checklist-item-wrapper">
-							<input type="checkbox" name="checkbox[]" id="<?php echo esc_attr( $ppc_key ); ?>" class="ppc_checkboxes" value= "<?php echo esc_attr( $ppc_key ); ?>" 
+							<input type="checkbox" name="checkbox[]" id="<?php echo esc_attr( $ppc_item_key ); ?>" class="ppc_checkboxes" value= "<?php echo esc_attr( $ppc_item_key ); ?>" 
 							<?php
-							empty( $value ) ? '' : checked( true, array_key_exists( $ppc_key, $value ) );
+							empty( $post_type_array_items ) ? '' : checked( true, array_key_exists( $ppc_item_key, $post_type_array_items ) );
 							?>
 							>
-							<div class="ppc-checklist"><?php echo esc_attr( $ppc_value ); ?></div></div>
+							<div class="ppc-checklist"><?php echo esc_attr( $ppc_item_value ); ?></div></div>
 						</label>
 						<?php
 				}
 				?>
 					<?php
 			} else {
-				echo 'Please create a list to display. Click <a href="options-general.php?page=ppc&tab=ppc_general_settings" >here</a>';
+				$settings_url = 'options-general.php?page=ppc&tab=ppc_general_settings';
+				echo esc_html( __( 'Please create a list to display. Click ', 'pre-publish-checklist' ) );
+				?>
+				<a href="<?php echo esc_url( $settings_url ); ?>">here</a>
+				<?php
 			}
 		}
 		/**
