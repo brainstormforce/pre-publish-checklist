@@ -6,7 +6,7 @@
  *
  * @category PHP
  * @package  Pre-Publish Checklist.
- * @author   Display Name <username@BrainstormForce.com>
+ * @author   Display Name <username@brainstormForce.com>
  * @license  http://brainstormforce.com
  * @link     http://brainstormforce.com
  */
@@ -26,7 +26,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 	 *
 	 * @category PHP
 	 * @package  Pre Publish Check-list
-	 * @author   Display Name <username@BrainstormForce.com>
+	 * @author   Display Name <username@brainstormForce.com>
 	 * @license  http://brainstormforce.com
 	 * @link     http://brainstormforce.com
 	 */
@@ -52,11 +52,165 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 * Constructor
 		 */
 		public function __construct() {
+			add_action( 'admin_init', array( $this, 'ppc_addition_column_name' ) );
+			add_action( 'admin_init', array( $this, 'ppc_addition_column_data' ) );
 			add_action( 'add_meta_boxes', array( $this, 'ppc_add_custom_meta_box' ) );
 			add_action( 'admin_menu', array( $this, 'ppc_settings_page' ) );
 			add_action( 'wp_ajax_ppc_ajax_add_change', array( $this, 'ppc_meta_box_ajax_add_handler' ), 1 );
 			add_action( 'wp_ajax_ppc_ajax_delete_change', array( $this, 'ppc_meta_box_ajax_delete_handler' ), 1 );
 			add_action( 'admin_footer', array( $this, 'ppc_markup' ) );
+			add_action( 'restrict_manage_posts', array( $this, 'add_dropdown' ) );
+			add_filter( 'pre_get_posts', array( $this, 'posts_filter' ) );
+		}
+
+		/**
+		 * Add column name hook loop.
+		 *
+		 * @since 1.1.0
+		 */
+		public function ppc_addition_column_name() {
+			$pst_typ_column_name = get_option( 'ppc_post_types_to_display' );
+			foreach ( $pst_typ_column_name as $ppc_post_type_key ) {
+				$manage_col_name = 'manage_';
+				$ppc_posttype    = apply_filters( 'ppc_column_add', $ppc_post_type_key );
+				$ppc_post_column = '_posts_columns';
+				$ppc_column_name = $manage_col_name . $ppc_posttype . $ppc_post_column;
+				add_action( $ppc_column_name, array( $this, 'ppc_add_column_name_func' ), 10, 1 );
+			}
+		}
+		/**
+		 * Add column data hook loop.
+		 *
+		 * @since 1.1.0
+		 */
+		public function ppc_addition_column_data() {
+			$pst_typ_column_data = get_option( 'ppc_post_types_to_display' );
+			foreach ( $pst_typ_column_data as $ppc_col_data_key ) {
+				$manage_col_data = 'manage_';
+				$posttype_col    = apply_filters( 'ppc_column_data', $ppc_col_data_key );
+				$post_column_col = '_posts_custom_column';
+				$ppc_column_data = $manage_col_data . $posttype_col . $post_column_col;
+				add_action( $ppc_column_data, array( $this, 'ppc_column_data_func' ), 10, 2 );
+			}
+		}
+		/**
+		 * Rendered data.
+		 *
+		 * Rendered data into post column.
+		 *
+		 * @param string $columns for column.
+		 * @param string $post_id for post id.
+		 * @since 1.1.0
+		 */
+		public function ppc_column_data_func( $columns, $post_id ) {
+			wp_enqueue_style( 'ppc_backend_css' );
+			$ppc_total_checklist_data = PPC_Loader::get_instance()->get_list();
+			$ppc_checked_data         = get_post_meta( get_the_ID(), '_ppc_meta_key', true );
+			$current_screen_post_type = get_current_screen();
+			$ppc_post_val_array       = isset( $ppc_total_checklist_data[ $current_screen_post_type->post_type ] ) ? $ppc_total_checklist_data[ $current_screen_post_type->post_type ] : '';
+			switch ( $columns ) {
+				case 'ppc_checklist':
+					if ( empty( $ppc_post_val_array ) ) {
+						echo esc_html( sprintf( __( 'No checklist found.', 'pre-publish-checklist' ) ) );
+					} elseif ( isset( $ppc_post_val_array ) && empty( $ppc_checked_data ) ) {
+						echo esc_html( sprintf( __( 'Checklist is empty', 'pre-publish-checklist' ) ) );
+					} elseif ( isset( $ppc_post_val_array ) && ! empty( $ppc_post_val_array ) && isset( $ppc_checked_data ) && ! empty( $ppc_checked_data ) ) {
+						$ppc_result = array_intersect_key( $ppc_post_val_array, $ppc_checked_data );
+						if ( isset( $ppc_result ) && ! empty( $ppc_result ) && count( $ppc_post_val_array ) > count( $ppc_result ) ) {
+							/* translators: %d: number term */
+							echo esc_html( sprintf( __( '%1$d items completed out of %2$d', 'pre-publish-checklist' ), count( $ppc_result ), count( $ppc_post_val_array ) ) );
+							echo '<br>';
+							?>
+						<progress value="<?php echo count( $ppc_result ); ?>" max="<?php echo count( $ppc_post_val_array ); ?>"></progress>
+							<?php
+						} elseif ( count( $ppc_post_val_array ) === count( $ppc_result ) ) {
+							echo esc_html( sprintf( __( 'Checklist is complete', 'pre-publish-checklist' ) ) );
+							echo '<br>';
+							?>
+						<progress value="<?php echo count( $ppc_result ); ?>" max="<?php echo count( $ppc_post_val_array ); ?>"></progress>
+							<?php
+						}
+					}
+					break;
+			}
+		}
+		/**
+		 * Function to add post column.
+		 *
+		 * @param string $columns for column.
+		 *
+		 * @since 1.1.0
+		 */
+		public function ppc_add_column_name_func( $columns ) {
+			$columns['ppc_checklist'] = __( 'Checklist Status', 'pre-publish-checklist' );
+			return $columns;
+		}
+		/**
+		 * Dropdown for page.
+		 *
+		 * @since 1.1.0
+		 */
+		public function add_dropdown() {
+			$ppc_pst_type       = get_option( 'ppc_post_types_to_display' );
+			$ppc_checklist_data = PPC_Loader::get_instance()->get_list();
+			if ( isset( $ppc_pst_type ) && isset( $ppc_checklist_data ) ) {
+				$current_post_type = get_current_screen();
+				if ( in_array( $current_post_type->post_type, $ppc_pst_type, true ) ) {
+					$ppc_page_data = isset( $ppc_checklist_data[ $current_post_type->post_type ] ) ? $ppc_checklist_data[ $current_post_type->post_type ] : '';
+					?>
+					<?php wp_nonce_field( 'ppc-select-nonce', 'ppc-select' ); ?>
+					<select class="select_multiple" name="slect_opt" id="slect_opt">
+						<option value=""><?php esc_html_e( 'Filter Unchecked...', 'pre-publish-checklist' ); ?></option>
+						<?php
+						if ( isset( $ppc_page_data ) && is_array( $ppc_page_data ) ) {
+							foreach ( $ppc_page_data as $ppc_key => $ppc_dropdown_value ) {
+								?>
+								<option value="<?php echo esc_attr( $ppc_key ); ?>" 
+									<?php
+									$selected_value = isset( $_GET['slect_opt'] ) ? sanitize_key( wp_unslash( $_GET['slect_opt'] ) ) : '';
+									if ( isset( $_GET['ppc-select'] ) && ( 1 === ( wp_verify_nonce( sanitize_key( wp_unslash( $_GET['ppc-select'] ) ), 'ppc-select-nonce' ) ) ) ) {
+										$drop_selected_value = sanitize_key( wp_unslash( $selected_value ) );
+										selected( $drop_selected_value, $ppc_key );
+										?>
+									<?php } ?>
+									>
+									<?php echo esc_attr( wp_unslash( $ppc_dropdown_value ) ); ?>
+								</option>
+							<?php } ?>
+						}	
+					</select>
+							<?php
+						}
+				}
+			}
+		}
+		/**
+		 * For query.
+		 *
+		 * @param string $query for querying.
+		 *
+		 * @since 1.1.0
+		 */
+		public function posts_filter( $query ) {
+			if ( isset( $_GET['slect_opt'] ) && ! empty( $_GET['slect_opt'] ) && is_admin() ) {
+				$fil                             = wp_verify_nonce( sanitize_key( $_GET['slect_opt'] ) );
+				$value                           = sanitize_key( wp_unslash( $_GET['slect_opt'] ) );
+				$meta_query                      = array(
+					array(
+						'relation' => 'OR',
+						array(
+							'key'     => '_ppc_meta_key',
+							'value'   => $value,
+							'compare' => 'NOT LIKE',
+						),
+						array(
+							'key'     => '_ppc_meta_key',
+							'compare' => 'NOT EXISTS',
+						),
+					),
+				);
+				$query->query_vars['meta_query'] = $meta_query; //phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+			}
 		}
 		/**
 		 * Function for HTML markup of notification.
@@ -154,14 +308,15 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 * @since 1.0.0
 		 */
 		public function ppc_custom_box_html() {
+			$ppc_screen = get_current_screen()->post_type;
 			wp_enqueue_script( 'ppc_backend_checkbox_js' );
 			wp_enqueue_script( 'ppc_backend_tooltip_js' );
 			wp_enqueue_style( 'ppc_backend_css' );
-			$ppc_checklist_item_data = get_option( 'ppc_checklist_data' );
-			$value                   = get_post_meta( get_the_ID(), '_ppc_meta_key', true );
+			$ppc_checklist_item_data = PPC_Loader::get_instance()->get_list();
+			$post_type_array_items   = get_post_meta( get_the_ID(), '_ppc_meta_key', true );
 			?>
 			<?php
-			if ( ! empty( $ppc_checklist_item_data ) ) {
+			if ( ! empty( $ppc_checklist_item_data[ $ppc_screen ] ) ) {
 				?>
 				<div class="ppc-percentage-wrapper">
 					<span class="ppc-percentage-value"></span>
@@ -170,23 +325,29 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 					</div>
 				</div>
 				<?php
-				foreach ( $ppc_checklist_item_data as $ppc_key => $ppc_value ) {
+				foreach ( $ppc_checklist_item_data[ $ppc_screen ] as $ppc_item_key => $ppc_item_value ) {
 					?>
-					<label for="<?php echo esc_attr( $ppc_key ); ?>">
-					<div class="ppc-checklist-item-wrapper">
-						<input type="checkbox" name="checkbox[]" id="<?php echo esc_attr( $ppc_key ); ?>" class="ppc_checkboxes" value= "<?php echo esc_attr( $ppc_key ); ?>" <?php empty( $value ) ? '' : checked( true, array_key_exists( $ppc_key, $value ) ); ?>
-						>
-					<div class="ppc-checklist"><?php echo esc_attr( $ppc_value ); ?></div></div>
-				</label>
-					<?php
+					<label for="<?php echo esc_attr( $ppc_item_key ); ?>">
+						<div class="ppc-checklist-item-wrapper">
+							<input type="checkbox" name="checkbox[]" id="<?php echo esc_attr( $ppc_item_key ); ?>" class="ppc_checkboxes" value= "<?php echo esc_attr( $ppc_item_key ); ?>" 
+							<?php
+							empty( $post_type_array_items ) ? '' : checked( true, array_key_exists( $ppc_item_key, $post_type_array_items ) );
+							?>
+							>
+							<div class="ppc-checklist"><?php echo esc_attr( $ppc_item_value ); ?></div></div>
+						</label>
+						<?php
 				}
 				?>
-				<?php
+					<?php
 			} else {
-				echo 'Please create a list to display here from Settings->Pre-Publish-Checklist';
+				$settings_url = 'options-general.php?page=ppc&tab=ppc_general_settings';
+				echo esc_html( __( 'Please create a list to display. Click ', 'pre-publish-checklist' ) );
+				?>
+				<a href="<?php echo esc_url( $settings_url ); ?>">here</a>
+				<?php
 			}
 		}
-
 		/**
 		 * Function for saving the meta box values
 		 *

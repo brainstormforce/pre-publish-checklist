@@ -5,7 +5,7 @@ Tags: Pre-publish checklist, Post publish checklist, Editorial checklist, Blog p
 Requires at least: 4.7
 Requires PHP: 5.6
 Tested up to: 5.3
-Stable tag: 1.0.2
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,6 +19,18 @@ All of this is handled with an easy to use Pre-Publish Checklist plugin that let
 This will make sure that you are reminded of the remaining tasks before the post goes live.
 
 Why worry about the things to do when the plugin will do that for you!
+
+== Key Features of Pre-Publish Checklist: ==
+
+The Pre-Publish Checklist is a useful plugin that lets you monitor whether the posts, pages and custom post types on your website are complete.
+
+With this plugin you can -
+
+- `Manage a checklist for your pages, posts, custom post types, etc.` - The plugin fetches all of them in the settings and you can select where you wish to add the checklist.
+
+- `Create dedicated and personalized checklists for each of them` - You can choose to create different checklists for pages, posts, etc. depending on the design and needs.
+
+- `Overview the progress of posts and pages` - You no longer need to open the post or page editor to see whether a checklist is completed. We have added a column that can be seen alongside the list of posts and pages that will tell you whether a checklist is completed, how many items left or if a checklist isn’t added for a particular post type.
 
 == How does it work? ==
 	
@@ -46,6 +58,11 @@ The checklist will appear within a metabox on the post/page edit page.
 Yes, there is a short list that we've provided within the plugin. However, we recommend you to modify it as per your needs.
 
 == Changelog ==
+
+= 1.1.0 =
+- New: Introduced support for creating an individual checklist for custom post types.
+- New: Added a list column to display the checklist status.
+- New: Added a search bar to filter posts according to pending item.
 
 = 1.0.2 =
 - Fixed: Compatibility issues with Wordpress 5.3.

@@ -1,7 +1,6 @@
 .ppc-hide-empty-warning {
   visibility: hidden;
    display: inline;
-
 }
 
 .ppc-hide-exists-warning {
@@ -527,7 +526,34 @@ p.ppc-label {
     margin-bottom: 0;
 }
 
-
 input.ppc_checkboxes{
   margin-top: 2px;
+}
+
+.ppc-pts{
+  list-style: none;
+  display: inline-flex;
+}
+
+.ppc-pts li{
+  border-right: 1px solid #666;
+  padding: 0 7px;
+}
+
+.ppc-pts li:last-child {
+  border-right: none;
+}
+
+.ppc-pts li a{
+  text-decoration: none;
+}
+
+.ppc-active a{
+   color: #000;
+   font-weight: 600;
+   transition-duration: .05s;
+}
+
+td.column-ppc_checklist{
+  font-style: italic;
 }

@@ -5,16 +5,22 @@
  *
  * @category PHP
  * @package  Pre-Publish Checklist.
- * @author   Display Name <username@ShubhamW.com>
+ * @author   Display Name <username@brainstormforce.com>
  * @license  http://brainstormforce.com
  * @link     http://brainstormforce.com
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 // Displaying the contents in the general tab in the plugin settings.
 $ppc_radio_button = get_option( 'ppc_error_level', 3 );
 wp_enqueue_style( 'ppc_backend_css' );
-$ppc_post_types = get_option( 'ppc_post_types_to_display' );
-$ppc_args       = array(
+$ppc_checklist_item_data = get_option( 'ppc_cpt_checklist_data' );
+$ppc_post_types          = get_option( 'ppc_post_types_to_display' );
+
+$ppc_args = array(
 	'public' => true,
 );
 
@@ -83,7 +89,8 @@ $ppc_exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates'
 				<p class="description"><?php esc_html_e( 'Select the post types where you wish to display the Pre-Publish Checklist.', 'pre-publish-checklist' ); ?></p> <br>
 
 				<?php wp_nonce_field( 'ppc-form-nonce', 'ppc-form' ); ?>
-			<br><input type="submit" class="button button-primary ppc-savesetting"  name="submit_radio" Value="Save Settings"/>		
+			<br>
+			<input type="submit" class="button button-primary ppc-savesetting"  name="submit_radio" Value="Save Settings"/>		
 			</td>
 		</tr>
 		</tbody>

@@ -7,12 +7,14 @@
  * @author  Brainstorm Force.
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 echo '<h1 class="ppc_main_title">';
 esc_attr_e( 'Pre-Publish Checklist', 'pre-publish-checklist' );
 echo '</h1>';
 ?>
-
-
 
 <?php
 // Navigation.
@@ -45,10 +47,15 @@ if ( isset( $_GET['tab'] ) ) {  //PHPCS:ignore:WordPress.Security.NonceVerificat
 		echo 'nav-tab-active ppc-active-tab';
 	}
 	?>
-	"><?php esc_attr_e( 'General Settings', 'pre-publish-checklist' ); ?></a>
+	">
+	<?php esc_attr_e( 'General Settings', 'pre-publish-checklist' ); ?></a>
+		<?php
+		$ppc_post_types       = get_option( 'ppc_post_types_to_display' );
+		$ppc_type             = isset( $ppc_post_types[0] ) ? $ppc_post_types[0] : '';
+		$ppc_active_checkpost = ! empty( $ppc_post_types ) ? $ppc_type : 'post';
+		?>
 
-
-		<a href="?page=ppc&tab=ppc-checklist" class="nav-tab tb 
+		<a href="<?php echo esc_url( add_query_arg( 'type', $ppc_active_checkpost, '?page=ppc&tab=ppc-checklist&' ) ); ?>" class="nav-tab tb 
 	<?php
 	if ( 'ppc-checklist' === $ppc_active_tab ) {
 		echo 'nav-tab-active ppc-active-tab';
@@ -80,4 +87,3 @@ if ( isset( $_GET['tab'] ) ) { //PHPCS:ignore:WordPress.Security.NonceVerificati
 } else {
 	require_once 'ppc-frontend.php';
 }
-
