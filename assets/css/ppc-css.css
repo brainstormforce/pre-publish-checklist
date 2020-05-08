@@ -557,3 +557,7 @@ input.ppc_checkboxes{
 td.column-ppc_checklist{
   font-style: italic;
 }
+
+.column-ppc_checklist{
+  width: 12%;
+}
