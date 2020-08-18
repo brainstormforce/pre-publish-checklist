@@ -61,7 +61,7 @@ jQuery(document).ready(function() {
             jQuery('.ppc-empty-list').attr('style', 'display:none');
             jQuery.post(ppc_add_delete_obj.url, {
                 action: 'ppc_checklistitem_add',
-                ppc_item_content: jQuery('.ppc-item-input').attr('value'),
+                ppc_item_content: jQuery('.ppc-item-input').val(),
                 ppc_current_type: get_type,
                 ppc_security : ppc_add_delete_obj.security
             },
