@@ -3,7 +3,7 @@
   "description": "pre-publish-checklists",
   "require-dev": {
     "brainmaestro/composer-git-hooks": "^2.6",
-    "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4",
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
     "phpcompatibility/phpcompatibility-wp": "*",
     "wp-coding-standards/wpcs": "dev-master"
   },
