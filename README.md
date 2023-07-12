@@ -20,7 +20,7 @@ This will make sure that you are reminded of the remaining tasks before the post
 
 Why worry about the things to do when the plugin will do that for you!
 
-[Try it out on a free dummy site]({https://bsf.io/pre-publish-checklist-demo})
+[Try it out on a free dummy site](https://bsf.io/pre-publish-checklist-demo)
 
 ## Key Features of Pre-Publish Checklist: ##
 
