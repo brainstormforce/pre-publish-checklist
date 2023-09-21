@@ -356,8 +356,11 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 * @since 1.0.0
 		 */
 		public function ppc_meta_box_ajax_add_handler() {
+			if( ( ! current_user_can( 'edit_post', $_POST['ppc_post_id'] ) ||  ! current_user_can( 'publish_post', $_POST['ppc_post_id'] ) )){
+				wp_send_json_error( __( 'Sorry, you are not allowed to perform this action', 'pre-publish-checklist' ) );
+			}
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
-			if ( isset( $_POST['ppc_field_value'] ) && isset( $_POST['ppc_post_id'] ) && isset( $_POST['ppc_key_value'] ) && ( current_user_can( 'edit_posts' ) || current_user_can( 'publish_posts' ) ) ) {
+			if ( isset( $_POST['ppc_field_value'] ) && isset( $_POST['ppc_post_id'] ) && isset( $_POST['ppc_key_value'] ) ) {
 				$ppcpost        = sanitize_text_field( wp_unslash( $_POST['ppc_post_id'] ) );
 				$ppc_key        = sanitize_text_field( wp_unslash( $_POST['ppc_key_value'] ) );
 				$ppc_value      = sanitize_text_field( wp_unslash( $_POST['ppc_field_value'] ) );
@@ -374,8 +377,6 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 					$ppc_checklist_add_data
 				);
 				wp_send_json_success( __( 'sucess', 'pre-publish-checklist' ) );
-			} else {
-				wp_send_json_error( __( 'Sorry, you are not allowed to perform this action', 'pre-publish-checklist' ) );
 			}
 		}
 
@@ -387,8 +388,11 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 * @since 1.0.0
 		 */
 		public function ppc_meta_box_ajax_delete_handler() {
+			if( ( ! current_user_can( 'edit_post', $_POST['ppc_post_id'] ) ||  ! current_user_can( 'publish_post', $_POST['ppc_post_id'] ) )){
+				wp_send_json_error( __( 'Sorry, you are not allowed to perform this action', 'pre-publish-checklist' ) );
+			}
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
-			if ( isset( $_POST['ppc_key_value'] ) && isset( $_POST['ppc_post_id'] ) && ( current_user_can( 'edit_posts' ) || current_user_can( 'publish_posts' ) ) ) {
+			if ( isset( $_POST['ppc_key_value'] ) && isset( $_POST['ppc_post_id'] ) ) {
 				$ppcpost        = sanitize_text_field( wp_unslash( $_POST['ppc_post_id'] ) );
 				$ppc_delete_key = sanitize_text_field( wp_unslash( $_POST['ppc_key_value'] ) );
 				$pre_data       = get_post_meta( $ppcpost, '_ppc_meta_key', true );
@@ -401,8 +405,6 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 					$pre_data
 				);
 				wp_send_json_success( __( 'sucess', 'pre-publish-checklist' ) );
-			} else {
-				wp_send_json_error( __( 'Sorry, you are not allowed to perform this action', 'pre-publish-checklist' ) );
 			}
 		}
 	}
