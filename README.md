@@ -5,7 +5,7 @@
 **Requires at least:** 4.7  
 **Requires PHP:** 5.6  
 **Tested up to:** 6.3  
-**Stable tag:** 1.1.1  
+**Stable tag:** 1.1.2  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -61,7 +61,10 @@ Yes, there is a short list that we've provided within the plugin. However, we re
 
 ## Changelog ##
 
-### 1.1.1 ###
+### 1.1.2 ### 
+- Enhancement: Improved Security in AJAX Request Handling. Props to Patchstack for reporting it privately to our team.
+
+### 1.1.1### 
 - Fixed: Compatibility issues with WordPress 5.5.
 
 ### 1.1.0 ###
