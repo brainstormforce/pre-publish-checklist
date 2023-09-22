@@ -62,7 +62,7 @@ Yes, there is a short list that we've provided within the plugin. However, we re
 == Changelog ==
 
 = 1.1.2 =
-- Fixed: Resolved an issue of user role capability to edit certain post.
+- Enhancement: Improved Security in AJAX Request Handling.
 
 = 1.1.1 =
 - Fixed: Compatibility issues with WordPress 5.5.
