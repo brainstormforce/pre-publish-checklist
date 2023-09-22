@@ -64,7 +64,7 @@ Yes, there is a short list that we've provided within the plugin. However, we re
 ### 1.1.2 ### 
 - Enhancement: Improved Security in AJAX Request Handling. Props to Patchstack for reporting it privately to our team.
 
-### 1.1.1### 
+### 1.1.1 ### 
 - Fixed: Compatibility issues with WordPress 5.5.
 
 ### 1.1.0 ###
