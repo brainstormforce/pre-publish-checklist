@@ -361,7 +361,7 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 			$ppc_post_id     = isset( $_POST['ppc_post_id'] ) ? sanitize_text_field( wp_unslash( $_POST['ppc_post_id'] ) ) : '';
 			$ppc_key_value   = isset( $_POST['ppc_key_value'] ) ? sanitize_text_field( wp_unslash( $_POST['ppc_key_value'] ) ) : '';
 			$ppc_field_value = isset( $_POST['ppc_field_value'] ) ? sanitize_text_field( wp_unslash( $_POST['ppc_field_value'] ) ) : '';
-			if ( ! empty( $$ppc_field_value ) && ! empty( $ppc_post_id ) && ! empty( $ppc_key_value ) && current_user_can( 'edit_post', $ppc_post_id ) ) {
+			if ( ! empty( $ppc_field_value ) && ! empty( $ppc_post_id ) && ! empty( $ppc_key_value ) && current_user_can( 'edit_post', $ppc_post_id ) ) {
 				$ppc_check_data = array( $ppc_key_value => $ppc_field_value );
 				$pre_data       = get_post_meta( $ppc_post_id, '_ppc_meta_key', true );
 				if ( ! empty( $pre_data ) ) {
