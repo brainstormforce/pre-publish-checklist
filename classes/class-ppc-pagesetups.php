@@ -357,19 +357,20 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 */
 		public function ppc_meta_box_ajax_add_handler() {
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
-			if ( isset( $_POST['ppc_field_value'] ) && isset( $_POST['ppc_post_id'] ) && isset( $_POST['ppc_key_value'] ) && ( current_user_can( 'edit_posts' ) || current_user_can( 'publish_posts' ) ) ) {
-				$ppcpost        = sanitize_text_field( wp_unslash( $_POST['ppc_post_id'] ) );
-				$ppc_key        = sanitize_text_field( wp_unslash( $_POST['ppc_key_value'] ) );
-				$ppc_value      = sanitize_text_field( wp_unslash( $_POST['ppc_field_value'] ) );
-				$ppc_check_data = array( $ppc_key => $ppc_value );
-				$pre_data       = get_post_meta( $ppcpost, '_ppc_meta_key', true );
+			// Sanitize and validate the 'ppc_post_id' and 'ppc_key_value' parameters.
+			$ppc_post_id     = isset( $_POST['ppc_post_id'] ) ? sanitize_text_field( wp_unslash( $_POST['ppc_post_id'] ) ) : '';
+			$ppc_key_value   = isset( $_POST['ppc_key_value'] ) ? sanitize_text_field( wp_unslash( $_POST['ppc_key_value'] ) ) : '';
+			$ppc_field_value = isset( $_POST['ppc_field_value'] ) ? sanitize_text_field( wp_unslash( $_POST['ppc_field_value'] ) ) : '';
+			if ( ! empty( $$ppc_field_value ) && ! empty( $ppc_post_id ) && ! empty( $ppc_key_value ) && current_user_can( 'edit_post', $ppc_post_id ) ) {
+				$ppc_check_data = array( $ppc_key_value => $ppc_field_value );
+				$pre_data       = get_post_meta( $ppc_post_id, '_ppc_meta_key', true );
 				if ( ! empty( $pre_data ) ) {
 					$ppc_checklist_add_data = array_merge( $pre_data, $ppc_check_data );
 				} else {
 					$ppc_checklist_add_data = $ppc_check_data;
 				}
 				update_post_meta(
-					$ppcpost,
+					$ppc_post_id,
 					'_ppc_meta_key',
 					$ppc_checklist_add_data
 				);
@@ -388,15 +389,16 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 		 */
 		public function ppc_meta_box_ajax_delete_handler() {
 			check_ajax_referer( 'ppc-security-nonce', 'ppc_security' );
-			if ( isset( $_POST['ppc_key_value'] ) && isset( $_POST['ppc_post_id'] ) && ( current_user_can( 'edit_posts' ) || current_user_can( 'publish_posts' ) ) ) {
-				$ppcpost        = sanitize_text_field( wp_unslash( $_POST['ppc_post_id'] ) );
-				$ppc_delete_key = sanitize_text_field( wp_unslash( $_POST['ppc_key_value'] ) );
-				$pre_data       = get_post_meta( $ppcpost, '_ppc_meta_key', true );
+			// Sanitize and validate the 'ppc_post_id' and 'ppc_key_value' parameters.
+			$ppc_post_id   = isset( $_POST['ppc_post_id'] ) ? sanitize_text_field( wp_unslash( $_POST['ppc_post_id'] ) ) : '';
+			$ppc_key_value = isset( $_POST['ppc_key_value'] ) ? sanitize_text_field( wp_unslash( $_POST['ppc_key_value'] ) ) : '';
+			if ( ! empty( $ppc_post_id ) && ! empty( $ppc_key_value ) && current_user_can( 'edit_post', $ppc_post_id ) ) {
+				$pre_data = get_post_meta( $ppc_post_id, '_ppc_meta_key', true );
 				if ( ! empty( $pre_data ) ) {
-					unset( $pre_data[ $ppc_delete_key ] );
+					unset( $pre_data[ $ppc_key_value ] );
 				}
 				update_post_meta(
-					$ppcpost,
+					$ppc_post_id,
 					'_ppc_meta_key',
 					$pre_data
 				);
