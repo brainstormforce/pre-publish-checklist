@@ -5,7 +5,7 @@
 **Requires at least:** 4.7  
 **Requires PHP:** 5.6  
 **Tested up to:** 6.3  
-**Stable tag:** 1.1.2  
+**Stable tag:** 1.1.3  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -61,10 +61,14 @@ Yes, there is a short list that we've provided within the plugin. However, we re
 
 ## Changelog ##
 
-### 1.1.2 ### 
+### 1.1.3 ###
+- Fixed: Resolved an issue with visibility of the publish/update button after WordPress 6.3 update.
+- Fixed: Resolved an issue where the checklist within the post editor was not saving when users attempted to save a draft or schedule a post.
+
+### 1.1.2 ###
 - Enhancement: Improved Security in AJAX Request Handling. Props to Patchstack for reporting it privately to our team.
 
-### 1.1.1 ### 
+### 1.1.1 ###
 - Fixed: Compatibility issues with WordPress 5.5.
 
 ### 1.1.0 ###

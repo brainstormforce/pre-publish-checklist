@@ -111,7 +111,9 @@ jQuery(document).ready(
                         }
                         if (jQuery('.edit-post-header__settings').find('.editor-post-save-draft').length != 0) {
                             jQuery('.edit-post-header__settings').find('.editor-post-publish-panel__toggle').after('<button type="button" class="components-button  is-button is-primary ppc-publish" id="ppc-publish">Publish...</button>');
-                        } else if (jQuery('.edit-post-header__settings').find('.editor-post-switch-to-draft').length == 1) {
+						} else if (jQuery('.edit-post-post-status').find('.editor-post-switch-to-draft').length == 1) { // After 6.3 Switch to draft button is moved to post status panel.
+							jQuery('.edit-post-header__settings').find('.editor-post-publish-button').after('<button type="button" class="components-button  is-button is-primary ppc-publish" id="ppc-update">Update</button>');
+						} else if (jQuery('.edit-post-header__settings').find('.editor-post-switch-to-draft').length == 1) {
                             jQuery('.edit-post-header__settings').find('.editor-post-publish-button').after('<button type="button" class="components-button  is-button is-primary ppc-publish" id="ppc-update">Update</button>');
                         } else if (jQuery('.edit-post-header__settings').find('.editor-post-switch-to-draft').length == 0) {
                             jQuery('.edit-post-header__settings').find('.editor-post-publish-panel__toggle').after('<button type="button" class="components-button  is-button is-primary ppc-publish" id="ppc-publish">Publish...</button>');
