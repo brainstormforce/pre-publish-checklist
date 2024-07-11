@@ -6,9 +6,9 @@
  *
  * @category PHP
  * @package  Pre-Publish Checklist.
- * @author   Display Name <username@brainstormforce.com>
- * @license  http://brainstormforce.com
- * @link     http://brainstormforce.com
+ * @author   Pratik Chaskar
+ * @license  https://pratikchaskar.com/
+ * @link     https://pratikchaskar.com/
  * @since    1.1.0
  */
 

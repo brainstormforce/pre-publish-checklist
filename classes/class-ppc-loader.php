@@ -6,9 +6,9 @@
  *
  * @category PHP
  * @package  Pre-Publish Checklist.
- * @author   Display Name <username@brainstormforce.com>
- * @license  http://brainstormforce.com
- * @link     http://brainstormforce.com
+ * @author   Pratik Chaskar
+ * @license  https://pratikchaskar.com/
+ * @link     https://pratikchaskar.com/
  */
 
 if ( ! class_exists( 'PPC_Loader' ) ) :
@@ -19,9 +19,9 @@ if ( ! class_exists( 'PPC_Loader' ) ) :
 	 *
 	 * @category PHP
 	 * @package  Pre-Publish Checklist.
-	 * @author   Display Name <username@brainstormforce.com>
-	 * @license  http://brainstormforce.com
-	 * @link     http://brainstormforce.com
+	 * @author   Pratik Chaskar
+	 * @license  https://pratikchaskar.com/
+	 * @link     https://pratikchaskar.com/
 	 */
 	class PPC_Loader {
 

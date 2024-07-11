@@ -6,9 +6,9 @@
  *
  * @category PHP
  * @package  Pre-Publish Checklist.
- * @author   Display Name <username@brainstormForce.com>
- * @license  http://brainstormforce.com
- * @link     http://brainstormforce.com
+ * @author   Pratik Chaskar
+ * @license  https://pratikchaskar.com/
+ * @link     https://pratikchaskar.com/
  */
 
 /*
@@ -26,9 +26,9 @@ if ( ! class_exists( 'PPC_Pagesetups' ) ) :
 	 *
 	 * @category PHP
 	 * @package  Pre Publish Check-list
-	 * @author   Display Name <username@brainstormForce.com>
-	 * @license  http://brainstormforce.com
-	 * @link     http://brainstormforce.com
+	 * @author   Pratik Chaskar
+	 * @license  https://pratikchaskar.com/
+	 * @link     https://pratikchaskar.com/
 	 */
 	class PPC_Pagesetups {
 

@@ -2,7 +2,7 @@
   "name": "pre-publish-checklist",
   "version": "0.0.1",
   "main": "Gruntfile.js",
-  "author": "Brainstorm Force",
+  "author": "Pratik Chaskar",
   "devDependencies": {
     "grunt": "^1.3.0",
     "grunt-contrib-jshint": "^2.1.0",

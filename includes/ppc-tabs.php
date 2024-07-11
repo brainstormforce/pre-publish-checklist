@@ -4,7 +4,7 @@
  *
  * @since   1.0.0
  * @package Pre-Publish Checklist.
- * @author  Brainstorm Force.
+ * @author  Pratik Chaskar.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
