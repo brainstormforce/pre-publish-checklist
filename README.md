@@ -62,7 +62,7 @@ Yes, there is a short list that we've provided within the plugin. However, we re
 ## Changelog ##
 
 ### 1.1.4 ###
-- Fixed: Compatibility with WordPress 6.6
+- Enhancement: Compatibility with WordPress 6.6.
 
 ### 1.1.3 ###
 - Fixed: Resolved an issue with visibility of the publish/update button after WordPress 6.3 update.
