@@ -1,6 +1,5 @@
 === Pre-Publish Checklist ===
 Contributors: pratikchaskar
-Donate link: https://www.paypal.me/BrainstormForce
 Tags: Pre-publish checklist, Post publish checklist, Editorial checklist, Blog publish checklist, Cross check post or page
 Requires at least: 4.7
 Requires PHP: 5.6
